@@ -1,5 +1,6 @@
 package view;
 
+import controller.Controller;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.scene.layout.GridPane;
@@ -21,6 +22,8 @@ public class MenuView {
      */
     private int width;
     private int height;
+    
+    private String title = "FigueMûre2Style";
     
     
     /**
@@ -44,7 +47,7 @@ public class MenuView {
         this.height = h;
 
         // Nom de la fenetre
-        stage.setTitle("FigueMûre2Style");
+        stage.setTitle(title);
 
         GridPane gridpane = new GridPane();
         gridpane.setHgap(10);
@@ -67,7 +70,23 @@ public class MenuView {
         buttonPlay.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent e) {
-                //MenuLocal ms = new MenuLocal();
+                Stage stageGame = new Stage();
+                JfxView gameView = new JfxView(title, stageGame);
+
+                FieldModel fieldModel = new FieldModel(cl, getNbIa(),
+                        getMap(), ModeEnum.LOCAL, null);
+
+                FieldView fieldView =
+                        new FieldView(fieldModel, 600,600);
+
+                Controller controller = Controller.getControler();
+                fieldView.setControler(controller);
+                controller.addUpdateView(gameView);
+                controller.setModel(fieldModel);
+                gameView.setView(fieldView);
+
+                controller.startTimer();
+
                 stage.close();
             }
         });
