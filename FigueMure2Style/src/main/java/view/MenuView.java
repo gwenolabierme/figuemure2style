@@ -7,6 +7,10 @@ import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.HPos;
+import javafx.geometry.Pos;
+import javafx.scene.layout.ColumnConstraints;
+import javafx.scene.text.Text;
 
 /**
  * Menu Principal qui apparait au lancement.
@@ -17,6 +21,15 @@ public class MenuView {
      */
     private int width;
     private int height;
+    
+    
+    /**
+     * Constructeur sans paramètres.
+     */
+    public MenuView() {
+        Stage stage = new Stage();
+        MenuView mv = new MenuView(stage, 600, 600);
+    }
 
     /**
      * Constructeur MenuView.
@@ -33,22 +46,34 @@ public class MenuView {
         // Nom de la fenetre
         stage.setTitle("FigueMûre2Style");
 
-        GridPane grid = new GridPane();
-        grid.setHgap(10);
-        grid.setVgap(10);
-        grid.setPadding(new Insets(25, 25, 25, 25));
+        GridPane gridpane = new GridPane();
+        gridpane.setHgap(10);
+        gridpane.setVgap(10);
+        gridpane.setPadding(new Insets(25, 25, 25, 25));
+        
+        ColumnConstraints column13 = new ColumnConstraints(), 
+                column2 = new ColumnConstraints();
+        column13.setPercentWidth(25);
+        column2.setPercentWidth(50);
+        // set the relative size of columns in the gridpane
+        gridpane.getColumnConstraints().addAll(column13, column2, column13); 
 
-
-        Button buttonSolo = new Button("Jouer");
-        buttonSolo.setOnAction(new EventHandler<ActionEvent>() {
+        Text title = new Text();      
+        title.setText("FigueMûre2Style");
+        gridpane.add(title, 1, 0);
+        gridpane.setHalignment(title, HPos.CENTER);
+        
+        Button buttonPlay = new Button("Jouer");
+        buttonPlay.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent e) {
                 //MenuLocal ms = new MenuLocal();
                 stage.close();
             }
         });
-        buttonSolo.setMinSize(200, 50);
-        grid.add(buttonSolo, 1, 2);
+        buttonPlay.setMinSize(200, 50);
+        gridpane.add(buttonPlay, 1, 3);
+        gridpane.setHalignment(buttonPlay, HPos.CENTER);
 
 
         Button buttonExit = new Button("Quitter");
@@ -59,47 +84,11 @@ public class MenuView {
             }
         });
         buttonExit.setMinSize(200, 50);
-        grid.add(buttonExit, 1, 5);
+        gridpane.add(buttonExit, 1, 6);
+        gridpane.setHalignment(buttonExit, HPos.CENTER);
 
-        Scene scene = new Scene(grid, 270, 320);
+        Scene scene = new Scene(gridpane, w, h);
         stage.setScene(scene);
         stage.show();
     }
-
-    /**
-     * Constructeur sans paramètres.
-     */
-    public MenuView() {
-        Stage stage = new Stage();
-        MenuView mvp = new MenuView(stage, 600, 600);
-    }
-
-    /**
-     * Démarre le jeu.
-     */
-    /*
-    public void startGame() {
-       
-        Stage stage1 = new Stage();
-        JfxView gameView = new JfxView("Poneymon 2.0 - Jeu", stage1);
-        FieldModel fieldModel = new FieldModel(cl, App.playerNumber, 
-                "test", ModeEnum.LOCAL, null);
-        FieldView fieldView =
-                new FieldView(fieldModel, this.width, this.height);
-
-        Controler controler = Controler.getControler();
-
-        fieldView.setControler(controler);
-        controler.addUpdateView(gameView);
-        controler.setModel(fieldModel);
-        gameView.setView(fieldView);
-
-        Stage stage2 = new Stage();
-        JfxView scoreView = new JfxView("Poneymon 2.0 - Score", stage2);
-        scoreView.setView(new ScoreView(fieldModel, this.width, this.height));
-        controler.addView(scoreView);
-
-        controler.startTimer();
-
-    }*/
 }
