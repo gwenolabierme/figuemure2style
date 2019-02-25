@@ -12,6 +12,7 @@ import javafx.geometry.HPos;
 import javafx.geometry.Pos;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.text.Text;
+import model.FieldModel;
 
 /**
  * Menu Principal qui apparait au lancement.
@@ -71,10 +72,9 @@ public class MenuView {
             @Override
             public void handle(ActionEvent e) {
                 Stage stageGame = new Stage();
-                JfxView gameView = new JfxView(title, stageGame);
+                JfxView gameView = new JfxView(title.getText(), stageGame);
 
-                FieldModel fieldModel = new FieldModel(cl, getNbIa(),
-                        getMap(), ModeEnum.LOCAL, null);
+                FieldModel fieldModel = new FieldModel();
 
                 FieldView fieldView =
                         new FieldView(fieldModel, 600,600);

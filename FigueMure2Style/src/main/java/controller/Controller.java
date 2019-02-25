@@ -4,6 +4,7 @@ import javafx.animation.AnimationTimer;
 
 import java.util.ArrayList;
 import java.util.List;
+import model.FieldModel;
 import view.JfxView;
 
 /**
