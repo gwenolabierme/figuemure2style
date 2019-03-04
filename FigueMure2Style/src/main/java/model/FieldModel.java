@@ -2,6 +2,8 @@ package model;
 
 import figuemure2style.App;
 import java.io.Serializable;
+import model.plant.Carotte;
+import model.plant.Plant;
 import model.plant.PlantVarietyEnum;
 
 /**
@@ -21,9 +23,9 @@ public class FieldModel implements Serializable {
     /**
      * Matrice du jardin.
      * null = parcelle vide.
-     * PlantVarietyEnum sinon.
+     * Plant sinon.
      */
-    private PlantVarietyEnum [][] garden;
+    private Plant [][] garden;
     
     /**
      * Constructeur de FieldModel.
@@ -33,8 +35,8 @@ public class FieldModel implements Serializable {
         
         // Charger sauvegarde
         
-        garden = new PlantVarietyEnum[App.gardenSize][App.gardenSize];
-        
+        garden = new Plant[App.gardenSize][App.gardenSize];
+        garden[1][2] = new Carotte();
         if(debug) {
             printGarden();
         }
@@ -65,12 +67,20 @@ public class FieldModel implements Serializable {
     
     private void printGarden() {
         int i, j;
+        Plant pl;
+        
         System.out.println("**********GARDEN************");
         i = 0;
         while(i < App.gardenSize) {
             j = 0;
             while(j < App.gardenSize) {
-                System.out.print(garden[i][j] + "   ");
+                pl = garden[i][j];
+                
+                if(pl == null) {
+                    System.out.print(pl + "   ");
+                } else {
+                    System.out.print(pl.getName() + "   ");
+                }
                 ++j;
             }
             ++i;
