@@ -19,12 +19,17 @@ public abstract class Plant {
      * Prix de vente de base.
      */
     protected int price;
+    /**
+     * Etat de croissance actuel de la plante.
+     */
+    protected GrowthStateEnum growthState;
 
     
     public Plant() {
         this.name = null;
         this.styDevEat = null;
         this.price = 0;
+        growthState = GrowthStateEnum.SPROUT;
     }
     
     
@@ -39,5 +44,15 @@ public abstract class Plant {
     public int getPrice() {
         return price;
     }
+
+    public GrowthStateEnum getGrowthState() {
+        return growthState;
+    }
+
+    public void setGrowthState(GrowthStateEnum growthState) {
+        this.growthState = growthState;
+    }
+    
+    
     
 }
