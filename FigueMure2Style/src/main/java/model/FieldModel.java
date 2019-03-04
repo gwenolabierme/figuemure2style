@@ -44,11 +44,16 @@ public class FieldModel implements Serializable {
     
     /**
      * Fais évoluer les données du modèle et celles de ses enfants.
+     * Cette fonction est appelée par le controller et sert à savoir s'il
+     * faut maj les views.
      *
      * @return True si les données du modèle ont été modifiées (ou d'un enfant)
      */
     public boolean update() {
         boolean updated = false;
+        //implémenter update dans plant, renvoie true si etat de croissance
+        // précédent != du nouveau
+        
         /*for (CharacterModel model : this.characters) {
             this.updatePersoVision(model);
             // On a pas le choix sur le sens de cette instruction car si un
