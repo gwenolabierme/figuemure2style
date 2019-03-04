@@ -10,7 +10,16 @@ import view.MenuView;
  * s'appuie sur javafx pour le rendu
  */
 public class App extends Application {
-
+    /**
+     * Taille du jardin (carré de cases (terre cultivable) = taille*taille).
+     */
+    public static int gardenSize = 3;
+    /**
+     * Cases disponible au départ. 
+     */
+    public static int freePlotBegin = 2;
+    
+    
     public static void main(String[] args) {
         Application.launch(args);
     }

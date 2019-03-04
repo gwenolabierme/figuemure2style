@@ -1,11 +1,8 @@
 package view;
 
 import controller.Controller;
-import javafx.event.EventHandler;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
 import model.FieldModel;
 
 /**

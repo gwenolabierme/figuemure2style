@@ -1,12 +1,8 @@
 package model;
 
+import figuemure2style.App;
 import java.io.Serializable;
-import java.lang.reflect.Constructor;
-import java.lang.reflect.InvocationTargetException;
-import java.util.concurrent.locks.Lock;
-import java.util.concurrent.locks.ReentrantLock;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import model.plant.PlantVarietyEnum;
 
 /**
  * Class contain data for the field.
@@ -14,12 +10,34 @@ import java.util.logging.Logger;
  * @author jeremy
  */
 public class FieldModel implements Serializable {
-
+    /**
+     * Mode debug ?
+     */
+    private boolean debug = true;
+    /**
+     * Nombre de parcelles dispo au début.
+     */
+    private int nbFreePlot;
+    /**
+     * Matrice du jardin.
+     * null = parcelle vide.
+     * PlantVarietyEnum sinon.
+     */
+    private PlantVarietyEnum [][] garden;
+    
     /**
      * Constructeur de FieldModel.
      */
     public FieldModel() {
+        nbFreePlot = App.freePlotBegin;
         
+        // Charger sauvegarde
+        
+        garden = new PlantVarietyEnum[App.gardenSize][App.gardenSize];
+        
+        if(debug) {
+            printGarden();
+        }
     }
     
     /**
@@ -43,5 +61,20 @@ public class FieldModel implements Serializable {
             
         return updated;*/
         return true;
+    }
+    
+    private void printGarden() {
+        int i, j;
+        System.out.println("**********GARDEN************");
+        i = 0;
+        while(i < App.gardenSize) {
+            j = 0;
+            while(j < App.gardenSize) {
+                System.out.print(garden[i][j] + "   ");
+                ++j;
+            }
+            ++i;
+            System.out.println("");
+        }
     }
 }
