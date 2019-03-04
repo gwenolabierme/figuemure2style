@@ -36,14 +36,14 @@ public class FieldModel implements Serializable {
         // Charger sauvegarde
         
         garden = new Plant[App.gardenSize][App.gardenSize];
-        garden[1][2] = new Carotte();
+        
         if(debug) {
             printGarden();
         }
     }
     
     /**
-     * Fais évoluer les données du modèle et celles de ces enfants.
+     * Fais évoluer les données du modèle et celles de ses enfants.
      *
      * @return True si les données du modèle ont été modifiées (ou d'un enfant)
      */

@@ -1,5 +1,6 @@
 package view.plant;
 
+import model.plant.GrowthStateEnum;
 import java.util.HashMap;
 import javafx.scene.image.Image;
 import model.plant.Plant;
@@ -32,7 +33,7 @@ public abstract class PlantView {
 
     public PlantView(Plant model) {
         this.model = model;
-        this.CurrentImg = growthStatesImg.get(GrowthStateEnum.SPROUT);
+        this.CurrentImg = growthStatesImg.get(model.getGrowthState());
     }
 
     public Plant getModel() {
