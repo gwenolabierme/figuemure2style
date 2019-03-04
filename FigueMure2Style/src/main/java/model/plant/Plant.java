@@ -23,13 +23,19 @@ public abstract class Plant {
      * Etat de croissance actuel de la plante.
      */
     protected GrowthStateEnum growthState;
+    /**
+     * Vie de la plante. Diminue à chaque erreur de nouriture.
+     */
+    protected int life;
 
     
     public Plant() {
         this.name = null;
         this.styDevEat = null;
         this.price = 0;
+        
         growthState = GrowthStateEnum.SPROUT;
+        life = 3;
     }
     
     
@@ -49,10 +55,16 @@ public abstract class Plant {
         return growthState;
     }
 
+    public int getLife() {
+        return life;
+    }
+    
     public void setGrowthState(GrowthStateEnum growthState) {
         this.growthState = growthState;
     }
-    
-    
+
+    public void setLife(int life) {
+        this.life = life;
+    }
     
 }
