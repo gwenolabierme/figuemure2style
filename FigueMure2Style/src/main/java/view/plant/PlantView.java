@@ -25,14 +25,15 @@ public abstract class PlantView {
     /**
      * Image actuelle de la plante.
      */
-    protected final Image CurrentImg;
+    protected Image CurrentImg;
     /**
      * Map contenant les images de la croissance de la plante.
      */
-    HashMap<GrowthStateEnum, Image> growthStatesImg;
+    protected static HashMap<GrowthStateEnum, Image> growthStatesImg;
 
     public PlantView(Plant model) {
         this.model = model;
+        this.initImg();
         this.CurrentImg = growthStatesImg.get(model.getGrowthState());
     }
 
@@ -42,6 +43,10 @@ public abstract class PlantView {
 
     public Image getCurrentImg() {
         return CurrentImg;
+    }
+    
+    public void update() {
+        this.CurrentImg = growthStatesImg.get(model.getGrowthState());
     }
 
     /**
