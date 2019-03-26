@@ -1,12 +1,13 @@
 package model.plant;
 
 import model.stylisticDevice.StylisticDeviceEnum;
+import observer.UpdateObservable;
 
 /**
  * Classe générique pour les plantes.
  * @author jeremy
  */
-public abstract class Plant {
+public abstract class Plant extends UpdateObservable {
     /**
      * Nom de la plante.
      */
@@ -66,5 +67,4 @@ public abstract class Plant {
     public void setLife(int life) {
         this.life = life;
     }
-    
 }

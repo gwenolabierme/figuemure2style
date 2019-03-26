@@ -1,7 +1,9 @@
 package view;
 
 import controller.Controller;
+import javafx.event.EventHandler;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import model.FieldModel;
 
@@ -54,6 +56,17 @@ public class FieldView extends CanvasView {
         this.setFocusTraversable(true);
 
         gc = this.getGraphicsContext2D();
+        
+        /*
+         * Event Listener du clavier quand une touche est pressée on rapporte
+         * l'évènement au contrôleur
+         */
+        this.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                controller.mousePressed(event.getButton().toString());
+            }
+        });
 
         /*
          * Event Listener du clavier quand une touche est pressée on rapporte
@@ -88,6 +101,9 @@ public class FieldView extends CanvasView {
      */
     public void setControler(Controller controler) {
         this.controller = controler;
+        
+        //TODO : Fonction ci-dessous pour chaque parcelle
+        
         /*
         for (CharacterView view : this.characters) {
             this.controller.addSubscriber(view);

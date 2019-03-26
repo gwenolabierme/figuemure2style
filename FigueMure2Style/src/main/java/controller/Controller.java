@@ -5,13 +5,14 @@ import javafx.animation.AnimationTimer;
 import java.util.ArrayList;
 import java.util.List;
 import model.FieldModel;
+import observer.MouseEventSubscription;
 import view.JfxView;
 
 /**
  * Class controler.
  * @author jeremy
  */
-public class Controller {
+public class Controller extends MouseEventSubscription {
     /**
      * Liste des vues géré par le controleur.
      */
