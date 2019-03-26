@@ -1,11 +1,13 @@
 package view;
 
 import controller.Controller;
+import figuemure2style.App;
 import javafx.event.EventHandler;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import model.FieldModel;
+import view.plant.PlantView;
 
 /**
  * view for the field.
@@ -33,6 +35,14 @@ public class FieldView extends CanvasView {
      * Controller à qui on va rapporter les évènements.
      */
     private Controller controller;
+    /**
+     * Images pacelles.
+     */
+    private ParcelView[][] parcelView;
+    /**
+     * Images plantes.
+     */
+    private PlantView[][] plantView;
 
     /**
      * Constructeur de FieldView.
@@ -57,8 +67,19 @@ public class FieldView extends CanvasView {
 
         gc = this.getGraphicsContext2D();
         
+        for(int i = 0; i < App.gardenSize; ++i) {
+            for(int j = 0; j < App.gardenSize; ++j) {
+                if (App.freePlotBegin*i+j < fm.getNbFreePlot()) {
+                    this.parcelView[i][j] = new ParcelView(true);
+                } else { 
+                    this.parcelView[i][j] = new ParcelView(false);
+                }
+                this.plantView[i][j] = new PlantView(fm.getPlant(i, j));
+            }
+        }
+        
         /*
-         * Event Listener du clavier quand une touche est pressée on rapporte
+         * Event Listener de la souris quand un bouton est pressée on rapporte
          * l'évènement au contrôleur
          */
         this.setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -88,10 +109,13 @@ public class FieldView extends CanvasView {
         gc.setFill(Color.LIGHTGRAY);
         gc.fillRect(0, 0, width, height);
 
-        // Affichage des characters
-        /*for (CharacterView character : characters) {
-            character.display();
-        }*/
+        // Affichage le jardin
+        for(int i = 0; i < App.gardenSize; ++i) {
+            for(int j = 0; j < App.gardenSize; ++j) {
+                this.parcelView[i][j].display();
+                this.plantView[i][j].display();
+            }
+        }
     }
 
     /**

@@ -1,6 +1,7 @@
 package view;
 
 import java.util.HashMap;
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import model.plant.GrowthStateEnum;
 import model.plant.Plant;
@@ -26,13 +27,17 @@ public class ParcelView {
      * Image actuelle de la plante.
      */
     protected Image CurrentImg;
-    
     /**
      * Map contenant les images de la croissance de la plante.
      */
     HashMap<Boolean, Image> parcelImg;
+    /**
+     * Contexte graphique dans lequel on va afficher la plante.
+     */
+    private GraphicsContext graphicsContext;
 
-    public ParcelView(boolean isUnlock) {
+    public ParcelView(GraphicsContext graphicsContext, boolean isUnlock) {
+        this.graphicsContext = graphicsContext;
         this.isUnlock = isUnlock;
         this.initImg();
         this.CurrentImg = parcelImg.get(this.isUnlock);
@@ -45,6 +50,13 @@ public class ParcelView {
     public void update(boolean isUnlock) {
         this.isUnlock = isUnlock;
         this.CurrentImg = parcelImg.get(this.isUnlock);
+    }
+    
+    /**
+     * Affichage de la plante.
+     */
+    public void display() {
+        graphicsContext.drawImage(this.CurrentImg, 0, 0);
     }
 
     /**

@@ -15,7 +15,7 @@ public class FieldModel implements Serializable {
     /**
      * Mode debug ?
      */
-    private boolean debug = true;
+    private final boolean debug = true;
     /**
      * Nombre de parcelles dispo au début.
      */
@@ -40,6 +40,38 @@ public class FieldModel implements Serializable {
         if(debug) {
             printGarden();
         }
+    }
+
+    public int getNbFreePlot() {
+        return nbFreePlot;
+    }
+
+    public void setNbFreePlot(int nbFreePlot) {
+        this.nbFreePlot = nbFreePlot;
+    }
+
+    public Plant[][] getGarden() {
+        return garden;
+    }
+    
+    /**
+     * Renvoie une plante du jardin.
+     * @param i colonne
+     * @param j ligne
+     * @return null si la plante n'existe pas, la plante sinon
+     */
+    public Plant getPlant(int i, int j) {
+        return garden[i][j];
+    }
+
+    /**
+     * Met une plante dans le jardin.
+     * @param plant : Plant : model de la plante à affecter
+     * @param i colonne
+     * @param j ligne
+     */
+    public void setPlant(Plant plant, int i, int j) {
+        this.garden[i][j] = plant;
     }
     
     /**

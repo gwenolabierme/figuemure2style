@@ -2,6 +2,7 @@ package view.plant;
 
 import model.plant.GrowthStateEnum;
 import java.util.HashMap;
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import model.plant.Plant;
 
@@ -9,7 +10,7 @@ import model.plant.Plant;
  * Classe générique pour les plantes.
  * @author jeremy
  */
-public abstract class PlantView {
+public class PlantView {
     /**
      * Chemin jusqu'aux images.
      */
@@ -30,8 +31,13 @@ public abstract class PlantView {
      * Map contenant les images de la croissance de la plante.
      */
     protected static HashMap<GrowthStateEnum, Image> growthStatesImg;
+    /**
+     * Contexte graphique dans lequel on va afficher la plante.
+     */
+    private GraphicsContext graphicsContext;
 
-    public PlantView(Plant model) {
+    public PlantView(GraphicsContext graphicsContext, Plant model) {
+        this.graphicsContext = graphicsContext;
         this.model = model;
         this.initImg();
         this.CurrentImg = growthStatesImg.get(model.getGrowthState());
@@ -47,6 +53,13 @@ public abstract class PlantView {
     
     public void update() {
         this.CurrentImg = growthStatesImg.get(model.getGrowthState());
+    }
+    
+    /**
+     * Affichage de la plante.
+     */
+    public void display() {
+        graphicsContext.drawImage(this.CurrentImg, 0, 0);
     }
 
     /**
