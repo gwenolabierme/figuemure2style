@@ -39,6 +39,7 @@ public class ParcelView {
     public ParcelView(GraphicsContext graphicsContext, boolean isUnlock) {
         this.graphicsContext = graphicsContext;
         this.isUnlock = isUnlock;
+        this.parcelImg = new HashMap();
         this.initImg();
         this.CurrentImg = parcelImg.get(this.isUnlock);
     }
@@ -65,9 +66,9 @@ public class ParcelView {
      * Exemple : assets/img/parcel_lock.png
      */
     protected void initImg() {
-        parcelImg.put(true, new Image(imgPath 
+        parcelImg.put(Boolean.TRUE, new Image(imgPath 
                 + "/parcel_unlock" + imgType));
-        parcelImg.put(false, new Image(imgPath 
+        parcelImg.put(Boolean.FALSE, new Image(imgPath 
                 + "/parcel_lock" + imgType));
     }
 }

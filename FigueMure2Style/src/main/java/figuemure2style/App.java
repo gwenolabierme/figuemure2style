@@ -26,8 +26,6 @@ public class App extends Application {
 
     /**
      * En javafx start() lance l'application.
-     *
-     * href="http://docs.oracle.com/javafx/2/scenegraph/jfxpub-scenegraph.htm">jfxpub-scenegraph.htm</a>
      */
     @Override
     public void start(Stage stage) {

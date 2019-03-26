@@ -67,6 +67,9 @@ public class FieldView extends CanvasView {
 
         gc = this.getGraphicsContext2D();
         
+        parcelView = new ParcelView[App.gardenSize][App.gardenSize];
+        plantView = new PlantView[App.gardenSize][App.gardenSize];
+        
         for(int i = 0; i < App.gardenSize; ++i) {
             for(int j = 0; j < App.gardenSize; ++j) {
                 if (App.freePlotBegin*i+j < fm.getNbFreePlot()) {
@@ -74,7 +77,11 @@ public class FieldView extends CanvasView {
                 } else { 
                     this.parcelView[i][j] = new ParcelView(gc, false);
                 }
-                this.plantView[i][j] = new PlantView(gc, fm.getPlant(i, j));
+                if (fm.getPlant(i, j) == null) {
+                    this.plantView[i][j] = null;
+                } else {
+                    this.plantView[i][j] = new PlantView(gc, fm.getPlant(i, j));
+                }
             }
         }
         
@@ -82,20 +89,11 @@ public class FieldView extends CanvasView {
          * Event Listener de la souris quand un bouton est pressée on rapporte
          * l'évènement au contrôleur
          */
+        /*
         this.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
                 controller.mousePressed(event.getButton().toString());
-            }
-        });
-
-        /*
-         * Event Listener du clavier quand une touche est pressée on rapporte
-         * l'évènement au contrôleur
-         */
-        /*this.setOnKeyPressed(new EventHandler<KeyEvent>() {
-            public void handle(KeyEvent e) {
-                controller.keyPressed(e.getCode().getName());
             }
         });*/
     }

@@ -39,6 +39,7 @@ public class PlantView {
     public PlantView(GraphicsContext graphicsContext, Plant model) {
         this.graphicsContext = graphicsContext;
         this.model = model;
+        this.growthStatesImg = new HashMap();
         this.initImg();
         this.CurrentImg = growthStatesImg.get(model.getGrowthState());
     }
