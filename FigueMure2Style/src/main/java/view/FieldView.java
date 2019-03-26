@@ -70,11 +70,11 @@ public class FieldView extends CanvasView {
         for(int i = 0; i < App.gardenSize; ++i) {
             for(int j = 0; j < App.gardenSize; ++j) {
                 if (App.freePlotBegin*i+j < fm.getNbFreePlot()) {
-                    this.parcelView[i][j] = new ParcelView(true);
+                    this.parcelView[i][j] = new ParcelView(gc, true);
                 } else { 
-                    this.parcelView[i][j] = new ParcelView(false);
+                    this.parcelView[i][j] = new ParcelView(gc, false);
                 }
-                this.plantView[i][j] = new PlantView(fm.getPlant(i, j));
+                this.plantView[i][j] = new PlantView(gc, fm.getPlant(i, j));
             }
         }
         
