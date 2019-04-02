@@ -13,7 +13,7 @@ public class ParcelView implements View, MouseEventSubscriber{
     /**
      * Chemin jusqu'aux images.
      */
-    protected final String imgPath = "assets/img";
+    protected final String imgPath = "/assets/img";
     /**
      * Format des images.
      */
