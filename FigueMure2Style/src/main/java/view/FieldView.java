@@ -140,11 +140,11 @@ public class FieldView extends CanvasView {
     public void setControler(Controller controler) {
         this.controller = controler;
         
-        //TODO : Fonction ci-dessous pour chaque parcelle
-        
-        /*
-        for (CharacterView view : this.characters) {
-            this.controller.addSubscriber(view);
-        }*/
+        for(int i = 0; i < App.gardenSize; ++i) {
+            for(int j = 0; j < App.gardenSize; ++j) {
+                this.controller.addSubscriber(this.parcelView[i][j]);
+                this.controller.addSubscriber(this.plantView[i][j]);
+            }
+        }
     }
 }

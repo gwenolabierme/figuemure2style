@@ -3,12 +3,13 @@ package view;
 import java.util.HashMap;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
+import observer.MouseEventSubscriber;
 
 /**
  *
  * @author jeremy
  */
-public class ParcelView {
+public class ParcelView implements View, MouseEventSubscriber{
     /**
      * Chemin jusqu'aux images.
      */
@@ -102,6 +103,11 @@ public class ParcelView {
                 + "/parcel_unlock" + imgType));
         parcelImg.put(Boolean.FALSE, new Image(imgPath 
                 + "/parcel_lock" + imgType));
+    }
+
+    @Override
+    public void mousePressed(String s) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
     
