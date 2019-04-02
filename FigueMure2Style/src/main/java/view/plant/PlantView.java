@@ -35,10 +35,29 @@ public class PlantView {
      * Contexte graphique dans lequel on va afficher la plante.
      */
     private GraphicsContext graphicsContext;
+    /**
+     * Position en x.
+     */
+    private int x;
+    /**
+     * Position en y.
+     */
+    private int y;
 
     public PlantView(GraphicsContext graphicsContext, Plant model) {
-        this.graphicsContext = graphicsContext;
         this.model = model;
+        baseInit(graphicsContext);
+    }
+    
+    public PlantView(GraphicsContext graphicsContext, Plant model, int x, int y) {
+        this.model = model;
+        this.baseInit(graphicsContext);
+        this.x = x;
+        this.y = y;
+    }
+    
+    private void baseInit(GraphicsContext graphicsContext) {
+        this.graphicsContext = graphicsContext;
         this.growthStatesImg = new HashMap();
         this.initImg();
         this.CurrentImg = growthStatesImg.get(model.getGrowthState());
@@ -50,6 +69,22 @@ public class PlantView {
 
     public Image getCurrentImg() {
         return CurrentImg;
+    }
+    
+    public int getX() {
+        return x;
+    }
+
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    public int getY() {
+        return y;
+    }
+
+    public void setY(int y) {
+        this.y = y;
     }
     
     public void update() {
