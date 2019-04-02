@@ -5,7 +5,7 @@ package view;
  *
  * @author jeremy
  */
-interface View {
+public interface View {
 
     /**
      * Gère l'affichage.

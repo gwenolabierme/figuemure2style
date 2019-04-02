@@ -84,7 +84,7 @@ public class MenuView {
                 FieldModel fieldModel = new FieldModel();
 
                 FieldView fieldView =
-                        new FieldView(fieldModel, 600,600);
+                        new FieldView(fieldModel, 800,800);
 
                 Controller controller = Controller.getControler();
                 fieldView.setControler(controller);
