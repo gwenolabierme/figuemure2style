@@ -1,6 +1,7 @@
 
 package view;
 
+import controller.Controller;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.HPos;
@@ -14,6 +15,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import model.FieldModel;
 
 /**
  *
@@ -84,7 +86,22 @@ public class LoadGameView {
         buttonValidation.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent e) {
-                //TODO
+                Stage stageGame = new Stage();
+                JfxView gameView = new JfxView(title.getText(), stageGame);
+
+                FieldModel fieldModel = new FieldModel();
+                FieldView fieldView =
+                        new FieldView(fieldModel, 800,800);
+
+                Controller controller = Controller.getControler();
+                fieldView.setControler(controller);
+                controller.addUpdateView(gameView);
+                controller.setModel(fieldModel);
+                gameView.setView(fieldView);
+
+                controller.startTimer();
+
+                stage.close();  
             }
         });
         gridpane.add(buttonValidation, 1, 3);

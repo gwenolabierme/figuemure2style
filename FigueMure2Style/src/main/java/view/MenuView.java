@@ -74,33 +74,6 @@ public class MenuView {
         gridpane.add(title, 1, 0);
         gridpane.setHalignment(title, HPos.CENTER);
         
-        Button buttonPlay = new Button("Jouer");
-        buttonPlay.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent e) {
-                Stage stageGame = new Stage();
-                JfxView gameView = new JfxView(title.getText(), stageGame);
-
-                FieldModel fieldModel = new FieldModel();
-
-                FieldView fieldView =
-                        new FieldView(fieldModel, 800,800);
-
-                Controller controller = Controller.getControler();
-                fieldView.setControler(controller);
-                controller.addUpdateView(gameView);
-                controller.setModel(fieldModel);
-                gameView.setView(fieldView);
-
-                controller.startTimer();
-
-                stage.close();
-            }
-        });
-        buttonPlay.setMinSize(200, 50);
-        gridpane.add(buttonPlay, 1, 2);
-        gridpane.setHalignment(buttonPlay, HPos.CENTER);
-
         
         Button buttonNewGame = new Button("Créer une partie");
         buttonNewGame.setOnAction(new EventHandler<ActionEvent>(){
