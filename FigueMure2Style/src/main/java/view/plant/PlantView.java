@@ -116,7 +116,7 @@ public class PlantView implements View, MouseEventSubscriber{
 
     @Override
     public void mousePressed(String s) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        throw new UnsupportedOperationException("Clique sur une plante"); //To change body of generated methods, choose Tools | Templates.
     }
     
 }

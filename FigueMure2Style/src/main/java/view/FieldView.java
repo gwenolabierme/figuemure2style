@@ -103,13 +103,12 @@ public class FieldView extends CanvasView {
          * Event Listener de la souris quand un bouton est pressée on rapporte
          * l'évènement au contrôleur
          */
-        /*
         this.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
                 controller.mousePressed(event.getButton().toString());
             }
-        });*/
+        });
     }
 
     /**
