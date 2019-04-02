@@ -10,9 +10,16 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.HPos;
 import javafx.geometry.Pos;
+import javafx.scene.layout.Background;
 import javafx.scene.layout.ColumnConstraints;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import model.FieldModel;
+import javafx.scene.layout.BackgroundImage;
+import javafx.scene.layout.BackgroundPosition;
+import javafx.scene.layout.BackgroundRepeat;
+import javafx.scene.layout.BackgroundSize;
+import javafx.scene.image.Image;
 
 /**
  * Menu Principal qui apparait au lancement.
@@ -91,10 +98,47 @@ public class MenuView {
             }
         });
         buttonPlay.setMinSize(200, 50);
-        gridpane.add(buttonPlay, 1, 3);
+        gridpane.add(buttonPlay, 1, 2);
         gridpane.setHalignment(buttonPlay, HPos.CENTER);
 
+        
+        Button buttonNewGame = new Button("Créer une partie");
+        buttonNewGame.setOnAction(new EventHandler<ActionEvent>(){
+            @Override
+            public void handle(ActionEvent e) {
+                NewGameView ngv = new NewGameView(stage, 600, 600);
+            }
+        });
+        buttonNewGame.setMinSize(200, 50);
+        gridpane.add(buttonNewGame, 1, 3);
+        gridpane.setHalignment(buttonNewGame, HPos.CENTER);
+        
+        
+        Button buttonGame = new Button("Charger une partie");
+        buttonGame.setOnAction(new EventHandler<ActionEvent>(){
+            @Override
+            public void handle(ActionEvent e) {
+                LoadGameView lgv = new LoadGameView(stage, 600, 600);
+            }
+        });
+        buttonGame.setMinSize(200, 50);
+        gridpane.add(buttonGame, 1, 4);
+        gridpane.setHalignment(buttonGame, HPos.CENTER);
 
+        
+        
+        Button buttonCredis = new Button("Crédis");
+        buttonCredis.setOnAction(new EventHandler<ActionEvent>(){
+            @Override
+            public void handle(ActionEvent e) {
+                CreditView cv = new CreditView(stage, 600, 600);
+            }
+        });
+        buttonCredis.setMinSize(200, 50);
+        gridpane.add(buttonCredis, 1, 5);
+        gridpane.setHalignment(buttonCredis, HPos.CENTER);
+
+        
         Button buttonExit = new Button("Quitter");
         buttonExit.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -105,6 +149,11 @@ public class MenuView {
         buttonExit.setMinSize(200, 50);
         gridpane.add(buttonExit, 1, 6);
         gridpane.setHalignment(buttonExit, HPos.CENTER);
+        
+        BackgroundImage backgroundImage = new BackgroundImage(new Image("/assets/img/css/BackgroundSmallScreen.jpg",600,600,true,true),
+        BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,
+          BackgroundSize.DEFAULT);
+        gridpane.setBackground(new Background(backgroundImage));
 
         Scene scene = new Scene(gridpane, w, h);
         stage.setScene(scene);

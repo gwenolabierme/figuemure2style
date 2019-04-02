@@ -23,8 +23,8 @@ public class App extends Application {
     @Override
     public void start(Stage stage) {
 
-        int height = 1200;
-        int width = 1200;
+        int height = 600;
+        int width = 600;
 
         MenuView v = new MenuView(stage, width, height); // 600x600 pixels
     }
