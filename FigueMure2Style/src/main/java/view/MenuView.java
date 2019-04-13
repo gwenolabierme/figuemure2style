@@ -9,7 +9,6 @@ import javafx.scene.control.Button;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.HPos;
-import javafx.geometry.Pos;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.text.Text;
 import model.FieldModel;
@@ -77,7 +76,7 @@ public class MenuView {
                 FieldModel fieldModel = new FieldModel();
 
                 FieldView fieldView =
-                        new FieldView(fieldModel, 600,600);
+                        new FieldView(fieldModel, 800,800);
 
                 Controller controller = Controller.getControler();
                 fieldView.setControler(controller);
