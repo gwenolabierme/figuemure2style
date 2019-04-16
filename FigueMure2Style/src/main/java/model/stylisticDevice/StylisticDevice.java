@@ -15,11 +15,14 @@ public class StylisticDevice  implements Serializable{
     protected final String sentence;
     
     protected final String author;
+    
+    protected final String oeuvre;
 
     public StylisticDevice(StylisticDeviceEnum sdType, String sentence) {
         this.sdType = sdType;
         this.sentence = sentence;
         this.author = "Anonyme";
+        this.oeuvre = "inconnue";
     }
 
     
@@ -27,6 +30,15 @@ public class StylisticDevice  implements Serializable{
         this.sdType = sdType;
         this.sentence = sentence;
         this.author = author;
+        this.oeuvre = "inconnue";
+    }
+    
+    public StylisticDevice(StylisticDeviceEnum sdType, String sentence,
+            String author, String oeuvre) {
+        this.sdType = sdType;
+        this.sentence = sentence;
+        this.author = author;
+        this.oeuvre = oeuvre;
     }
 
     public StylisticDeviceEnum getSdType() {
@@ -40,6 +52,14 @@ public class StylisticDevice  implements Serializable{
     public String getAuthor() {
         return author;
     }
+
+    public String getOeuvre() {
+        return oeuvre;
+    }
     
+    @Override
+    public String toString() {
+        return "\"" + this.sentence + "\", " + this.author + ", " + this.oeuvre;
+    }
     
 }
