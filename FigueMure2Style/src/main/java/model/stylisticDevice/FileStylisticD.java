@@ -27,11 +27,12 @@ public class FileStylisticD implements Serializable{
      * Ajoute une figure de style au fichier.
      * @param sd StylisticDevice : une figure de style
      */
-    public void addStylisiticD(StylisticDevice sd) {
+    public void addStylisiticD(StylisticDevice sd) throws DifferentsStylisticDeviceType {
         if (sd.getSdType() == this.sdType) {
             this.styDevices.add(sd);
         } else {
-            // TODO : THROW AN EXCEPTION
+            throw new DifferentsStylisticDeviceType("The type of the stylistic"
+                    + "device is differents of the file's.");
         }
     }
     
