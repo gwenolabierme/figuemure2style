@@ -16,8 +16,14 @@ public class BDeditor {
         /*createAccumulation();
         printFile(StylisticDeviceEnum.ACCUMULATION);*/
         
-        createAllegorie();
-        printFile(StylisticDeviceEnum.ALLEGORIE);
+        /*createAllegorie();
+        printFile(StylisticDeviceEnum.ALLEGORIE);*/
+        
+        /*createAntiphrase();
+        printFile(StylisticDeviceEnum.ANTIPHRASE);*/
+        
+        createCalembour();
+        printFile(StylisticDeviceEnum.CALEMBOUR);
         
         /*createComparaison();
         printFile(StylisticDeviceEnum.COMPARAISON);*/
@@ -61,7 +67,7 @@ public class BDeditor {
             
         } catch (DifferentsStylisticDeviceType ex) {
             Logger.getLogger(BDeditor.class.getName()).log(Level.SEVERE, null, ex);
-            System.err.println("***** Problème d'enregistrement dans comparaison *****");
+            System.err.println("***** Problème d'enregistrement dans accumulation *****");
         }
         
         file.save();
@@ -106,7 +112,129 @@ public class BDeditor {
             
         } catch (DifferentsStylisticDeviceType ex) {
             Logger.getLogger(BDeditor.class.getName()).log(Level.SEVERE, null, ex);
-            System.err.println("***** Problème d'enregistrement dans comparaison *****");
+            System.err.println("***** Problème d'enregistrement dans allégorie *****");
+        }
+        
+        file.save();
+    }
+    
+    public static void createAntiphrase() {
+        FileStylisticD file = new FileStylisticD(StylisticDeviceEnum.ANTIPHRASE);
+        StylisticDevice sd;
+        
+        try {
+            sd = new StylisticDevice(StylisticDeviceEnum.ANTIPHRASE,
+                    "La [torture] est une invention merveilleuse et tout à fait "
+                            + "sûre pour perdre un innocent qui a la complexion "
+                            + "faible, et sauver un coupable qui est né robuste ",
+                    "La Bruyère", "Les Caractères");
+            file.addStylisiticD(sd);
+            
+            sd = new StylisticDevice(StylisticDeviceEnum.ANTIPHRASE,
+                    "Quel crétin ! Je n'ai jamais vu quelqu'un d'aussi intélligent !",
+                    "Jérémy");
+            file.addStylisiticD(sd);
+            
+            sd = new StylisticDevice(StylisticDeviceEnum.ANTIPHRASE,
+                    "Tous étaient prêts à donner 30€, sauf Jean, qui ne voulait "
+                            + "pas céder plus de 5€. « Quelle générosité ! », lui dit Nicolas.",
+                    "laculturegenerale.com");
+            file.addStylisiticD(sd);
+            
+            sd = new StylisticDevice(StylisticDeviceEnum.ANTIPHRASE,
+                    "La pluie tombait depuis des heures. J'ai toujours aimer ces "
+                            + "jours de beau temps ou je passe mes journées à "
+                            + "m'ennuyer en attendant le soleil. ",
+                    "Jérémy");
+            file.addStylisiticD(sd);
+            
+            sd = new StylisticDevice(StylisticDeviceEnum.ANTIPHRASE,
+                    "Pendant son absence, Oggi, son chat, était monté sur la table, "
+                            + "renversant le plat et la vaiselle. En rentrant, Victor s'exclama :"
+                            + "« Eh bien ! C'est du joli ! »",
+                    "Jérémy");
+            file.addStylisiticD(sd);
+            
+        } catch (DifferentsStylisticDeviceType ex) {
+            Logger.getLogger(BDeditor.class.getName()).log(Level.SEVERE, null, ex);
+            System.err.println("***** Problème d'enregistrement dans antiphrase *****");
+        }
+        
+        file.save();
+    }
+    
+    public static void createCalembour() {
+        FileStylisticD file = new FileStylisticD(StylisticDeviceEnum.CALEMBOUR);
+        StylisticDevice sd;
+        
+        try {
+            sd = new StylisticDevice(StylisticDeviceEnum.CALEMBOUR,
+                    "Chassez le naturiste, il revient au bungalow.",
+                    "Jean-Paul Gousset");
+            file.addStylisiticD(sd);
+            
+            sd = new StylisticDevice(StylisticDeviceEnum.CALEMBOUR,
+                    "Le roi de Perse habite, inquiet, redouté, / "
+                            + "En hiver Ispahan et Tiflis en été ;",
+                    "Hugo", "Légende des siècles");
+            file.addStylisiticD(sd);
+            
+            sd = new StylisticDevice(StylisticDeviceEnum.CALEMBOUR,
+                    "Je suis romaine, hélas ! Puisque mon époux l’est ;",
+                    "Horace", "Sabine");
+            file.addStylisiticD(sd);
+            
+            sd = new StylisticDevice(StylisticDeviceEnum.CALEMBOUR,
+                    "Travailler plus pour gagner plus, mais si tu végètes, t’as rien.");
+            file.addStylisiticD(sd);
+            
+            sd = new StylisticDevice(StylisticDeviceEnum.CALEMBOUR,
+                    "Rien n’est plus détestable qu’un nabot minable.");
+            file.addStylisiticD(sd);
+            
+            sd = new StylisticDevice(StylisticDeviceEnum.CALEMBOUR,
+                    "Je vous remercie pour votre bon thé.");
+            file.addStylisiticD(sd);
+            
+            sd = new StylisticDevice(StylisticDeviceEnum.CALEMBOUR,
+                    "La faim justifie les moyens.");
+            file.addStylisiticD(sd);
+            
+            sd = new StylisticDevice(StylisticDeviceEnum.CALEMBOUR,
+                    "Les mots rendent les cris vains.");
+            file.addStylisiticD(sd);
+            
+            sd = new StylisticDevice(StylisticDeviceEnum.CALEMBOUR,
+                    "Qui mange un chien chihuahua.");
+            file.addStylisiticD(sd);
+            
+            sd = new StylisticDevice(StylisticDeviceEnum.CALEMBOUR,
+                    "Les bricoleurs du dimanche en ont marre tôt.");
+            file.addStylisiticD(sd);
+            
+            sd = new StylisticDevice(StylisticDeviceEnum.CALEMBOUR,
+                    "Élisez le président et lisez ensuite les gros titres.");
+            file.addStylisiticD(sd);
+            
+            sd = new StylisticDevice(StylisticDeviceEnum.CALEMBOUR,
+                    "En s’asseyant sur une chaise inconfortable, on a le dos scié.");
+            file.addStylisiticD(sd);
+            
+            sd = new StylisticDevice(StylisticDeviceEnum.CALEMBOUR,
+                    "A t-on déjà vu un carreleur déposer une plinthe au commissariat ?");
+            file.addStylisiticD(sd);
+            
+            sd = new StylisticDevice(StylisticDeviceEnum.CALEMBOUR,
+                    "Paradoxalement, pour être dans les normes, il faut rester mince.");
+            file.addStylisiticD(sd);
+            
+            sd = new StylisticDevice(StylisticDeviceEnum.CALEMBOUR,
+                    "Le veau qu’a bu l’air.");
+            file.addStylisiticD(sd);
+            
+        } catch (DifferentsStylisticDeviceType ex) {
+            Logger.getLogger(BDeditor.class.getName()).log(Level.SEVERE, null, ex);
+            System.err.println("***** Problème d'enregistrement dans calembour *****");
         }
         
         file.save();

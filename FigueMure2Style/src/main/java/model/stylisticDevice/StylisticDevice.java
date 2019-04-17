@@ -22,7 +22,7 @@ public class StylisticDevice  implements Serializable{
         this.sdType = sdType;
         this.sentence = sentence;
         this.author = "Anonyme";
-        this.oeuvre = "inconnue";
+        this.oeuvre = "Oeuvre inconnue";
     }
 
     
