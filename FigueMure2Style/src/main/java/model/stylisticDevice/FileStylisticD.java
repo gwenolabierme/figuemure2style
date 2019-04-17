@@ -91,7 +91,7 @@ public class FileStylisticD implements Serializable{
                         new BufferedOutputStream(
                           new FileOutputStream(
                             new File("BD/" + this.sdType.toString()))));
-                // Sauvegarde de la map dans le fichier
+                // Sauvegarde du fichier
                 oos.writeObject(this);
 
                 // Fermeture du flux
@@ -127,7 +127,7 @@ public class FileStylisticD implements Serializable{
                         new BufferedInputStream(
                           new FileInputStream(
                             new File("BD/" + sd.toString()))));
-                // Chargement de la map depuis le fichier
+                // Chargement du fichier
                 loadedMap = (FileStylisticD) ois.readObject();
 
                 // Fermeture du flux
