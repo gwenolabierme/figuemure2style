@@ -22,11 +22,20 @@ public class BDeditor {
         /*createAntiphrase();
         printFile(StylisticDeviceEnum.ANTIPHRASE);*/
         
-        createCalembour();
-        printFile(StylisticDeviceEnum.CALEMBOUR);
+        /*createCalembour();
+        printFile(StylisticDeviceEnum.CALEMBOUR);*/
+        
+        /*createChiasme();
+        printFile(StylisticDeviceEnum.CHIASME);*/
         
         /*createComparaison();
         printFile(StylisticDeviceEnum.COMPARAISON);*/
+        
+        /*createEuphemisme();
+        printFile(StylisticDeviceEnum.EUPHEMISME);*/
+        
+        /*createHyperbole();
+        printFile(StylisticDeviceEnum.HYPERBOLE);*/
     }
     
     public static void createAccumulation() {
@@ -240,6 +249,45 @@ public class BDeditor {
         file.save();
     }
     
+    public static void createChiasme() {
+        FileStylisticD file = new FileStylisticD(StylisticDeviceEnum.CHIASME);
+        StylisticDevice sd;
+        
+        try {
+            sd = new StylisticDevice(StylisticDeviceEnum.CHIASME,
+                    "Un roi chantait en bas, en haut mourait un Dieu.",
+                    "Hugo", "La légende des siècles, Booz endormi");
+            file.addStylisiticD(sd);
+            
+            sd = new StylisticDevice(StylisticDeviceEnum.CHIASME,
+                    "Bonnet blanc et blanc bonnet.",
+                    "laculturegenerale.com");
+            file.addStylisiticD(sd);
+            
+            sd = new StylisticDevice(StylisticDeviceEnum.CHIASME,
+                    "Joyeux la nuit, le jour triste je suis. / J’ay en dormant "
+                            + "ce, qu’en veillant poursuis",
+                    "Du Bellay", "Du Bellay");
+            file.addStylisiticD(sd);
+            
+            sd = new StylisticDevice(StylisticDeviceEnum.CHIASME,
+                    "Qui craint de souffrir, il souffre desjà de ce qu’il craint.",
+                    "Montaigne", "Essais");
+            file.addStylisiticD(sd);
+            
+            sd = new StylisticDevice(StylisticDeviceEnum.CHIASME,
+                    "Vous êtes aujourd’hui ce qu’autrefois je fus.",
+                    "Corneille", "Le Cid");
+            file.addStylisiticD(sd);
+            
+        } catch (DifferentsStylisticDeviceType ex) {
+            Logger.getLogger(BDeditor.class.getName()).log(Level.SEVERE, null, ex);
+            System.err.println("***** Problème d'enregistrement dans chiasme *****");
+        }
+        
+        file.save();
+    }
+    
     public static void createComparaison() {
         FileStylisticD file = new FileStylisticD(StylisticDeviceEnum.COMPARAISON);
         StylisticDevice sd;
@@ -277,7 +325,7 @@ public class BDeditor {
             
             sd = new StylisticDevice(StylisticDeviceEnum.COMPARAISON,
                     "Sa barbe était d’argent comme un ruisseau d’avril",
-                    "Hugo", "La Légende des siècles");
+                    "Hugo", "La légende des siècles, Booz endormi");
             file.addStylisiticD(sd);
             
             sd = new StylisticDevice(StylisticDeviceEnum.COMPARAISON,
@@ -305,6 +353,90 @@ public class BDeditor {
         } catch (DifferentsStylisticDeviceType ex) {
             Logger.getLogger(BDeditor.class.getName()).log(Level.SEVERE, null, ex);
             System.err.println("***** Problème d'enregistrement dans comparaison *****");
+        }
+        
+        file.save();
+    }
+    
+    public static void createEuphemisme() {
+        FileStylisticD file = new FileStylisticD(StylisticDeviceEnum.EUPHEMISME);
+        StylisticDevice sd;
+        
+        try {
+            sd = new StylisticDevice(StylisticDeviceEnum.EUPHEMISME,
+                    "L’Époux d’une jeune Beauté / Partait pour l’autre monde",
+                    "La Fontaine", "Fables, La Jeune Veuve");
+            file.addStylisiticD(sd);
+            
+            sd = new StylisticDevice(StylisticDeviceEnum.EUPHEMISME,
+                    "Elle a vécu, Myrto, la jeune Tarentine",
+                    "Chénier", "La Jeune Tarentine");
+            file.addStylisiticD(sd);
+            
+            sd = new StylisticDevice(StylisticDeviceEnum.EUPHEMISME,
+                    "Il me fait des déclarations et m’embrasse, et me menace "
+                            + "de… de… son autorité.",
+                    "Maupassant", "La Paix du ménage");
+            file.addStylisiticD(sd);
+            
+            sd = new StylisticDevice(StylisticDeviceEnum.EUPHEMISME,
+                    "Son regard est pareil au regard des statues, / Et, pour sa voix, "
+                            + "lointaine, et calme, et grave, elle a / L’inflexion "
+                            + "des voix chères qui se sont tues.",
+                    "Verlaine", "Mon rêve familier");
+            file.addStylisiticD(sd);
+            
+            sd = new StylisticDevice(StylisticDeviceEnum.EUPHEMISME,
+                    "Les parfums ne font pas frissonner sa narine ; / Il dort "
+                            + "dans le soleil, la main sur sa poitrine, / Tranquille. "
+                            + "Il a deux trous rouges au côté droit.",
+                    "Rimbaud", "Le dormeur du val");
+            file.addStylisiticD(sd);
+            
+        } catch (DifferentsStylisticDeviceType ex) {
+            Logger.getLogger(BDeditor.class.getName()).log(Level.SEVERE, null, ex);
+            System.err.println("***** Problème d'enregistrement dans euphemisme *****");
+        }
+        
+        file.save();
+    }
+    
+    public static void createHyperbole() {
+        FileStylisticD file = new FileStylisticD(StylisticDeviceEnum.HYPERBOLE);
+        StylisticDevice sd;
+        
+        try {
+            sd = new StylisticDevice(StylisticDeviceEnum.HYPERBOLE,
+                    "J'ai pris un zéro au contrôle de maths ; je vais me faire "
+                            + "tuer par ma mère en rentrant !",
+                    "Jérémy");
+            file.addStylisiticD(sd);
+            
+            sd = new StylisticDevice(StylisticDeviceEnum.HYPERBOLE,
+                    "    – J’ai vu, dit-il, un chou plus grand qu’une maison. / – Et moi, "
+                            + "dit l’autre, un pot aussi grand qu’une Eglise.",
+                    "La Fontaine", "Fables, Le Dépositaire infidèle");
+            file.addStylisiticD(sd);
+            
+            sd = new StylisticDevice(StylisticDeviceEnum.HYPERBOLE,
+                    "Ses moindres actions lui semblent des miracles, / Et tous "
+                            + "les mots qu’il dit, sont pour lui des oracles.",
+                    "Molière", "Tartuffe");
+            file.addStylisiticD(sd);
+            
+            sd = new StylisticDevice(StylisticDeviceEnum.HYPERBOLE,
+                    "Console-moi ce soir, je me meurs d’espérance.",
+                    "Musset", "La Nuit de mai");
+            file.addStylisiticD(sd);
+            
+            sd = new StylisticDevice(StylisticDeviceEnum.HYPERBOLE,
+                    "Serais-je donc le seul lâche sur la terre ?",
+                    "Céline", "Voyage au bout de la nuit");
+            file.addStylisiticD(sd);
+            
+        } catch (DifferentsStylisticDeviceType ex) {
+            Logger.getLogger(BDeditor.class.getName()).log(Level.SEVERE, null, ex);
+            System.err.println("***** Problème d'enregistrement dans hyperbole *****");
         }
         
         file.save();
