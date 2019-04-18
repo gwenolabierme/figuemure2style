@@ -30,7 +30,7 @@ public class StylisticDevice  implements Serializable{
         this.sdType = sdType;
         this.sentence = sentence;
         this.author = author;
-        this.oeuvre = "inconnue";
+        this.oeuvre = "Oeuvre inconnue";
     }
     
     public StylisticDevice(StylisticDeviceEnum sdType, String sentence,

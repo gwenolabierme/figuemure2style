@@ -14,34 +14,43 @@ import model.stylisticDevice.StylisticDeviceEnum;
 public class BDeditor {
     public static void main(String[] args) {
         /*createAccumulation();
-        printFile(StylisticDeviceEnum.ACCUMULATION);*/
+        printFile(StylisticDeviceEnum.ACCUMULATION);
         
-        /*createAllegorie();
-        printFile(StylisticDeviceEnum.ALLEGORIE);*/
+        createAllegorie();
+        printFile(StylisticDeviceEnum.ALLEGORIE);
         
-        /*createAntiphrase();
-        printFile(StylisticDeviceEnum.ANTIPHRASE);*/
+        createAntiphrase();
+        printFile(StylisticDeviceEnum.ANTIPHRASE);
         
-        /*createCalembour();
-        printFile(StylisticDeviceEnum.CALEMBOUR);*/
+        createCalembour();
+        printFile(StylisticDeviceEnum.CALEMBOUR);
         
-        /*createChiasme();
-        printFile(StylisticDeviceEnum.CHIASME);*/
+        createChiasme();
+        printFile(StylisticDeviceEnum.CHIASME);
         
-        /*createComparaison();
-        printFile(StylisticDeviceEnum.COMPARAISON);*/
+        createComparaison();
+        printFile(StylisticDeviceEnum.COMPARAISON);
         
-        /*createEuphemisme();
-        printFile(StylisticDeviceEnum.EUPHEMISME);*/
+        createEuphemisme();
+        printFile(StylisticDeviceEnum.EUPHEMISME);
+       
+        createHyperbole();
+        printFile(StylisticDeviceEnum.HYPERBOLE);
         
-        /*createHyperbole();
-        printFile(StylisticDeviceEnum.HYPERBOLE);*/
+        createMetaphore();
+        printFile(StylisticDeviceEnum.METAPHORE);
         
-        /*createMetaphore();
-        printFile(StylisticDeviceEnum.METAPHORE);*/
+        createMetonymie();
+        printFile(StylisticDeviceEnum.METONYMIE);
         
-        /*createMetonymie();
-        printFile(StylisticDeviceEnum.METONYMIE);*/
+        createOxymore();
+        printFile(StylisticDeviceEnum.OXYMORE);
+        
+        createPeriphrase();
+        printFile(StylisticDeviceEnum.PERIPHRASE);
+        
+        createPersonnification();
+        printFile(StylisticDeviceEnum.PERSONNIFICATION);*/
     }
     
     public static void createAccumulation() {
@@ -525,6 +534,128 @@ public class BDeditor {
         file.save();
     }
     
+    public static void createOxymore() {
+        FileStylisticD file = new FileStylisticD(StylisticDeviceEnum.OXYMORE);
+        StylisticDevice sd;
+        
+        try {
+            sd = new StylisticDevice(StylisticDeviceEnum.OXYMORE,
+                    "Cette obscure clarté qui tombe des étoiles",
+                    "Corneille", "Le Cid");
+            file.addStylisiticD(sd);
+            
+            sd = new StylisticDevice(StylisticDeviceEnum.OXYMORE,
+                    "Par ma foi, voilà un beau jeune vieillard pour quatre-vingt-dix ans !",
+                    "Molière", "Le Malade imaginaire");
+            file.addStylisiticD(sd);
+            
+            sd = new StylisticDevice(StylisticDeviceEnum.OXYMORE,
+                    "Candide, […], se cacha du mieux qu’il put pendant cette boucherie héroïque.",
+                    "Voltaire", "Candide");
+            file.addStylisiticD(sd);
+            
+            sd = new StylisticDevice(StylisticDeviceEnum.OXYMORE,
+                    "Éphémère immortel",
+                    "Valéry", "Charmes");
+            file.addStylisiticD(sd);
+            
+            sd = new StylisticDevice(StylisticDeviceEnum.OXYMORE,
+                    "Le superflu, chose très nécessaire",
+                    "Voltaire", "Le Mondain");
+            file.addStylisiticD(sd);
+            
+        } catch (DifferentsStylisticDeviceType ex) {
+            Logger.getLogger(BDeditor.class.getName()).log(Level.SEVERE, null, ex);
+            System.err.println("***** Problème d'enregistrement dans oxymore *****");
+        }
+        
+        file.save();
+    }
+    
+    public static void createPeriphrase() {
+        FileStylisticD file = new FileStylisticD(StylisticDeviceEnum.PERIPHRASE);
+        StylisticDevice sd;
+        
+        try {
+            sd = new StylisticDevice(StylisticDeviceEnum.PERIPHRASE,
+                    "Le bateau venait d'accoster ; les colons allaient enfin "
+                            + "pouvoir découvrir le Nouveau Monde",
+                    "Jérémy");
+            file.addStylisiticD(sd);
+            
+            sd = new StylisticDevice(StylisticDeviceEnum.PERIPHRASE,
+                    "C’était l’heure tranquille où les lions vont boire",
+                    "Hugo", "La Légende des siècles, Booz endormi");
+            file.addStylisiticD(sd);
+            
+            sd = new StylisticDevice(StylisticDeviceEnum.PERIPHRASE,
+                    "Ce voyageur ailé",
+                    "Baudelaire", "Fleurs du mal, L’Albatros");
+            file.addStylisiticD(sd);
+            
+            sd = new StylisticDevice(StylisticDeviceEnum.PERIPHRASE,
+                    "Cela faisait déjà bien longtemps qu'il maîtrisait la langue de Shakespeare.",
+                    "Jérémy");
+            file.addStylisiticD(sd);
+            
+            sd = new StylisticDevice(StylisticDeviceEnum.PERIPHRASE,
+                    "Il poussa un puissant rugissement, signifiant qu'il "
+                            + "était toujours le roi des animaux",
+                    "Jérémy");
+            file.addStylisiticD(sd);
+            
+        } catch (DifferentsStylisticDeviceType ex) {
+            Logger.getLogger(BDeditor.class.getName()).log(Level.SEVERE, null, ex);
+            System.err.println("***** Problème d'enregistrement dans periphrase *****");
+        }
+        
+        file.save();
+    }
+    
+    public static void createPersonnification() {
+        FileStylisticD file = new FileStylisticD(StylisticDeviceEnum.PERSONNIFICATION);
+        StylisticDevice sd;
+        
+        try {
+            sd = new StylisticDevice(StylisticDeviceEnum.PERSONNIFICATION,
+                    "Le mistral était en colère, et les éclats de sa grande voix "
+                            + "m’ont tenu éveillé jusqu’au matin.",
+                    "Daudet", "Lettres de mon moulin, Le phare des Sanguinaires");
+            file.addStylisiticD(sd);
+            
+            sd = new StylisticDevice(StylisticDeviceEnum.PERSONNIFICATION,
+                    "Avec quelle rigueur, destin, tu me poursuis ! / Je ne sais "
+                            + "où je vais, je ne sais où je suis.",
+                    "Racine", "Phèdre");
+            file.addStylisiticD(sd);
+            
+            sd = new StylisticDevice(StylisticDeviceEnum.PERSONNIFICATION,
+                    "L’enfance a des manières de voir, de penser, de sentir qui "
+                            + "lui sont propres ; rien n’est moins sensé que "
+                            + "d’y vouloir substituer les nôtres.",
+                    "Rousseau", "Julie ou la Nouvelle Héloïse");
+            file.addStylisiticD(sd);
+            
+            sd = new StylisticDevice(StylisticDeviceEnum.PERSONNIFICATION,
+                    "J’en doute : ces flots, ces vents, cette solitude qui furent "
+                            + "mes premiers maîtres, convenaient peut-être mieux "
+                            + "à mes dispositions natives.",
+                    "Chateaubriand", "Mémoires d’outre-tombe");
+            file.addStylisiticD(sd);
+            
+            sd = new StylisticDevice(StylisticDeviceEnum.PERSONNIFICATION,
+                    "Le crépuscule ami s’endort dans la vallée.",
+                    "Vigny", "La Maison du berger");
+            file.addStylisiticD(sd);
+            
+        } catch (DifferentsStylisticDeviceType ex) {
+            Logger.getLogger(BDeditor.class.getName()).log(Level.SEVERE, null, ex);
+            System.err.println("***** Problème d'enregistrement dans personnification *****");
+        }
+        
+        file.save();
+    }
+    
     public static void printFile(StylisticDeviceEnum sd) {
         FileStylisticD file =  FileStylisticD.load(sd);
         
@@ -534,5 +665,6 @@ public class BDeditor {
         for(int i = 0; i< sdTab.length; ++i) {
             System.out.println((i + 1) + "- " + sdTab[i]);
         }
+        System.out.println("");
     }
 }
