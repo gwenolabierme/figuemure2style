@@ -36,6 +36,12 @@ public class BDeditor {
         
         /*createHyperbole();
         printFile(StylisticDeviceEnum.HYPERBOLE);*/
+        
+        /*createMetaphore();
+        printFile(StylisticDeviceEnum.METAPHORE);*/
+        
+        /*createMetonymie();
+        printFile(StylisticDeviceEnum.METONYMIE);*/
     }
     
     public static void createAccumulation() {
@@ -413,7 +419,7 @@ public class BDeditor {
             file.addStylisiticD(sd);
             
             sd = new StylisticDevice(StylisticDeviceEnum.HYPERBOLE,
-                    "    – J’ai vu, dit-il, un chou plus grand qu’une maison. / – Et moi, "
+                    "– J’ai vu, dit-il, un chou plus grand qu’une maison. / – Et moi, "
                             + "dit l’autre, un pot aussi grand qu’une Eglise.",
                     "La Fontaine", "Fables, Le Dépositaire infidèle");
             file.addStylisiticD(sd);
@@ -437,6 +443,83 @@ public class BDeditor {
         } catch (DifferentsStylisticDeviceType ex) {
             Logger.getLogger(BDeditor.class.getName()).log(Level.SEVERE, null, ex);
             System.err.println("***** Problème d'enregistrement dans hyperbole *****");
+        }
+        
+        file.save();
+    }
+    
+    public static void createMetaphore() {
+        FileStylisticD file = new FileStylisticD(StylisticDeviceEnum.METAPHORE);
+        StylisticDevice sd;
+        
+        try {
+            sd = new StylisticDevice(StylisticDeviceEnum.METAPHORE,
+                    "Bonjour, mon trésor !",
+                    "laculturegenerale.com");
+            file.addStylisiticD(sd);
+            
+            sd = new StylisticDevice(StylisticDeviceEnum.METAPHORE,
+                    "Tout l’automne à la fin n’est plus qu’une tisane froide.",
+                    "Ponge", "La fin de l’automne");
+            file.addStylisiticD(sd);
+            
+            sd = new StylisticDevice(StylisticDeviceEnum.METAPHORE,
+                    "Je parle un langage de décombres où voisinent les soleils et les plâtras.",
+                    "Aragon", "Traité du style");
+            file.addStylisiticD(sd);
+            
+            sd = new StylisticDevice(StylisticDeviceEnum.METAPHORE,
+                    "Je me suis baigné dans le poème de la mer.",
+                    "Rimbaud", "Le Bateau ivre");
+            file.addStylisiticD(sd);
+            
+            sd = new StylisticDevice(StylisticDeviceEnum.METAPHORE,
+                    "Un gros serpent de fumée noire.",
+                    "Maupassant", "La Peur");
+            file.addStylisiticD(sd);
+            
+        } catch (DifferentsStylisticDeviceType ex) {
+            Logger.getLogger(BDeditor.class.getName()).log(Level.SEVERE, null, ex);
+            System.err.println("***** Problème d'enregistrement dans métaphore *****");
+        }
+        
+        file.save();
+    }
+    
+    public static void createMetonymie() {
+        FileStylisticD file = new FileStylisticD(StylisticDeviceEnum.METONYMIE);
+        StylisticDevice sd;
+        
+        try {
+            sd = new StylisticDevice(StylisticDeviceEnum.METONYMIE,
+                    "Ah ! quelle cruauté qui tout en jour tue / Le père par "
+                            + "le fer, la fille par la vue !",
+                    "Corneille", "Le Cid");
+            file.addStylisiticD(sd);
+            
+            sd = new StylisticDevice(StylisticDeviceEnum.METONYMIE,
+                    "Paris a froid, Paris a faim",
+                    "Éluard", "Courage");
+            file.addStylisiticD(sd);
+            
+            sd = new StylisticDevice(StylisticDeviceEnum.METONYMIE,
+                    "Rome à ne vous plus voir m’a-t-elle condamnée ?",
+                    "Racine", "Britannicus");
+            file.addStylisiticD(sd);
+            
+            sd = new StylisticDevice(StylisticDeviceEnum.METONYMIE,
+                    "Le phallus en ce siècle devient doctrinaire.",
+                    "Michaux", "Face aux verrous");
+            file.addStylisiticD(sd);
+            
+            sd = new StylisticDevice(StylisticDeviceEnum.METONYMIE,
+                    "Avez-vous du feu ?",
+                    "laculturegenerale.com");
+            file.addStylisiticD(sd);
+            
+        } catch (DifferentsStylisticDeviceType ex) {
+            Logger.getLogger(BDeditor.class.getName()).log(Level.SEVERE, null, ex);
+            System.err.println("***** Problème d'enregistrement dans metonymie *****");
         }
         
         file.save();
