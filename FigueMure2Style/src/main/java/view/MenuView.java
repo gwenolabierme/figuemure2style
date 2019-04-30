@@ -1,6 +1,5 @@
 package view;
 
-import controller.Controller;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.scene.layout.GridPane;
@@ -9,17 +8,7 @@ import javafx.scene.control.Button;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.HPos;
-import javafx.geometry.Pos;
-import javafx.scene.layout.Background;
 import javafx.scene.layout.ColumnConstraints;
-import javafx.scene.paint.Color;
-import javafx.scene.text.Text;
-import model.FieldModel;
-import javafx.scene.layout.BackgroundImage;
-import javafx.scene.layout.BackgroundPosition;
-import javafx.scene.layout.BackgroundRepeat;
-import javafx.scene.layout.BackgroundSize;
-import javafx.scene.image.Image;
 
 /**
  * Menu Principal qui apparait au lancement.
@@ -32,7 +21,6 @@ public class MenuView {
     private int height;
     
     private String title = "FigueMûre2Style";
-    
     
     /**
      * Constructeur sans paramètres.
@@ -69,38 +57,43 @@ public class MenuView {
         // set the relative size of columns in the gridpane
         gridpane.getColumnConstraints().addAll(column13, column2, column13); 
 
-        Text title = new Text();      
-        title.setText("FigueMûre2Style");
-        gridpane.add(title, 1, 0);
-        gridpane.setHalignment(title, HPos.CENTER);
+        // Logo
+        Button logo = new Button();      
+        logo.setMinSize(350, 145);
+        logo.getStyleClass().add("logo");
+        gridpane.add(logo, 1, 0);
+        gridpane.setHalignment(logo, HPos.CENTER);
         
-        
+        // Bouton : Créer une partie
         Button buttonNewGame = new Button("Créer une partie");
         buttonNewGame.setOnAction(new EventHandler<ActionEvent>(){
             @Override
             public void handle(ActionEvent e) {
+                // Fenetre : NewGameView
                 NewGameView ngv = new NewGameView(stage, 600, 600);
             }
         });
         buttonNewGame.setMinSize(200, 50);
-        gridpane.add(buttonNewGame, 1, 3);
+        buttonNewGame.getStyleClass().add("panel");
+        gridpane.add(buttonNewGame, 1, 2);
         gridpane.setHalignment(buttonNewGame, HPos.CENTER);
         
-        
+        // Bouton : Charger une partie
         Button buttonGame = new Button("Charger une partie");
         buttonGame.setOnAction(new EventHandler<ActionEvent>(){
             @Override
             public void handle(ActionEvent e) {
+                // Fenetre : LoadGameView
                 LoadGameView lgv = new LoadGameView(stage, 600, 600);
             }
         });
         buttonGame.setMinSize(200, 50);
-        gridpane.add(buttonGame, 1, 4);
+        buttonGame.getStyleClass().add("panel");
+        gridpane.add(buttonGame, 1, 3);
         gridpane.setHalignment(buttonGame, HPos.CENTER);
 
-        
-        
-        Button buttonCredis = new Button("Crédis");
+        // Bouton : Crédits
+        Button buttonCredis = new Button("Crédits");
         buttonCredis.setOnAction(new EventHandler<ActionEvent>(){
             @Override
             public void handle(ActionEvent e) {
@@ -108,10 +101,11 @@ public class MenuView {
             }
         });
         buttonCredis.setMinSize(200, 50);
-        gridpane.add(buttonCredis, 1, 5);
+        buttonCredis.getStyleClass().add("panel");
+        gridpane.add(buttonCredis, 1, 4);
         gridpane.setHalignment(buttonCredis, HPos.CENTER);
 
-        
+        // Bouton : Quitter
         Button buttonExit = new Button("Quitter");
         buttonExit.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -120,15 +114,16 @@ public class MenuView {
             }
         });
         buttonExit.setMinSize(200, 50);
-        gridpane.add(buttonExit, 1, 6);
-        gridpane.setHalignment(buttonExit, HPos.CENTER);
+        buttonExit.getStyleClass().add("panel");
+        gridpane.add(buttonExit, 1, 5);
+        gridpane.setHalignment(buttonExit, HPos.CENTER);  
         
-        BackgroundImage backgroundImage = new BackgroundImage(new Image("/assets/img/css/BackgroundSmallScreen.jpg",600,600,true,true),
-        BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,
-          BackgroundSize.DEFAULT);
-        gridpane.setBackground(new Background(backgroundImage));
-
+        // Background
+        gridpane.getStyleClass().add("small_background"); 
+        
+        // Scene
         Scene scene = new Scene(gridpane, w, h);
+        scene.getStylesheets().add("/assets/css/Background.css"); 
         stage.setScene(scene);
         stage.show();
     }
