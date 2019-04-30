@@ -6,6 +6,7 @@ package observer;
 public interface UpdateObserver {
     /**
      * Est appelé par l'observable lors d'une mise à jour.
+     * @param observable UpdateObservable
      */
     void notifyUpdate(UpdateObservable observable);
 }
