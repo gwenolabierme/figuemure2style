@@ -1,0 +1,62 @@
+/* 
+ * CSS.
+ */
+
+.logo {
+    -fx-background-color: transparent;
+    -fx-background-image: url("/assets/css/img/logo.png");
+    -fx-background-repeat: stretch;   
+    -fx-background-size: 350 150;
+    -fx-background-position: center center;
+}
+
+.small_background {
+    -fx-background-image: url("/assets/css/img/backgroundSmallScreen.jpg");
+    -fx-background-repeat: stretch;   
+    -fx-background-size: 600 600;
+    -fx-background-position: center center;
+}
+
+.panel {
+    -fx-background-color: transparent;
+    -fx-background-image: url("/assets/css/img/wood.png");
+    -fx-background-repeat: stretch;   
+    -fx-background-size: 200 50;
+    -fx-background-position: center center;
+    -fx-font-size: 20px;
+}
+
+.panel_arrow {
+    -fx-background-color: transparent;
+    -fx-background-image: url("/assets/css/img/wood.png");
+    -fx-background-repeat: stretch;   
+    -fx-background-size: 50 50;
+    -fx-background-position: center center;
+    -fx-font-size: 40px;
+}
+
+.title {
+    -fx-font-size: 30px;
+    -fx-label-padding: 0px 0px 30px 0px;
+}
+
+.label {
+    -fx-font-size: 20px;
+    -fx-label-padding: 20px 5px 20px 5px;
+}
+
+.textfield {
+    -fx-font-size: 20px;
+    -fx-label-padding: 20px 0px 20px 5px;
+    -fx-text-fill: #778899;
+}
+
+.gender {
+    -fx-font-size: 20px;
+    -fx-label-padding: 20px 0px 20px 5px;
+}
+
+.text_credits {
+    -fx-font-size: 20px;
+    -fx-label-padding: 20px 2px 20px 2px;
+}
