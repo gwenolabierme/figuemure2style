@@ -64,8 +64,7 @@ public class BDFile {
     
     /**
      * Charge un fichier de figure de style.
-     * 
-     * @param pseudo le type de figure de style contenue dans le fichier
+     * @param pseudo le nom du fichier
      * @return la map chargée depuis le fichier, null sinon
      */
     public Map loadFile(String pseudo) {
@@ -99,12 +98,8 @@ public class BDFile {
         return newMap;
     }
     
-    
-
-
     /**
      * Test si le répertoire BD exist. Si ce n'est pas le cas, on le créait.
-     * 
      * @return true si le répertoire BD exist ou a pu être créé, false sinon
      */
     private static boolean isDirectoryBDExist() {
@@ -126,17 +121,21 @@ public class BDFile {
         return directoryExist;
     }
     
-    
+    /**
+     * isFileBDExist.
+     * @param pseudo Pseudo de l'utilisateur
+     * @return true si le fichier exist
+     */
     public boolean isFileBDExist(String pseudo) {
         Path path;
-        boolean directoryExist = true;
+        boolean fileExist = true;
         
         path = Paths.get(BD_path + "/" + pseudo);
         // Si le fichier BD n'existe pas
         if (!(Files.exists(path))) {
-            directoryExist = false;
+            fileExist = false;
         }
         
-        return directoryExist;
+        return fileExist;
     }
 }
