@@ -29,6 +29,7 @@ public class User {
      * 
      * @param pseudo Pseudo de l'utilisateur
      * @param gender Genre : Fermier / Fermiere
+     * @throws model.ModelException
      */
     public User(String pseudo, String gender) throws ModelException {
         setPseudo(pseudo);
@@ -51,6 +52,7 @@ public class User {
      * @param gender Genre : Fermier / Fermiere
      * @param password Mot de passe
      * @param passwordConfirm Mot de passe de confirmation
+     * @throws model.ModelException erreur
      */
     public void User(String pseudo, String gender, String password, String passwordConfirm) throws ModelException {
         if (goodPassword(password, passwordConfirm)) {
@@ -92,6 +94,7 @@ public class User {
      * Recupere l'utilisateur dans les fichiers de BD user si l'utilisateur a entre le bon mot de passe.
      * 
      * @param pseudo Pseudo de l'utilisateur
+     * @param password mot de passe
      */
     public void getUser(String pseudo, String password) {
         //if (goodPassword())
@@ -127,7 +130,7 @@ public class User {
     // TODO
     public boolean isUserExist(String pseudo) {
         BDFile f = new BDFile();
-        if(f.isFileBDExist(pseudo)) {
+        if (f.isFileBDExist(pseudo)) {
             return true;
         }
         else {
@@ -139,7 +142,9 @@ public class User {
      * goodPassword.
      * Password and PasswordConfirm sont les mêmes.
      * @param password Mot de passse
-     * @param paswordConfirm Mot de passe de confirmation
+     * @param passwordConfirm Mot de passe
+     * @return true si le password est bon
+     * @throws model.ModelException erreur
      */
     public boolean goodPassword(String password, String passwordConfirm) throws ModelException {
         if (password.equals(passwordConfirm)) {

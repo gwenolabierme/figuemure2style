@@ -16,7 +16,6 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import model.stylisticDevice.StylisticDevice;
 
 /**
  *
@@ -46,6 +45,7 @@ public class FileStylisticD implements Serializable{
     /**
      * Ajoute une figure de style au fichier.
      * @param sd StylisticDevice : une figure de style
+     * @throws model.stylisticDevice.DifferentsStylisticDeviceType erreur
      */
     public void addStylisiticD(StylisticDevice sd) throws DifferentsStylisticDeviceType {
         if ((sd != null) && (sd.getSdType() == this.sdType)) {
