@@ -13,7 +13,7 @@ import model.stylisticDevice.StylisticDeviceEnum;
  */
 public class BDeditor {
     public static void main(String[] args) {
-        /*createAccumulation();
+        createAccumulation();
         printFile(StylisticDeviceEnum.ACCUMULATION);
         
         createAllegorie();
@@ -50,7 +50,7 @@ public class BDeditor {
         printFile(StylisticDeviceEnum.PERIPHRASE);
         
         createPersonnification();
-        printFile(StylisticDeviceEnum.PERSONNIFICATION);*/
+        printFile(StylisticDeviceEnum.PERSONNIFICATION);
     }
     
     public static void createAccumulation() {
