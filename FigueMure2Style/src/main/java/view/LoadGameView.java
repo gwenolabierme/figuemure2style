@@ -124,8 +124,6 @@ public class LoadGameView {
                     gameView.setView(fieldView);
 
                     controller.startTimer();
-
-                    stage.close();  
                 }
             }
         });
