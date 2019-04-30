@@ -2,6 +2,7 @@ package model;
 
 import java.util.EnumSet;
 import java.util.HashSet;
+import java.util.Random;
 import java.util.Set;
 import model.plant.Carotte;
 import model.plant.Figue;
@@ -68,9 +69,22 @@ public class StoreModel {
             }
         }
         
-        //traitement de figues de styles
+        //traitement de figues de styles 
+        //on ajoute deux exemplaires de chaque figure disponible
         for (StylisticDeviceEnum sde : sdeList) {
             FileStylisticD file = FileStylisticD.load(sde);
+            this.fertilizerList.add(getAleatStylDevice(file.get()));
+            this.fertilizerList.add(getAleatStylDevice(file.get()));
         }
+    }
+    
+    private StylisticDevice getAleatStylDevice(StylisticDevice[] sdTab) {
+        int size = sdTab.length;
+        
+        Random rand = null;
+
+        int randSD = rand.nextInt(size);
+        
+        return sdTab[randSD];
     }
 }
