@@ -78,7 +78,6 @@ public class User {
     /**
      * getUser.
      * Recupere l'utilisateur dans les fichiers de BD user.
-     * 
      * @param pseudo Pseudo de l'utilisateur
      */
     public void getUser(String pseudo) {
@@ -92,19 +91,23 @@ public class User {
     /**
      * getUser.
      * Recupere l'utilisateur dans les fichiers de BD user si l'utilisateur a entre le bon mot de passe.
-     * 
      * @param pseudo Pseudo de l'utilisateur
      * @param password mot de passe
+     * @throws model.ModelException erreur
      */
-    public void getUser(String pseudo, String password) {
-        //if (goodPassword())
+    public void getUser(String pseudo, String password) throws ModelException {
         BDFile f = new BDFile();
         Map mapUser = f.loadFile(pseudo);
-        this.pseudo = (String) mapUser.get("pseudo");
-        this.gender = (String) mapUser.get("gender");
-        this.password = (String) mapUser.get("password");
-        this.passwordConfirm = (String) mapUser.get("passwordConfirm");
-        this.score = Integer.parseInt( (String) mapUser.get("score"));
+        if (password.equals((String) mapUser.get("password"))) {
+            this.pseudo = (String) mapUser.get("pseudo");
+            this.gender = (String) mapUser.get("gender");
+            this.password = (String) mapUser.get("password");
+            this.passwordConfirm = (String) mapUser.get("passwordConfirm");
+            this.score = Integer.parseInt( (String) mapUser.get("score"));
+        }
+        else {
+            throw new ModelException("Le mot de passe ne correspond pas");
+        }
     }
     
     // TODO
@@ -127,7 +130,12 @@ public class User {
         
     }
     
-    // TODO
+    /**
+     * isUserExist.
+     * Fichier BD user existe.
+     * @param pseudo Pseudo de l'utilisateur
+     * @return True si le fichier exist
+     */
     public boolean isUserExist(String pseudo) {
         BDFile f = new BDFile();
         if (f.isFileBDExist(pseudo)) {
@@ -142,7 +150,7 @@ public class User {
      * goodPassword.
      * Password and PasswordConfirm sont les mêmes.
      * @param password Mot de passse
-     * @param passwordConfirm Mot de passe
+     * @param passwordConfirm Mot de passe de confirmation
      * @return true si le password est bon
      * @throws model.ModelException erreur
      */
@@ -154,8 +162,6 @@ public class User {
             throw new ModelException("La confirmation de mot de passe ne correspond pas au mot de passe");
         }
     }
-    
-    
 
     public String getPseudo() {
         return pseudo;
