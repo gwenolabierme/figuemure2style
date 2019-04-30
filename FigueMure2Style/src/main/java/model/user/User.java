@@ -1,13 +1,10 @@
 package model.user;
 
 import java.util.EnumSet;
-import java.util.Set;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Map;
 import model.ModelException;
 import model.bd.BDFile;
-import model.plant.Carotte;
 import model.plant.PlantVarietyEnum;
 
 /**
@@ -237,4 +234,9 @@ public class User {
     public void initPlantUnlock() {
         this.addPlantUnlock(PlantVarietyEnum.CAROTTE);
     }
+
+    public EnumSet<PlantVarietyEnum> getPlantUnlock() {
+        return plantUnlock;
+    }
+    
 }
