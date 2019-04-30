@@ -30,7 +30,7 @@ public class FileStylisticD implements Serializable{
     /**
      * Chemin vers les fichiers.
      */
-    private final String path = "/BD";
+    public static final String pathBD = "src/main/resources/BD/figures/";
     
     private Set<StylisticDevice> styDevices;
 
@@ -90,7 +90,7 @@ public class FileStylisticD implements Serializable{
                 oos = new ObjectOutputStream(
                         new BufferedOutputStream(
                           new FileOutputStream(
-                            new File("BD/" + this.sdType.toString()))));
+                            new File(pathBD + this.sdType.toString()))));
                 // Sauvegarde du fichier
                 oos.writeObject(this);
 
@@ -126,7 +126,7 @@ public class FileStylisticD implements Serializable{
                 ois = new ObjectInputStream(
                         new BufferedInputStream(
                           new FileInputStream(
-                            new File("BD/" + sd.toString()))));
+                            new File(pathBD + sd.toString()))));
                 // Chargement du fichier
                 loadedMap = (FileStylisticD) ois.readObject();
 
@@ -157,7 +157,7 @@ public class FileStylisticD implements Serializable{
         Path path;
         boolean directoryExist = true;
         
-        path = Paths.get("BD");
+        path = Paths.get(pathBD);
         // Si le répertoire BD n'existe pas encore, on le créer
         if (!(Files.exists(path) && (Files.isDirectory(path)))) {
             try {
