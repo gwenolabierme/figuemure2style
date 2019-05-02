@@ -118,23 +118,54 @@ public class NewGameView {
         buttonValidation.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent e) {
+                // Erreur utilisateur
+                Button error = new Button();
+                
                 String newPseudo = pseudo.getText();
-                User u = new User(newPseudo);
-                if(!(u.isUserExist(newPseudo))) {
-                    String newGender;
-                    if (farmer1.isSelected()) {
-                        newGender = "fermier";
+                
+                if (newPseudo.equals("")) {
+                    // Error utilisateur
+                    error = new Button(" Remplissez le champs pseudo.");
+                    error.setMinSize(500, 100);
+                    error.getStyleClass().add("error_menu");
+                    gridpane.add(error, 1, 4);
+                    gridpane.setHalignment(error, HPos.CENTER);
+                }
+                else if (!(farmer1.isSelected()) && !(farmer2.isSelected())) {
+                    // Error utilisateur
+                    error = new Button(" Choisissez entre le fermier \n et la fermière.");
+                    error.setMinSize(500, 100);
+                    error.getStyleClass().add("error_menu");
+                    gridpane.add(error, 1, 4);
+                    gridpane.setHalignment(error, HPos.CENTER);
+                }
+                else { 
+                    User u = new User(newPseudo);
+                    
+                    if(!(u.isUserExist(newPseudo))) {
+                        String newGender;
+                        if (farmer1.isSelected()) {
+                            newGender = "fermier";
+                        }
+                        else {
+                            newGender = "fermiere";
+                        }
+                        try {
+                            u = new User(newPseudo, newGender);
+
+                            // Fenetre : LoadGameView
+                            LoadGameView lgv = new LoadGameView(stage, 600, 600);
+                        } catch (ModelException ex) {
+                            Logger.getLogger(NewGameView.class.getName()).log(Level.SEVERE, null, ex);
+                        }
                     }
                     else {
-                        newGender = "fermiere";
-                    }
-                    try {
-                        u = new User(newPseudo, newGender);
-
-                        // Fenetre : LoadGameView
-                        LoadGameView lgv = new LoadGameView(stage, 600, 600);
-                    } catch (ModelException ex) {
-                        Logger.getLogger(NewGameView.class.getName()).log(Level.SEVERE, null, ex);
+                        // Error utilisateur
+                        error = new Button(" Cet utilisateur existe déjà.\n Choisissez un autre pseudo.");
+                        error.setMinSize(500, 100);
+                        error.getStyleClass().add("error_menu");
+                        gridpane.add(error, 1, 4);
+                        gridpane.setHalignment(error, HPos.CENTER);
                     }
                 }
             }
