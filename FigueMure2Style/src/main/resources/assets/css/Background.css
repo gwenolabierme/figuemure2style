@@ -137,3 +137,13 @@
 .logoExit:hover {
     -fx-border-color: peru;
 }
+
+.error_menu {
+    -fx-background-color: transparent;
+    -fx-background-image: url("/assets/css/img/message_not_user.png");
+    -fx-background-repeat: stretch;   
+    -fx-background-size: 500 100;
+    -fx-background-position: center center;
+    -fx-text-fill: red;
+    -fx-font-size: 18px;
+}
