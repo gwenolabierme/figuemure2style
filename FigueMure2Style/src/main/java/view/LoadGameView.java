@@ -110,8 +110,7 @@ public class LoadGameView {
                 
                 if (u.isUserExist(newPseudo)) {
                     // Fenetre : stageGame
-                    Stage stageGame = new Stage();
-                    JfxView gameView = new JfxView(title.getText(), stageGame);
+                    JfxView gameView = new JfxView(title.getText(), stage);
                     
                     FieldModel fieldModel = new FieldModel();
                     FieldView fieldView =

@@ -1,11 +1,8 @@
 package view;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.HPos;
-import javafx.geometry.Insets;
 import javafx.geometry.VPos;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -14,8 +11,6 @@ import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.RowConstraints;
 import javafx.stage.Stage;
-import model.ModelException;
-import model.user.User;
 
 /**
  * view for jfx.
@@ -79,31 +74,98 @@ public class JfxView implements View {
         
         // Terres
         this.root = new Group();
+        //this.root.getStyleClass().add("game_background");
         gridpane.add(this.root, 0, 0);
         gridpane.setHalignment(this.root, HPos.LEFT);
         gridpane.setValignment(this.root, VPos.TOP);
         
-        
-        // Bouton : Boutique
-        Button buttonValidation = new Button("Boutique");
-        buttonValidation.setOnAction(new EventHandler<ActionEvent>() {
+        // Bouton : Tableau de bord
+        Button buttonDashbord = new Button();
+        buttonDashbord.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent e) {
                 //TODO
-                // Fenetre : LoadGameView
-                //LoadGameView lgv = new LoadGameView(stage, 600, 600);
-                    
-
+                // Fenetre : Tableau de bord
+                //LoadGameView lgv = new LoadGameView(stage, 800, 800);
+                System.out.println("Tableau de bord");    
             }
         });
-        buttonValidation.setMinSize(50, 50);
-        //buttonValidation.getStyleClass().add("panel");
-        gridpane.add(buttonValidation, 4, 0);
-        gridpane.setHalignment(buttonValidation, HPos.LEFT);
-        gridpane.setValignment(this.root, VPos.TOP);
+        buttonDashbord.setMinSize(80, 80);
+        buttonDashbord.getStyleClass().add("logoDashbord");
+        gridpane.add(buttonDashbord, 4, 0);
+        gridpane.setHalignment(buttonDashbord, HPos.CENTER);
+        gridpane.setValignment(buttonDashbord, VPos.CENTER);
+        
+        // Bouton : Boutique
+        Button buttonShop = new Button();
+        buttonShop.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent e) {
+                //TODO
+                // Fenetre : Boutique
+                //LoadGameView lgv = new LoadGameView(stage, 800, 800);
+                System.out.println("Boutique");    
+            }
+        });
+        buttonShop.setMinSize(80, 80);
+        buttonShop.getStyleClass().add("logoShop");
+        gridpane.add(buttonShop, 4, 1);
+        gridpane.setHalignment(buttonShop, HPos.CENTER);
+        gridpane.setValignment(buttonShop, VPos.CENTER);
+        
+        // Bouton : Inventaire
+        Button buttonInventory = new Button();
+        buttonInventory.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent e) {
+                //TODO
+                // Fenetre : Inventaire
+                //LoadGameView lgv = new LoadGameView(stage, 800, 800);
+                System.out.println("Inventaire");    
+            }
+        });
+        buttonInventory.setMinSize(80, 80);
+        buttonInventory.getStyleClass().add("logoInventory");
+        gridpane.add(buttonInventory, 4, 2);
+        gridpane.setHalignment(buttonInventory, HPos.CENTER);
+        gridpane.setValignment(buttonInventory, VPos.CENTER);
+        
+        // Bouton : Paramètres
+        Button buttonSettings = new Button();
+        buttonSettings.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent e) {
+                //TODO
+                // Fenetre : Paramètres
+                //LoadGameView lgv = new LoadGameView(stage, 800, 800);
+                System.out.println("Paramètres");
+            }
+        });
+        buttonSettings.setMinSize(80, 80);
+        buttonSettings.getStyleClass().add("logoSettings");
+        gridpane.add(buttonSettings, 4, 3);
+        gridpane.setHalignment(buttonSettings, HPos.CENTER);
+        gridpane.setValignment(buttonSettings, VPos.CENTER);
+        
+        // Bouton : Exit
+        Button buttonExit = new Button();
+        buttonExit.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent e) {
+                //TODO
+                // Fenetre : Quitter
+                MenuView mv = new MenuView(stage, 600, 600);
+                System.out.println("Quitter");    
+            }
+        });
+        buttonExit.setMinSize(80, 80);
+        buttonExit.getStyleClass().add("logoExit");
+        gridpane.add(buttonExit, 4, 4);
+        gridpane.setHalignment(buttonExit, HPos.CENTER);
+        gridpane.setValignment(buttonExit, VPos.CENTER);
         
         // Background
-        //gridpane.getStyleClass().add("small_background");
+        gridpane.getStyleClass().add("game_background");
         
         // Scene
         Scene scene = new Scene(gridpane, 800, 800);
@@ -111,10 +173,6 @@ public class JfxView implements View {
         stage.setScene(scene);
         stage.show();
         
-        
-        
-        
-
     }
 
     /**

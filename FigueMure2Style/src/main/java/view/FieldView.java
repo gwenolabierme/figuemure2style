@@ -115,11 +115,6 @@ public class FieldView extends CanvasView {
      * Affichage le terrain et les characters.
      */
     public void display() {
-        
-        // On nettoie le canvas à chaque frame
-        gc.setFill(Color.LIGHTGRAY);
-        gc.fillRect(0, 0, width, height);
-
         // Affichage le jardin
         for(int i = 0; i < App.gardenSize; ++i) {
             for(int j = 0; j < App.gardenSize; ++j) {
