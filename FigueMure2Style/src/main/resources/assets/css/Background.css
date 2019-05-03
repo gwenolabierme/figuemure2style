@@ -17,6 +17,13 @@
     -fx-background-position: center center;
 }
 
+.game_background {
+    -fx-background-image: url("/assets/css/img/backgroundGame.jpg");
+    -fx-background-repeat: stretch;   
+    -fx-background-size: 800 800;
+    -fx-background-position: center center;
+}
+
 .panel {
     -fx-background-color: transparent;
     -fx-background-image: url("/assets/css/img/wood.png");
@@ -59,4 +66,84 @@
 .text_credits {
     -fx-font-size: 20px;
     -fx-label-padding: 20px 2px 20px 2px;
+}
+
+.logoDashbord {
+    -fx-background-color: #956740;
+    -fx-border-color: #643711;
+    -fx-border-radius: 2px;
+    -fx-background-image: url("/assets/css/img/clock.png");
+    -fx-background-repeat: stretch;   
+    -fx-background-size: 60 60;
+    -fx-background-position: center center;
+}
+
+.logoDashbord:hover {
+    -fx-border-color: peru;
+}
+
+.logoShop {
+    -fx-background-color: #956740;
+    -fx-border-color: #643711;
+    -fx-border-radius: 2px;
+    -fx-background-image: url("/assets/css/img/basket.png");
+    -fx-background-repeat: stretch;   
+    -fx-background-size: 60 60;
+    -fx-background-position: center center;
+}
+
+.logoShop:hover {
+    -fx-border-color: peru;
+}
+
+.logoInventory {
+    -fx-background-color: #956740;
+    -fx-border-color: #643711;
+    -fx-border-radius: 2px;
+    -fx-background-image: url("/assets/css/img/sack.png");
+    -fx-background-repeat: stretch;   
+    -fx-background-size: 60 60;
+    -fx-background-position: center center;
+}
+
+.logoInventory:hover {
+    -fx-border-color: peru;
+}
+
+.logoSettings {
+    -fx-background-color: #956740;
+    -fx-border-color: #643711;
+    -fx-border-radius: 2px;
+    -fx-background-image: url("/assets/css/img/settings.png");
+    -fx-background-repeat: stretch;   
+    -fx-background-size: 60 60;
+    -fx-background-position: center center;
+}
+
+.logoSettings:hover {
+    -fx-border-color: peru;
+}
+
+.logoExit {
+    -fx-background-color: #956740;
+    -fx-border-color: #643711;
+    -fx-border-radius: 2px;
+    -fx-background-image: url("/assets/css/img/exit.jpg");
+    -fx-background-repeat: stretch;   
+    -fx-background-size: 60 60;
+    -fx-background-position: center center;
+}
+
+.logoExit:hover {
+    -fx-border-color: peru;
+}
+
+.error_menu {
+    -fx-background-color: transparent;
+    -fx-background-image: url("/assets/css/img/message_not_user.png");
+    -fx-background-repeat: stretch;   
+    -fx-background-size: 500 100;
+    -fx-background-position: center center;
+    -fx-text-fill: red;
+    -fx-font-size: 18px;
 }

@@ -13,7 +13,7 @@ public class App extends Application {
     /**
      * Taille du jardin (carré de cases (terre cultivable) = taille*taille).
      */
-    public static int gardenSize = 3;
+    public static int gardenSize = 4;
     /**
      * Cases disponible au départ. 
      */
@@ -33,6 +33,6 @@ public class App extends Application {
         int height = 600;
         int width = 600;
 
-        MenuView v = new MenuView(stage, width, height); // 600x600 pixels
+        MenuView v = new MenuView(stage, width, height);
     }
 }

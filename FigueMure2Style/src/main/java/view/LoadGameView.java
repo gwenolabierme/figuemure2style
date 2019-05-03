@@ -1,8 +1,6 @@
 package view;
 
 import controller.Controller;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.HPos;
@@ -17,7 +15,6 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import model.FieldModel;
-import model.ModelException;
 import model.user.User;
 
 /**
@@ -103,30 +100,50 @@ public class LoadGameView {
         buttonValidation.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent e) {
+                // Erreur utilisateur
+                Button error = new Button();
+        
                 String newPseudo = pseudo.getText();
                 
-                User u = new User(newPseudo);
-                u.getUser(newPseudo);
-                
-                if (u.isUserExist(newPseudo)) {
-                    // Fenetre : stageGame
-                    Stage stageGame = new Stage();
-                    JfxView gameView = new JfxView(title.getText(), stageGame);
-                    
-                    FieldModel fieldModel = new FieldModel();
-                    FieldView fieldView =
-                            new FieldView(fieldModel, 800,800);
-
-                    Controller controller = Controller.getControler();
-                    fieldView.setControler(controller);
-                    controller.addUpdateView(gameView);
-                    controller.setModel(fieldModel);
-                    gameView.setView(fieldView);
-
-                    controller.startTimer();
-
-                    stage.close();  
+                if (newPseudo.equals("")) {
+                    // Error utilisateur
+                    error = new Button(" Remplissez le champs pseudo.");
+                    error.setMinSize(500, 100);
+                    error.getStyleClass().add("error_menu");
+                    gridpane.add(error, 1, 3);
+                    gridpane.setHalignment(error, HPos.CENTER);
                 }
+                else {
+                    User u = new User(newPseudo);
+                    
+                    if (u.isUserExist(newPseudo)) {
+                        u.getUser(newPseudo);
+
+                        // Fenetre : stageGame
+                        JfxView gameView = new JfxView(title.getText(), stage);
+
+                        FieldModel fieldModel = new FieldModel();
+                        FieldView fieldView =
+                                new FieldView(fieldModel, 800,800);
+
+                        Controller controller = Controller.getControler();
+                        fieldView.setControler(controller);
+                        controller.addUpdateView(gameView);
+                        controller.setModel(fieldModel);
+                        gameView.setView(fieldView);
+
+                        controller.startTimer();
+                    }
+                    else {
+                        // Error utilisateur
+                        error = new Button(" Cet utilisateur n'existe pas.\n Créez un compte.");
+                        error.setMinSize(500, 100);
+                        error.getStyleClass().add("error_menu");
+                        gridpane.add(error, 1, 3);
+                        gridpane.setHalignment(error, HPos.CENTER);
+
+                    }
+                } 
             }
         });
         buttonValidation.setMinSize(200, 50);
