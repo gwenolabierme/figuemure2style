@@ -17,6 +17,7 @@ public class User {
     private String passwordConfirm;
     private int score;
     private EnumSet<PlantVarietyEnum> plantUnlock;
+    private HashMap<PlantVarietyEnum, Integer> inventory;
     
     /**
      * Constructeur User.
@@ -238,5 +239,43 @@ public class User {
     public EnumSet<PlantVarietyEnum> getPlantUnlock() {
         return plantUnlock;
     }
+
+    public HashMap<PlantVarietyEnum, Integer> getInventory() {
+        return inventory;
+    }
+
+    /**
+     * Ajoute la plante dans l'inventaire
+     * @param variety variété de la plante
+     * @param qty quantité de la plante dans l'inventaire
+     */
+    public void addInStock(PlantVarietyEnum variety, int qty) {
+        this.inventory.put(variety, qty);
+    }
     
+    /**
+     * Change la quantité de la plante dans l'inventaire
+     * @param variety variété de la plante
+     * @param qty quantité de la plante dans l'inventaire
+     */
+    public void changeQtyStock(PlantVarietyEnum variety, int qty) {
+        this.inventory.replace(variety, qty);
+    }
+    
+    /**
+     * La plante est-elle dans l'inventaire ?
+     * @param variety variété de la plante
+     * @return True si la plante est dans l'inventaire, false sinon
+     */
+    public boolean stockContainPlant (PlantVarietyEnum variety){
+        return this.inventory.containsKey(variety);
+    }
+    
+    /**
+     * Suprime la plante de l'inventaire.
+     * @param variety plante à supprimer
+     */
+    public void removePlantStock (PlantVarietyEnum variety){
+        this.inventory.remove(variety);
+    }
 }
