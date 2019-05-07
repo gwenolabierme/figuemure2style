@@ -40,6 +40,7 @@ public class StoreModel {
         
         //détermine les figures de styles
         for (PlantVarietyEnum plant : this.usr.getPlantUnlock()) {
+            
             if (plant.equals(PlantVarietyEnum.CAROTTE)) {
                 Carotte p = new Carotte();
                 sdeList.add(p.getStyDevEat());
@@ -72,6 +73,7 @@ public class StoreModel {
         }
         
         //traitement de figues de styles 
+        this.fertilizerList.clear();
         //on ajoute deux exemplaires de chaque figure disponible
         for (StylisticDeviceEnum sde : sdeList) {
             FileStylisticD file = FileStylisticD.load(sde);

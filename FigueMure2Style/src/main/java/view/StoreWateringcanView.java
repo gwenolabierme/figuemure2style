@@ -13,6 +13,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import model.FieldModel;
 import model.StoreModel;
+import model.stylisticDevice.StylisticDevice;
 import model.user.User;
 
 /**
@@ -162,6 +163,10 @@ public class StoreWateringcanView {
         gridpane.setHalignment(buttonWateringcan, HPos.CENTER);
         
         model.updateFertilizer();
+        /*System.err.println("fert : ");
+        for(StylisticDevice fert : model.getFertilizerTab()) {
+            System.out.println(fert.getSentence());
+        }*/
         
         iWattCan = 0;
         // Boutons : Arrosoires
@@ -180,7 +185,7 @@ public class StoreWateringcanView {
             gridpane.setHalignment(figureDeStyle, HPos.CENTER);
             
             ++iWattCan;
-            if (iWattCan > user.getPlantUnlock().size()*2) {
+            if (iWattCan >= user.getPlantUnlock().size()*2) {
                 iWattCan = 0;
             }
         }
