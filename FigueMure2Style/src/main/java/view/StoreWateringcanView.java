@@ -12,6 +12,8 @@ import javafx.scene.layout.RowConstraints;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import model.FieldModel;
+import model.StoreModel;
+import model.user.User;
 
 /**
  *
@@ -26,12 +28,15 @@ public class StoreWateringcanView {
     
     private String title = "FigueMûre2Style";
     
+    private static StoreModel model;
+    
     /**
-     * Constructeur sans paramètres.
+     * Constructeur simple.
+     * @param user joueur
      */
-    public StoreWateringcanView() {
+    public StoreWateringcanView(User user) {
         Stage stage = new Stage();
-        StoreWateringcanView swv = new StoreWateringcanView(stage, 800, 800);
+        StoreWateringcanView swv = new StoreWateringcanView(stage, 800, 800, user);
     }
     
     /**
@@ -40,10 +45,12 @@ public class StoreWateringcanView {
      * @param stage Relatif à Canvas pour la construction de la fenêtre
      * @param w     largeur de la fenêtre
      * @param h     hauteur de la fenêtre
+     * @param user joueur
      */
-    public StoreWateringcanView(final Stage stage, int w, int h) {
+    public StoreWateringcanView(final Stage stage, int w, int h, User user) {
         this.width = w;
         this.height = h;
+        this.model = new StoreModel(user);
 
         // Nom de la fenetre
         stage.setTitle(title);
@@ -87,7 +94,7 @@ public class StoreWateringcanView {
             @Override
             public void handle(ActionEvent e) {
                 // Fenetre : stageGame
-                JfxView gameView = new JfxView(title, stage);
+                JfxView gameView = new JfxView(title, stage, user);
 
                 FieldModel fieldModel = new FieldModel();
                 FieldView fieldView =
@@ -141,7 +148,7 @@ public class StoreWateringcanView {
             @Override
             public void handle(ActionEvent e) {
                 // Fenetre : StoreWateringcanView
-                StoreWateringcanView swv = new StoreWateringcanView(stage, 800, 800);
+                StoreWateringcanView swv = new StoreWateringcanView(stage, 800, 800, user);
             }
         });
         buttonWateringcan.setMinSize(100, 100);
@@ -157,7 +164,7 @@ public class StoreWateringcanView {
                 @Override
                 public void handle(ActionEvent e) {
                     // Fenetre : Figure de style
-                    WateringcanView wv = new WateringcanView(stage, 800, 800);
+                    WateringcanView wv = new WateringcanView(stage, 800, 800, model);
                 }
             });
             figureDeStyle.setMinSize(60, 60);
@@ -171,7 +178,7 @@ public class StoreWateringcanView {
                 @Override
                 public void handle(ActionEvent e) {
                     // Fenetre : Figure de style
-                    WateringcanView wv = new WateringcanView(stage, 800, 800);
+                    WateringcanView wv = new WateringcanView(stage, 800, 800, model);
                 }
             });
             figureDeStyle.setMinSize(60, 60);

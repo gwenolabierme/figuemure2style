@@ -120,7 +120,7 @@ public class LoadGameView {
                         u.getUser(newPseudo);
 
                         // Fenetre : stageGame
-                        JfxView gameView = new JfxView(title.getText(), stage);
+                        JfxView gameView = new JfxView(title.getText(), stage, u);
 
                         FieldModel fieldModel = new FieldModel();
                         FieldView fieldView =

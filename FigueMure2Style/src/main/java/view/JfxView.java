@@ -11,6 +11,7 @@ import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.RowConstraints;
 import javafx.stage.Stage;
+import model.user.User;
 
 /**
  * view for jfx.
@@ -36,8 +37,9 @@ public class JfxView implements View {
      *
      * @param title Titre de la fenêtre à créer
      * @param stage Fenêtre à gérer
+     * @param usr joueur
      */
-    public JfxView(String title, Stage stage) {
+    public JfxView(String title, Stage stage, User usr) {
         this.stage = stage;
 
         // Nom de la fenetre
@@ -103,7 +105,7 @@ public class JfxView implements View {
             public void handle(ActionEvent e) {
                 //TODO
                 // Fenetre : Boutique
-                StoreWateringcanView swv = new StoreWateringcanView(stage, 800, 800);
+                StoreWateringcanView swv = new StoreWateringcanView(stage, 800, 800, usr);
                 System.out.println("Boutique");    
             }
         });

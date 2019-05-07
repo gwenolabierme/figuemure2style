@@ -87,4 +87,14 @@ public class StoreModel {
         
         return sdTab[randSD];
     }
+
+    public User getUsr() {
+        return usr;
+    }
+
+    public Set<StylisticDevice> getFertilizerList() {
+        return fertilizerList;
+    }
+    
+    
 }

@@ -12,6 +12,8 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import model.FieldModel;
+import model.StoreModel;
+import model.user.User;
 
 /**
  *
@@ -29,9 +31,9 @@ public class WateringcanView {
     /**
      * Constructeur sans paramètres.
      */
-    public WateringcanView() {
+    public WateringcanView(StoreModel store) {
         Stage stage = new Stage();
-        WateringcanView swv = new WateringcanView(stage, 800, 800);
+        WateringcanView swv = new WateringcanView(stage, 800, 800, store);
     }
     
     /**
@@ -41,7 +43,7 @@ public class WateringcanView {
      * @param w     largeur de la fenêtre
      * @param h     hauteur de la fenêtre
      */
-    public WateringcanView(final Stage stage, int w, int h) {
+    public WateringcanView(final Stage stage, int w, int h, StoreModel store) {
         this.width = w;
         this.height = h;
         
@@ -66,7 +68,7 @@ public class WateringcanView {
             @Override
             public void handle(ActionEvent e) {
                 // Fenetre : StoreWateringcanView
-                StoreWateringcanView swv = new StoreWateringcanView(stage, 800, 800);
+                StoreWateringcanView swv = new StoreWateringcanView(stage, 800, 800, store.getUsr());
             }
         });
         buttonReturn.setMinSize(50, 50);
