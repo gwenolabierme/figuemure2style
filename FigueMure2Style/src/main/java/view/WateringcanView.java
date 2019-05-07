@@ -31,9 +31,9 @@ public class WateringcanView {
     /**
      * Constructeur sans paramètres.
      */
-    public WateringcanView(StoreModel store) {
+    public WateringcanView(StoreModel store, int indice) {
         Stage stage = new Stage();
-        WateringcanView swv = new WateringcanView(stage, 800, 800, store);
+        WateringcanView swv = new WateringcanView(stage, 800, 800, store, indice);
     }
     
     /**
@@ -42,8 +42,10 @@ public class WateringcanView {
      * @param stage Relatif à Canvas pour la construction de la fenêtre
      * @param w     largeur de la fenêtre
      * @param h     hauteur de la fenêtre
+     * @param store model du store
+     * @param indice indice de l'arrosoire dans la boutique
      */
-    public WateringcanView(final Stage stage, int w, int h, StoreModel store) {
+    public WateringcanView(final Stage stage, int w, int h, StoreModel store, int indice) {
         this.width = w;
         this.height = h;
         

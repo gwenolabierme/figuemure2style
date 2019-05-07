@@ -1,5 +1,7 @@
 package model;
 
+import java.util.Collection;
+import java.util.Collections;
 import java.util.EnumSet;
 import java.util.HashSet;
 import java.util.Random;
@@ -33,7 +35,7 @@ public class StoreModel {
     /**
      * Rempli la fertilizerList aléatoirement en fonction des légumes débloqués.
      */
-    private void updateFertilizer () {
+    public void updateFertilizer () {
         EnumSet<StylisticDeviceEnum> sdeList = EnumSet.noneOf(StylisticDeviceEnum.class);
         
         //détermine les figures de styles
