@@ -31,6 +31,11 @@ public class StoreWateringcanView {
     private static StoreModel model;
     
     /**
+     * Pas vraiment correct mais nécessaire pour l'utiliser dans le handle (2e constructeur)
+     */
+    private int iWattCan;
+    
+    /**
      * Constructeur simple.
      * @param user joueur
      */
@@ -48,7 +53,6 @@ public class StoreWateringcanView {
      * @param user joueur
      */
     public StoreWateringcanView(final Stage stage, int w, int h, User user) {
-        int iWattCan;
         this.width = w;
         this.height = h;
         this.model = new StoreModel(user);

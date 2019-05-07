@@ -171,5 +171,20 @@ public class FileStylisticD implements Serializable{
         
         return directoryExist;
     }
+
+    @Override
+    public String toString() {
+        String str;
+        
+        str = "*** " + this.sdType.name() + " *** \n";
+        
+        StylisticDevice[] sdTab = this.get();
+        for(int i = 0; i< sdTab.length; ++i) {
+            str = str + sdTab[i] + "\n";
+        }
+        
+        return str;
+    }
+    
     
 }

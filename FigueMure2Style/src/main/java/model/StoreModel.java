@@ -83,8 +83,7 @@ public class StoreModel {
     private StylisticDevice getAleatStylDevice(StylisticDevice[] sdTab) {
         int size = sdTab.length;
         
-        Random rand = null;
-
+        Random rand = new Random();
         int randSD = rand.nextInt(size);
         
         return sdTab[randSD];
@@ -93,10 +92,16 @@ public class StoreModel {
     public User getUsr() {
         return usr;
     }
-
-    public Set<StylisticDevice> getFertilizerList() {
-        return fertilizerList;
+    
+    /**
+     * Retourne le Set d'engrais sous forme de tableau.
+     * @return tableau de figure de style
+     */
+    public StylisticDevice[] getFertilizerTab() {
+        if (this.fertilizerList.size() > 0) {
+            return this.fertilizerList.toArray(new StylisticDevice[this.fertilizerList.size()]);
+        } else {
+            return null;
+        }
     }
-    
-    
 }

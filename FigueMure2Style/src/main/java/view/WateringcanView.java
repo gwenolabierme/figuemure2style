@@ -13,6 +13,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import model.FieldModel;
 import model.StoreModel;
+import model.stylisticDevice.StylisticDevice;
 import model.user.User;
 
 /**
@@ -27,6 +28,8 @@ public class WateringcanView {
     private int height;
     
     private String title = "FigueMûre2Style";
+    
+    private StylisticDevice fertilizer;
     
     /**
      * Constructeur sans paramètres.
@@ -48,6 +51,8 @@ public class WateringcanView {
     public WateringcanView(final Stage stage, int w, int h, StoreModel store, int indice) {
         this.width = w;
         this.height = h;
+        
+        this.fertilizer = store.getFertilizerTab()[indice];
         
         // Nom de la fenetre
         stage.setTitle(title);
