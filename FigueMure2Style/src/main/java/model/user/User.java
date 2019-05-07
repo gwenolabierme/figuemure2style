@@ -1,9 +1,11 @@
 package model.user;
 
+import java.util.EnumSet;
 import java.util.HashMap;
 import java.util.Map;
 import model.ModelException;
 import model.bd.BDFile;
+import model.plant.PlantVarietyEnum;
 
 /**
  * Utilisateur.
@@ -14,6 +16,7 @@ public class User {
     private String password;
     private String passwordConfirm;
     private int score;
+    private EnumSet<PlantVarietyEnum> plantUnlock;
     
     /**
      * Constructeur User.
@@ -22,6 +25,8 @@ public class User {
      */
     public User(String pseudo) {
         this.pseudo = pseudo;
+        plantUnlock = EnumSet.noneOf(PlantVarietyEnum.class);
+        initPlantUnlock();
     }
     
     /**
@@ -223,5 +228,21 @@ public class User {
     public void setScore(int score) {
         this.score = score;
     }
+    
+    /**
+     * Débloque une plante dans la boutique.
+     * @param plant PlantVarietyEnum
+     */
+    public void addPlantUnlock(PlantVarietyEnum plant) {
+        this.plantUnlock.add(plant);
+    }
         
+    public void initPlantUnlock() {
+        this.addPlantUnlock(PlantVarietyEnum.CAROTTE);
+    }
+
+    public EnumSet<PlantVarietyEnum> getPlantUnlock() {
+        return plantUnlock;
+    }
+    
 }
