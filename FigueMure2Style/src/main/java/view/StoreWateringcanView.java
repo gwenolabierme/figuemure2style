@@ -1,6 +1,7 @@
 package view;
 
 import controller.Controller;
+import java.util.HashSet;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.HPos;
@@ -30,6 +31,7 @@ public class StoreWateringcanView {
     private String title = "FigueMûre2Style";
     
     private static StoreModel model;
+    private Stage stage;
     
     /**
      * Pas vraiment correct mais nécessaire pour l'utiliser dans le handle (2e constructeur)
@@ -57,11 +59,65 @@ public class StoreWateringcanView {
         this.width = w;
         this.height = h;
         this.model = new StoreModel(user);
-
-        // Nom de la fenetre
-        stage.setTitle(title);
+        this.stage = stage;
 
         GridPane gridpane = new GridPane();
+        
+        fenetreInit(gridpane, user);
+        
+        forFertilizers(gridpane, user, false);
+        
+        // Background
+        //gridpane.getStyleClass().add("small_background");
+        
+        // Scene
+        Scene scene = new Scene(gridpane, w, h);
+        scene.getStylesheets().add("/assets/css/Background.css"); 
+        stage.setScene(scene);
+        stage.show();
+        
+    }
+    
+    /**
+     * Constructeur NewGameView.
+     *
+     * @param stage Relatif à Canvas pour la construction de la fenêtre
+     * @param w     largeur de la fenêtre
+     * @param h     hauteur de la fenêtre
+     * @param user joueur
+     * @param fertilizerList liste de citation
+     */
+    public StoreWateringcanView(final Stage stage, int w, int h, User user, 
+            HashSet<StylisticDevice> fertilizerList) {
+        this.width = w;
+        this.height = h;
+        this.model = new StoreModel(user, fertilizerList);
+        this.stage = stage;
+
+        GridPane gridpane = new GridPane();
+        
+        fenetreInit(gridpane, user);
+        
+        forFertilizers(gridpane, user, true);
+        
+        // Background
+        //gridpane.getStyleClass().add("small_background");
+        
+        // Scene
+        Scene scene = new Scene(gridpane, w, h);
+        scene.getStylesheets().add("/assets/css/Background.css"); 
+        stage.setScene(scene);
+        stage.show();
+        
+    }
+    
+    /**
+     * Initialise la fenetre.
+     * @param gridpane gridpane de cette view
+     * @param user joueur
+     */
+    private void fenetreInit(GridPane gridpane, User user) {
+
         gridpane.setHgap(10);
         gridpane.setVgap(10);
         
@@ -161,8 +217,18 @@ public class StoreWateringcanView {
         //buttonVegetable.getStyleClass().add("panel");
         gridpane.add(buttonWateringcan, 0, 3);
         gridpane.setHalignment(buttonWateringcan, HPos.CENTER);
-        
-        model.updateFertilizer();
+    }
+    
+    /**
+     * Gère les étapes liées au choix des citations pour les arrosoirs.
+     * @param gridpane gridpane de cette view
+     * @param user joueur
+     * @param isWithFertilizerList True si c'est le constructeur avec une FertilizerList en param
+     */
+    private void forFertilizers (GridPane gridpane, User user, boolean isWithFertilizerList) {
+        if (!isWithFertilizerList) {
+            model.updateFertilizer();
+        }
         /*System.err.println("fert : ");
         for(StylisticDevice fert : model.getFertilizerTab()) {
             System.out.println(fert.getSentence());
@@ -208,16 +274,5 @@ public class StoreWateringcanView {
                 iWattCan = 0;
             }
         }
-        
-        
-        // Background
-        //gridpane.getStyleClass().add("small_background");
-        
-        // Scene
-        Scene scene = new Scene(gridpane, w, h);
-        scene.getStylesheets().add("/assets/css/Background.css"); 
-        stage.setScene(scene);
-        stage.show();
-        
     }
 }

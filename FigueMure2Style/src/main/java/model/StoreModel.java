@@ -32,6 +32,11 @@ public class StoreModel {
         this.fertilizerList = new HashSet<StylisticDevice>();
     }
     
+    public StoreModel (User usr, HashSet<StylisticDevice> fertilizerList) {
+        this.usr = usr;
+        this.fertilizerList = fertilizerList;
+    }
+    
     /**
      * Rempli la fertilizerList aléatoirement en fonction des légumes débloqués.
      */

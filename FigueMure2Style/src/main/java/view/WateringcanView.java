@@ -1,6 +1,10 @@
 package view;
 
+import com.sun.xml.internal.ws.api.ha.StickyFeature;
 import controller.Controller;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.HPos;
@@ -75,7 +79,8 @@ public class WateringcanView {
             @Override
             public void handle(ActionEvent e) {
                 // Fenetre : StoreWateringcanView
-                StoreWateringcanView swv = new StoreWateringcanView(stage, 800, 800, store.getUsr());
+                Set<StylisticDevice> fertilizer = new HashSet<StylisticDevice>(Arrays.asList(store.getFertilizerTab()));
+                StoreWateringcanView swv = new StoreWateringcanView(stage, 800, 800, store.getUsr(), (HashSet<StylisticDevice>) fertilizer);
             }
         });
         buttonReturn.setMinSize(50, 50);
