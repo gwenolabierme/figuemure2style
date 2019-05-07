@@ -49,6 +49,9 @@ public class User {
         map.put("score", Integer.toString(this.score));
         BDFile f = new BDFile();
         f.newFile(pseudo, map);
+        
+        plantUnlock = EnumSet.noneOf(PlantVarietyEnum.class);
+        initPlantUnlock();
     }
     
     /**
@@ -77,6 +80,9 @@ public class User {
             map.put("score", Integer.toString(this.score));
             BDFile f = new BDFile();
             f.newFile(pseudo, map);
+            
+            plantUnlock = EnumSet.noneOf(PlantVarietyEnum.class);
+            initPlantUnlock();
         }
     }
     
@@ -248,9 +254,17 @@ public class User {
      * Ajoute la plante dans l'inventaire
      * @param variety variété de la plante
      * @param qty quantité de la plante dans l'inventaire
+     * @return True si la plante a été ajoutée, false sinon
      */
-    public void addInStock(PlantVarietyEnum variety, int qty) {
-        this.inventory.put(variety, qty);
+    public boolean addInStock(PlantVarietyEnum variety, int qty) {
+        boolean plantAdd = false;
+        
+        if (this.plantUnlock.contains(variety)) {
+            this.inventory.put(variety, qty);
+            plantAdd = true;
+        }
+        
+        return plantAdd;
     }
     
     /**
