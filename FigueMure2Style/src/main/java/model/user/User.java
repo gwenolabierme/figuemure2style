@@ -3,6 +3,8 @@ package model.user;
 import java.util.EnumSet;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import model.ModelException;
 import model.bd.BDFile;
 import model.plant.PlantVarietyEnum;
@@ -18,6 +20,10 @@ public class User {
     private int score;
     private EnumSet<PlantVarietyEnum> plantUnlock;
     private HashMap<PlantVarietyEnum, Integer> inventory;
+    /**
+     * Données (victoire, défaites, ratio) pour chaque plante débloquée
+     */
+    private HashMap<PlantVarietyEnum, DataPlantRatio> dataSucces;
     
     /**
      * Constructeur User.
@@ -297,5 +303,35 @@ public class User {
      */
     public void removePlantStock (PlantVarietyEnum variety){
         this.inventory.remove(variety);
+    }
+    
+    /**
+     * Met a jour les ratios de chaques stratégies en fonction de leur nombre de victoires et défaites.
+     */
+    private void updateRatios() {
+        double ratio;
+        
+        for(PlantVarietyEnum key : this.dataSucces.keySet()) {
+            DataPlantRatio data = this.dataSucces.get(key);
+            ratio = (double) data.getNbVictory()/ data.getNbDefeat();
+            data.setRatio(ratio);
+        }
+    }
+    
+    /**
+     * Met à jour le ratio de probabilité de la plante.
+     * @param key plante à mettre à jour
+     * @param isSuccess True si le joueur a bien arrosé la plante, false sinon
+     */
+    public void updateDico(PlantVarietyEnum key, boolean isSuccess) {
+        DataPlantRatio data = this.dataSucces.get(key);
+        
+        if (isSuccess) {
+            data.setNbVictory(data.getNbVictory() + 1);
+        } else {
+            data.setNbDefeat(data.getNbDefeat()+ 1);
+        }
+        
+        this.updateRatios();
     }
 }
