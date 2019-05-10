@@ -103,7 +103,7 @@ public class JfxView implements View {
             public void handle(ActionEvent e) {
                 //TODO
                 // Fenetre : Boutique
-                //LoadGameView lgv = new LoadGameView(stage, 800, 800);
+                StoreWateringcanView swv = new StoreWateringcanView(stage, 800, 800);
                 System.out.println("Boutique");    
             }
         });
