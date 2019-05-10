@@ -126,8 +126,8 @@ public class StoreWateringcanView {
         buttonVegetable.setOnAction(new EventHandler<ActionEvent>(){
             @Override
             public void handle(ActionEvent e) {
-                // Fenetre : StoreVegetableView TODO
-                //StoreVegetableView nvv = new StoreVegetableView(stage, 800, 800);
+                // Fenetre : StoreVegetableView
+                StoreVegetableView svv = new StoreVegetableView(stage, 800, 800);
             }
         });
         buttonVegetable.setMinSize(100, 100);
