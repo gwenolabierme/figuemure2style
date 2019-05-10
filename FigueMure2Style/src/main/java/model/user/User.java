@@ -17,6 +17,7 @@ public class User {
     private String passwordConfirm;
     private int score;
     private EnumSet<PlantVarietyEnum> plantUnlock;
+    private HashMap<PlantVarietyEnum, Integer> inventory;
     
     /**
      * Constructeur User.
@@ -48,6 +49,9 @@ public class User {
         map.put("score", Integer.toString(this.score));
         BDFile f = new BDFile();
         f.newFile(pseudo, map);
+        
+        plantUnlock = EnumSet.noneOf(PlantVarietyEnum.class);
+        initPlantUnlock();
     }
     
     /**
@@ -76,6 +80,9 @@ public class User {
             map.put("score", Integer.toString(this.score));
             BDFile f = new BDFile();
             f.newFile(pseudo, map);
+            
+            plantUnlock = EnumSet.noneOf(PlantVarietyEnum.class);
+            initPlantUnlock();
         }
     }
     
@@ -244,5 +251,51 @@ public class User {
     public EnumSet<PlantVarietyEnum> getPlantUnlock() {
         return plantUnlock;
     }
+
+    public HashMap<PlantVarietyEnum, Integer> getInventory() {
+        return inventory;
+    }
+
+    /**
+     * Ajoute la plante dans l'inventaire
+     * @param variety variété de la plante
+     * @param qty quantité de la plante dans l'inventaire
+     * @return True si la plante a été ajoutée, false sinon
+     */
+    public boolean addInStock(PlantVarietyEnum variety, int qty) {
+        boolean plantAdd = false;
+        
+        if (this.plantUnlock.contains(variety)) {
+            this.inventory.put(variety, qty);
+            plantAdd = true;
+        }
+        
+        return plantAdd;
+    }
     
+    /**
+     * Change la quantité de la plante dans l'inventaire
+     * @param variety variété de la plante
+     * @param qty quantité de la plante dans l'inventaire
+     */
+    public void changeQtyStock(PlantVarietyEnum variety, int qty) {
+        this.inventory.replace(variety, qty);
+    }
+    
+    /**
+     * La plante est-elle dans l'inventaire ?
+     * @param variety variété de la plante
+     * @return True si la plante est dans l'inventaire, false sinon
+     */
+    public boolean stockContainPlant (PlantVarietyEnum variety){
+        return this.inventory.containsKey(variety);
+    }
+    
+    /**
+     * Suprime la plante de l'inventaire.
+     * @param variety plante à supprimer
+     */
+    public void removePlantStock (PlantVarietyEnum variety){
+        this.inventory.remove(variety);
+    }
 }
