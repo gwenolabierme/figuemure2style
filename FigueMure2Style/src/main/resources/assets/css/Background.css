@@ -96,14 +96,6 @@
     -fx-border-color: peru;
 }
 
-.logoShopView {
-    -fx-background-color: transparent;
-    -fx-background-image: url("/assets/css/img/basket.png");
-    -fx-background-repeat: stretch;   
-    -fx-background-size: 60 60;
-    -fx-background-position: center center;
-}
-
 .logoInventory {
     -fx-background-color: #956740;
     -fx-border-color: #643711;
@@ -154,11 +146,4 @@
     -fx-background-position: center center;
     -fx-text-fill: red;
     -fx-font-size: 18px;
-}
-
-.logoWateringcan {
-    -fx-background-image: url("/assets/css/img/wateringcan.png");
-    -fx-background-repeat: stretch;   
-    -fx-background-size: 60 60;
-    -fx-background-position: center center;
 }
