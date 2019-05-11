@@ -21,7 +21,7 @@ import model.user.User;
 
 /**
  *
- * @author gwenolabierme
+ * Boutique : Fruits et légumes.
  */
 public class StoreVegetableView {
 
@@ -98,8 +98,7 @@ public class StoreVegetableView {
                 JfxView gameView = new JfxView(title, stage, u);
 
                 FieldModel fieldModel = new FieldModel();
-                FieldView fieldView
-                        = new FieldView(fieldModel, 800, 800);
+                FieldView fieldView = new FieldView(fieldModel, 800, 800);
 
                 Controller controller = Controller.getControler();
                 fieldView.setControler(controller);

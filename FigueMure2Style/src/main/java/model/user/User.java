@@ -24,6 +24,9 @@ public class User {
      */
     private HashMap<PlantVarietyEnum, DataPlantRatio> dataSucces;
 
+    /**
+     * Constructeur User.
+     */
     public User() {
     }
 
@@ -41,6 +44,7 @@ public class User {
      *
      * @param pseudo Pseudo de l'utilisateur
      * @param gender Genre : Fermier / Fermiere
+     * @throws model.ModelException erreur
      */
     public User(String pseudo, String gender) throws ModelException {
         setPseudo(pseudo);
@@ -66,6 +70,7 @@ public class User {
      * @param gender Genre : Fermier / Fermiere
      * @param password Mot de passe
      * @param passwordConfirm Mot de passe de confirmation
+     * @throws model.ModelException erreur
      */
     public void User(String pseudo, String gender, String password, String passwordConfirm) throws ModelException {
         if (goodPassword(password, passwordConfirm)) {

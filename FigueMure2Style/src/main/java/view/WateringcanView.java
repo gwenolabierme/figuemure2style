@@ -14,7 +14,7 @@ import model.user.User;
 
 /**
  *
- * @author gwenolabierme
+ * Figure de style.
  */
 public class WateringcanView {
 
