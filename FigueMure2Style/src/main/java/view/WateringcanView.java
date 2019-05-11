@@ -10,7 +10,6 @@ import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import model.stylisticDevice.StylisticDevice;
 import model.user.User;
 
 /**
@@ -26,8 +25,6 @@ public class WateringcanView {
     private int height;
 
     private String title = "FigueMûre2Style";
-
-    private StylisticDevice fertilizer;
 
     /**
      * Constructeur sans paramètres.
@@ -89,13 +86,11 @@ public class WateringcanView {
         // TODO
         // Figure de style
         Text figureDeStyle = new Text();
-        figureDeStyle.setText(this.fertilizer.getSentence());
         //figureDeStyle.getStyleClass().add("title");
         gridpane.add(figureDeStyle, 1, 1);
         gridpane.setHalignment(figureDeStyle, HPos.CENTER);
 
         Text infos = new Text();
-        infos.setText(this.fertilizer.getAuthor() + ", " + this.fertilizer.getOeuvre());
         //figureDeStyle.getStyleClass().add("title");
         gridpane.add(infos, 1, 2);
         gridpane.setHalignment(infos, HPos.CENTER);
