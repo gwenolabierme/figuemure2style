@@ -23,7 +23,7 @@ public class User {
     /**
      * Données (victoire, défaites, ratio) pour chaque plante débloquée
      */
-    //private HashMap<PlantVarietyEnum, DataPlantRatio> dataSucces;
+    private HashMap<PlantVarietyEnum, DataPlantRatio> dataSucces;
     
     /**
      * Constructeur User.
@@ -310,12 +310,12 @@ public class User {
      */
     private void updateRatios() {
         double ratio;
-        /*
+        
         for(PlantVarietyEnum key : this.dataSucces.keySet()) {
             DataPlantRatio data = this.dataSucces.get(key);
             ratio = (double) data.getNbVictory()/ data.getNbDefeat();
             data.setRatio(ratio);
-        }*/
+        }
     }
     
     /**
@@ -324,13 +324,13 @@ public class User {
      * @param isSuccess True si le joueur a bien arrosé la plante, false sinon
      */
     public void updateDico(PlantVarietyEnum key, boolean isSuccess) {
-        //DataPlantRatio data = this.dataSucces.get(key);
-        /*
+        DataPlantRatio data = this.dataSucces.get(key);
+        
         if (isSuccess) {
             data.setNbVictory(data.getNbVictory() + 1);
         } else {
             data.setNbDefeat(data.getNbDefeat()+ 1);
-        }*/
+        }
         
         this.updateRatios();
     }
