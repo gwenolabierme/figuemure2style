@@ -57,10 +57,21 @@ public class User {
         map.put("gender", this.gender);
         map.put("score", Integer.toString(this.score));
 
+        // Légumes débloqués
         plantUnlock = EnumSet.noneOf(PlantVarietyEnum.class);
         initPlantUnlock();
         map.put("plantUnlock", this.plantUnlock.toString());
-
+        
+        // Inventaire
+        inventory = new HashMap<PlantVarietyEnum, Integer>();
+        initStock();
+        map.put("PlantVarietyEnum.CAROTTE", inventory.get(PlantVarietyEnum.CAROTTE).toString());
+        map.put("PlantVarietyEnum.FIGUE", inventory.get(PlantVarietyEnum.FIGUE).toString());
+        map.put("PlantVarietyEnum.MURE", inventory.get(PlantVarietyEnum.MURE).toString());
+        map.put("PlantVarietyEnum.PATATTE", inventory.get(PlantVarietyEnum.PATATTE).toString());
+        map.put("PlantVarietyEnum.POMME", inventory.get(PlantVarietyEnum.POMME).toString());
+        map.put("PlantVarietyEnum.TOMATE", inventory.get(PlantVarietyEnum.TOMATE).toString());
+        
         BDFile f = new BDFile();
         f.newFile(pseudo, map);
     }
@@ -90,10 +101,21 @@ public class User {
             map.put("passwordConfirm", this.passwordConfirm);
             map.put("score", Integer.toString(this.score));
 
+            // Légumes débloqués
             plantUnlock = EnumSet.noneOf(PlantVarietyEnum.class);
             initPlantUnlock();
             map.put("plantUnlock", this.plantUnlock.toString());
-
+            
+            // Inventaire
+            inventory = new HashMap<PlantVarietyEnum, Integer>();
+            initStock();
+            map.put("PlantVarietyEnum.CAROTTE", inventory.get(PlantVarietyEnum.CAROTTE).toString());
+            map.put("PlantVarietyEnum.FIGUE", inventory.get(PlantVarietyEnum.FIGUE).toString());
+            map.put("PlantVarietyEnum.MURE", inventory.get(PlantVarietyEnum.MURE).toString());
+            map.put("PlantVarietyEnum.PATATTE", inventory.get(PlantVarietyEnum.PATATTE).toString());
+            map.put("PlantVarietyEnum.POMME", inventory.get(PlantVarietyEnum.POMME).toString());
+            map.put("PlantVarietyEnum.TOMATE", inventory.get(PlantVarietyEnum.TOMATE).toString());
+            
             BDFile f = new BDFile();
             f.newFile(pseudo, map);
         }
@@ -134,6 +156,16 @@ public class User {
         if (listPlantUnlock.indexOf("tomate") != -1) {
             addPlantUnlock(PlantVarietyEnum.TOMATE);
         }
+        
+        // Inventaire
+        String listInventory;
+        inventory = new HashMap<PlantVarietyEnum, Integer>();
+        this.inventory.put(PlantVarietyEnum.CAROTTE, Integer.parseInt((String) mapUser.get("PlantVarietyEnum.CAROTTE")));
+        this.inventory.put(PlantVarietyEnum.FIGUE, Integer.parseInt((String) mapUser.get("PlantVarietyEnum.FIGUE")));
+        this.inventory.put(PlantVarietyEnum.MURE, Integer.parseInt((String) mapUser.get("PlantVarietyEnum.MURE")));
+        this.inventory.put(PlantVarietyEnum.PATATTE, Integer.parseInt((String) mapUser.get("PlantVarietyEnum.PATATTE")));
+        this.inventory.put(PlantVarietyEnum.POMME, Integer.parseInt((String) mapUser.get("PlantVarietyEnum.POMME")));
+        this.inventory.put(PlantVarietyEnum.TOMATE, Integer.parseInt((String) mapUser.get("PlantVarietyEnum.TOMATE")));
     }
 
     /**
@@ -177,6 +209,16 @@ public class User {
             if (listPlantUnlock.indexOf("tomate") != -1) {
                 addPlantUnlock(PlantVarietyEnum.TOMATE);
             }
+            
+            // Inventaire
+            String listInventory;
+            this.inventory = new HashMap<PlantVarietyEnum, Integer>();
+            this.inventory.put(PlantVarietyEnum.CAROTTE, Integer.parseInt((String) mapUser.get("PlantVarietyEnum.CAROTTE")));
+            this.inventory.put(PlantVarietyEnum.FIGUE, Integer.parseInt((String) mapUser.get("PlantVarietyEnum.FIGUE")));
+            this.inventory.put(PlantVarietyEnum.MURE, Integer.parseInt((String) mapUser.get("PlantVarietyEnum.MURE")));
+            this.inventory.put(PlantVarietyEnum.PATATTE, Integer.parseInt((String) mapUser.get("PlantVarietyEnum.PATATTE")));
+            this.inventory.put(PlantVarietyEnum.POMME, Integer.parseInt((String) mapUser.get("PlantVarietyEnum.POMME")));
+            this.inventory.put(PlantVarietyEnum.TOMATE, Integer.parseInt((String) mapUser.get("PlantVarietyEnum.TOMATE")));
         } else {
             throw new ModelException("Le mot de passe ne correspond pas");
         }
@@ -310,6 +352,15 @@ public class User {
         return inventory;
     }
 
+    public void initStock() {
+        this.inventory.put(PlantVarietyEnum.CAROTTE, 0);
+        this.inventory.put(PlantVarietyEnum.FIGUE, 0);
+        this.inventory.put(PlantVarietyEnum.MURE, 0);
+        this.inventory.put(PlantVarietyEnum.PATATTE, 0);
+        this.inventory.put(PlantVarietyEnum.POMME, 0);
+        this.inventory.put(PlantVarietyEnum.TOMATE, 0);
+    }
+    
     /**
      * Ajoute la plante dans l'inventaire
      *
