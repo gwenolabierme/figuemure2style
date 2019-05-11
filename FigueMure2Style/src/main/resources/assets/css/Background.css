@@ -132,6 +132,14 @@
     -fx-border-color: peru;
 }
 
+.logoInventoryView {
+    -fx-background-color: transparent;
+    -fx-background-image: url("/assets/css/img/sack.png");
+    -fx-background-repeat: stretch;   
+    -fx-background-size: 60 60;
+    -fx-background-position: center center;
+}
+
 .logoSettings {
     -fx-background-color: #956740;
     -fx-border-color: #643711;

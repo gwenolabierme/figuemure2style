@@ -122,7 +122,7 @@ public class JfxView implements View {
             public void handle(ActionEvent e) {
                 //TODO
                 // Fenetre : Inventaire
-                //LoadGameView lgv = new LoadGameView(stage, 800, 800);
+                InventoryView iv = new InventoryView(stage, 800, 800, u);
                 System.out.println("Inventaire");
             }
         });
