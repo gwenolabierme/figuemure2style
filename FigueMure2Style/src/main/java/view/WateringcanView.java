@@ -10,11 +10,13 @@ import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import model.user.User;
 
 /**
- * Crédits.
+ *
+ * Figure de style.
  */
-public class CreditView {
+public class WateringcanView {
 
     /**
      * Longueur et largeur de la fenêtre.
@@ -27,19 +29,21 @@ public class CreditView {
     /**
      * Constructeur sans paramètres.
      */
-    public CreditView() {
+    public WateringcanView() {
         Stage stage = new Stage();
-        CreditView cv = new CreditView(stage, 600, 600);
+        User u = new User();
+        WateringcanView swv = new WateringcanView(stage, 800, 800, u);
     }
 
     /**
-     * Constructeur CreditView.
+     * Constructeur NewGameView.
      *
      * @param stage Relatif à Canvas pour la construction de la fenêtre
      * @param w largeur de la fenêtre
      * @param h hauteur de la fenêtre
+     * @param u utilisateur
      */
-    public CreditView(final Stage stage, int w, int h) {
+    public WateringcanView(Stage stage, int w, int h, User u) {
         this.width = w;
         this.height = h;
 
@@ -58,12 +62,13 @@ public class CreditView {
         // set the relative size of columns in the gridpane
         gridpane.getColumnConstraints().addAll(column13, column2, column13);
 
-        // Bouton : Retour
+        // Retour
         Button buttonReturn = new Button("←");
         buttonReturn.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent e) {
-                MenuView mv = new MenuView(stage, w, h);
+                // Fenetre : StoreWateringcanView
+                StoreWateringcanView swv = new StoreWateringcanView(stage, 800, 800, u);
             }
         });
         buttonReturn.setMinSize(50, 50);
@@ -73,44 +78,40 @@ public class CreditView {
 
         // Titre
         Text title = new Text();
-        title.setText("Crédis");
+        title.setText("Figure de style");
         title.getStyleClass().add("title");
         gridpane.add(title, 1, 0);
         gridpane.setHalignment(title, HPos.CENTER);
 
-        // Texte
-        Text developpeur = new Text();
-        developpeur.setText("Concepteur & Développeurs");
-        developpeur.getStyleClass().add("text_credits");
-        gridpane.add(developpeur, 1, 1);
-        gridpane.setHalignment(developpeur, HPos.CENTER);
+        // TODO
+        // Figure de style
+        Text figureDeStyle = new Text();
+        //figureDeStyle.getStyleClass().add("title");
+        gridpane.add(figureDeStyle, 1, 1);
+        gridpane.setHalignment(figureDeStyle, HPos.CENTER);
 
-        Text noms = new Text();
-        noms.setText("Gwénola Biermé & Jérémy Duval");
-        noms.getStyleClass().add("text_credits");
-        gridpane.add(noms, 1, 3);
-        gridpane.setHalignment(noms, HPos.CENTER);
+        Text infos = new Text();
+        //figureDeStyle.getStyleClass().add("title");
+        gridpane.add(infos, 1, 2);
+        gridpane.setHalignment(infos, HPos.CENTER);
 
-        Text fac1 = new Text();
-        fac1.setText("Réalisé dans le cadre d'un cours de Logiciel Educatif");
-        fac1.getStyleClass().add("text_credits");
-        gridpane.add(fac1, 1, 5);
-        gridpane.setHalignment(fac1, HPos.CENTER);
-
-        Text fac2 = new Text();
-        fac2.setText("à l'Université Claude Bernard Lyon1");
-        fac2.getStyleClass().add("text_credits");
-        gridpane.add(fac2, 1, 6);
-        gridpane.setHalignment(fac2, HPos.CENTER);
-
-        Text licence = new Text();
-        licence.setText("Sous licence CeCILL B");
-        licence.getStyleClass().add("text_credits");
-        gridpane.add(licence, 1, 8);
-        gridpane.setHalignment(licence, HPos.CENTER);
+        // Bouton : Sélectionner
+        Button buttonSelect = new Button("Sélectionner");
+        buttonSelect.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent e) {
+                // TODO
+                // Fenetre : NewGameView
+                //NewGameView ngv = new NewGameView(stage, 600, 600);
+            }
+        });
+        buttonSelect.setMinSize(200, 50);
+        //buttonSelect.getStyleClass().add("panel");
+        gridpane.add(buttonSelect, 1, 3);
+        gridpane.setHalignment(buttonSelect, HPos.CENTER);
 
         // Background
-        gridpane.getStyleClass().add("small_background");
+        gridpane.getStyleClass().add("figureDeStyle_background");
 
         // Scene
         Scene scene = new Scene(gridpane, w, h);

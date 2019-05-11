@@ -14,14 +14,15 @@ import javafx.scene.layout.ColumnConstraints;
  * Menu Principal qui apparait au lancement.
  */
 public class MenuView {
+
     /**
      * Longueur et largeur de la fenêtre.
      */
     private int width;
     private int height;
-    
+
     private String title = "FigueMûre2Style";
-    
+
     /**
      * Constructeur sans paramètres.
      */
@@ -34,8 +35,8 @@ public class MenuView {
      * Constructeur MenuView.
      *
      * @param stage Relatif à Canvas pour la construction de la fenêtre
-     * @param w     largeur de la fenêtre
-     * @param h     hauteur de la fenêtre
+     * @param w largeur de la fenêtre
+     * @param h hauteur de la fenêtre
      */
     public MenuView(final Stage stage, int w, int h) {
 
@@ -49,24 +50,24 @@ public class MenuView {
         gridpane.setHgap(10);
         gridpane.setVgap(10);
         gridpane.setPadding(new Insets(25, 25, 25, 25));
-        
-        ColumnConstraints column13 = new ColumnConstraints(), 
+
+        ColumnConstraints column13 = new ColumnConstraints(),
                 column2 = new ColumnConstraints();
         column13.setPercentWidth(25);
         column2.setPercentWidth(50);
         // set the relative size of columns in the gridpane
-        gridpane.getColumnConstraints().addAll(column13, column2, column13); 
+        gridpane.getColumnConstraints().addAll(column13, column2, column13);
 
         // Logo
-        Button logo = new Button();      
+        Button logo = new Button();
         logo.setMinSize(350, 145);
         logo.getStyleClass().add("logo");
         gridpane.add(logo, 1, 0);
         gridpane.setHalignment(logo, HPos.CENTER);
-        
+
         // Bouton : Créer une partie
         Button buttonNewGame = new Button("Créer une partie");
-        buttonNewGame.setOnAction(new EventHandler<ActionEvent>(){
+        buttonNewGame.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent e) {
                 // Fenetre : NewGameView
@@ -77,10 +78,10 @@ public class MenuView {
         buttonNewGame.getStyleClass().add("panel");
         gridpane.add(buttonNewGame, 1, 2);
         gridpane.setHalignment(buttonNewGame, HPos.CENTER);
-        
+
         // Bouton : Charger une partie
         Button buttonGame = new Button("Charger une partie");
-        buttonGame.setOnAction(new EventHandler<ActionEvent>(){
+        buttonGame.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent e) {
                 // Fenetre : LoadGameView
@@ -94,7 +95,7 @@ public class MenuView {
 
         // Bouton : Crédits
         Button buttonCredis = new Button("Crédits");
-        buttonCredis.setOnAction(new EventHandler<ActionEvent>(){
+        buttonCredis.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent e) {
                 CreditView cv = new CreditView(stage, 600, 600);
@@ -116,14 +117,14 @@ public class MenuView {
         buttonExit.setMinSize(200, 50);
         buttonExit.getStyleClass().add("panel");
         gridpane.add(buttonExit, 1, 5);
-        gridpane.setHalignment(buttonExit, HPos.CENTER);  
-        
+        gridpane.setHalignment(buttonExit, HPos.CENTER);
+
         // Background
-        gridpane.getStyleClass().add("small_background"); 
-        
+        gridpane.getStyleClass().add("small_background");
+
         // Scene
         Scene scene = new Scene(gridpane, w, h);
-        scene.getStylesheets().add("/assets/css/Background.css"); 
+        scene.getStylesheets().add("/assets/css/Background.css");
         stage.setScene(scene);
         stage.show();
     }
