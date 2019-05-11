@@ -56,11 +56,13 @@ public class User {
         map.put("pseudo", this.pseudo);
         map.put("gender", this.gender);
         map.put("score", Integer.toString(this.score));
-        BDFile f = new BDFile();
-        f.newFile(pseudo, map);
 
         plantUnlock = EnumSet.noneOf(PlantVarietyEnum.class);
         initPlantUnlock();
+        map.put("plantUnlock", this.plantUnlock.toString());
+
+        BDFile f = new BDFile();
+        f.newFile(pseudo, map);
     }
 
     /**
@@ -87,11 +89,13 @@ public class User {
             map.put("password", this.password);
             map.put("passwordConfirm", this.passwordConfirm);
             map.put("score", Integer.toString(this.score));
-            BDFile f = new BDFile();
-            f.newFile(pseudo, map);
 
             plantUnlock = EnumSet.noneOf(PlantVarietyEnum.class);
             initPlantUnlock();
+            map.put("plantUnlock", this.plantUnlock.toString());
+
+            BDFile f = new BDFile();
+            f.newFile(pseudo, map);
         }
     }
 
@@ -106,6 +110,30 @@ public class User {
         this.pseudo = (String) mapUser.get("pseudo");
         this.gender = (String) mapUser.get("gender");
         this.score = Integer.parseInt((String) mapUser.get("score"));
+
+        // Légumes débloqués
+        String listPlantUnlock = (String) mapUser.get("plantUnlock");
+        EnumSet<PlantVarietyEnum> listVarietyPlantUnlock = null;
+        plantUnlock = EnumSet.noneOf(PlantVarietyEnum.class);
+
+        if (listPlantUnlock.indexOf("carotte") != -1) {
+            addPlantUnlock(PlantVarietyEnum.CAROTTE);
+        }
+        if (listPlantUnlock.indexOf("figue") != -1) {
+            addPlantUnlock(PlantVarietyEnum.FIGUE);
+        }
+        if (listPlantUnlock.indexOf("mure") != -1) {
+            addPlantUnlock(PlantVarietyEnum.MURE);
+        }
+        if (listPlantUnlock.indexOf("pattate") != -1) {
+            addPlantUnlock(PlantVarietyEnum.PATATTE);
+        }
+        if (listPlantUnlock.indexOf("pomme") != -1) {
+            addPlantUnlock(PlantVarietyEnum.POMME);
+        }
+        if (listPlantUnlock.indexOf("tomate") != -1) {
+            addPlantUnlock(PlantVarietyEnum.TOMATE);
+        }
     }
 
     /**
@@ -125,6 +153,30 @@ public class User {
             this.password = (String) mapUser.get("password");
             this.passwordConfirm = (String) mapUser.get("passwordConfirm");
             this.score = Integer.parseInt((String) mapUser.get("score"));
+
+            // Légumes débloqués
+            String listPlantUnlock = (String) mapUser.get("plantUnlock");
+            EnumSet<PlantVarietyEnum> listVarietyPlantUnlock = null;
+            plantUnlock = EnumSet.noneOf(PlantVarietyEnum.class);
+
+            if (listPlantUnlock.indexOf("carotte") != -1) {
+                addPlantUnlock(PlantVarietyEnum.CAROTTE);
+            }
+            if (listPlantUnlock.indexOf("figue") != -1) {
+                addPlantUnlock(PlantVarietyEnum.FIGUE);
+            }
+            if (listPlantUnlock.indexOf("mure") != -1) {
+                addPlantUnlock(PlantVarietyEnum.MURE);
+            }
+            if (listPlantUnlock.indexOf("pattate") != -1) {
+                addPlantUnlock(PlantVarietyEnum.PATATTE);
+            }
+            if (listPlantUnlock.indexOf("pomme") != -1) {
+                addPlantUnlock(PlantVarietyEnum.POMME);
+            }
+            if (listPlantUnlock.indexOf("tomate") != -1) {
+                addPlantUnlock(PlantVarietyEnum.TOMATE);
+            }
         } else {
             throw new ModelException("Le mot de passe ne correspond pas");
         }
