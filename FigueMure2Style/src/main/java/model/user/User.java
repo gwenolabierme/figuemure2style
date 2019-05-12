@@ -48,8 +48,8 @@ public class User {
      */
     public User(String pseudo, String gender) throws ModelException {
         setPseudo(pseudo);
-        setGender(gender);
-        setScore(0);
+        setGender(gender, pseudo);
+        setScore(0, pseudo);
 
         // Creation d'un fichier de BD user
         Map<String, String> map = new HashMap<String, String>();
@@ -61,7 +61,7 @@ public class User {
         plantUnlock = EnumSet.noneOf(PlantVarietyEnum.class);
         initPlantUnlock();
         map.put("plantUnlock", this.plantUnlock.toString());
-        
+
         // Inventaire
         inventory = new HashMap<PlantVarietyEnum, Integer>();
         initStock();
@@ -71,7 +71,7 @@ public class User {
         map.put("PlantVarietyEnum.PATATTE", inventory.get(PlantVarietyEnum.PATATTE).toString());
         map.put("PlantVarietyEnum.POMME", inventory.get(PlantVarietyEnum.POMME).toString());
         map.put("PlantVarietyEnum.TOMATE", inventory.get(PlantVarietyEnum.TOMATE).toString());
-        
+
         BDFile f = new BDFile();
         f.newFile(pseudo, map);
     }
@@ -88,10 +88,10 @@ public class User {
     public void User(String pseudo, String gender, String password, String passwordConfirm) throws ModelException {
         if (goodPassword(password, passwordConfirm)) {
             setPseudo(pseudo);
-            setGender(gender);
-            setPassword(password);
-            setPasswordConfirm(passwordConfirm);
-            setScore(0);
+            setGender(gender, pseudo);
+            setPassword(password, pseudo);
+            setPasswordConfirm(passwordConfirm, pseudo);
+            setScore(0, pseudo);
 
             // Creation d'un fichier de BD user
             Map<String, String> map = new HashMap<String, String>();
@@ -105,7 +105,7 @@ public class User {
             plantUnlock = EnumSet.noneOf(PlantVarietyEnum.class);
             initPlantUnlock();
             map.put("plantUnlock", this.plantUnlock.toString());
-            
+
             // Inventaire
             inventory = new HashMap<PlantVarietyEnum, Integer>();
             initStock();
@@ -115,7 +115,7 @@ public class User {
             map.put("PlantVarietyEnum.PATATTE", inventory.get(PlantVarietyEnum.PATATTE).toString());
             map.put("PlantVarietyEnum.POMME", inventory.get(PlantVarietyEnum.POMME).toString());
             map.put("PlantVarietyEnum.TOMATE", inventory.get(PlantVarietyEnum.TOMATE).toString());
-            
+
             BDFile f = new BDFile();
             f.newFile(pseudo, map);
         }
@@ -156,7 +156,7 @@ public class User {
         if (listPlantUnlock.indexOf("tomate") != -1) {
             addPlantUnlock(PlantVarietyEnum.TOMATE);
         }
-        
+
         // Inventaire
         String listInventory;
         inventory = new HashMap<PlantVarietyEnum, Integer>();
@@ -209,7 +209,7 @@ public class User {
             if (listPlantUnlock.indexOf("tomate") != -1) {
                 addPlantUnlock(PlantVarietyEnum.TOMATE);
             }
-            
+
             // Inventaire
             String listInventory;
             this.inventory = new HashMap<PlantVarietyEnum, Integer>();
@@ -224,14 +224,32 @@ public class User {
         }
     }
 
-    // TODO
-    public void setUser(String pseudo, String gender) {
-
+    /**
+     * setUser remplace les données utilisateur dans la BD.
+     *
+     * @param pseudo Pseudo de l'utilisateur
+     * @param gender Genre : Fermier / Fermiere
+     * @throws model.ModelException erreur
+     */
+    public void setUser(String pseudo, String gender) throws ModelException {
+        setPseudo(pseudo);
+        setGender(gender, pseudo);
     }
 
-    // TODO
-    public void setUser(String pseudo, String gender, String password, String passwordConfirm) {
-
+    /**
+     * setUser remplace les données utilisateur dans la BD.
+     * 
+     * @param pseudo Pseudo de l'utilisateur
+     * @param gender Genre : Fermier / Fermiere
+     * @param password Mot de passe de l'utilisateur
+     * @param passwordConfirm Mot de passe de confirmation de l'utilisateur
+     * @throws model.ModelException erreur
+     */
+    public void setUser(String pseudo, String gender, String password, String passwordConfirm) throws ModelException {
+        setPseudo(pseudo);
+        setGender(gender, pseudo);
+        setPassword(password, pseudo);
+        setPasswordConfirm(passwordConfirm, pseudo);
     }
 
     // TODO
@@ -294,41 +312,88 @@ public class User {
     public int getScore() {
         return score;
     }
-
+    
+    /**
+     * setPseudo remplace le pseudo de l'utilisateur dans la BD.
+     * 
+     * @param pseudo Pseudo de l'utilisateur
+     * @throws model.ModelException erreur
+     */
     public void setPseudo(String pseudo) throws ModelException {
         if (pseudo.equals(null)) {
             throw new ModelException("Le champ pseudo est vide");
         } else {
             this.pseudo = pseudo;
+            BDFile f = new BDFile();
+            Map mapUser = f.loadFile(pseudo);
+            mapUser.replace("pseudo", this.pseudo);
         }
     }
 
-    public void setGender(String gender) {
+    /**
+     * setGender remplace le genre du personnage de l'utilisateur dans la BD.
+     * 
+     * @param gender Genre : Fermier / Fermiere
+     * @param pseudo Pseudo de l'utilisateur
+     */
+    public void setGender(String gender, String pseudo) {
         if (gender.equals("fermier")) {
             this.gender = "/assets/img/user/farmer_man.jpg";
         } else {
             this.gender = "/assets/img/user/farmer_woman.jpg";
         }
+        BDFile f = new BDFile();
+        Map mapUser = f.loadFile(pseudo);
+        mapUser.replace("gender", this.gender);
     }
 
-    public void setPassword(String password) throws ModelException {
+    /**
+     * setPassword remplace le mot de passe de l'utilisateur dans la BD.
+     * 
+     * @param password Mot de passe de l'utilisateur
+     * @param pseudo Pseudo de l'utilisateur
+     * @throws model.ModelException erreur
+     */
+    public void setPassword(String password, String pseudo) throws ModelException {
         if (password.equals(null)) {
             throw new ModelException("Le champ mot de passe est vide");
         } else {
             this.password = password;
+            BDFile f = new BDFile();
+            Map mapUser = f.loadFile(pseudo);
+            mapUser.replace("password", this.password);
         }
     }
 
-    public void setPasswordConfirm(String passwordConfirm) throws ModelException {
+    /**
+     * setPasswordConfirm remplace le mot de passe de confirmation de l'utilisateur dans la BD.
+     * 
+     * @param passwordConfirm Mot de passe de confirmation de l'utilisateur
+     * @param pseudo Pseudo de l'utilisateur 
+     * @throws model.ModelException erreur
+     */
+    public void setPasswordConfirm(String passwordConfirm, String pseudo) throws ModelException {
         if (passwordConfirm.equals(null)) {
             throw new ModelException("Le champ confirmation de mot de passe est vide");
         } else {
             this.passwordConfirm = passwordConfirm;
+            BDFile f = new BDFile();
+            Map mapUser = f.loadFile(pseudo);
+            mapUser.replace("passwordConfirm", this.passwordConfirm);
         }
     }
 
-    public void setScore(int score) {
+    /**
+     * setScore ramplace le score de l'utilisateur dans la BD.
+     * 
+     * @param score Score de l'utilisateur
+     * @param pseudo Pseudo de l'utilisateur
+     */
+    public void setScore(int score, String pseudo) {
         this.score = score;
+        BDFile f = new BDFile();
+        Map mapUser = f.loadFile(pseudo);
+        mapUser.replace("score", this.score);
     }
 
     /**
@@ -340,6 +405,9 @@ public class User {
         this.plantUnlock.add(plant);
     }
 
+    /**
+     * Initialisation des plantes débloquées.
+     */
     public void initPlantUnlock() {
         this.addPlantUnlock(PlantVarietyEnum.CAROTTE);
     }
@@ -352,6 +420,9 @@ public class User {
         return inventory;
     }
 
+    /**
+     * Initialisation des stock de plantes à 0.
+     */
     public void initStock() {
         this.inventory.put(PlantVarietyEnum.CAROTTE, 0);
         this.inventory.put(PlantVarietyEnum.FIGUE, 0);
@@ -360,7 +431,7 @@ public class User {
         this.inventory.put(PlantVarietyEnum.POMME, 0);
         this.inventory.put(PlantVarietyEnum.TOMATE, 0);
     }
-    
+
     /**
      * Ajoute la plante dans l'inventaire
      *
