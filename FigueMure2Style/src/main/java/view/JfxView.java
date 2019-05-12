@@ -139,7 +139,7 @@ public class JfxView implements View {
             public void handle(ActionEvent e) {
                 //TODO
                 // Fenetre : Paramètres
-                //LoadGameView lgv = new LoadGameView(stage, 800, 800);
+                SettingsView sv = new SettingsView(stage, 800, 800, u);
                 System.out.println("Paramètres");
             }
         });
