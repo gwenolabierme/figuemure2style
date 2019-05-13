@@ -22,15 +22,16 @@ import model.user.User;
 
 /**
  *
- * @author gwenolabierme
+ * Figure de style.
  */
 public class WateringcanView {
+
     /**
      * Longueur et largeur de la fenêtre.
      */
     private int width;
     private int height;
-    
+
     private String title = "FigueMûre2Style";
     
     private StylisticDevice fertilizer;
@@ -42,7 +43,7 @@ public class WateringcanView {
         Stage stage = new Stage();
         WateringcanView swv = new WateringcanView(stage, 800, 800, store, indice);
     }
-    
+
     /**
      * Constructeur NewGameView.
      *
@@ -60,22 +61,22 @@ public class WateringcanView {
         
         // Nom de la fenetre
         stage.setTitle(title);
-        
+
         GridPane gridpane = new GridPane();
         gridpane.setHgap(10);
         gridpane.setVgap(10);
         gridpane.setPadding(new Insets(25, 25, 25, 25));
-        
-        ColumnConstraints column13 = new ColumnConstraints(), 
+
+        ColumnConstraints column13 = new ColumnConstraints(),
                 column2 = new ColumnConstraints();
         column13.setPercentWidth(25);
         column2.setPercentWidth(50);
         // set the relative size of columns in the gridpane
-        gridpane.getColumnConstraints().addAll(column13, column2, column13); 
-        
+        gridpane.getColumnConstraints().addAll(column13, column2, column13);
+
         // Retour
         Button buttonReturn = new Button("←");
-        buttonReturn.setOnAction(new EventHandler<ActionEvent>(){
+        buttonReturn.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent e) {
                 // Fenetre : StoreWateringcanView
@@ -87,14 +88,14 @@ public class WateringcanView {
         buttonReturn.getStyleClass().add("panel_arrow");
         gridpane.add(buttonReturn, 2, 0);
         gridpane.setHalignment(buttonReturn, HPos.RIGHT);
-        
+
         // Titre
         Text title = new Text();
         title.setText("Figure de style");
         title.getStyleClass().add("title");
         gridpane.add(title, 1, 0);
         gridpane.setHalignment(title, HPos.CENTER);
-        
+
         // TODO
         // Figure de style
         Text figureDeStyle = new Text();
@@ -112,7 +113,7 @@ public class WateringcanView {
         
         // Bouton : Sélectionner
         Button buttonSelect = new Button("Sélectionner");
-        buttonSelect.setOnAction(new EventHandler<ActionEvent>(){
+        buttonSelect.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent e) {
                 // TODO
@@ -124,13 +125,13 @@ public class WateringcanView {
         //buttonSelect.getStyleClass().add("panel");
         gridpane.add(buttonSelect, 1, 3);
         gridpane.setHalignment(buttonSelect, HPos.CENTER);
-        
+
         // Background
-        //gridpane.getStyleClass().add("small_background");
-        
+        gridpane.getStyleClass().add("figureDeStyle_background");
+
         // Scene
         Scene scene = new Scene(gridpane, w, h);
-        scene.getStylesheets().add("/assets/css/Background.css"); 
+        scene.getStylesheets().add("/assets/css/Background.css");
         stage.setScene(scene);
         stage.show();
     }

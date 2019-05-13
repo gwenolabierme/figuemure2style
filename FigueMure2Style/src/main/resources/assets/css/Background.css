@@ -24,6 +24,20 @@
     -fx-background-position: center center;
 }
 
+.figureDeStyle_background {
+    -fx-background-image: url("/assets/css/img/backgroundFigureDeStyle.jpg");
+    -fx-background-repeat: stretch;   
+    -fx-background-size: 800 800;
+    -fx-background-position: center center;
+}
+
+.other_background {
+    -fx-background-image: url("/assets/css/img/backgroundOther.jpg");
+    -fx-background-repeat: stretch;   
+    -fx-background-size: 800 800;
+    -fx-background-position: center center;
+}
+
 .panel {
     -fx-background-color: transparent;
     -fx-background-image: url("/assets/css/img/wood.png");
@@ -68,11 +82,16 @@
     -fx-label-padding: 20px 2px 20px 2px;
 }
 
+.text_label {
+    -fx-font-size: 20px;
+    -fx-label-padding: 20px 2px 20px 2px;
+}
+
 .logoDashbord {
     -fx-background-color: #956740;
     -fx-border-color: #643711;
     -fx-border-radius: 2px;
-    -fx-background-image: url("/assets/css/img/clock.png");
+    -fx-background-image: url("/assets/css/img/graphic.png");
     -fx-background-repeat: stretch;   
     -fx-background-size: 60 60;
     -fx-background-position: center center;
@@ -80,6 +99,14 @@
 
 .logoDashbord:hover {
     -fx-border-color: peru;
+}
+
+.logoDashbordView {
+    -fx-background-color: transparent;
+    -fx-background-image: url("/assets/css/img/graphic.png");
+    -fx-background-repeat: stretch;   
+    -fx-background-size: 60 60;
+    -fx-background-position: center center;
 }
 
 .logoShop {
@@ -118,6 +145,14 @@
     -fx-border-color: peru;
 }
 
+.logoInventoryView {
+    -fx-background-color: transparent;
+    -fx-background-image: url("/assets/css/img/sack.png");
+    -fx-background-repeat: stretch;   
+    -fx-background-size: 60 60;
+    -fx-background-position: center center;
+}
+
 .logoSettings {
     -fx-background-color: #956740;
     -fx-border-color: #643711;
@@ -130,6 +165,14 @@
 
 .logoSettings:hover {
     -fx-border-color: peru;
+}
+
+.logoSettingsView {
+    -fx-background-color: transparent;
+    -fx-background-image: url("/assets/css/img/settings.png");
+    -fx-background-repeat: stretch;   
+    -fx-background-size: 60 60;
+    -fx-background-position: center center;
 }
 
 .logoExit {
@@ -158,6 +201,90 @@
 
 .logoWateringcan {
     -fx-background-image: url("/assets/css/img/wateringcan.png");
+    -fx-background-repeat: stretch;   
+    -fx-background-size: 60 60;
+    -fx-background-position: center center;
+}
+
+.carrotUnlock {
+    -fx-background-image: url("/assets/img/vegetable/carrot.png");
+    -fx-background-repeat: stretch;   
+    -fx-background-size: 60 60;
+    -fx-background-position: center center;
+}
+
+.carrotLock {
+    -fx-background-image: url("/assets/img/vegetable/carrot_lock.png");
+    -fx-background-repeat: stretch;   
+    -fx-background-size: 60 60;
+    -fx-background-position: center center;
+}
+
+.figUnlock {
+    -fx-background-image: url("/assets/img/vegetable/fig.png");
+    -fx-background-repeat: stretch;   
+    -fx-background-size: 60 60;
+    -fx-background-position: center center;
+}
+
+.figLock {
+    -fx-background-image: url("/assets/img/vegetable/fig_lock.png");
+    -fx-background-repeat: stretch;   
+    -fx-background-size: 60 60;
+    -fx-background-position: center center;
+}
+
+.blackberryUnlock {
+    -fx-background-image: url("/assets/img/vegetable/blackberry.png");
+    -fx-background-repeat: stretch;   
+    -fx-background-size: 60 60;
+    -fx-background-position: center center;
+}
+
+.blackberryLock {
+    -fx-background-image: url("/assets/img/vegetable/blackberry_lock.png");
+    -fx-background-repeat: stretch;   
+    -fx-background-size: 60 60;
+    -fx-background-position: center center;
+}
+
+.patatoUnlock {
+    -fx-background-image: url("/assets/img/vegetable/patato.png");
+    -fx-background-repeat: stretch;   
+    -fx-background-size: 60 60;
+    -fx-background-position: center center;
+}
+
+.patatoLock {
+    -fx-background-image: url("/assets/img/vegetable/patato_lock.png");
+    -fx-background-repeat: stretch;   
+    -fx-background-size: 60 60;
+    -fx-background-position: center center;
+}
+
+.appleUnlock {
+    -fx-background-image: url("/assets/img/vegetable/apple.png");
+    -fx-background-repeat: stretch;   
+    -fx-background-size: 60 60;
+    -fx-background-position: center center;
+}
+
+.appleLock {
+    -fx-background-image: url("/assets/img/vegetable/apple_lock.png");
+    -fx-background-repeat: stretch;   
+    -fx-background-size: 60 60;
+    -fx-background-position: center center;
+}
+
+.tomatoUnlock {
+    -fx-background-image: url("/assets/img/vegetable/tomato.png");
+    -fx-background-repeat: stretch;   
+    -fx-background-size: 60 60;
+    -fx-background-position: center center;
+}
+
+.tomatoLock {
+    -fx-background-image: url("/assets/img/vegetable/tomato_lock.png");
     -fx-background-repeat: stretch;   
     -fx-background-size: 60 60;
     -fx-background-position: center center;

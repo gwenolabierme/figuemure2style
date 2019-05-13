@@ -1,6 +1,8 @@
+
 package view;
 
 import controller.Controller;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -15,15 +17,15 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.RowConstraints;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-
 import model.FieldModel;
+import model.plant.PlantVarietyEnum;
 import model.user.User;
 
 /**
  *
- * Boutique : Fruits et légumes.
+ * Inventaire.
  */
-public class StoreVegetableView {
+public class InventoryView {
 
     /**
      * Longueur et largeur de la fenêtre.
@@ -36,21 +38,21 @@ public class StoreVegetableView {
     /**
      * Constructeur sans paramètres.
      */
-    public StoreVegetableView() {
+    public InventoryView() {
         Stage stage = new Stage();
         User u = new User();
-        StoreVegetableView swv = new StoreVegetableView(stage, 800, 800, u);
+        InventoryView iv = new InventoryView(stage, 800, 800, u);
     }
 
     /**
-     * Constructeur NewGameView.
+     * Constructeur InventoryView.
      *
      * @param stage Relatif à Canvas pour la construction de la fenêtre
      * @param w largeur de la fenêtre
      * @param h hauteur de la fenêtre
      * @param u utilisateur
      */
-    public StoreVegetableView(final Stage stage, int w, int h, User u) {
+    public InventoryView(final Stage stage, int w, int h, User u) {
         this.width = w;
         this.height = h;
 
@@ -117,70 +119,29 @@ public class StoreVegetableView {
         // Logo
         Button logo = new Button();
         logo.setMinSize(60, 60);
-        logo.getStyleClass().add("logoShopView");
+        logo.getStyleClass().add("logoInventoryView");
         gridpane.add(logo, 2, 0);
         gridpane.setHalignment(logo, HPos.CENTER);
 
         // Titre
         Text title = new Text();
-        title.setText("Boutique");
+        title.setText("Inventaire");
         title.getStyleClass().add("title");
         gridpane.add(title, 3, 0);
         gridpane.setHalignment(title, HPos.CENTER);
 
-        // Bouton : Vegetable
-        Button buttonVegetable = new Button("Fruits et légumes");
-        buttonVegetable.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent e) {
-                // Fenetre : StoreVegetableView
-                StoreVegetableView svv = new StoreVegetableView(stage, 800, 800, u);
-            }
-        });
-        buttonVegetable.setMinSize(100, 100);
-        //buttonVegetable.getStyleClass().add("panel");
-        gridpane.add(buttonVegetable, 0, 1);
-        gridpane.setHalignment(buttonVegetable, HPos.CENTER);
-
-        // Bouton : Figure de style
-        Button buttonWateringcan = new Button("Figure de style");
-        buttonWateringcan.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent e) {
-                // Fenetre : StoreWateringcanView
-                StoreWateringcanView swv = new StoreWateringcanView(stage, 800, 800, u);
-            }
-        });
-        buttonWateringcan.setMinSize(100, 100);
-        //buttonVegetable.getStyleClass().add("panel");
-        gridpane.add(buttonWateringcan, 0, 3);
-        gridpane.setHalignment(buttonWateringcan, HPos.CENTER);
 
         // Listes de données : Fuits et légumes
         List<String> listNames = Arrays.asList("carrot", "fig", "blackberry", "patato", "apple", "tomato");
         List<String> listFigureDeStyle = Arrays.asList("COMPARAISON", "PERIPHRASE", "PERSONNIFICATION", "HYPERBOLE", "CHIASME", "OXYMORE");
-        List<String> listPrice = Arrays.asList("1", "1", "1", "1", "3", "3");
         List<String> listUnlock = Arrays.asList("carotte", "figue", "mure", "patatte", "pomme", "tomate");
-        List<String> listlesson = new ArrayList();
-        listlesson.add("Leçon - COMPARAISON \n Il y a un comparé (celui que l'on compare à quelque chose), un comparant (quelque chose)\n et un outil grammatical de comparaison (comme, tel que...).");
-        listlesson.add("Leçon - PERIPHRASE \n Remplacement du mot par une expression explicative, fonction poétique et métaphorique\n ou atténuation.");
-        listlesson.add("Leçon - PERSONNIFICATION \n Elle attribue des caractéristiques humaines à un objet, un animal, etc.");
-        listlesson.add("Leçon - HYPERBOLE \n Elle exagère l'expression d'une idée pour la mettre en relief. Utilisée dans l'ironie, la caricature.");
-        listlesson.add("Leçon - CHIASME \n Parallélisme et inversion, souligne l'union ou l'opposition.");
-        listlesson.add("Leçon - OXYMORE \n Deux mots opposés l'un à côté de l'autre.");
-
-        // Leçon
-        Text lesson = new Text();
-        lesson.setText(listlesson.get(0));
-        gridpane.add(lesson, 1, 5);
-        gridpane.setHalignment(lesson, HPos.LEFT);
-        gridpane.setValignment(lesson, VPos.TOP);
-
-        // Achat
-        Text purchase = new Text();
-        purchase.setText(listFigureDeStyle.get(0));
-        gridpane.add(purchase, 4, 4);
-        gridpane.setHalignment(purchase, HPos.CENTER);
+        List<Integer> listInventory = Arrays.asList(u.getInventory().get(PlantVarietyEnum.CAROTTE), u.getInventory().get(PlantVarietyEnum.FIGUE), u.getInventory().get(PlantVarietyEnum.MURE), u.getInventory().get(PlantVarietyEnum.PATATTE), u.getInventory().get(PlantVarietyEnum.POMME), u.getInventory().get(PlantVarietyEnum.TOMATE));
+                
+        // Vente
+        Text sale = new Text();
+        sale.setText(listFigureDeStyle.get(0));
+        gridpane.add(sale, 4, 4);
+        gridpane.setHalignment(sale, HPos.CENTER);
 
         // Boutons : Fuits et légumes
         for (int i = 0; i < 6; ++i) {
@@ -191,23 +152,23 @@ public class StoreVegetableView {
                     String infoVegetable = vegeteble.getStyleClass().toString();
 
                     if (!(infoVegetable.indexOf("carrot") == -1)) {
-                        lesson.setText(listlesson.get(0));
-                        purchase.setText(listFigureDeStyle.get(0));
+                        
+                        sale.setText(listFigureDeStyle.get(0));
                     } else if (!(infoVegetable.indexOf("fig") == -1)) {
-                        lesson.setText(listlesson.get(1));
-                        purchase.setText(listFigureDeStyle.get(1));
+                       
+                        sale.setText(listFigureDeStyle.get(1));
                     } else if (!(infoVegetable.indexOf("blackberry") == -1)) {
-                        lesson.setText(listlesson.get(2));
-                        purchase.setText(listFigureDeStyle.get(2));
+                       
+                        sale.setText(listFigureDeStyle.get(2));
                     } else if (!(infoVegetable.indexOf("patato") == -1)) {
-                        lesson.setText(listlesson.get(3));
-                        purchase.setText(listFigureDeStyle.get(3));
+               
+                        sale.setText(listFigureDeStyle.get(3));
                     } else if (!(infoVegetable.indexOf("apple") == -1)) {
-                        lesson.setText(listlesson.get(4));
-                        purchase.setText(listFigureDeStyle.get(4));
+                  
+                        sale.setText(listFigureDeStyle.get(4));
                     } else if (!(infoVegetable.indexOf("tomato") == -1)) {
-                        lesson.setText(listlesson.get(5));
-                        purchase.setText(listFigureDeStyle.get(5));
+                    
+                        sale.setText(listFigureDeStyle.get(5));
                     }
                 }
             });
@@ -225,16 +186,16 @@ public class StoreVegetableView {
             titleVegeteble.setText(listFigureDeStyle.get(i));
 
             Text priceVegeteble = new Text();
-            priceVegeteble.setText(listPrice.get(i) + "XP");
+            priceVegeteble.setText(listInventory.get(i).toString());
 
-            if (i < 5) {
-                gridpane.add(vegeteble, i + 1, 1);
-                gridpane.add(titleVegeteble, i + 1, 1);
-                gridpane.add(priceVegeteble, i + 1, 1);
+            if (i < 6) {
+                gridpane.add(vegeteble, i, 1);
+                gridpane.add(titleVegeteble, i, 1);
+                gridpane.add(priceVegeteble, i, 1);
             } else {
-                gridpane.add(vegeteble, i - 5 + 1, 3);
-                gridpane.add(titleVegeteble, i - 5 + 1, 3);
-                gridpane.add(priceVegeteble, i - 5 + 1, 3);
+                gridpane.add(vegeteble, i - 6, 3);
+                gridpane.add(titleVegeteble, i - 6, 3);
+                gridpane.add(priceVegeteble, i - 6, 3);
             }
             gridpane.setHalignment(vegeteble, HPos.CENTER);
             gridpane.setHalignment(titleVegeteble, HPos.CENTER);
@@ -243,7 +204,7 @@ public class StoreVegetableView {
             gridpane.setValignment(priceVegeteble, VPos.BOTTOM);
             
             // Bouton : Acheter
-            Button buttonBuy = new Button("Acheter");
+            Button buttonBuy = new Button("Vendre");
             buttonBuy.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(ActionEvent e) {
@@ -265,5 +226,5 @@ public class StoreVegetableView {
         stage.setScene(scene);
         stage.show();
 
-    }
+    }    
 }

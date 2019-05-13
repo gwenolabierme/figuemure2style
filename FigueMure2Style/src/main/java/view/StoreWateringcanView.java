@@ -19,7 +19,7 @@ import model.user.User;
 
 /**
  *
- * @author gwenolabierme
+ * Boutique : Arrosoirs.
  */
 public class StoreWateringcanView {
 
@@ -126,8 +126,7 @@ public class StoreWateringcanView {
                 JfxView gameView = new JfxView(title, stage, u);
 
                 FieldModel fieldModel = new FieldModel();
-                FieldView fieldView
-                        = new FieldView(fieldModel, 800, 800);
+                FieldView fieldView = new FieldView(fieldModel, 800, 800);
 
                 Controller controller = Controller.getControler();
                 fieldView.setControler(controller);
@@ -162,8 +161,8 @@ public class StoreWateringcanView {
         buttonVegetable.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent e) {
-                // Fenetre : StoreVegetableView TODO
-                //StoreVegetableView nvv = new StoreVegetableView(stage, 800, 800);
+                // Fenetre : StoreVegetableView
+                StoreVegetableView svv = new StoreVegetableView(stage, 800, 800, u);
             }
         });
         buttonVegetable.setMinSize(100, 100);
