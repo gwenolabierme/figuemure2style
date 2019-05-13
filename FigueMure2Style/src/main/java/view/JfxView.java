@@ -87,9 +87,8 @@ public class JfxView implements View {
         buttonDashbord.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent e) {
-                //TODO
                 // Fenetre : Tableau de bord
-                //LoadGameView lgv = new LoadGameView(stage, 800, 800);
+                DashbordView dv = new DashbordView(stage, 800, 800, u);
                 System.out.println("Tableau de bord");
             }
         });

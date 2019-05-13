@@ -7,13 +7,15 @@ import java.io.Serializable;
  * @author jeremy
  */
 public class DataPlantRatio implements Serializable {
+
     private long nbVictory;
     private long nbDefeat;
     private double ratio; // ratio de victoire
 
-    public DataPlantRatio(int nbVictory, int nbDefeat) {
+    public DataPlantRatio(long nbVictory, long nbDefeat, double ratio) {
         this.nbVictory = nbVictory;
         this.nbDefeat = nbDefeat;
+        this.ratio = ratio;
     }
 
     public long getNbVictory() {
@@ -39,5 +41,5 @@ public class DataPlantRatio implements Serializable {
     public void setRatio(double ratio) {
         this.ratio = ratio;
     }
-    
+
 }
