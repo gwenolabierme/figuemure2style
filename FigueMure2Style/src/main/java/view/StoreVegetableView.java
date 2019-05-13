@@ -34,7 +34,7 @@ public class StoreVegetableView {
     private int height;
 
     private String title = "FigueMûre2Style";
-
+    
     /**
      * Constructeur sans paramètres.
      */
@@ -43,14 +43,14 @@ public class StoreVegetableView {
         User u = new User();
         StoreVegetableView swv = new StoreVegetableView(stage, 800, 800, u);
     }
-
+    
     /**
-     * Constructeur NewGameView.
-     *
+     * Constructeur StoreVegetableView.
+     * 
      * @param stage Relatif à Canvas pour la construction de la fenêtre
      * @param w largeur de la fenêtre
      * @param h hauteur de la fenêtre
-     * @param u utilisateur
+     * @param u utlisateur
      */
     public StoreVegetableView(final Stage stage, int w, int h, User u) {
         this.width = w;

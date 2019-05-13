@@ -33,7 +33,9 @@ public class WateringcanView {
     private StylisticDevice fertilizer;
 
     /**
-     * Constructeur sans paramètres.
+     * Constructeur WateringcanView.
+     * @param store boutique
+     * @param indice indice //TODO
      */
     public WateringcanView(StoreModel store, int indice) {
         Stage stage = new Stage();
@@ -41,7 +43,7 @@ public class WateringcanView {
     }
 
     /**
-     * Constructeur NewGameView.
+     * Constructeur WateringcanView.
      *
      * @param stage Relatif à Canvas pour la construction de la fenêtre
      * @param w largeur de la fenêtre

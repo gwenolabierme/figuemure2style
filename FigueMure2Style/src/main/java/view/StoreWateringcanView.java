@@ -37,7 +37,7 @@ public class StoreWateringcanView {
     /**
      * Constructeur simple.
      *
-     * @param user utilisateur
+     * @param u utilisateur
      */
     public StoreWateringcanView(User u) {
         Stage stage = new Stage();
