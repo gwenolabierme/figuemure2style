@@ -34,11 +34,6 @@ public class StoreWateringcanView {
     private Stage stage;
     
     /**
-     * Pas vraiment correct mais nécessaire pour l'utiliser dans le handle (2e constructeur)
-     */
-    private int iWattCan;
-    
-    /**
      * Constructeur simple.
      * @param user joueur
      */
@@ -234,9 +229,17 @@ public class StoreWateringcanView {
             System.out.println(fert.getSentence());
         }*/
         
-        iWattCan = 0;
         // Boutons : Arrosoires
-        for (int i = 0 ; i < 5 ; ++i) {
+        int iLigne = 1;
+        int iCol = 0;
+        for (int i = 0 ; i < 10 ; ++i) {
+            if (iCol >= 5) {
+                iLigne = 2;
+                iCol = 0;
+            }
+            
+            final int iWattCan = i % (user.getPlantUnlock().size()*2);
+            
             Button figureDeStyle = new Button();   
             figureDeStyle.setOnAction(new EventHandler<ActionEvent>(){
                 @Override
@@ -247,32 +250,10 @@ public class StoreWateringcanView {
             });
             figureDeStyle.setMinSize(60, 60);
             figureDeStyle.getStyleClass().add("logoWateringcan");
-            gridpane.add(figureDeStyle, i + 1, 1);
+            gridpane.add(figureDeStyle, iCol + 1, iLigne);
             gridpane.setHalignment(figureDeStyle, HPos.CENTER);
             
-            ++iWattCan;
-            if (iWattCan >= user.getPlantUnlock().size()*2) {
-                iWattCan = 0;
-            }
-        }
-        for (int i = 0 ; i < 5 ; ++i) {
-            Button figureDeStyle = new Button(); 
-            figureDeStyle.setOnAction(new EventHandler<ActionEvent>(){
-                @Override
-                public void handle(ActionEvent e) {
-                    // Fenetre : Figure de style
-                    WateringcanView wv = new WateringcanView(stage, 800, 800, model, iWattCan);
-                }
-            });
-            figureDeStyle.setMinSize(60, 60);
-            figureDeStyle.getStyleClass().add("logoWateringcan");
-            gridpane.add(figureDeStyle,i + 1, 3);
-            gridpane.setHalignment(figureDeStyle, HPos.CENTER);
-            
-            ++iWattCan;
-            if (iWattCan > user.getPlantUnlock().size()*2) {
-                iWattCan = 0;
-            }
+            ++iCol;
         }
     }
 }
