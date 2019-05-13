@@ -37,9 +37,9 @@ public class JfxView implements View {
      *
      * @param title Titre de la fenêtre à créer
      * @param stage Fenêtre à gérer
-     * @param usr joueur
+     * @param u     Utilisateur
      */
-    public JfxView(String title, Stage stage, User usr) {
+    public JfxView(String title, Stage stage, User u) {
         this.stage = stage;
 
         // Nom de la fenetre
@@ -105,7 +105,7 @@ public class JfxView implements View {
             public void handle(ActionEvent e) {
                 //TODO
                 // Fenetre : Boutique
-                StoreWateringcanView swv = new StoreWateringcanView(stage, 800, 800, usr);
+                StoreWateringcanView swv = new StoreWateringcanView(stage, 800, 800, u);
                 System.out.println("Boutique");    
             }
         });

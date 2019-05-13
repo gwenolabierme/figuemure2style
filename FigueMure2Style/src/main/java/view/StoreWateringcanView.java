@@ -40,11 +40,11 @@ public class StoreWateringcanView {
     
     /**
      * Constructeur simple.
-     * @param user joueur
+     * @param user utilisateur
      */
-    public StoreWateringcanView(User user) {
+    public StoreWateringcanView(User u) {
         Stage stage = new Stage();
-        StoreWateringcanView swv = new StoreWateringcanView(stage, 800, 800, user);
+        StoreWateringcanView swv = new StoreWateringcanView(stage, 800, 800, u);
     }
     
     /**
@@ -53,19 +53,19 @@ public class StoreWateringcanView {
      * @param stage Relatif à Canvas pour la construction de la fenêtre
      * @param w     largeur de la fenêtre
      * @param h     hauteur de la fenêtre
-     * @param user joueur
+     * @param u utilisateur
      */
-    public StoreWateringcanView(final Stage stage, int w, int h, User user) {
+    public StoreWateringcanView(final Stage stage, int w, int h, User u) {
         this.width = w;
         this.height = h;
-        this.model = new StoreModel(user);
+        this.model = new StoreModel(u);
         this.stage = stage;
 
         GridPane gridpane = new GridPane();
         
-        fenetreInit(gridpane, user);
+        fenetreInit(gridpane, u);
         
-        forFertilizers(gridpane, user, false);
+        forFertilizers(gridpane, u, false);
         
         // Background
         //gridpane.getStyleClass().add("small_background");
@@ -84,24 +84,24 @@ public class StoreWateringcanView {
      * @param stage Relatif à Canvas pour la construction de la fenêtre
      * @param w     largeur de la fenêtre
      * @param h     hauteur de la fenêtre
-     * @param user joueur
+     * @param u utilisateur
      * @param fertilizerList liste de citation
      */
-    public StoreWateringcanView(final Stage stage, int w, int h, User user, 
+    public StoreWateringcanView(final Stage stage, int w, int h, User u, 
             HashSet<StylisticDevice> fertilizerList) {
         this.width = w;
         this.height = h;
-        this.model = new StoreModel(user, fertilizerList);
+        this.model = new StoreModel(u, fertilizerList);
         this.stage = stage;
 
         GridPane gridpane = new GridPane();
         
-        fenetreInit(gridpane, user);
+        fenetreInit(gridpane, u);
         
-        forFertilizers(gridpane, user, true);
+        forFertilizers(gridpane, u, true);
         
         // Background
-        //gridpane.getStyleClass().add("small_background");
+        gridpane.getStyleClass().add("other_background");
         
         // Scene
         Scene scene = new Scene(gridpane, w, h);
@@ -116,7 +116,7 @@ public class StoreWateringcanView {
      * @param gridpane gridpane de cette view
      * @param user joueur
      */
-    private void fenetreInit(GridPane gridpane, User user) {
+    private void fenetreInit(GridPane gridpane, User u) {
 
         gridpane.setHgap(10);
         gridpane.setVgap(10);
@@ -156,7 +156,7 @@ public class StoreWateringcanView {
             @Override
             public void handle(ActionEvent e) {
                 // Fenetre : stageGame
-                JfxView gameView = new JfxView(title, stage, user);
+                JfxView gameView = new JfxView(title, stage, u);
 
                 FieldModel fieldModel = new FieldModel();
                 FieldView fieldView =
@@ -210,7 +210,7 @@ public class StoreWateringcanView {
             @Override
             public void handle(ActionEvent e) {
                 // Fenetre : StoreWateringcanView
-                StoreWateringcanView swv = new StoreWateringcanView(stage, 800, 800, user);
+                StoreWateringcanView swv = new StoreWateringcanView(stage, 800, 800, u);
             }
         });
         buttonWateringcan.setMinSize(100, 100);
@@ -236,7 +236,7 @@ public class StoreWateringcanView {
         
         iWattCan = 0;
         // Boutons : Arrosoires
-        for (int i = 0 ; i < 5 ; ++i) {
+        for (int i = 0 ; i < 10 ; ++i) {
             Button figureDeStyle = new Button();   
             figureDeStyle.setOnAction(new EventHandler<ActionEvent>(){
                 @Override
@@ -247,30 +247,16 @@ public class StoreWateringcanView {
             });
             figureDeStyle.setMinSize(60, 60);
             figureDeStyle.getStyleClass().add("logoWateringcan");
-            gridpane.add(figureDeStyle, i + 1, 1);
+            if (i < 5) {
+                gridpane.add(figureDeStyle, i + 1, 1);
+            } else {
+                gridpane.add(figureDeStyle, i - 5 + 1, 3);
+            }
+            
             gridpane.setHalignment(figureDeStyle, HPos.CENTER);
             
             ++iWattCan;
             if (iWattCan >= user.getPlantUnlock().size()*2) {
-                iWattCan = 0;
-            }
-        }
-        for (int i = 0 ; i < 5 ; ++i) {
-            Button figureDeStyle = new Button(); 
-            figureDeStyle.setOnAction(new EventHandler<ActionEvent>(){
-                @Override
-                public void handle(ActionEvent e) {
-                    // Fenetre : Figure de style
-                    WateringcanView wv = new WateringcanView(stage, 800, 800, model, iWattCan);
-                }
-            });
-            figureDeStyle.setMinSize(60, 60);
-            figureDeStyle.getStyleClass().add("logoWateringcan");
-            gridpane.add(figureDeStyle,i + 1, 3);
-            gridpane.setHalignment(figureDeStyle, HPos.CENTER);
-            
-            ++iWattCan;
-            if (iWattCan > user.getPlantUnlock().size()*2) {
                 iWattCan = 0;
             }
         }
