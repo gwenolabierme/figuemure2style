@@ -22,37 +22,34 @@ import model.user.User;
  * @author gwenolabierme
  */
 public class StoreWateringcanView {
+
     /**
      * Longueur et largeur de la fenêtre.
      */
     private int width;
     private int height;
-    
+
     private String title = "FigueMûre2Style";
-    
+
     private static StoreModel model;
     private Stage stage;
-    
-    /**
-     * Pas vraiment correct mais nécessaire pour l'utiliser dans le handle (2e constructeur)
-     */
-    private int iWattCan;
-    
+
     /**
      * Constructeur simple.
+     *
      * @param user utilisateur
      */
     public StoreWateringcanView(User u) {
         Stage stage = new Stage();
         StoreWateringcanView swv = new StoreWateringcanView(stage, 800, 800, u);
     }
-    
+
     /**
      * Constructeur NewGameView.
      *
      * @param stage Relatif à Canvas pour la construction de la fenêtre
-     * @param w     largeur de la fenêtre
-     * @param h     hauteur de la fenêtre
+     * @param w largeur de la fenêtre
+     * @param h hauteur de la fenêtre
      * @param u utilisateur
      */
     public StoreWateringcanView(final Stage stage, int w, int h, User u) {
@@ -62,32 +59,31 @@ public class StoreWateringcanView {
         this.stage = stage;
 
         GridPane gridpane = new GridPane();
-        
+
         fenetreInit(gridpane, u);
-        
+
         forFertilizers(gridpane, u, false);
-        
+
         // Background
-        //gridpane.getStyleClass().add("small_background");
-        
+        gridpane.getStyleClass().add("other_background");
         // Scene
         Scene scene = new Scene(gridpane, w, h);
-        scene.getStylesheets().add("/assets/css/Background.css"); 
+        scene.getStylesheets().add("/assets/css/Background.css");
         stage.setScene(scene);
         stage.show();
-        
+
     }
-    
+
     /**
      * Constructeur NewGameView.
      *
      * @param stage Relatif à Canvas pour la construction de la fenêtre
-     * @param w     largeur de la fenêtre
-     * @param h     hauteur de la fenêtre
+     * @param w largeur de la fenêtre
+     * @param h hauteur de la fenêtre
      * @param u utilisateur
      * @param fertilizerList liste de citation
      */
-    public StoreWateringcanView(final Stage stage, int w, int h, User u, 
+    public StoreWateringcanView(final Stage stage, int w, int h, User u,
             HashSet<StylisticDevice> fertilizerList) {
         this.width = w;
         this.height = h;
@@ -95,33 +91,34 @@ public class StoreWateringcanView {
         this.stage = stage;
 
         GridPane gridpane = new GridPane();
-        
+
         fenetreInit(gridpane, u);
-        
+
         forFertilizers(gridpane, u, true);
-        
+
         // Background
         gridpane.getStyleClass().add("other_background");
-        
+
         // Scene
         Scene scene = new Scene(gridpane, w, h);
-        scene.getStylesheets().add("/assets/css/Background.css"); 
+        scene.getStylesheets().add("/assets/css/Background.css");
         stage.setScene(scene);
         stage.show();
-        
+
     }
-    
+
     /**
      * Initialise la fenetre.
+     *
      * @param gridpane gridpane de cette view
-     * @param user joueur
+     * @param user utilisateur
      */
     private void fenetreInit(GridPane gridpane, User u) {
 
         gridpane.setHgap(10);
         gridpane.setVgap(10);
-        
-        ColumnConstraints col1 = new ColumnConstraints(); 
+
+        ColumnConstraints col1 = new ColumnConstraints();
         col1.setPercentWidth(20);
         RowConstraints row1 = new RowConstraints();
         row1.setPercentHeight(20);
@@ -146,21 +143,20 @@ public class StoreWateringcanView {
         RowConstraints row6 = new RowConstraints();
         row6.setPercentHeight(20);
         // set the relative size of columns in the gridpane
-        gridpane.getColumnConstraints().addAll(col1,col2,col3,col4,col5,col6);
-        gridpane.getRowConstraints().addAll(row1,row2,row3,row4,row5,row6);
-        
-        
+        gridpane.getColumnConstraints().addAll(col1, col2, col3, col4, col5, col6);
+        gridpane.getRowConstraints().addAll(row1, row2, row3, row4, row5, row6);
+
         // Retour
         Button buttonReturn = new Button("←");
-        buttonReturn.setOnAction(new EventHandler<ActionEvent>(){
+        buttonReturn.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent e) {
                 // Fenetre : stageGame
                 JfxView gameView = new JfxView(title, stage, u);
 
                 FieldModel fieldModel = new FieldModel();
-                FieldView fieldView =
-                        new FieldView(fieldModel, 800,800);
+                FieldView fieldView
+                        = new FieldView(fieldModel, 800, 800);
 
                 Controller controller = Controller.getControler();
                 fieldView.setControler(controller);
@@ -175,24 +171,24 @@ public class StoreWateringcanView {
         buttonReturn.getStyleClass().add("panel_arrow");
         gridpane.add(buttonReturn, 5, 0);
         gridpane.setHalignment(buttonReturn, HPos.CENTER);
-        
+
         // Logo
-        Button logo = new Button();      
+        Button logo = new Button();
         logo.setMinSize(60, 60);
         logo.getStyleClass().add("logoShopView");
         gridpane.add(logo, 2, 0);
         gridpane.setHalignment(logo, HPos.CENTER);
-        
+
         // Titre
         Text title = new Text();
         title.setText("Boutique");
         title.getStyleClass().add("title");
         gridpane.add(title, 3, 0);
         gridpane.setHalignment(title, HPos.CENTER);
-        
+
         // Bouton : Vegetable
         Button buttonVegetable = new Button("Fruits et légumes");
-        buttonVegetable.setOnAction(new EventHandler<ActionEvent>(){
+        buttonVegetable.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent e) {
                 // Fenetre : StoreVegetableView TODO
@@ -203,10 +199,10 @@ public class StoreWateringcanView {
         //buttonVegetable.getStyleClass().add("panel");
         gridpane.add(buttonVegetable, 0, 1);
         gridpane.setHalignment(buttonVegetable, HPos.CENTER);
-        
+
         // Bouton : Figure de style
         Button buttonWateringcan = new Button("Figure de style");
-        buttonWateringcan.setOnAction(new EventHandler<ActionEvent>(){
+        buttonWateringcan.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent e) {
                 // Fenetre : StoreWateringcanView
@@ -218,14 +214,16 @@ public class StoreWateringcanView {
         gridpane.add(buttonWateringcan, 0, 3);
         gridpane.setHalignment(buttonWateringcan, HPos.CENTER);
     }
-    
+
     /**
      * Gère les étapes liées au choix des citations pour les arrosoirs.
+     *
      * @param gridpane gridpane de cette view
-     * @param user joueur
-     * @param isWithFertilizerList True si c'est le constructeur avec une FertilizerList en param
+     * @param u utilisateur
+     * @param isWithFertilizerList True si c'est le constructeur avec une
+     * FertilizerList en param
      */
-    private void forFertilizers (GridPane gridpane, User user, boolean isWithFertilizerList) {
+    private void forFertilizers(GridPane gridpane, User u, boolean isWithFertilizerList) {
         if (!isWithFertilizerList) {
             model.updateFertilizer();
         }
@@ -233,12 +231,14 @@ public class StoreWateringcanView {
         for(StylisticDevice fert : model.getFertilizerTab()) {
             System.out.println(fert.getSentence());
         }*/
-        
-        iWattCan = 0;
+
         // Boutons : Arrosoires
-        for (int i = 0 ; i < 10 ; ++i) {
-            Button figureDeStyle = new Button();   
-            figureDeStyle.setOnAction(new EventHandler<ActionEvent>(){
+        for (int i = 0; i < 10; ++i) {
+
+            final int iWattCan = i % (u.getPlantUnlock().size() * 2);
+
+            Button figureDeStyle = new Button();
+            figureDeStyle.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(ActionEvent e) {
                     // Fenetre : Figure de style
@@ -252,13 +252,7 @@ public class StoreWateringcanView {
             } else {
                 gridpane.add(figureDeStyle, i - 5 + 1, 3);
             }
-            
             gridpane.setHalignment(figureDeStyle, HPos.CENTER);
-            
-            ++iWattCan;
-            if (iWattCan >= user.getPlantUnlock().size()*2) {
-                iWattCan = 0;
-            }
         }
     }
 }
