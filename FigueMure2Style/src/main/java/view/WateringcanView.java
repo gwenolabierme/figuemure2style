@@ -1,7 +1,5 @@
 package view;
 
-import com.sun.xml.internal.ws.api.ha.StickyFeature;
-import controller.Controller;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
@@ -15,10 +13,8 @@ import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import model.FieldModel;
 import model.StoreModel;
 import model.stylisticDevice.StylisticDevice;
-import model.user.User;
 
 /**
  *
@@ -33,11 +29,13 @@ public class WateringcanView {
     private int height;
 
     private String title = "FigueMûre2Style";
-    
+
     private StylisticDevice fertilizer;
-    
+
     /**
-     * Constructeur sans paramètres.
+     * Constructeur WateringcanView.
+     * @param store boutique
+     * @param indice indice //TODO
      */
     public WateringcanView(StoreModel store, int indice) {
         Stage stage = new Stage();
@@ -45,20 +43,20 @@ public class WateringcanView {
     }
 
     /**
-     * Constructeur NewGameView.
+     * Constructeur WateringcanView.
      *
      * @param stage Relatif à Canvas pour la construction de la fenêtre
-     * @param w     largeur de la fenêtre
-     * @param h     hauteur de la fenêtre
+     * @param w largeur de la fenêtre
+     * @param h hauteur de la fenêtre
      * @param store model du store
      * @param indice indice de l'arrosoire dans la boutique
      */
     public WateringcanView(final Stage stage, int w, int h, StoreModel store, int indice) {
         this.width = w;
         this.height = h;
-        
+
         this.fertilizer = store.getFertilizerTab()[indice];
-        
+
         // Nom de la fenetre
         stage.setTitle(title);
 
@@ -103,14 +101,13 @@ public class WateringcanView {
         //figureDeStyle.getStyleClass().add("title");
         gridpane.add(figureDeStyle, 1, 1);
         gridpane.setHalignment(figureDeStyle, HPos.CENTER);
-        
+
         Text infos = new Text();
         infos.setText(this.fertilizer.getAuthor() + ", " + this.fertilizer.getOeuvre());
         //figureDeStyle.getStyleClass().add("title");
         gridpane.add(infos, 1, 2);
         gridpane.setHalignment(infos, HPos.CENTER);
-        
-        
+
         // Bouton : Sélectionner
         Button buttonSelect = new Button("Sélectionner");
         buttonSelect.setOnAction(new EventHandler<ActionEvent>() {

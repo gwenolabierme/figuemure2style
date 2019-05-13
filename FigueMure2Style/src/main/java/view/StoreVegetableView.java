@@ -3,6 +3,7 @@ package view;
 import controller.Controller;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -17,6 +18,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import model.FieldModel;
+import model.stylisticDevice.StylisticDevice;
 import model.user.User;
 
 /**
@@ -32,7 +34,7 @@ public class StoreVegetableView {
     private int height;
 
     private String title = "FigueMûre2Style";
-
+    
     /**
      * Constructeur sans paramètres.
      */
@@ -41,14 +43,14 @@ public class StoreVegetableView {
         User u = new User();
         StoreVegetableView swv = new StoreVegetableView(stage, 800, 800, u);
     }
-
+    
     /**
-     * Constructeur NewGameView.
-     *
+     * Constructeur StoreVegetableView.
+     * 
      * @param stage Relatif à Canvas pour la construction de la fenêtre
      * @param w largeur de la fenêtre
      * @param h hauteur de la fenêtre
-     * @param u utilisateur
+     * @param u utlisateur
      */
     public StoreVegetableView(final Stage stage, int w, int h, User u) {
         this.width = w;
@@ -148,7 +150,8 @@ public class StoreVegetableView {
             @Override
             public void handle(ActionEvent e) {
                 // Fenetre : StoreWateringcanView
-                StoreWateringcanView swv = new StoreWateringcanView(stage, 800, 800, u);
+                HashSet<StylisticDevice> fertilizerList = null;
+                StoreWateringcanView swv = new StoreWateringcanView(stage, 800, 800, u, fertilizerList);
             }
         });
         buttonWateringcan.setMinSize(100, 100);
@@ -212,15 +215,14 @@ public class StoreVegetableView {
                 }
             });
             vegeteble.setMinSize(60, 60);
-            
+
             // Légumes débloqués
             if (u.getPlantUnlock().toString().indexOf(listUnlock.get(i)) != -1) {
                 vegeteble.getStyleClass().add(listNames.get(i) + "Unlock");
-            }
-            else {
+            } else {
                 vegeteble.getStyleClass().add(listNames.get(i) + "Lock");
             }
- 
+
             Text titleVegeteble = new Text();
             titleVegeteble.setText(listFigureDeStyle.get(i));
 
@@ -241,7 +243,7 @@ public class StoreVegetableView {
             gridpane.setValignment(titleVegeteble, VPos.TOP);
             gridpane.setHalignment(priceVegeteble, HPos.CENTER);
             gridpane.setValignment(priceVegeteble, VPos.BOTTOM);
-            
+
             // Bouton : Acheter
             Button buttonBuy = new Button("Acheter");
             buttonBuy.setOnAction(new EventHandler<ActionEvent>() {
