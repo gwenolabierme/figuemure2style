@@ -41,37 +41,8 @@ public class StoreWateringcanView {
      */
     public StoreWateringcanView(User u) {
         Stage stage = new Stage();
-        StoreWateringcanView swv = new StoreWateringcanView(stage, 800, 800, u);
-    }
-
-    /**
-     * Constructeur NewGameView.
-     *
-     * @param stage Relatif à Canvas pour la construction de la fenêtre
-     * @param w largeur de la fenêtre
-     * @param h hauteur de la fenêtre
-     * @param u utilisateur
-     */
-    public StoreWateringcanView(final Stage stage, int w, int h, User u) {
-        this.width = w;
-        this.height = h;
-        this.model = new StoreModel(u);
-        this.stage = stage;
-
-        GridPane gridpane = new GridPane();
-
-        fenetreInit(gridpane, u);
-
-        forFertilizers(gridpane, u, false);
-
-        // Background
-        gridpane.getStyleClass().add("other_background");
-        // Scene
-        Scene scene = new Scene(gridpane, w, h);
-        scene.getStylesheets().add("/assets/css/Background.css");
-        stage.setScene(scene);
-        stage.show();
-
+        HashSet<StylisticDevice> fertilizerList = null;
+        StoreWateringcanView swv = new StoreWateringcanView(stage, 800, 800, u, fertilizerList);
     }
 
     /**
@@ -206,7 +177,8 @@ public class StoreWateringcanView {
             @Override
             public void handle(ActionEvent e) {
                 // Fenetre : StoreWateringcanView
-                StoreWateringcanView swv = new StoreWateringcanView(stage, 800, 800, u);
+                HashSet<StylisticDevice> fertilizerList = null;
+                StoreWateringcanView swv = new StoreWateringcanView(stage, 800, 800, u, fertilizerList);
             }
         });
         buttonWateringcan.setMinSize(100, 100);
