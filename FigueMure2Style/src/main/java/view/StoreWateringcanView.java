@@ -1,6 +1,7 @@
 package view;
 
 import controller.Controller;
+import java.util.HashSet;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.HPos;
@@ -12,6 +13,8 @@ import javafx.scene.layout.RowConstraints;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import model.FieldModel;
+import model.StoreModel;
+import model.stylisticDevice.StylisticDevice;
 import model.user.User;
 
 /**
@@ -28,13 +31,18 @@ public class StoreWateringcanView {
 
     private String title = "FigueMûre2Style";
 
+    private static StoreModel model;
+    private Stage stage;
+
     /**
-     * Constructeur sans paramètres.
+     * Constructeur simple.
+     *
+     * @param user utilisateur
      */
-    public StoreWateringcanView() {
+    public StoreWateringcanView(User u) {
         Stage stage = new Stage();
-        User u = new User();
-        StoreWateringcanView swv = new StoreWateringcanView(stage, 800, 800, u);
+        HashSet<StylisticDevice> fertilizerList = null;
+        StoreWateringcanView swv = new StoreWateringcanView(stage, 800, 800, u, fertilizerList);
     }
 
     /**
@@ -44,15 +52,40 @@ public class StoreWateringcanView {
      * @param w largeur de la fenêtre
      * @param h hauteur de la fenêtre
      * @param u utilisateur
+     * @param fertilizerList liste de citation
      */
-    public StoreWateringcanView(final Stage stage, int w, int h, User u) {
+    public StoreWateringcanView(final Stage stage, int w, int h, User u,
+            HashSet<StylisticDevice> fertilizerList) {
         this.width = w;
         this.height = h;
-
-        // Nom de la fenetre
-        stage.setTitle(title);
+        this.model = new StoreModel(u, fertilizerList);
+        this.stage = stage;
 
         GridPane gridpane = new GridPane();
+
+        fenetreInit(gridpane, u);
+
+        forFertilizers(gridpane, u, true);
+
+        // Background
+        gridpane.getStyleClass().add("other_background");
+
+        // Scene
+        Scene scene = new Scene(gridpane, w, h);
+        scene.getStylesheets().add("/assets/css/Background.css");
+        stage.setScene(scene);
+        stage.show();
+
+    }
+
+    /**
+     * Initialise la fenetre.
+     *
+     * @param gridpane gridpane de cette view
+     * @param user utilisateur
+     */
+    private void fenetreInit(GridPane gridpane, User u) {
+
         gridpane.setHgap(10);
         gridpane.setVgap(10);
 
@@ -143,22 +176,44 @@ public class StoreWateringcanView {
             @Override
             public void handle(ActionEvent e) {
                 // Fenetre : StoreWateringcanView
-                StoreWateringcanView swv = new StoreWateringcanView(stage, 800, 800, u);
+                HashSet<StylisticDevice> fertilizerList = null;
+                StoreWateringcanView swv = new StoreWateringcanView(stage, 800, 800, u, fertilizerList);
             }
         });
         buttonWateringcan.setMinSize(100, 100);
         //buttonVegetable.getStyleClass().add("panel");
         gridpane.add(buttonWateringcan, 0, 3);
         gridpane.setHalignment(buttonWateringcan, HPos.CENTER);
+    }
+
+    /**
+     * Gère les étapes liées au choix des citations pour les arrosoirs.
+     *
+     * @param gridpane gridpane de cette view
+     * @param u utilisateur
+     * @param isWithFertilizerList True si c'est le constructeur avec une
+     * FertilizerList en param
+     */
+    private void forFertilizers(GridPane gridpane, User u, boolean isWithFertilizerList) {
+        if (!isWithFertilizerList) {
+            model.updateFertilizer();
+        }
+        /*System.err.println("fert : ");
+        for(StylisticDevice fert : model.getFertilizerTab()) {
+            System.out.println(fert.getSentence());
+        }*/
 
         // Boutons : Arrosoires
         for (int i = 0; i < 10; ++i) {
+
+            final int iWattCan = i % (u.getPlantUnlock().size() * 2);
+
             Button figureDeStyle = new Button();
             figureDeStyle.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(ActionEvent e) {
-                    // Fenetre : WateringcanView
-                    WateringcanView wv = new WateringcanView(stage, 800, 800, u);
+                    // Fenetre : Figure de style
+                    WateringcanView wv = new WateringcanView(stage, 800, 800, model, iWattCan);
                 }
             });
             figureDeStyle.setMinSize(60, 60);
@@ -170,15 +225,5 @@ public class StoreWateringcanView {
             }
             gridpane.setHalignment(figureDeStyle, HPos.CENTER);
         }
-
-        // Background
-        gridpane.getStyleClass().add("other_background");
-
-        // Scene
-        Scene scene = new Scene(gridpane, w, h);
-        scene.getStylesheets().add("/assets/css/Background.css");
-        stage.setScene(scene);
-        stage.show();
-
     }
 }

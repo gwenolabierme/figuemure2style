@@ -1,5 +1,10 @@
 package view;
 
+import com.sun.xml.internal.ws.api.ha.StickyFeature;
+import controller.Controller;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.HPos;
@@ -10,6 +15,9 @@ import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import model.FieldModel;
+import model.StoreModel;
+import model.stylisticDevice.StylisticDevice;
 import model.user.User;
 
 /**
@@ -25,28 +33,32 @@ public class WateringcanView {
     private int height;
 
     private String title = "FigueMûre2Style";
-
+    
+    private StylisticDevice fertilizer;
+    
     /**
      * Constructeur sans paramètres.
      */
-    public WateringcanView() {
+    public WateringcanView(StoreModel store, int indice) {
         Stage stage = new Stage();
-        User u = new User();
-        WateringcanView swv = new WateringcanView(stage, 800, 800, u);
+        WateringcanView swv = new WateringcanView(stage, 800, 800, store, indice);
     }
 
     /**
      * Constructeur NewGameView.
      *
      * @param stage Relatif à Canvas pour la construction de la fenêtre
-     * @param w largeur de la fenêtre
-     * @param h hauteur de la fenêtre
-     * @param u utilisateur
+     * @param w     largeur de la fenêtre
+     * @param h     hauteur de la fenêtre
+     * @param store model du store
+     * @param indice indice de l'arrosoire dans la boutique
      */
-    public WateringcanView(Stage stage, int w, int h, User u) {
+    public WateringcanView(final Stage stage, int w, int h, StoreModel store, int indice) {
         this.width = w;
         this.height = h;
-
+        
+        this.fertilizer = store.getFertilizerTab()[indice];
+        
         // Nom de la fenetre
         stage.setTitle(title);
 
@@ -68,7 +80,8 @@ public class WateringcanView {
             @Override
             public void handle(ActionEvent e) {
                 // Fenetre : StoreWateringcanView
-                StoreWateringcanView swv = new StoreWateringcanView(stage, 800, 800, u);
+                Set<StylisticDevice> fertilizer = new HashSet<StylisticDevice>(Arrays.asList(store.getFertilizerTab()));
+                StoreWateringcanView swv = new StoreWateringcanView(stage, 800, 800, store.getUsr(), (HashSet<StylisticDevice>) fertilizer);
             }
         });
         buttonReturn.setMinSize(50, 50);
@@ -86,15 +99,18 @@ public class WateringcanView {
         // TODO
         // Figure de style
         Text figureDeStyle = new Text();
+        figureDeStyle.setText(this.fertilizer.getSentence());
         //figureDeStyle.getStyleClass().add("title");
         gridpane.add(figureDeStyle, 1, 1);
         gridpane.setHalignment(figureDeStyle, HPos.CENTER);
-
+        
         Text infos = new Text();
+        infos.setText(this.fertilizer.getAuthor() + ", " + this.fertilizer.getOeuvre());
         //figureDeStyle.getStyleClass().add("title");
         gridpane.add(infos, 1, 2);
         gridpane.setHalignment(infos, HPos.CENTER);
-
+        
+        
         // Bouton : Sélectionner
         Button buttonSelect = new Button("Sélectionner");
         buttonSelect.setOnAction(new EventHandler<ActionEvent>() {

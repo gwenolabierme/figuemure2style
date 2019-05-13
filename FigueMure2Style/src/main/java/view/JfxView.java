@@ -1,5 +1,6 @@
 package view;
 
+import java.util.HashSet;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.HPos;
@@ -11,6 +12,7 @@ import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.RowConstraints;
 import javafx.stage.Stage;
+import model.stylisticDevice.StylisticDevice;
 import model.user.User;
 
 /**
@@ -105,8 +107,9 @@ public class JfxView implements View {
             @Override
             public void handle(ActionEvent e) {
                 // Fenetre : Boutique
-                StoreWateringcanView swv = new StoreWateringcanView(stage, 800, 800, u);
-                System.out.println("Boutique");
+                HashSet<StylisticDevice> fertilizerList = null;
+                StoreWateringcanView swv = new StoreWateringcanView(stage, 800, 800, u, fertilizerList);
+                System.out.println("Boutique");    
             }
         });
         buttonShop.setMinSize(80, 80);

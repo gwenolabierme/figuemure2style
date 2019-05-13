@@ -1,5 +1,7 @@
 package model;
 
+import java.util.Collection;
+import java.util.Collections;
 import java.util.EnumSet;
 import java.util.HashSet;
 import java.util.Random;
@@ -30,14 +32,20 @@ public class StoreModel {
         this.fertilizerList = new HashSet<StylisticDevice>();
     }
     
+    public StoreModel (User usr, HashSet<StylisticDevice> fertilizerList) {
+        this.usr = usr;
+        this.fertilizerList = fertilizerList;
+    }
+    
     /**
      * Rempli la fertilizerList aléatoirement en fonction des légumes débloqués.
      */
-    private void updateFertilizer () {
+    public void updateFertilizer () {
         EnumSet<StylisticDeviceEnum> sdeList = EnumSet.noneOf(StylisticDeviceEnum.class);
         
         //détermine les figures de styles
         for (PlantVarietyEnum plant : this.usr.getPlantUnlock()) {
+            
             if (plant.equals(PlantVarietyEnum.CAROTTE)) {
                 Carotte p = new Carotte();
                 sdeList.add(p.getStyDevEat());
@@ -70,6 +78,7 @@ public class StoreModel {
         }
         
         //traitement de figues de styles 
+        this.fertilizerList.clear();
         //on ajoute deux exemplaires de chaque figure disponible
         for (StylisticDeviceEnum sde : sdeList) {
             FileStylisticD file = FileStylisticD.load(sde);
@@ -81,10 +90,25 @@ public class StoreModel {
     private StylisticDevice getAleatStylDevice(StylisticDevice[] sdTab) {
         int size = sdTab.length;
         
-        Random rand = null;
-
+        Random rand = new Random();
         int randSD = rand.nextInt(size);
         
         return sdTab[randSD];
+    }
+
+    public User getUsr() {
+        return usr;
+    }
+    
+    /**
+     * Retourne le Set d'engrais sous forme de tableau.
+     * @return tableau de figure de style
+     */
+    public StylisticDevice[] getFertilizerTab() {
+        if (this.fertilizerList.size() > 0) {
+            return this.fertilizerList.toArray(new StylisticDevice[this.fertilizerList.size()]);
+        } else {
+            return null;
+        }
     }
 }
