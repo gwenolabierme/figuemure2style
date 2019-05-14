@@ -2,18 +2,9 @@ package view;
 
 import controller.Controller;
 import figuemure2style.App;
-import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.geometry.HPos;
-import javafx.geometry.Insets;
-import javafx.scene.Scene;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.ColumnConstraints;
-import javafx.scene.layout.GridPane;
-import javafx.scene.paint.Color;
-import javafx.stage.Stage;
 import model.FieldModel;
 import view.plant.PlantView;
 
@@ -23,6 +14,7 @@ import view.plant.PlantView;
  * @author jeremy
  */
 public class FieldView extends CanvasView {
+
     /**
      * Contexte graphique dans lequel on va afficher les éléments.
      */
@@ -56,8 +48,8 @@ public class FieldView extends CanvasView {
      * Constructeur de FieldView.
      *
      * @param fieldModel Modèle de données
-     * @param width      Largeur du canvas
-     * @param height     Hauteur du canvas
+     * @param width Largeur du canvas
+     * @param height Hauteur du canvas
      */
     public FieldView(FieldModel fieldModel, int width, int height) {
         super(width, height);
@@ -74,24 +66,24 @@ public class FieldView extends CanvasView {
         this.setFocusTraversable(true);
 
         gc = this.getGraphicsContext2D();
-        
+
         parcelView = new ParcelView[App.gardenSize][App.gardenSize];
         plantView = new PlantView[App.gardenSize][App.gardenSize];
-        
-        for(int i = 0; i < App.gardenSize; ++i) {
-            for(int j = 0; j < App.gardenSize; ++j) {
-                if (App.freePlotBegin*i+j < fm.getNbFreePlot()) {
+
+        for (int i = 0; i < App.gardenSize; ++i) {
+            for (int j = 0; j < App.gardenSize; ++j) {
+                if (App.freePlotBegin * i + j < fm.getNbFreePlot()) {
                     this.parcelView[i][j] = new ParcelView(gc, true);
-                    this.parcelView[i][j].setX((int) ((j) * (640 / (App.gardenSize)) 
+                    this.parcelView[i][j].setX((int) ((j) * (640 / (App.gardenSize))
                             + this.parcelView[i][j].getCurrentImg().getWidth() / 2));
-                    this.parcelView[i][j].setY((int) (i * (640 / (App.gardenSize)) 
-                            + this.parcelView[i][j].getCurrentImg().getHeight()/ 2));
-                } else { 
+                    this.parcelView[i][j].setY((int) (i * (640 / (App.gardenSize))
+                            + this.parcelView[i][j].getCurrentImg().getHeight() / 2));
+                } else {
                     this.parcelView[i][j] = new ParcelView(gc, false);
-                    this.parcelView[i][j].setX((int) ((j) * (640 / (App.gardenSize)) 
+                    this.parcelView[i][j].setX((int) ((j) * (640 / (App.gardenSize))
                             + this.parcelView[i][j].getCurrentImg().getWidth() / 2)); // on centre la parcelle sur sa colonne
-                    this.parcelView[i][j].setY((int) (i * (640 / (App.gardenSize)) 
-                            + this.parcelView[i][j].getCurrentImg().getHeight()/ 2));
+                    this.parcelView[i][j].setY((int) (i * (640 / (App.gardenSize))
+                            + this.parcelView[i][j].getCurrentImg().getHeight() / 2));
                 }
                 if (fm.getPlant(i, j) == null) {
                     this.plantView[i][j] = null;
@@ -100,13 +92,13 @@ public class FieldView extends CanvasView {
                     this.plantView[i][j].setX((int) ((j) * (640 / (App.gardenSize))
                             + this.parcelView[i][j].getCurrentImg().getWidth() / 2
                             - this.plantView[i][j].getCurrentImg().getWidth() / 2)); // on centre le légume sur la parcelle
-                    this.plantView[i][j].setY((int) (i * (640 / (App.gardenSize)) 
-                            + this.parcelView[i][j].getCurrentImg().getHeight()/ 2
+                    this.plantView[i][j].setY((int) (i * (640 / (App.gardenSize))
+                            + this.parcelView[i][j].getCurrentImg().getHeight() / 2
                             - this.plantView[i][j].getCurrentImg().getHeight() / 2));
                 }
-            } 
+            }
         }
-        
+
         /*
          * Event Listener de la souris quand un bouton est pressée on rapporte
          * l'évènement au contrôleur
@@ -124,8 +116,8 @@ public class FieldView extends CanvasView {
      */
     public void display() {
         // Affichage le jardin
-        for(int i = 0; i < App.gardenSize; ++i) {
-            for(int j = 0; j < App.gardenSize; ++j) {
+        for (int i = 0; i < App.gardenSize; ++i) {
+            for (int j = 0; j < App.gardenSize; ++j) {
                 this.parcelView[i][j].display();
                 if (this.plantView[i][j] != null) {
                     this.plantView[i][j].display();
@@ -137,13 +129,14 @@ public class FieldView extends CanvasView {
     /**
      * Défini le contrôleur qui est en charge de cette vue (à qui on va
      * rapporter les évènements).
+     *
      * @param controler Controler à attribuer à cette vue
      */
     public void setControler(Controller controler) {
         this.controller = controler;
-        
-        for(int i = 0; i < App.gardenSize; ++i) {
-            for(int j = 0; j < App.gardenSize; ++j) {
+
+        for (int i = 0; i < App.gardenSize; ++i) {
+            for (int j = 0; j < App.gardenSize; ++j) {
                 this.controller.addSubscriber(this.parcelView[i][j]);
                 this.controller.addSubscriber(this.plantView[i][j]);
             }

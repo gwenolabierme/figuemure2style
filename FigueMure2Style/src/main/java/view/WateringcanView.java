@@ -28,12 +28,13 @@ public class WateringcanView {
     private int width;
     private int height;
 
-    private String title = "FigueMûre2Style";
+    private final String title = "FigueMûre2Style";
 
     private StylisticDevice fertilizer;
 
     /**
      * Constructeur WateringcanView.
+     *
      * @param store boutique
      * @param indice indice //TODO
      */

@@ -1,6 +1,5 @@
 package view;
 
-import java.util.HashSet;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.HPos;
@@ -12,7 +11,6 @@ import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.RowConstraints;
 import javafx.stage.Stage;
-import model.stylisticDevice.StylisticDevice;
 import model.user.User;
 
 /**
@@ -40,7 +38,7 @@ public class JfxView implements View {
      *
      * @param title Titre de la fenêtre à créer
      * @param stage Fenêtre à gérer
-     * @param u     Utilisateur
+     * @param u Utilisateur
      */
     public JfxView(String title, Stage stage, User u) {
         this.stage = stage;
@@ -109,7 +107,7 @@ public class JfxView implements View {
                 //HashSet<StylisticDevice> fertilizerList = null;
                 //StoreWateringcanView swv = new StoreWateringcanView(stage, 800, 800, u, fertilizerList);
                 StoreWateringcanView swv = new StoreWateringcanView(stage, 800, 800, u);
-                System.out.println("Boutique");    
+                System.out.println("Boutique");
             }
         });
         buttonShop.setMinSize(80, 80);
@@ -176,7 +174,6 @@ public class JfxView implements View {
         scene.getStylesheets().add("/assets/css/Background.css");
         stage.setScene(scene);
         stage.show();
-
     }
 
     /**

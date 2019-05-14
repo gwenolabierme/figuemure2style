@@ -1,9 +1,7 @@
 package view;
 
 import controller.Controller;
-import java.util.Arrays;
 import java.util.HashSet;
-import java.util.Set;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.HPos;
@@ -31,11 +29,11 @@ public class StoreWateringcanView {
     private int width;
     private int height;
 
-    private String title = "FigueMûre2Style";
+    private final String title = "FigueMûre2Style";
 
     private static StoreModel model;
     private Stage stage;
-   
+
     /**
      * Constructeur simple.
      *
@@ -45,6 +43,7 @@ public class StoreWateringcanView {
         Stage stage = new Stage();
         //HashSet<StylisticDevice> fertilizerList = null;
         //StoreWateringcanView swv = new StoreWateringcanView(stage, 800, 800, u, fertilizerList);
+        this.model = new StoreModel(u);
         StoreWateringcanView swv = new StoreWateringcanView(stage, 800, 800, u);
     }
 
@@ -58,19 +57,20 @@ public class StoreWateringcanView {
      */
     public StoreWateringcanView(final Stage stage, int w, int h, User u) {
         this.stage = stage;
+        this.model = new StoreModel(u);
 
         GridPane gridpane = new GridPane();
-        
+
         fenetreInit(gridpane, u);
-        
+
         forFertilizers(gridpane, u, false);
-        
+
         // Background
         gridpane.getStyleClass().add("other_background");
-        
+
         // Scene
         Scene scene = new Scene(gridpane, w, h);
-        scene.getStylesheets().add("/assets/css/Background.css"); 
+        scene.getStylesheets().add("/assets/css/Background.css");
         stage.setScene(scene);
         stage.show();
     }
@@ -233,10 +233,15 @@ public class StoreWateringcanView {
         for(StylisticDevice fert : model.getFertilizerTab()) {
             System.out.println(fert.getSentence());
         }*/
-        
+
         // Boutons : Arrosoires
-        /*
+        int iLigne = 1;
+        int iCol = 0;
         for (int i = 0; i < 10; ++i) {
+            if (iCol >= 5) {
+                iLigne = 2;
+                iCol = 0;
+            }
 
             final int iWattCan = i % (u.getPlantUnlock().size() * 2);
 
@@ -250,37 +255,9 @@ public class StoreWateringcanView {
             });
             figureDeStyle.setMinSize(60, 60);
             figureDeStyle.getStyleClass().add("logoWateringcan");
-            if (i < 5) {
-                gridpane.add(figureDeStyle, i + 1, 1);
-            } else {
-                gridpane.add(figureDeStyle, i - 5 + 1, 3);
-            }
-            gridpane.setHalignment(figureDeStyle, HPos.CENTER);
-        }*/
-        
-        int iLigne = 1;
-        int iCol = 0;
-        for (int i = 0 ; i < 10 ; ++i) {
-            if (iCol >= 5) {
-                iLigne = 2;
-                iCol = 0;
-            }
-            
-            final int iWattCan = i % (u.getPlantUnlock().size()*2);
-            
-            Button figureDeStyle = new Button();   
-            figureDeStyle.setOnAction(new EventHandler<ActionEvent>(){
-                @Override
-                public void handle(ActionEvent e) {
-                    // Fenetre : Figure de style
-                    WateringcanView wv = new WateringcanView(stage, 800, 800, model, iWattCan);
-                }
-            });
-            figureDeStyle.setMinSize(60, 60);
-            figureDeStyle.getStyleClass().add("logoWateringcan");
             gridpane.add(figureDeStyle, iCol + 1, iLigne);
             gridpane.setHalignment(figureDeStyle, HPos.CENTER);
-            
+
             ++iCol;
         }
     }
