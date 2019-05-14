@@ -21,7 +21,7 @@ public class MenuView {
     private int width;
     private int height;
 
-    private String title = "FigueMûre2Style";
+    private final String title = "FigueMûre2Style";
 
     /**
      * Constructeur sans paramètres.

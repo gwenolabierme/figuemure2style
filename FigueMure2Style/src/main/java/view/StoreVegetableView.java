@@ -3,7 +3,6 @@ package view;
 import controller.Controller;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashSet;
 import java.util.List;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -16,9 +15,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.RowConstraints;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-
 import model.FieldModel;
-import model.stylisticDevice.StylisticDevice;
 import model.user.User;
 
 /**
@@ -33,8 +30,8 @@ public class StoreVegetableView {
     private int width;
     private int height;
 
-    private String title = "FigueMûre2Style";
-    
+    private final String title = "FigueMûre2Style";
+
     /**
      * Constructeur sans paramètres.
      */
@@ -43,10 +40,10 @@ public class StoreVegetableView {
         User u = new User();
         StoreVegetableView swv = new StoreVegetableView(stage, 800, 800, u);
     }
-    
+
     /**
      * Constructeur StoreVegetableView.
-     * 
+     *
      * @param stage Relatif à Canvas pour la construction de la fenêtre
      * @param w largeur de la fenêtre
      * @param h hauteur de la fenêtre
