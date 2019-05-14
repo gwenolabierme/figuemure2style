@@ -129,7 +129,7 @@ public class DashbordView {
         // Tableau
         ObservableList<UserVegetableRatio> data =
         FXCollections.observableArrayList(                    
-            new UserVegetableRatio(listUnlock.get(0) + "carotteUnlock", "The Button", listFigureDeStyle.get(0), String.valueOf(mapRatio.get(PlantVarietyEnum.CAROTTE).getRatio())),
+            new UserVegetableRatio(listUnlock.get(0) + "Unlock", "The Button", listFigureDeStyle.get(0), String.valueOf(mapRatio.get(PlantVarietyEnum.CAROTTE).getRatio())),
             new UserVegetableRatio(listUnlock.get(1) + "Unlock", "The Button", listFigureDeStyle.get(1), String.valueOf(mapRatio.get(PlantVarietyEnum.FIGUE).getRatio())),
             new UserVegetableRatio(listUnlock.get(2) + "Unlock", "The Button", listFigureDeStyle.get(2), String.valueOf(mapRatio.get(PlantVarietyEnum.MURE).getRatio())),
             new UserVegetableRatio(listUnlock.get(3) + "Unlock", "The Button", listFigureDeStyle.get(3), String.valueOf(mapRatio.get(PlantVarietyEnum.PATATTE).getRatio())),
