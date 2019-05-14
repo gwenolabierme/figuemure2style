@@ -150,8 +150,9 @@ public class StoreVegetableView {
             @Override
             public void handle(ActionEvent e) {
                 // Fenetre : StoreWateringcanView
-                HashSet<StylisticDevice> fertilizerList = null;
-                StoreWateringcanView swv = new StoreWateringcanView(stage, 800, 800, u, fertilizerList);
+                //HashSet<StylisticDevice> fertilizerList = null;
+                //StoreWateringcanView swv = new StoreWateringcanView(stage, 800, 800, u, fertilizerList);
+                StoreWateringcanView swv = new StoreWateringcanView(stage, 800, 800, u);
             }
         });
         buttonWateringcan.setMinSize(100, 100);
