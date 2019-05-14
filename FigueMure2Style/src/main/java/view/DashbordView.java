@@ -2,8 +2,8 @@ package view;
 
 import controller.Controller;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
-import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -12,17 +12,16 @@ import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.RadioButton;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import model.FieldModel;
+import model.plant.PlantVarietyEnum;
+import model.user.DataPlantRatio;
 import model.user.User;
 import model.user.UserVegetableRatio;
 
@@ -38,24 +37,16 @@ public class DashbordView {
     private int width;
     private int height;
 
-    private String title = "FigueMûre2Style";
+    private final String title = "FigueMûre2Style";
     
     private final List<String> listUnlock = Arrays.asList("carotte", "figue", "mure", "patatte", "pomme", "tomate");
     private final List<String> listFigureDeStyle = Arrays.asList("COMPARAISON", "PERIPHRASE", "PERSONNIFICATION", "HYPERBOLE", "CHIASME", "OXYMORE");
         
     private TableView<UserVegetableRatio> table = new TableView<UserVegetableRatio>();
         
-    private UserVegetableRatio uRatio = new UserVegetableRatio();
+    //private UserVegetableRatio uRatio = new UserVegetableRatio();
         
-    private  ObservableList<UserVegetableRatio> data =
-        FXCollections.observableArrayList(                    
-            new UserVegetableRatio(listUnlock.get(0) + "carotteUnlock", "The Button", listFigureDeStyle.get(0), "0"),
-            new UserVegetableRatio(listUnlock.get(1) + "Unlock", "The Button", listFigureDeStyle.get(1), "0"),
-            new UserVegetableRatio(listUnlock.get(2) + "Unlock", "The Button", listFigureDeStyle.get(2), "0"),
-            new UserVegetableRatio(listUnlock.get(3) + "Unlock", "The Button", listFigureDeStyle.get(3), "0"),
-            new UserVegetableRatio(listUnlock.get(4) + "Unlock", "The Button", listFigureDeStyle.get(4), "0"),
-            new UserVegetableRatio(listUnlock.get(5) + "Unlock", "The Button", listFigureDeStyle.get(5), "0")
-        );
+    
 
     /**
      * Constructeur sans paramètres.
@@ -132,11 +123,22 @@ public class DashbordView {
         gridpane.add(title, 1, 0);
         gridpane.setHalignment(title, HPos.CENTER);
 
+        // Récupération des ratios
+        HashMap<PlantVarietyEnum, DataPlantRatio> mapRatio = u.getDataSucces();
+        
         // Tableau
+        ObservableList<UserVegetableRatio> data =
+        FXCollections.observableArrayList(                    
+            new UserVegetableRatio(listUnlock.get(0) + "carotteUnlock", "The Button", listFigureDeStyle.get(0), String.valueOf(mapRatio.get(PlantVarietyEnum.CAROTTE).getRatio())),
+            new UserVegetableRatio(listUnlock.get(1) + "Unlock", "The Button", listFigureDeStyle.get(1), String.valueOf(mapRatio.get(PlantVarietyEnum.FIGUE).getRatio())),
+            new UserVegetableRatio(listUnlock.get(2) + "Unlock", "The Button", listFigureDeStyle.get(2), String.valueOf(mapRatio.get(PlantVarietyEnum.MURE).getRatio())),
+            new UserVegetableRatio(listUnlock.get(3) + "Unlock", "The Button", listFigureDeStyle.get(3), String.valueOf(mapRatio.get(PlantVarietyEnum.PATATTE).getRatio())),
+            new UserVegetableRatio(listUnlock.get(4) + "Unlock", "The Button", listFigureDeStyle.get(4), String.valueOf(mapRatio.get(PlantVarietyEnum.POMME).getRatio())),
+            new UserVegetableRatio(listUnlock.get(5) + "Unlock", "The Button", listFigureDeStyle.get(5), String.valueOf(mapRatio.get(PlantVarietyEnum.TOMATE).getRatio()))
+        );
+        
         table.setEditable(true);
-        
-
-        
+       
         TableColumn btnCol = new TableColumn("Buttons");
         btnCol.setMinWidth(100);
         

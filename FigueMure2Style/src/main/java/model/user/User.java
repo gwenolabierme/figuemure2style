@@ -542,6 +542,10 @@ public class User {
         this.inventory.remove(variety);
     }
 
+    public HashMap<PlantVarietyEnum, DataPlantRatio> getDataSucces() {
+        return dataSucces;
+    }
+
     /**
      * Met a jour le ratio de la stratégie en fonction de leur nombre de victoires et défaites.
      * @param key figure de style concernée
