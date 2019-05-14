@@ -8,29 +8,41 @@ import java.io.Serializable;
  */
 public class DataPlantRatio implements Serializable {
 
-    private long nbVictory;
-    private long nbDefeat;
+    private int nbVictory;
+    private int nbDefeat;
     private double ratio; // ratio de victoire
 
-    public DataPlantRatio(long nbVictory, long nbDefeat, double ratio) {
+    public DataPlantRatio() {
+        this.nbVictory = 0;
+        this.nbDefeat = 0;
+        this.ratio = 0;
+    }
+
+    public DataPlantRatio(int nbVictory, int nbDefeat) {
+        this.nbVictory = nbVictory;
+        this.nbDefeat = nbDefeat;
+        this.ratio = nbVictory / nbDefeat;
+    }
+
+    public DataPlantRatio(int nbVictory, int nbDefeat, double ratio) {
         this.nbVictory = nbVictory;
         this.nbDefeat = nbDefeat;
         this.ratio = ratio;
     }
 
-    public long getNbVictory() {
+    public int getNbVictory() {
         return nbVictory;
     }
 
-    public void setNbVictory(long nbVictory) {
+    public void setNbVictory(int nbVictory) {
         this.nbVictory = nbVictory;
     }
 
-    public long getNbDefeat() {
+    public int getNbDefeat() {
         return nbDefeat;
     }
 
-    public void setNbDefeat(long nbDefeat) {
+    public void setNbDefeat(int nbDefeat) {
         this.nbDefeat = nbDefeat;
     }
 
