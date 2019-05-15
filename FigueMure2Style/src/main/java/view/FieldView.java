@@ -7,6 +7,7 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import model.FieldModel;
+import model.plant.PlantVarietyEnum;
 import model.stylisticDevice.StylisticDeviceEnum;
 import view.plant.PlantView;
 
@@ -45,6 +46,10 @@ public class FieldView extends CanvasView {
      * Arrosoir
      */
     private StylisticDeviceEnum sdeCan;
+    /**
+     * Plante en cours d'achat
+     */
+    private PlantVarietyEnum pveBought;
 
     /**
      * Constructeur de FieldView.
@@ -105,7 +110,7 @@ public class FieldView extends CanvasView {
 
         /*
          * Event Listener de la souris quand un bouton est pressée on rapporte
-         * l'évènement au contrôleur
+         * l'évèwateringcannement au contrôleur
          */
         this.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
@@ -121,10 +126,21 @@ public class FieldView extends CanvasView {
         
         //TODO : traiter sde
         // changer pointeur souris
-        // effet si clique
         
         this.sdeCan = sde;
         //Image img = new Image("/assets/css/img/wateringcan.png");
+        //scene.setCursor(new ImageCursor(image));
+    }
+    
+    public FieldView(FieldModel fieldModel, int width, int height, PlantVarietyEnum pve) {
+        this(fieldModel, width, height);
+        
+        //TODO : traiter sde
+        // changer pointeur souris
+        // effet si clique
+        
+        this.pveBought = pve;
+        //Image img = new Image("/assets/css/img/_.png");
         //scene.setCursor(new ImageCursor(image));
     }
 
