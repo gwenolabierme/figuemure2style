@@ -129,7 +129,6 @@ public class User {
     public void getUser(String pseudo) {
         BDFile f = new BDFile();
         Map mapUser = f.loadFile(pseudo);
-        
         this.pseudo = (String) mapUser.get("pseudo");
         this.gender = (String) mapUser.get("gender");
         this.score = Integer.parseInt((String) mapUser.get("score"));
@@ -139,22 +138,22 @@ public class User {
         EnumSet<PlantVarietyEnum> listVarietyPlantUnlock = null;
         plantUnlock = EnumSet.noneOf(PlantVarietyEnum.class);
 
-        if (listPlantUnlock.contains("carotte")) {
+        if (listPlantUnlock.indexOf("carotte") != -1) {
             addPlantUnlock(PlantVarietyEnum.CAROTTE);
         }
-        if (listPlantUnlock.contains("figue")) {
+        if (listPlantUnlock.indexOf("figue") != -1) {
             addPlantUnlock(PlantVarietyEnum.FIGUE);
         }
-        if (listPlantUnlock.contains("mure")) {
+        if (listPlantUnlock.indexOf("mure") != -1) {
             addPlantUnlock(PlantVarietyEnum.MURE);
         }
-        if (listPlantUnlock.contains("pattate")) {
+        if (listPlantUnlock.indexOf("pattate") != -1) {
             addPlantUnlock(PlantVarietyEnum.PATATTE);
         }
-        if (listPlantUnlock.contains("pomme")) {
+        if (listPlantUnlock.indexOf("pomme") != -1) {
             addPlantUnlock(PlantVarietyEnum.POMME);
         }
-        if (listPlantUnlock.contains("tomate")) {
+        if (listPlantUnlock.indexOf("tomate") != -1) {
             addPlantUnlock(PlantVarietyEnum.TOMATE);
         }
 
@@ -192,22 +191,22 @@ public class User {
             EnumSet<PlantVarietyEnum> listVarietyPlantUnlock = null;
             plantUnlock = EnumSet.noneOf(PlantVarietyEnum.class);
 
-            if (listPlantUnlock.contains("carotte")) {
+            if (listPlantUnlock.indexOf("carotte") != -1) {
                 addPlantUnlock(PlantVarietyEnum.CAROTTE);
             }
-            if (listPlantUnlock.contains("figue")) {
+            if (listPlantUnlock.indexOf("figue") != -1) {
                 addPlantUnlock(PlantVarietyEnum.FIGUE);
             }
-            if (listPlantUnlock.contains("mure")) {
+            if (listPlantUnlock.indexOf("mure") != -1) {
                 addPlantUnlock(PlantVarietyEnum.MURE);
             }
-            if (listPlantUnlock.contains("pattate")) {
+            if (listPlantUnlock.indexOf("pattate") != -1) {
                 addPlantUnlock(PlantVarietyEnum.PATATTE);
             }
-            if (listPlantUnlock.contains("pomme")) {
+            if (listPlantUnlock.indexOf("pomme") != -1) {
                 addPlantUnlock(PlantVarietyEnum.POMME);
             }
-            if (listPlantUnlock.contains("tomate")) {
+            if (listPlantUnlock.indexOf("tomate") != -1) {
                 addPlantUnlock(PlantVarietyEnum.TOMATE);
             }
 
