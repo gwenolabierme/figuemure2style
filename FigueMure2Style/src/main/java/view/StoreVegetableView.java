@@ -1,6 +1,7 @@
 package view;
 
 import controller.Controller;
+import figuemure2style.App;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -38,7 +39,8 @@ public class StoreVegetableView {
     public StoreVegetableView() {
         Stage stage = new Stage();
         User u = new User();
-        StoreVegetableView swv = new StoreVegetableView(stage, 800, 800, u);
+        StoreVegetableView swv = new StoreVegetableView(stage, 
+                App.windowsWidht, App.windowsHeight, u);
     }
 
     /**
@@ -97,7 +99,8 @@ public class StoreVegetableView {
                 JfxView gameView = new JfxView(title, stage, u);
 
                 FieldModel fieldModel = new FieldModel();
-                FieldView fieldView = new FieldView(fieldModel, 800, 800);
+                FieldView fieldView = new FieldView(fieldModel, 
+                        App.windowsWidht, App.windowsHeight);
 
                 Controller controller = Controller.getControler();
                 fieldView.setControler(controller);
@@ -133,7 +136,8 @@ public class StoreVegetableView {
             @Override
             public void handle(ActionEvent e) {
                 // Fenetre : StoreVegetableView
-                StoreVegetableView svv = new StoreVegetableView(stage, 800, 800, u);
+                StoreVegetableView svv = new StoreVegetableView(stage, 
+                        App.windowsWidht, App.windowsHeight, u);
             }
         });
         buttonVegetable.setMinSize(100, 100);
@@ -149,7 +153,8 @@ public class StoreVegetableView {
                 // Fenetre : StoreWateringcanView
                 //HashSet<StylisticDevice> fertilizerList = null;
                 //StoreWateringcanView swv = new StoreWateringcanView(stage, 800, 800, u, fertilizerList);
-                StoreWateringcanView swv = new StoreWateringcanView(stage, 800, 800, u);
+                StoreWateringcanView swv = new StoreWateringcanView(stage, 
+                        App.windowsWidht, App.windowsHeight, u);
             }
         });
         buttonWateringcan.setMinSize(100, 100);

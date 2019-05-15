@@ -1,5 +1,6 @@
 package view;
 
+import figuemure2style.App;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
@@ -40,7 +41,8 @@ public class WateringcanView {
      */
     public WateringcanView(StoreModel store, int indice) {
         Stage stage = new Stage();
-        WateringcanView swv = new WateringcanView(stage, 800, 800, store, indice);
+        WateringcanView swv = new WateringcanView(stage, 
+                App.windowsWidht, App.windowsHeight, store, indice);
     }
 
     /**
@@ -79,8 +81,11 @@ public class WateringcanView {
             @Override
             public void handle(ActionEvent e) {
                 // Fenetre : StoreWateringcanView
-                Set<StylisticDevice> fertilizer = new HashSet<StylisticDevice>(Arrays.asList(store.getFertilizerTab()));
-                StoreWateringcanView swv = new StoreWateringcanView(stage, 800, 800, store.getUsr(), (HashSet<StylisticDevice>) fertilizer);
+                Set<StylisticDevice> fertilizer = 
+                        new HashSet<StylisticDevice>(Arrays.asList(store.getFertilizerTab()));
+                StoreWateringcanView swv = new StoreWateringcanView(stage, 
+                        App.windowsWidht, App.windowsHeight, store.getUsr(), 
+                        (HashSet<StylisticDevice>) fertilizer);
             }
         });
         buttonReturn.setMinSize(50, 50);

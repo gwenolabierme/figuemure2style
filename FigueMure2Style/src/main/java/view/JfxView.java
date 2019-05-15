@@ -1,5 +1,6 @@
 package view;
 
+import figuemure2style.App;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.HPos;
@@ -88,7 +89,8 @@ public class JfxView implements View {
             @Override
             public void handle(ActionEvent e) {
                 // Fenetre : Tableau de bord
-                DashbordView dv = new DashbordView(stage, 800, 800, u);
+                DashbordView dv = new DashbordView(stage, 
+                        App.windowsWidht, App.windowsHeight, u);
                 System.out.println("Tableau de bord");
             }
         });
@@ -106,7 +108,8 @@ public class JfxView implements View {
                 // Fenetre : Boutique
                 //HashSet<StylisticDevice> fertilizerList = null;
                 //StoreWateringcanView swv = new StoreWateringcanView(stage, 800, 800, u, fertilizerList);
-                StoreWateringcanView swv = new StoreWateringcanView(stage, 800, 800, u);
+                StoreWateringcanView swv = new StoreWateringcanView(stage, 
+                        App.windowsWidht, App.windowsHeight, u);
                 System.out.println("Boutique");
             }
         });
@@ -123,7 +126,8 @@ public class JfxView implements View {
             public void handle(ActionEvent e) {
                 //TODO
                 // Fenetre : Inventaire
-                InventoryView iv = new InventoryView(stage, 800, 800, u);
+                InventoryView iv = new InventoryView(stage, 
+                        App.windowsWidht, App.windowsHeight, u);
                 System.out.println("Inventaire");
             }
         });
@@ -140,7 +144,8 @@ public class JfxView implements View {
             public void handle(ActionEvent e) {
                 //TODO
                 // Fenetre : Paramètres
-                SettingsView sv = new SettingsView(stage, 800, 800, u);
+                SettingsView sv = new SettingsView(stage, 
+                        App.windowsWidht, App.windowsHeight, u);
                 System.out.println("Paramètres");
             }
         });
@@ -170,7 +175,8 @@ public class JfxView implements View {
         gridpane.getStyleClass().add("game_background");
 
         // Scene
-        Scene scene = new Scene(gridpane, 800, 800);
+        Scene scene = new Scene(gridpane, 
+                App.windowsWidht, App.windowsHeight);
         scene.getStylesheets().add("/assets/css/Background.css");
         stage.setScene(scene);
         stage.show();

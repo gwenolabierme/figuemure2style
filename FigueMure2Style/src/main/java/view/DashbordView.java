@@ -1,6 +1,7 @@
 package view;
 
 import controller.Controller;
+import figuemure2style.App;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -54,7 +55,8 @@ public class DashbordView {
     public DashbordView() {
         Stage stage = new Stage();
         User u = new User();
-        DashbordView dv = new DashbordView(stage, 800, 800, u);
+        DashbordView dv = new DashbordView(stage, 
+                App.windowsWidht, App.windowsHeight, u);
     }
 
     /**
@@ -93,7 +95,8 @@ public class DashbordView {
                 JfxView gameView = new JfxView(title, stage, u);
 
                 FieldModel fieldModel = new FieldModel();
-                FieldView fieldView = new FieldView(fieldModel, 800, 800);
+                FieldView fieldView = new FieldView(fieldModel, 
+                        App.windowsWidht, App.windowsHeight);
 
                 Controller controller = Controller.getControler();
                 fieldView.setControler(controller);
