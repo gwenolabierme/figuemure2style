@@ -4,6 +4,7 @@ import controller.Controller;
 import figuemure2style.App;
 import javafx.event.EventHandler;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import model.FieldModel;
 import model.stylisticDevice.StylisticDeviceEnum;
@@ -44,6 +45,10 @@ public class FieldView extends CanvasView {
      * Images plantes.
      */
     private PlantView[][] plantView;
+    /**
+     * Arrosoir
+     */
+    private StylisticDeviceEnum sdeCan;
 
     /**
      * Constructeur de FieldView.
@@ -60,6 +65,7 @@ public class FieldView extends CanvasView {
         this.width = width;
         this.height = height;
 
+        this.sdeCan = null;
         /*
          * Permet de capturer le focus et donc les evenements clavier et
          * souris
@@ -107,7 +113,8 @@ public class FieldView extends CanvasView {
         this.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                controller.mousePressed(event.getButton().toString());
+                controller.mousePressed(event.getButton().toString(), sdeCan);
+                sdeCan = null;
             }
         });
     }
@@ -118,6 +125,10 @@ public class FieldView extends CanvasView {
         //TODO : traiter sde
         // changer pointeur souris
         // effet si clique
+        
+        this.sdeCan = sde;
+        //Image img = new Image("/assets/css/img/wateringcan.png");
+        //scene.setCursor(new ImageCursor(image));
     }
 
     /**

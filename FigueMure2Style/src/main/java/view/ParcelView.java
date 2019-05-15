@@ -3,6 +3,7 @@ package view;
 import java.util.HashMap;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
+import model.stylisticDevice.StylisticDeviceEnum;
 import observer.MouseEventSubscriber;
 
 /**
@@ -107,7 +108,7 @@ public class ParcelView implements View, MouseEventSubscriber {
     }
 
     @Override
-    public void mousePressed(String s) {
-        throw new UnsupportedOperationException("Clique sur une parcelle"); //To change body of generated methods, choose Tools | Templates.
+    public void mousePressed(String s, StylisticDeviceEnum sde) {
+        //TODO : agir sur plante en fonction sde
     }
 }

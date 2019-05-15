@@ -2,6 +2,7 @@ package observer;
 
 import java.util.ArrayList;
 import java.util.List;
+import model.stylisticDevice.StylisticDeviceEnum;
 
 /**
  * @author Victor Doucet doucet.victor@gmail.com
@@ -18,9 +19,9 @@ public abstract class MouseEventSubscription {
      * ses abonnés de l'évènement.
      * @param s type event
      */
-    public void mousePressed(String s) {
+    public void mousePressed(String s, StylisticDeviceEnum sde) {
         for (MouseEventSubscriber subscriber : subscribers) {
-            subscriber.mousePressed(s);
+            subscriber.mousePressed(s, sde);
         }
     }
     
