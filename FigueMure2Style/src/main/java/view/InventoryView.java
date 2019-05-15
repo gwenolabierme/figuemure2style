@@ -159,7 +159,7 @@ public class InventoryView {
         List<Text> listLabel = Arrays.asList(carotteInvenventory, figueInvenventory, mureInvenventory, patateInvenventory, pommeInvenventory, tomateInvenventory);
         // Vente
         Text sale = new Text();
-        sale.setText(listFigureDeStyle.get(0));
+        sale.setText(listFigureDeStyle.get(0).toUpperCase());
         gridpane.add(sale, 4, 4);
         gridpane.setHalignment(sale, HPos.CENTER);
 
@@ -227,7 +227,8 @@ public class InventoryView {
                 int score = u.getScore();
                 int nbXp = 0;
                 int nbVegetable = 0;
-
+                
+                Text inventoryVegeteble = new Text();
                 switch(vegetableSale) {
                     case "COMPARAISON" :   
                         if (u.getPlantUnlock().toString().contains(listUnlock.get(0))) {
@@ -241,7 +242,6 @@ public class InventoryView {
                             listInventory.set(0, u.getInventory().get(PlantVarietyEnum.CAROTTE));
                             
                             // Affiche le nouveau inventaire
-                            Text inventoryVegeteble = new Text();
                             inventoryVegeteble.setText(listInventory.get(0).toString());
                             gridpane.getChildren().remove(listLabel.get(0));
                             gridpane.add(inventoryVegeteble, 0, 1);
@@ -261,7 +261,6 @@ public class InventoryView {
                             listInventory.set(1, u.getInventory().get(PlantVarietyEnum.FIGUE));
                             
                             // Affiche le nouveau inventaire
-                            Text inventoryVegeteble = new Text();
                             inventoryVegeteble.setText(listInventory.get(1).toString());
                             gridpane.getChildren().remove(listLabel.get(1));
                             gridpane.add(inventoryVegeteble, 1, 1);
@@ -269,6 +268,82 @@ public class InventoryView {
                             gridpane.setValignment(inventoryVegeteble, VPos.BOTTOM);
                         }
                         break; 
+                    case "PERSONNIFICATION" :
+                        if (u.getPlantUnlock().toString().contains(listUnlock.get(2))) {
+                            // Met à jour le stock
+                            nbVegetable += listInventory.get(2);
+                            nbXp += mure.getNbXp() * nbVegetable;
+                            score += nbXp;
+                            
+                            // Vide les stock du légume
+                            u.emptyQtyStock(PlantVarietyEnum.MURE, u.getPseudo());
+                            listInventory.set(2, u.getInventory().get(PlantVarietyEnum.MURE));
+                            
+                            // Affiche le nouveau inventaire
+                            inventoryVegeteble.setText(listInventory.get(2).toString());
+                            gridpane.getChildren().remove(listLabel.get(2));
+                            gridpane.add(inventoryVegeteble, 2, 1);
+                            gridpane.setHalignment(inventoryVegeteble, HPos.CENTER);
+                            gridpane.setValignment(inventoryVegeteble, VPos.BOTTOM);
+                        }
+                        break;
+                    case "HYPERBOLE" :
+                        if (u.getPlantUnlock().toString().contains(listUnlock.get(3))) {
+                            // Met à jour le stock
+                            nbVegetable += listInventory.get(3);
+                            nbXp += mure.getNbXp() * nbVegetable;
+                            score += nbXp;
+                            
+                            // Vide les stock du légume
+                            u.emptyQtyStock(PlantVarietyEnum.PATATE, u.getPseudo());
+                            listInventory.set(3, u.getInventory().get(PlantVarietyEnum.PATATE));
+                            
+                            // Affiche le nouveau inventaire
+                            inventoryVegeteble.setText(listInventory.get(3).toString());
+                            gridpane.getChildren().remove(listLabel.get(3));
+                            gridpane.add(inventoryVegeteble, 3, 1);
+                            gridpane.setHalignment(inventoryVegeteble, HPos.CENTER);
+                            gridpane.setValignment(inventoryVegeteble, VPos.BOTTOM);
+                        }
+                        break;
+                    case "CHIASME" :
+                        if (u.getPlantUnlock().toString().contains(listUnlock.get(4))) {
+                            // Met à jour le stock
+                            nbVegetable += listInventory.get(4);
+                            nbXp += pomme.getNbXp() * nbVegetable;
+                            score += nbXp;
+                            
+                            // Vide les stock du légume
+                            u.emptyQtyStock(PlantVarietyEnum.POMME, u.getPseudo());
+                            listInventory.set(4, u.getInventory().get(PlantVarietyEnum.POMME));
+                            
+                            // Affiche le nouveau inventaire
+                            inventoryVegeteble.setText(listInventory.get(4).toString());
+                            gridpane.getChildren().remove(listLabel.get(4));
+                            gridpane.add(inventoryVegeteble, 4, 1);
+                            gridpane.setHalignment(inventoryVegeteble, HPos.CENTER);
+                            gridpane.setValignment(inventoryVegeteble, VPos.BOTTOM);
+                        }
+                        break;
+                    case "OXYMORE" :
+                        if (u.getPlantUnlock().toString().contains(listUnlock.get(5))) {
+                            // Met à jour le stock
+                            nbVegetable += listInventory.get(5);
+                            nbXp += tomate.getNbXp() * nbVegetable;
+                            score += nbXp;
+                            
+                            // Vide les stock du légume
+                            u.emptyQtyStock(PlantVarietyEnum.TOMATE, u.getPseudo());
+                            listInventory.set(5, u.getInventory().get(PlantVarietyEnum.TOMATE));
+                            
+                            // Affiche le nouveau inventaire
+                            inventoryVegeteble.setText(listInventory.get(5).toString());
+                            gridpane.getChildren().remove(listLabel.get(5));
+                            gridpane.add(inventoryVegeteble, 5, 1);
+                            gridpane.setHalignment(inventoryVegeteble, HPos.CENTER);
+                            gridpane.setValignment(inventoryVegeteble, VPos.BOTTOM);
+                        }
+                        break;    
                     default : 
                        break;
                 }

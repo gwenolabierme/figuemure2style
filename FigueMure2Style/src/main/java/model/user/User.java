@@ -536,12 +536,34 @@ public class User {
      * Vide le stock de la plante.
      *
      * @param variety variété de la plante
+     * @param pseudo utilisateur
      */
     public void emptyQtyStock(PlantVarietyEnum variety, String pseudo) {
         this.inventory.replace(variety, 0);
         BDFile f = new BDFile();
         Map mapUser = f.loadFile(pseudo);
-        mapUser.replace("PlantVarietyEnum.CAROTTE", inventory.get(PlantVarietyEnum.CAROTTE).toString());        
+        switch(variety.toString()) {
+            case "carotte" :
+                mapUser.replace("PlantVarietyEnum.CAROTTE", inventory.get(variety)); 
+                break;
+            case "figue" :
+                mapUser.replace("PlantVarietyEnum.FIGUE", inventory.get(variety));
+                break;
+            case "mure" :
+                mapUser.replace("PlantVarietyEnum.MURE", inventory.get(variety));
+                break;
+            case "patate" :
+                mapUser.replace("PlantVarietyEnum.PATATE", inventory.get(variety));
+                break;
+            case "pomme" :
+                mapUser.replace("PlantVarietyEnum.POMME", inventory.get(variety));
+                break;
+            case "tomate" :
+                mapUser.replace("PlantVarietyEnum.TOMATE", inventory.get(variety));
+                break;  
+            default:
+                break;
+        }     
     }
     
     /**
