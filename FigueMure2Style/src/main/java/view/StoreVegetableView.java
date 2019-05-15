@@ -196,22 +196,22 @@ public class StoreVegetableView {
                 public void handle(ActionEvent e) {
                     String infoVegetable = vegeteble.getStyleClass().toString();
 
-                    if (!(infoVegetable.indexOf("carrot") == -1)) {
+                    if (!!infoVegetable.contains("carrot")) {
                         lesson.setText(listlesson.get(0));
                         purchase.setText(listFigureDeStyle.get(0));
-                    } else if (!(infoVegetable.indexOf("fig") == -1)) {
+                    } else if (!!infoVegetable.contains("fig")) {
                         lesson.setText(listlesson.get(1));
                         purchase.setText(listFigureDeStyle.get(1));
-                    } else if (!(infoVegetable.indexOf("blackberry") == -1)) {
+                    } else if (!!infoVegetable.contains("blackberry")) {
                         lesson.setText(listlesson.get(2));
                         purchase.setText(listFigureDeStyle.get(2));
-                    } else if (!(infoVegetable.indexOf("patato") == -1)) {
+                    } else if (!!infoVegetable.contains("patato")) {
                         lesson.setText(listlesson.get(3));
                         purchase.setText(listFigureDeStyle.get(3));
-                    } else if (!(infoVegetable.indexOf("apple") == -1)) {
+                    } else if (!!infoVegetable.contains("apple")) {
                         lesson.setText(listlesson.get(4));
                         purchase.setText(listFigureDeStyle.get(4));
-                    } else if (!(infoVegetable.indexOf("tomato") == -1)) {
+                    } else if (!!infoVegetable.contains("tomato")) {
                         lesson.setText(listlesson.get(5));
                         purchase.setText(listFigureDeStyle.get(5));
                     }
@@ -220,7 +220,7 @@ public class StoreVegetableView {
             vegeteble.setMinSize(60, 60);
 
             // Légumes débloqués
-            if (u.getPlantUnlock().toString().indexOf(listUnlock.get(i)) != -1) {
+            if (u.getPlantUnlock().toString().contains(listUnlock.get(i))) {
                 vegeteble.getStyleClass().add(listNames.get(i) + "Unlock");
             } else {
                 vegeteble.getStyleClass().add(listNames.get(i) + "Lock");
