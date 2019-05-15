@@ -9,7 +9,8 @@ import observer.MouseEventSubscriber;
  *
  * @author jeremy
  */
-public class ParcelView implements View, MouseEventSubscriber{
+public class ParcelView implements View, MouseEventSubscriber {
+
     /**
      * Chemin jusqu'aux images.
      */
@@ -42,17 +43,17 @@ public class ParcelView implements View, MouseEventSubscriber{
      * Position en y.
      */
     private int y;
-    
+
     public ParcelView(GraphicsContext graphicsContext, boolean isUnlock) {
         this.baseInit(graphicsContext, isUnlock);
     }
-    
+
     public ParcelView(GraphicsContext graphicsContext, boolean isUnlock, int x, int y) {
         this.baseInit(graphicsContext, isUnlock);
         this.x = x;
         this.y = y;
     }
-    
+
     private void baseInit(GraphicsContext graphicsContext, boolean isUnlock) {
         this.graphicsContext = graphicsContext;
         this.isUnlock = isUnlock;
@@ -80,12 +81,12 @@ public class ParcelView implements View, MouseEventSubscriber{
     public void setY(int y) {
         this.y = y;
     }
-    
+
     public void update(boolean isUnlock) {
         this.isUnlock = isUnlock;
         this.CurrentImg = parcelImg.get(this.isUnlock);
     }
-    
+
     /**
      * Affichage de la plante.
      */
@@ -94,14 +95,14 @@ public class ParcelView implements View, MouseEventSubscriber{
     }
 
     /**
-     * Initialise les images de la pacelle lock ou unlock, en allant
-     * chercher l'image sous le format pathVersImg/parcel_etat.typeImg
-     * Exemple : assets/img/parcel_lock.png
+     * Initialise les images de la pacelle lock ou unlock, en allant chercher
+     * l'image sous le format pathVersImg/parcel_etat.typeImg Exemple :
+     * assets/img/parcel_lock.png
      */
     protected void initImg() {
-        parcelImg.put(Boolean.TRUE, new Image(imgPath 
+        parcelImg.put(Boolean.TRUE, new Image(imgPath
                 + "/parcel_unlock" + imgType));
-        parcelImg.put(Boolean.FALSE, new Image(imgPath 
+        parcelImg.put(Boolean.FALSE, new Image(imgPath
                 + "/parcel_lock" + imgType));
     }
 
@@ -109,6 +110,4 @@ public class ParcelView implements View, MouseEventSubscriber{
     public void mousePressed(String s) {
         throw new UnsupportedOperationException("Clique sur une parcelle"); //To change body of generated methods, choose Tools | Templates.
     }
-    
-    
 }

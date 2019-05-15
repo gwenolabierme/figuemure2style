@@ -29,7 +29,7 @@ public class StoreWateringcanView {
     private int width;
     private int height;
 
-    private String title = "FigueMûre2Style";
+    private final String title = "FigueMûre2Style";
 
     private static StoreModel model;
     private Stage stage;
@@ -41,12 +41,42 @@ public class StoreWateringcanView {
      */
     public StoreWateringcanView(User u) {
         Stage stage = new Stage();
-        HashSet<StylisticDevice> fertilizerList = null;
-        StoreWateringcanView swv = new StoreWateringcanView(stage, 800, 800, u, fertilizerList);
+        //HashSet<StylisticDevice> fertilizerList = null;
+        //StoreWateringcanView swv = new StoreWateringcanView(stage, 800, 800, u, fertilizerList);
+        this.model = new StoreModel(u);
+        StoreWateringcanView swv = new StoreWateringcanView(stage, 800, 800, u);
     }
 
     /**
-     * Constructeur NewGameView.
+     * Constructeur StoreWateringcanView.
+     *
+     * @param stage Relatif à Canvas pour la construction de la fenêtre
+     * @param w largeur de la fenêtre
+     * @param h hauteur de la fenêtre
+     * @param u utilisateur
+     */
+    public StoreWateringcanView(final Stage stage, int w, int h, User u) {
+        this.stage = stage;
+        this.model = new StoreModel(u);
+
+        GridPane gridpane = new GridPane();
+
+        fenetreInit(gridpane, u);
+
+        forFertilizers(gridpane, u, false);
+
+        // Background
+        gridpane.getStyleClass().add("other_background");
+
+        // Scene
+        Scene scene = new Scene(gridpane, w, h);
+        scene.getStylesheets().add("/assets/css/Background.css");
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    /**
+     * Constructeur StoreWateringcanView.
      *
      * @param stage Relatif à Canvas pour la construction de la fenêtre
      * @param w largeur de la fenêtre
@@ -54,10 +84,10 @@ public class StoreWateringcanView {
      * @param u utilisateur
      * @param fertilizerList liste de citation
      */
-    public StoreWateringcanView(final Stage stage, int w, int h, User u,
-            HashSet<StylisticDevice> fertilizerList) {
+    public StoreWateringcanView(final Stage stage, int w, int h, User u, HashSet<StylisticDevice> fertilizerList) {
         this.width = w;
         this.height = h;
+        //HashSet<StylisticDevice> fertilizerList = null;
         this.model = new StoreModel(u, fertilizerList);
         this.stage = stage;
 
@@ -176,8 +206,9 @@ public class StoreWateringcanView {
             @Override
             public void handle(ActionEvent e) {
                 // Fenetre : StoreWateringcanView
-                HashSet<StylisticDevice> fertilizerList = null;
-                StoreWateringcanView swv = new StoreWateringcanView(stage, 800, 800, u, fertilizerList);
+                //HashSet<StylisticDevice> fertilizerList = null;
+                //StoreWateringcanView swv = new StoreWateringcanView(stage, 800, 800, u, fertilizerList);
+                StoreWateringcanView swv = new StoreWateringcanView(stage, 800, 800, u);
             }
         });
         buttonWateringcan.setMinSize(100, 100);
@@ -204,7 +235,13 @@ public class StoreWateringcanView {
         }*/
 
         // Boutons : Arrosoires
+        int iLigne = 1;
+        int iCol = 0;
         for (int i = 0; i < 10; ++i) {
+            if (iCol >= 5) {
+                iLigne = 2;
+                iCol = 0;
+            }
 
             final int iWattCan = i % (u.getPlantUnlock().size() * 2);
 
@@ -218,12 +255,10 @@ public class StoreWateringcanView {
             });
             figureDeStyle.setMinSize(60, 60);
             figureDeStyle.getStyleClass().add("logoWateringcan");
-            if (i < 5) {
-                gridpane.add(figureDeStyle, i + 1, 1);
-            } else {
-                gridpane.add(figureDeStyle, i - 5 + 1, 3);
-            }
+            gridpane.add(figureDeStyle, iCol + 1, iLigne);
             gridpane.setHalignment(figureDeStyle, HPos.CENTER);
+
+            ++iCol;
         }
     }
 }

@@ -2,8 +2,6 @@
 package view;
 
 import controller.Controller;
-import java.lang.reflect.Array;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import javafx.event.ActionEvent;
@@ -33,7 +31,7 @@ public class InventoryView {
     private int width;
     private int height;
 
-    private String title = "FigueMûre2Style";
+    private final String title = "FigueMûre2Style";
 
     /**
      * Constructeur sans paramètres.
@@ -225,6 +223,5 @@ public class InventoryView {
         scene.getStylesheets().add("/assets/css/Background.css");
         stage.setScene(scene);
         stage.show();
-
     }    
 }
