@@ -6,6 +6,7 @@ import javafx.event.EventHandler;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.MouseEvent;
 import model.FieldModel;
+import model.stylisticDevice.StylisticDeviceEnum;
 import view.plant.PlantView;
 
 /**
@@ -109,6 +110,14 @@ public class FieldView extends CanvasView {
                 controller.mousePressed(event.getButton().toString());
             }
         });
+    }
+        
+    public FieldView(FieldModel fieldModel, int width, int height, StylisticDeviceEnum sde) {
+        this(fieldModel, width, height);
+        
+        //TODO : traiter sde
+        // changer pointeur souris
+        // effet si clique
     }
 
     /**

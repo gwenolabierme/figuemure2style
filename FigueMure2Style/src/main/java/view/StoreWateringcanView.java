@@ -255,7 +255,7 @@ public class StoreWateringcanView {
                 public void handle(ActionEvent e) {
                     // Fenetre : Figure de style
                     WateringcanView wv = new WateringcanView(stage, 
-                            App.windowsWidht, App.windowsHeight, model, iWattCan);
+                            App.windowsWidht, App.windowsHeight, model, iWattCan, u);
                 }
             });
             figureDeStyle.setMinSize(60, 60);
