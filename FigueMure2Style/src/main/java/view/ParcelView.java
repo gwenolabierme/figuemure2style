@@ -3,8 +3,12 @@ package view;
 import java.util.HashMap;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
+import model.plant.GrowthStateEnum;
+import model.plant.Plant;
 import model.stylisticDevice.StylisticDeviceEnum;
+import model.user.User;
 import observer.MouseEventSubscriber;
+import view.plant.PlantView;
 
 /**
  *
@@ -44,23 +48,28 @@ public class ParcelView implements View, MouseEventSubscriber {
      * Position en y.
      */
     private int y;
+    /**
+     * Plante view sur parcelle
+     */
+    private PlantView plantView;
 
-    public ParcelView(GraphicsContext graphicsContext, boolean isUnlock) {
-        this.baseInit(graphicsContext, isUnlock);
+    public ParcelView(GraphicsContext graphicsContext, boolean isUnlock, PlantView plant) {
+        this.baseInit(graphicsContext, isUnlock, plant);
     }
 
-    public ParcelView(GraphicsContext graphicsContext, boolean isUnlock, int x, int y) {
-        this.baseInit(graphicsContext, isUnlock);
+    public ParcelView(GraphicsContext graphicsContext, boolean isUnlock, PlantView plant, int x, int y) {
+        this.baseInit(graphicsContext, isUnlock, plant);
         this.x = x;
         this.y = y;
     }
 
-    private void baseInit(GraphicsContext graphicsContext, boolean isUnlock) {
+    private void baseInit(GraphicsContext graphicsContext, boolean isUnlock, PlantView plant) {
         this.graphicsContext = graphicsContext;
         this.isUnlock = isUnlock;
         this.parcelImg = new HashMap();
         this.initImg();
         this.CurrentImg = parcelImg.get(this.isUnlock);
+        this.plantView = plant;
     }
 
     public Image getCurrentImg() {
@@ -93,6 +102,9 @@ public class ParcelView implements View, MouseEventSubscriber {
      */
     public void display() {
         graphicsContext.drawImage(this.CurrentImg, x, y);
+        if (this.plantView != null) {
+            this.plantView.display();
+        }
     }
 
     /**
@@ -110,5 +122,37 @@ public class ParcelView implements View, MouseEventSubscriber {
     @Override
     public void mousePressed(String s, StylisticDeviceEnum sde) {
         //TODO : agir sur plante en fonction sde
+        if (this.plantView != null) {
+        
+            Plant plant = this.plantView.getModel();
+
+            if (plant.getStyDevEat().equals(sde)) {
+                if (plant.getGrowthState().equals(GrowthStateEnum.SPROUT)) {
+                    plant.setGrowthState(GrowthStateEnum.MEDIUM);
+                } else {
+                    if (plant.getGrowthState().equals(GrowthStateEnum.MEDIUM)) {
+                        plant.setGrowthState(GrowthStateEnum.FINAL);        
+                    } else {
+                        if (plant.getGrowthState().equals(GrowthStateEnum.FINAL)) {
+                            User user = JfxView.user;
+                            user.setScore(user.getScore() + 
+                                    plant.getPrice(), user.getPseudo());
+                            if (user.getInventory().containsKey(plant.getName())) {
+                                int nbPlant = user.getInventory().get(plant.getName());
+                                user.getInventory().put(plant.getName(), nbPlant+1);
+                            }
+
+
+                            this.plantView = null;      
+                        }    
+                    }
+                }
+            } else {
+                plant.setLife(plant.getLife() + 1);
+                if (plant.getLife() <= 0) {
+                    this.plantView = null;
+                }
+            }
+        }
     }
 }

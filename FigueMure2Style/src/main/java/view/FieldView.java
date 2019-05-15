@@ -42,10 +42,6 @@ public class FieldView extends CanvasView {
      */
     private ParcelView[][] parcelView;
     /**
-     * Images plantes.
-     */
-    private PlantView[][] plantView;
-    /**
      * Arrosoir
      */
     private StylisticDeviceEnum sdeCan;
@@ -75,33 +71,34 @@ public class FieldView extends CanvasView {
         gc = this.getGraphicsContext2D();
 
         parcelView = new ParcelView[App.gardenSize][App.gardenSize];
-        plantView = new PlantView[App.gardenSize][App.gardenSize];
 
         for (int i = 0; i < App.gardenSize; ++i) {
             for (int j = 0; j < App.gardenSize; ++j) {
                 if (App.freePlotBegin * i + j < fm.getNbFreePlot()) {
-                    this.parcelView[i][j] = new ParcelView(gc, true);
+                    PlantView pv;
+                    if (fm.getPlant(i, j) == null) {
+                        pv = null;
+                    } else {
+                        pv = new PlantView(gc, fm.getPlant(i, j));
+                        pv.setX((int) ((j) * (640 / (App.gardenSize))
+                                //+ this.parcelView[i][j].getCurrentImg().getWidth() / 2
+                                - pv.getCurrentImg().getWidth() / 2)); // on centre le légume sur la parcelle
+                        pv.setY((int) (i * (640 / (App.gardenSize))
+                                //+ this.parcelView[i][j].getCurrentImg().getHeight() / 2
+                                - pv.getCurrentImg().getHeight() / 2));
+                    }
+                    
+                    this.parcelView[i][j] = new ParcelView(gc, true, pv);
                     this.parcelView[i][j].setX((int) ((j) * (640 / (App.gardenSize))
                             + this.parcelView[i][j].getCurrentImg().getWidth() / 2));
                     this.parcelView[i][j].setY((int) (i * (640 / (App.gardenSize))
                             + this.parcelView[i][j].getCurrentImg().getHeight() / 2));
                 } else {
-                    this.parcelView[i][j] = new ParcelView(gc, false);
+                    this.parcelView[i][j] = new ParcelView(gc, false, null);
                     this.parcelView[i][j].setX((int) ((j) * (640 / (App.gardenSize))
                             + this.parcelView[i][j].getCurrentImg().getWidth() / 2)); // on centre la parcelle sur sa colonne
                     this.parcelView[i][j].setY((int) (i * (640 / (App.gardenSize))
                             + this.parcelView[i][j].getCurrentImg().getHeight() / 2));
-                }
-                if (fm.getPlant(i, j) == null) {
-                    this.plantView[i][j] = null;
-                } else {
-                    this.plantView[i][j] = new PlantView(gc, fm.getPlant(i, j));
-                    this.plantView[i][j].setX((int) ((j) * (640 / (App.gardenSize))
-                            + this.parcelView[i][j].getCurrentImg().getWidth() / 2
-                            - this.plantView[i][j].getCurrentImg().getWidth() / 2)); // on centre le légume sur la parcelle
-                    this.plantView[i][j].setY((int) (i * (640 / (App.gardenSize))
-                            + this.parcelView[i][j].getCurrentImg().getHeight() / 2
-                            - this.plantView[i][j].getCurrentImg().getHeight() / 2));
                 }
             }
         }
@@ -139,9 +136,6 @@ public class FieldView extends CanvasView {
         for (int i = 0; i < App.gardenSize; ++i) {
             for (int j = 0; j < App.gardenSize; ++j) {
                 this.parcelView[i][j].display();
-                if (this.plantView[i][j] != null) {
-                    this.plantView[i][j].display();
-                }
             }
         }
     }
@@ -158,7 +152,7 @@ public class FieldView extends CanvasView {
         for (int i = 0; i < App.gardenSize; ++i) {
             for (int j = 0; j < App.gardenSize; ++j) {
                 this.controller.addSubscriber(this.parcelView[i][j]);
-                this.controller.addSubscriber(this.plantView[i][j]);
+                //this.controller.addSubscriber(this.plantView[i][j]);
             }
         }
     }

@@ -33,6 +33,10 @@ public class JfxView implements View {
      * Vue à afficher dans la fenêtre.
      */
     private CanvasView view;
+    /**
+     * User
+     */
+    public static User user;
 
     /**
      * Constructeur de JfxView.
@@ -42,6 +46,7 @@ public class JfxView implements View {
      * @param u Utilisateur
      */
     public JfxView(String title, Stage stage, User u) {
+        this.user = u;
         this.stage = stage;
 
         // Nom de la fenetre
