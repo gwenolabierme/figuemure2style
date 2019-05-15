@@ -12,6 +12,7 @@ public class Mure extends Fruit {
         this.name = PlantVarietyEnum.MURE;
         this.styDevEat = StylisticDeviceEnum.PERSONNIFICATION;
         this.price = 1;
+        this.nbXp = 5;
     }
     
 }

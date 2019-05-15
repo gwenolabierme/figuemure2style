@@ -1,7 +1,5 @@
 package model;
 
-import java.util.Collection;
-import java.util.Collections;
 import java.util.EnumSet;
 import java.util.HashSet;
 import java.util.Random;
@@ -9,7 +7,7 @@ import java.util.Set;
 import model.plant.Carotte;
 import model.plant.Figue;
 import model.plant.Mure;
-import model.plant.Pattate;
+import model.plant.Patate;
 import model.plant.PlantVarietyEnum;
 import model.plant.Pomme;
 import model.plant.Tomate;
@@ -58,8 +56,8 @@ public class StoreModel {
                         Mure p = new Mure();
                         sdeList.add(p.getStyDevEat());
                     } else {
-                        if (plant.equals(PlantVarietyEnum.PATATTE)) {
-                            Pattate p = new Pattate();
+                        if (plant.equals(PlantVarietyEnum.PATATE)) {
+                            Patate p = new Patate();
                             sdeList.add(p.getStyDevEat());
                         } else {
                             if (plant.equals(PlantVarietyEnum.POMME)) {

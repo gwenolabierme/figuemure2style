@@ -39,14 +39,10 @@ public class DashbordView {
 
     private final String title = "FigueMûre2Style";
     
-    private final List<String> listUnlock = Arrays.asList("carotte", "figue", "mure", "patatte", "pomme", "tomate");
+    private final List<String> listUnlock = Arrays.asList("carotte", "figue", "mure", "patate", "pomme", "tomate");
     private final List<String> listFigureDeStyle = Arrays.asList("COMPARAISON", "PERIPHRASE", "PERSONNIFICATION", "HYPERBOLE", "CHIASME", "OXYMORE");
         
     private TableView<UserVegetableRatio> table = new TableView<UserVegetableRatio>();
-        
-    //private UserVegetableRatio uRatio = new UserVegetableRatio();
-        
-    
 
     /**
      * Constructeur sans paramètres.
@@ -132,7 +128,7 @@ public class DashbordView {
             new UserVegetableRatio(listUnlock.get(0) + "Unlock", "The Button", listFigureDeStyle.get(0), String.valueOf(mapRatio.get(PlantVarietyEnum.CAROTTE).getRatio())),
             new UserVegetableRatio(listUnlock.get(1) + "Unlock", "The Button", listFigureDeStyle.get(1), String.valueOf(mapRatio.get(PlantVarietyEnum.FIGUE).getRatio())),
             new UserVegetableRatio(listUnlock.get(2) + "Unlock", "The Button", listFigureDeStyle.get(2), String.valueOf(mapRatio.get(PlantVarietyEnum.MURE).getRatio())),
-            new UserVegetableRatio(listUnlock.get(3) + "Unlock", "The Button", listFigureDeStyle.get(3), String.valueOf(mapRatio.get(PlantVarietyEnum.PATATTE).getRatio())),
+            new UserVegetableRatio(listUnlock.get(3) + "Unlock", "The Button", listFigureDeStyle.get(3), String.valueOf(mapRatio.get(PlantVarietyEnum.PATATE).getRatio())),
             new UserVegetableRatio(listUnlock.get(4) + "Unlock", "The Button", listFigureDeStyle.get(4), String.valueOf(mapRatio.get(PlantVarietyEnum.POMME).getRatio())),
             new UserVegetableRatio(listUnlock.get(5) + "Unlock", "The Button", listFigureDeStyle.get(5), String.valueOf(mapRatio.get(PlantVarietyEnum.TOMATE).getRatio()))
         );
