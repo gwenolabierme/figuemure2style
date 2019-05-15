@@ -222,8 +222,10 @@ public class StoreVegetableView {
             // Légumes débloqués
             if (u.getPlantUnlock().toString().contains(listUnlock.get(i))) {
                 vegeteble.getStyleClass().add(listNames.get(i) + "Unlock");
+                vegeteble.setDisable(false);
             } else {
                 vegeteble.getStyleClass().add(listNames.get(i) + "Lock");
+                vegeteble.setDisable(true);
             }
 
             Text titleVegeteble = new Text();
