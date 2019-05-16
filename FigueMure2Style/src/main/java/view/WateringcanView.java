@@ -126,7 +126,7 @@ public class WateringcanView {
 
                 FieldModel fieldModel = new FieldModel();
                 FieldView fieldView = new FieldView(fieldModel, 
-                        App.windowsWidht, App.windowsHeight);
+                        App.windowsWidht, App.windowsHeight, fertilizer.getSdType());
 
                 Controller controller = Controller.getControler();
                 fieldView.setControler(controller);

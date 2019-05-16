@@ -91,17 +91,17 @@ public class FieldView extends CanvasView {
                             pv = new PlantView(gc, fm.getPlant(i, j));
                         }
 
-                        this.parcelView[i][j] = new ParcelView(gc, true, pv);
-                        this.parcelView[i][j].setX((int) ((j) * (640 / (App.gardenSize))
-                                + this.parcelView[i][j].getCurrentImg().getWidth() / 2));
-                        this.parcelView[i][j].setY((int) (i * (640 / (App.gardenSize))
-                                + this.parcelView[i][j].getCurrentImg().getHeight() / 2));
+                        parcelView[i][j] = new ParcelView(gc, true, pv);
+                        parcelView[i][j].setX((int) ((j) * (640 / (App.gardenSize))
+                                + parcelView[i][j].getCurrentImg().getWidth() / 2));
+                        parcelView[i][j].setY((int) (i * (640 / (App.gardenSize))
+                                + parcelView[i][j].getCurrentImg().getHeight() / 2));
                     } else {
-                        this.parcelView[i][j] = new ParcelView(gc, false, null);
-                        this.parcelView[i][j].setX((int) ((j) * (640 / (App.gardenSize))
-                                + this.parcelView[i][j].getCurrentImg().getWidth() / 2)); // on centre la parcelle sur sa colonne
-                        this.parcelView[i][j].setY((int) (i * (640 / (App.gardenSize))
-                                + this.parcelView[i][j].getCurrentImg().getHeight() / 2));
+                        parcelView[i][j] = new ParcelView(gc, false, null);
+                        parcelView[i][j].setX((int) ((j) * (640 / (App.gardenSize))
+                                + parcelView[i][j].getCurrentImg().getWidth() / 2)); // on centre la parcelle sur sa colonne
+                        parcelView[i][j].setY((int) (i * (640 / (App.gardenSize))
+                                + parcelView[i][j].getCurrentImg().getHeight() / 2));
                     }
                 }
             }
@@ -161,7 +161,7 @@ public class FieldView extends CanvasView {
         // Affichage le jardin
         for (int i = 0; i < App.gardenSize; ++i) {
             for (int j = 0; j < App.gardenSize; ++j) {
-                this.parcelView[i][j].display();
+                parcelView[i][j].display();
             }
         }
     }
