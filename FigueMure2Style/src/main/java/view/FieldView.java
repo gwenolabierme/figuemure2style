@@ -116,11 +116,11 @@ public class FieldView extends CanvasView {
             @Override
             public void handle(MouseEvent event) {
                 if (sdeCan != null) {
-                    controller.mousePressed(event.getButton().toString(), sdeCan);
+                    controller.mousePressed(event.getButton().toString(), sdeCan, event.getX(), event.getY());
                     sdeCan = null;  
                 }
                 if (pveBought != null) {
-                    controller.mousePressed(event.getButton().toString(), pveBought);
+                    controller.mousePressed(event.getButton().toString(), pveBought, event.getX(), event.getY());
                     pveBought = null;
                 }
             }

@@ -20,9 +20,9 @@ public abstract class MouseEventSubscription {
      * ses abonnés de l'évènement.
      * @param s type event
      */
-    public void mousePressed(String s, StylisticDeviceEnum sde) {
+    public void mousePressed(String s, StylisticDeviceEnum sde, double x, double y) {
         for (MouseEventSubscriber subscriber : subscribers) {
-            subscriber.mousePressed(s, sde);
+            subscriber.mousePressed(s, sde, x, y);
         }
     }
     
@@ -31,9 +31,9 @@ public abstract class MouseEventSubscription {
      * ses abonnés de l'évènement.
      * @param s type event
      */
-    public void mousePressed(String s, PlantVarietyEnum pve) {
+    public void mousePressed(String s, PlantVarietyEnum pve, double x, double y) {
         for (MouseEventSubscriber subscriber : subscribers) {
-            subscriber.mousePressed(s, pve);
+            subscriber.mousePressed(s, pve, x, y);
         }
     }
     

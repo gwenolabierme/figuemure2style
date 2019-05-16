@@ -146,72 +146,85 @@ public class ParcelView implements View, MouseEventSubscriber {
     }
 
     @Override
-    public void mousePressed(String s, StylisticDeviceEnum sde) {
-        //TODO : agir sur plante en fonction sde
-        if (this.plantView != null) {
+    public void mousePressed(String s, StylisticDeviceEnum sde, double x, double y) {
         
-            Plant plant = this.plantView.getModel();
+        if((x >= this.getX()) && (x <= this.getX() + this.CurrentImg.getWidth())
+                && (y >= this.getY()) && (y <= this.getY() + this.CurrentImg.getHeight())){
+            System.out.println("Arrose");
+            if (this.plantView != null) {
 
-            if (plant.getStyDevEat().equals(sde)) {
-                if (plant.getGrowthState().equals(GrowthStateEnum.SPROUT)) {
-                    plant.setGrowthState(GrowthStateEnum.MEDIUM);
-                } else {
-                    if (plant.getGrowthState().equals(GrowthStateEnum.MEDIUM)) {
-                        plant.setGrowthState(GrowthStateEnum.FINAL);        
+                Plant plant = this.plantView.getModel();
+
+                if (plant.getStyDevEat().equals(sde)) {
+                    if (plant.getGrowthState().equals(GrowthStateEnum.SPROUT)) {
+                        plant.setGrowthState(GrowthStateEnum.MEDIUM);
                     } else {
-                        if (plant.getGrowthState().equals(GrowthStateEnum.FINAL)) {
-                            User user = JfxView.user;
-                            user.setScore(user.getScore() + 
-                                    plant.getPrice(), user.getPseudo());
-                            if (user.getInventory().containsKey(plant.getName())) {
-                                int nbPlant = user.getInventory().get(plant.getName());
-                                user.getInventory().put(plant.getName(), nbPlant+1);
-                            }
+                        if (plant.getGrowthState().equals(GrowthStateEnum.MEDIUM)) {
+                            plant.setGrowthState(GrowthStateEnum.FINAL);        
+                        } else {
+                            if (plant.getGrowthState().equals(GrowthStateEnum.FINAL)) {
+                                User user = JfxView.user;
+                                user.setScore(user.getScore() + 
+                                        plant.getPrice(), user.getPseudo());
+                                if (user.getInventory().containsKey(plant.getName())) {
+                                    int nbPlant = user.getInventory().get(plant.getName());
+                                    user.getInventory().put(plant.getName(), nbPlant+1);
+                                }
 
 
-                            this.plantView = null;      
-                        }    
+                                this.plantView = null;      
+                            }    
+                        }
+                    }
+                } else {
+                    plant.setLife(plant.getLife() + 1);
+                    if (plant.getLife() <= 0) {
+                        this.plantView = null;
                     }
                 }
-            } else {
-                plant.setLife(plant.getLife() + 1);
-                if (plant.getLife() <= 0) {
-                    this.plantView = null;
-                }
+                
+                if (this.plantView != null)
+                    System.out.println(this.plantView.getModel().getGrowthState());
+                else
+                    System.out.println("Plante recolté ou morte");
             }
         }
     }
 
     @Override
-    public void mousePressed(String s, PlantVarietyEnum plant) {
-        if (this.plantView == null) {
-            Plant p = null;
-            
-            if (plant.equals(PlantVarietyEnum.CAROTTE)) {
-                p = new Carotte();
-            } else {
-                if (plant.equals(PlantVarietyEnum.FIGUE)) {
-                    p = new Figue();
+    public void mousePressed(String s, PlantVarietyEnum plant, double x, double y) {
+        if((x >= this.getX()) && (x <= this.getX() + this.CurrentImg.getWidth())
+                && (y >= this.getY()) && (y <= this.getY() + this.CurrentImg.getHeight())){
+            System.out.println("Plante");
+            if (this.plantView == null) {
+                Plant p = null;
+
+                if (plant.equals(PlantVarietyEnum.CAROTTE)) {
+                    p = new Carotte();
                 } else {
-                    if (plant.equals(PlantVarietyEnum.MURE)) {
-                        p = new Mure();
+                    if (plant.equals(PlantVarietyEnum.FIGUE)) {
+                        p = new Figue();
                     } else {
-                        if (plant.equals(PlantVarietyEnum.PATATTE)) {
-                            p = new Pattate();
+                        if (plant.equals(PlantVarietyEnum.MURE)) {
+                            p = new Mure();
                         } else {
-                            if (plant.equals(PlantVarietyEnum.POMME)) {
-                                p = new Pomme();
+                            if (plant.equals(PlantVarietyEnum.PATATTE)) {
+                                p = new Pattate();
                             } else {
-                                if (plant.equals(PlantVarietyEnum.TOMATE)) {
-                                    p = new Tomate();
+                                if (plant.equals(PlantVarietyEnum.POMME)) {
+                                    p = new Pomme();
+                                } else {
+                                    if (plant.equals(PlantVarietyEnum.TOMATE)) {
+                                        p = new Tomate();
+                                    }
                                 }
                             }
                         }
                     }
                 }
+                this.plantView = new PlantView(graphicsContext, p);
+                setPlantPos();
             }
-            this.plantView = new PlantView(graphicsContext, p);
-            setPlantPos();
         }
     }
 }
