@@ -15,7 +15,7 @@ public class PlantView implements View{
     /**
      * Chemin jusqu'aux images.
      */
-    protected final String imgPath = "/assets/img";
+    protected final String imgPath = "/assets/img/vegetable";
     /**
      * Format des images.
      */
@@ -106,12 +106,13 @@ public class PlantView implements View{
      * Exemple : assets/img/carotte_sprout.png
      */
     protected void initImg() {
+        System.err.println(imgPath + "/sprout" + imgType);
         growthStatesImg.put(GrowthStateEnum.SPROUT, new Image(imgPath 
-                + "/" + model.getName().toString() + "_sprout" + imgType));
+                + "/sprout" + imgType));
         growthStatesImg.put(GrowthStateEnum.MEDIUM, new Image(imgPath 
-                + "/" + model.getName().toString() + "_medium" + imgType));
+                + "/medium" + imgType));
         growthStatesImg.put(GrowthStateEnum.FINAL, new Image(imgPath 
-                + "/" + model.getName().toString() + "_final" + imgType));
+                + "/" + model.getName().toString() + imgType));
     }
     
 }
