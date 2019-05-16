@@ -96,6 +96,7 @@ public class PlantView implements View{
      * Affichage de la plante.
      */
     public void display() {
+        update();
         graphicsContext.drawImage(this.CurrentImg, 0, 0);
     }
 
