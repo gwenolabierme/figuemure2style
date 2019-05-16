@@ -97,7 +97,7 @@ public class PlantView implements View{
      */
     public void display() {
         update();
-        graphicsContext.drawImage(this.CurrentImg, 0, 0);
+        graphicsContext.drawImage(this.CurrentImg, this.x, this.y);
     }
 
     /**
