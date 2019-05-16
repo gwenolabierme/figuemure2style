@@ -1,5 +1,6 @@
 package observer;
 
+import model.plant.PlantVarietyEnum;
 import model.stylisticDevice.StylisticDeviceEnum;
 
 /**
@@ -11,4 +12,9 @@ public interface MouseEventSubscriber {
      * @param s Touche pressée
      */
     void mousePressed(String s, StylisticDeviceEnum sde);
+    /**
+     * Appelé quand la souris est utilisée.
+     * @param s Touche pressée
+     */
+    void mousePressed(String s, PlantVarietyEnum pve);
 }

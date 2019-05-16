@@ -1,10 +1,19 @@
 package view;
 
+import figuemure2style.App;
 import java.util.HashMap;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
+import model.FieldModel;
+import model.plant.Carotte;
+import model.plant.Figue;
 import model.plant.GrowthStateEnum;
+import model.plant.Mure;
+import model.plant.Pattate;
 import model.plant.Plant;
+import model.plant.PlantVarietyEnum;
+import model.plant.Pomme;
+import model.plant.Tomate;
 import model.stylisticDevice.StylisticDeviceEnum;
 import model.user.User;
 import observer.MouseEventSubscriber;
@@ -70,6 +79,8 @@ public class ParcelView implements View, MouseEventSubscriber {
         this.initImg();
         this.CurrentImg = parcelImg.get(this.isUnlock);
         this.plantView = plant;
+        
+        setPlantPos();
     }
 
     public Image getCurrentImg() {
@@ -118,6 +129,21 @@ public class ParcelView implements View, MouseEventSubscriber {
         parcelImg.put(Boolean.FALSE, new Image(imgPath
                 + "/parcel_lock" + imgType));
     }
+    
+    private void setPlantPos() {
+        if (plantView != null) {
+            plantView.setX((int) (this.getX()
+                    + this.getCurrentImg().getWidth() / 2 
+                    - plantView.getCurrentImg().getWidth() / 2)); // on centre le légume sur la parcelle
+            plantView.setY((int) (this.getY()
+                    + this.getCurrentImg().getHeight() / 2
+                    - plantView.getCurrentImg().getHeight() / 2));
+        }
+    }
+
+    public PlantView getPlantView() {
+        return plantView;
+    }
 
     @Override
     public void mousePressed(String s, StylisticDeviceEnum sde) {
@@ -153,6 +179,39 @@ public class ParcelView implements View, MouseEventSubscriber {
                     this.plantView = null;
                 }
             }
+        }
+    }
+
+    @Override
+    public void mousePressed(String s, PlantVarietyEnum plant) {
+        if (this.plantView == null) {
+            Plant p = null;
+            
+            if (plant.equals(PlantVarietyEnum.CAROTTE)) {
+                p = new Carotte();
+            } else {
+                if (plant.equals(PlantVarietyEnum.FIGUE)) {
+                    p = new Figue();
+                } else {
+                    if (plant.equals(PlantVarietyEnum.MURE)) {
+                        p = new Mure();
+                    } else {
+                        if (plant.equals(PlantVarietyEnum.PATATTE)) {
+                            p = new Pattate();
+                        } else {
+                            if (plant.equals(PlantVarietyEnum.POMME)) {
+                                p = new Pomme();
+                            } else {
+                                if (plant.equals(PlantVarietyEnum.TOMATE)) {
+                                    p = new Tomate();
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            this.plantView = new PlantView(graphicsContext, p);
+            setPlantPos();
         }
     }
 }

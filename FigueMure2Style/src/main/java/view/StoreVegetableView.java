@@ -334,8 +334,18 @@ public class StoreVegetableView {
                 System.out.println(u.getMoney());
 
                 // Plante le légume
+                JfxView gameView = new JfxView(title.getText(), stage, u);
+                
                 fieldModel = new FieldModel();
                 fv = new FieldView(fieldModel, App.windowsWidht, App.windowsHeight, pve);
+                
+                Controller controller = Controller.getControler();
+                fv.setControler(controller);
+                controller.addUpdateView(gameView);
+                controller.setModel(fieldModel);
+                gameView.setView(fv);
+
+                controller.startTimer();
             }
         });
         buttonBuy.setMinSize(200, 50);

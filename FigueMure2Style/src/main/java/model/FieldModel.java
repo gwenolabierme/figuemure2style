@@ -15,7 +15,7 @@ public class FieldModel implements Serializable {
     /**
      * Mode debug ?
      */
-    private final boolean debug = true;
+    private final boolean debug = false;
     /**
      * Nombre de parcelles dispo au début.
      */
