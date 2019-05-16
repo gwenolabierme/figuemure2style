@@ -291,6 +291,7 @@ public class StoreVegetableView {
                         pve = PlantVarietyEnum.CAROTTE;
                         fieldModel = new FieldModel();
                         fv = new FieldView(fieldModel, App.windowsWidht, App.windowsHeight, pve);
+                        System.out.println(u.getMoney());
                         break;
                     case "PERIPHRASE":
                         // Met à jour l'argent 
