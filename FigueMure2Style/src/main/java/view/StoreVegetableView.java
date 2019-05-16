@@ -40,7 +40,7 @@ public class StoreVegetableView {
     private int height;
 
     private final String title = "FigueMûre2Style";
-    
+
     // Listes de données : Fuits et légumes
     private final Plant carotte = new Carotte();
     private final Plant figue = new Figue();
@@ -48,19 +48,19 @@ public class StoreVegetableView {
     private final Plant patate = new Pattate();
     private final Plant pomme = new Pomme();
     private final Plant tomate = new Tomate();
-    
+
     private final List<String> listNames = Arrays.asList("carrot", "fig", "blackberry", "patato", "apple", "tomato");
     private final List<String> listFigureDeStyle = Arrays.asList(carotte.getStyDevEat().toString(), figue.getStyDevEat().toString(), mure.getStyDevEat().toString(), patate.getStyDevEat().toString(), pomme.getStyDevEat().toString(), tomate.getStyDevEat().toString());
     private final List<String> listPrice = Arrays.asList(Integer.toString(carotte.getPrice()), Integer.toString(figue.getPrice()), Integer.toString(mure.getPrice()), Integer.toString(patate.getPrice()), Integer.toString(pomme.getPrice()), Integer.toString(tomate.getPrice()));
     private final List<String> listUnlock = Arrays.asList(carotte.getName().toString(), figue.getName().toString(), mure.getName().toString(), patate.getName().toString(), pomme.getName().toString(), tomate.getName().toString());
-    
+
     /**
      * Constructeur sans paramètres.
      */
     public StoreVegetableView() {
         Stage stage = new Stage();
         User u = new User();
-        StoreVegetableView swv = new StoreVegetableView(stage, 
+        StoreVegetableView swv = new StoreVegetableView(stage,
                 App.windowsWidht, App.windowsHeight, u);
     }
 
@@ -120,7 +120,7 @@ public class StoreVegetableView {
                 JfxView gameView = new JfxView(title, stage, u);
 
                 FieldModel fieldModel = new FieldModel();
-                FieldView fieldView = new FieldView(fieldModel, 
+                FieldView fieldView = new FieldView(fieldModel,
                         App.windowsWidht, App.windowsHeight);
 
                 Controller controller = Controller.getControler();
@@ -157,7 +157,7 @@ public class StoreVegetableView {
             @Override
             public void handle(ActionEvent e) {
                 // Fenetre : StoreVegetableView
-                StoreVegetableView svv = new StoreVegetableView(stage, 
+                StoreVegetableView svv = new StoreVegetableView(stage,
                         App.windowsWidht, App.windowsHeight, u);
             }
         });
@@ -174,7 +174,7 @@ public class StoreVegetableView {
                 // Fenetre : StoreWateringcanView
                 //HashSet<StylisticDevice> fertilizerList = null;
                 //StoreWateringcanView swv = new StoreWateringcanView(stage, 800, 800, u, fertilizerList);
-                StoreWateringcanView swv = new StoreWateringcanView(stage, 
+                StoreWateringcanView swv = new StoreWateringcanView(stage,
                         App.windowsWidht, App.windowsHeight, u);
             }
         });
@@ -267,33 +267,89 @@ public class StoreVegetableView {
             gridpane.setValignment(priceVegeteble, VPos.BOTTOM);
 
         }
-        
+
         // Bouton : Acheter
         Button buttonBuy = new Button("Acheter");
         buttonBuy.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent e) {
-                // TODO
                 String vegetableBuy = purchase.getText();
                 double money = u.getMoney();
                 int priceVegetable = 0;
-                
-                switch(vegetableBuy) {
-                    case "COMPARAISON" :   
+
+                PlantVarietyEnum pve;
+                FieldModel fieldModel;
+                FieldView fv;
+                switch (vegetableBuy) {
+                    case "COMPARAISON":
                         // Met à jour l'argent 
                         priceVegetable += Integer.parseInt(listPrice.get(0));
                         money -= priceVegetable;
                         u.setMoney(money, u.getPseudo());
-                        
+
                         // Plante le légume
-                        PlantVarietyEnum pve = PlantVarietyEnum.CAROTTE;
-                        FieldModel fieldModel = new FieldModel();
-                        FieldView fv = new FieldView(fieldModel, App.windowsWidht, App.windowsHeight, pve);
-                        break; 
-                    default :
+                        pve = PlantVarietyEnum.CAROTTE;
+                        fieldModel = new FieldModel();
+                        fv = new FieldView(fieldModel, App.windowsWidht, App.windowsHeight, pve);
+                        break;
+                    case "PERIPHRASE":
+                        // Met à jour l'argent 
+                        priceVegetable += Integer.parseInt(listPrice.get(1));
+                        money -= priceVegetable;
+                        u.setMoney(money, u.getPseudo());
+
+                        // Plante le légume
+                        pve = PlantVarietyEnum.FIGUE;
+                        fieldModel = new FieldModel();
+                        fv = new FieldView(fieldModel, App.windowsWidht, App.windowsHeight, pve);
+                        break;
+                    case "PERSONNIFICATION":
+                        // Met à jour l'argent 
+                        priceVegetable += Integer.parseInt(listPrice.get(2));
+                        money -= priceVegetable;
+                        u.setMoney(money, u.getPseudo());
+
+                        // Plante le légume
+                        pve = PlantVarietyEnum.MURE;
+                        fieldModel = new FieldModel();
+                        fv = new FieldView(fieldModel, App.windowsWidht, App.windowsHeight, pve);
+                        break;
+                    case "HYPERBOLE":
+                        // Met à jour l'argent 
+                        priceVegetable += Integer.parseInt(listPrice.get(3));
+                        money -= priceVegetable;
+                        u.setMoney(money, u.getPseudo());
+
+                        // Plante le légume
+                        pve = PlantVarietyEnum.PATATTE;
+                        fieldModel = new FieldModel();
+                        fv = new FieldView(fieldModel, App.windowsWidht, App.windowsHeight, pve);
+                        break;
+                    case "CHIASME":
+                        // Met à jour l'argent 
+                        priceVegetable += Integer.parseInt(listPrice.get(4));
+                        money -= priceVegetable;
+                        u.setMoney(money, u.getPseudo());
+
+                        // Plante le légume
+                        pve = PlantVarietyEnum.POMME;
+                        fieldModel = new FieldModel();
+                        fv = new FieldView(fieldModel, App.windowsWidht, App.windowsHeight, pve);
+                        break;
+                    case "OXYMORE":
+                        // Met à jour l'argent 
+                        priceVegetable += Integer.parseInt(listPrice.get(5));
+                        money -= priceVegetable;
+                        u.setMoney(money, u.getPseudo());
+
+                        // Plante le légume
+                        pve = PlantVarietyEnum.TOMATE;
+                        fieldModel = new FieldModel();
+                        fv = new FieldView(fieldModel, App.windowsWidht, App.windowsHeight, pve);
+                        break;
+                    default:
                         break;
                 }
-
             }
         });
         buttonBuy.setMinSize(200, 50);
