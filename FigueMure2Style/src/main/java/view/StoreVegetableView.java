@@ -337,15 +337,16 @@ public class StoreVegetableView {
                 JfxView gameView = new JfxView(title.getText(), stage, u);
                 
                 fieldModel = new FieldModel();
-                fv = new FieldView(fieldModel, App.windowsWidht, App.windowsHeight, pve);
+                //fv = new FieldView(fieldModel, App.windowsWidht, App.windowsHeight, pve);
                 
-                Controller controller = Controller.getControler();
-                fv.setControler(controller);
-                controller.addUpdateView(gameView);
-                controller.setModel(fieldModel);
-                gameView.setView(fv);
+                //Controller controller = Controller.getControler();
+                //fv.setControler(controller);
+                //controller.addUpdateView(gameView);
+                //controller.setModel(fieldModel);
+                LoadGameView.fieldView.setPveBought(pve);
+                gameView.setView(LoadGameView.fieldView);
 
-                controller.startTimer();
+                //controller.startTimer();
             }
         });
         buttonBuy.setMinSize(200, 50);

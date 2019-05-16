@@ -182,4 +182,14 @@ public class FieldView extends CanvasView {
             }
         }
     }
+
+    public void setSdeCan(StylisticDeviceEnum sdeCan) {
+        this.sdeCan = sdeCan;
+    }
+
+    public void setPveBought(PlantVarietyEnum pveBought) {
+        this.pveBought = pveBought;
+    }
+    
+    
 }

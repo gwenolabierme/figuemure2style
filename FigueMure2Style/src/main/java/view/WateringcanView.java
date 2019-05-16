@@ -125,16 +125,16 @@ public class WateringcanView {
                 JfxView gameView = new JfxView(title.getText(), stage, u);
 
                 FieldModel fieldModel = new FieldModel();
-                FieldView fieldView = new FieldView(fieldModel, 
-                        App.windowsWidht, App.windowsHeight, fertilizer.getSdType());
+                //fv = new FieldView(fieldModel, App.windowsWidht, App.windowsHeight, sde);
+                
+                //Controller controller = Controller.getControler();
+                //fv.setControler(controller);
+                //controller.addUpdateView(gameView);
+                //controller.setModel(fieldModel);
+                LoadGameView.fieldView.setSdeCan(fertilizer.getSdType());
+                gameView.setView(LoadGameView.fieldView);
 
-                Controller controller = Controller.getControler();
-                fieldView.setControler(controller);
-                controller.addUpdateView(gameView);
-                controller.setModel(fieldModel);
-                gameView.setView(fieldView);
-
-                controller.startTimer();
+                //controller.startTimer();
             }
         });
         buttonSelect.setMinSize(200, 50);

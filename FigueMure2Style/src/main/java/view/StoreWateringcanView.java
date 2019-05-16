@@ -158,16 +158,15 @@ public class StoreWateringcanView {
                 JfxView gameView = new JfxView(title, stage, u);
 
                 FieldModel fieldModel = new FieldModel();
-                FieldView fieldView = new FieldView(fieldModel, 
-                        App.windowsWidht, App.windowsHeight);
+                //fv = new FieldView(fieldModel, App.windowsWidht, App.windowsHeight);
+                
+                //Controller controller = Controller.getControler();
+                //fv.setControler(controller);
+                //controller.addUpdateView(gameView);
+                //controller.setModel(fieldModel);
+                gameView.setView(LoadGameView.fieldView);
 
-                Controller controller = Controller.getControler();
-                fieldView.setControler(controller);
-                controller.addUpdateView(gameView);
-                controller.setModel(fieldModel);
-                gameView.setView(fieldView);
-
-                controller.startTimer();
+                //controller.startTimer();
             }
         });
         buttonReturn.setMinSize(50, 50);
