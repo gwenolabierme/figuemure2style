@@ -284,73 +284,58 @@ public class StoreVegetableView {
                     case "COMPARAISON":
                         // Met à jour l'argent 
                         priceVegetable += Integer.parseInt(listPrice.get(0));
-                        money -= priceVegetable;
-                        u.setMoney(money, u.getPseudo());
 
                         // Plante le légume
                         pve = PlantVarietyEnum.CAROTTE;
-                        fieldModel = new FieldModel();
-                        fv = new FieldView(fieldModel, App.windowsWidht, App.windowsHeight, pve);
-                        System.out.println(u.getMoney());
                         break;
                     case "PERIPHRASE":
                         // Met à jour l'argent 
                         priceVegetable += Integer.parseInt(listPrice.get(1));
-                        money -= priceVegetable;
-                        u.setMoney(money, u.getPseudo());
 
                         // Plante le légume
                         pve = PlantVarietyEnum.FIGUE;
-                        fieldModel = new FieldModel();
-                        fv = new FieldView(fieldModel, App.windowsWidht, App.windowsHeight, pve);
                         break;
                     case "PERSONNIFICATION":
                         // Met à jour l'argent 
                         priceVegetable += Integer.parseInt(listPrice.get(2));
-                        money -= priceVegetable;
-                        u.setMoney(money, u.getPseudo());
 
                         // Plante le légume
                         pve = PlantVarietyEnum.MURE;
-                        fieldModel = new FieldModel();
-                        fv = new FieldView(fieldModel, App.windowsWidht, App.windowsHeight, pve);
                         break;
                     case "HYPERBOLE":
                         // Met à jour l'argent 
                         priceVegetable += Integer.parseInt(listPrice.get(3));
-                        money -= priceVegetable;
-                        u.setMoney(money, u.getPseudo());
 
                         // Plante le légume
                         pve = PlantVarietyEnum.PATATTE;
-                        fieldModel = new FieldModel();
-                        fv = new FieldView(fieldModel, App.windowsWidht, App.windowsHeight, pve);
                         break;
                     case "CHIASME":
                         // Met à jour l'argent 
                         priceVegetable += Integer.parseInt(listPrice.get(4));
-                        money -= priceVegetable;
-                        u.setMoney(money, u.getPseudo());
 
                         // Plante le légume
                         pve = PlantVarietyEnum.POMME;
-                        fieldModel = new FieldModel();
-                        fv = new FieldView(fieldModel, App.windowsWidht, App.windowsHeight, pve);
                         break;
                     case "OXYMORE":
                         // Met à jour l'argent 
                         priceVegetable += Integer.parseInt(listPrice.get(5));
-                        money -= priceVegetable;
-                        u.setMoney(money, u.getPseudo());
 
                         // Plante le légume
                         pve = PlantVarietyEnum.TOMATE;
-                        fieldModel = new FieldModel();
-                        fv = new FieldView(fieldModel, App.windowsWidht, App.windowsHeight, pve);
                         break;
                     default:
+                        priceVegetable += Integer.parseInt(listPrice.get(0));
+                        pve = PlantVarietyEnum.CAROTTE;
                         break;
                 }
+                // Met à jour l'argent 
+                money -= priceVegetable;
+                u.setMoney(money, u.getPseudo());
+                System.out.println(u.getMoney());
+
+                // Plante le légume
+                fieldModel = new FieldModel();
+                fv = new FieldView(fieldModel, App.windowsWidht, App.windowsHeight, pve);
             }
         });
         buttonBuy.setMinSize(200, 50);
