@@ -249,19 +249,20 @@ public class StoreVegetableView {
             gridpane.setHalignment(priceVegeteble, HPos.CENTER);
             gridpane.setValignment(priceVegeteble, VPos.BOTTOM);
 
-            // Bouton : Acheter
-            Button buttonBuy = new Button("Acheter");
-            buttonBuy.setOnAction(new EventHandler<ActionEvent>() {
-                @Override
-                public void handle(ActionEvent e) {
-                    // TODO
-                }
-            });
-            buttonBuy.setMinSize(200, 50);
-            buttonBuy.getStyleClass().add("panel");
-            gridpane.add(buttonBuy, 2, 4);
-            gridpane.setHalignment(buttonBuy, HPos.CENTER);
         }
+        
+        // Bouton : Acheter
+        Button buttonBuy = new Button("Acheter");
+        buttonBuy.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent e) {
+                // TODO
+            }
+        });
+        buttonBuy.setMinSize(200, 50);
+        buttonBuy.getStyleClass().add("panel");
+        gridpane.add(buttonBuy, 2, 4);
+        gridpane.setHalignment(buttonBuy, HPos.CENTER);
 
         // Background
         gridpane.getStyleClass().add("other_background");

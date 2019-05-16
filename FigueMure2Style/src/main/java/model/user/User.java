@@ -17,6 +17,7 @@ public class User {
     private String password;
     private String passwordConfirm;
     private int score;
+    private double money;
     private EnumSet<PlantVarietyEnum> plantUnlock;
     private HashMap<PlantVarietyEnum, Integer> inventory;
     /**
@@ -50,12 +51,14 @@ public class User {
         this.pseudo = pseudo;
         this.gender = gender;
         this.score = 0;
+        this.money = 100;
 
         // Creation d'un fichier de BD user
         Map<String, String> map = new HashMap<String, String>();
         map.put("pseudo", this.pseudo);
         map.put("gender", this.gender);
         map.put("score", Integer.toString(this.score));
+        map.put("money", String.valueOf(this.money));
 
         // Légumes débloqués
         plantUnlock = EnumSet.noneOf(PlantVarietyEnum.class);
@@ -114,6 +117,7 @@ public class User {
             this.password = password;
             this.passwordConfirm = passwordConfirm;
             this.score = 0;
+            this.money = 100;
 
             // Creation d'un fichier de BD user
             Map<String, String> map = new HashMap<String, String>();
@@ -122,6 +126,7 @@ public class User {
             map.put("password", this.password);
             map.put("passwordConfirm", this.passwordConfirm);
             map.put("score", Integer.toString(this.score));
+            map.put("money", String.valueOf(this.money));
 
             // Légumes débloqués
             plantUnlock = EnumSet.noneOf(PlantVarietyEnum.class);
@@ -177,6 +182,7 @@ public class User {
         this.pseudo = (String) mapUser.get("pseudo");
         this.gender = (String) mapUser.get("gender");
         this.score = Integer.parseInt((String) mapUser.get("score"));
+        this.money = Double.parseDouble((String) mapUser.get("money"));
 
         // Légumes débloqués
         String listPlantUnlock = (String) mapUser.get("plantUnlock");
@@ -239,6 +245,7 @@ public class User {
             this.password = (String) mapUser.get("password");
             this.passwordConfirm = (String) mapUser.get("passwordConfirm");
             this.score = Integer.parseInt((String) mapUser.get("score"));
+            this.money = Double.parseDouble((String) mapUser.get("money"));
 
             // Légumes débloqués
             String listPlantUnlock = (String) mapUser.get("plantUnlock");
@@ -376,6 +383,10 @@ public class User {
         return score;
     }
 
+    public double getMoney() {
+        return money;
+    }
+
     /**
      * setPseudo remplace le pseudo de l'utilisateur dans la BD.
      *
@@ -457,7 +468,20 @@ public class User {
         this.score = score;
         BDFile f = new BDFile();
         Map mapUser = f.loadFile(pseudo);
-        mapUser.replace("score", this.score);
+        mapUser.replace("score", Integer.toString(this.score));
+    }
+
+    /**
+     * setMoney remplace l'money de l'utilisateur dans la BD.
+     * 
+     * @param money Money de l'utilisateur
+     * @param pseudo Pseudo de l'utilisateur
+     */
+    public void setMoney(double money, String pseudo) {
+        this.money = money;
+        BDFile f = new BDFile();
+        Map mapUser = f.loadFile(pseudo);
+        mapUser.replace("money", String.valueOf(this.money));
     }
 
     /**
