@@ -91,12 +91,12 @@ public class User {
         // Inventaire
         inventory = new HashMap<>();
         initStock();
-        map.put("PlantVarietyEnum.CAROTTE", inventory.get(PlantVarietyEnum.CAROTTE).toString());
-        map.put("PlantVarietyEnum.FIGUE", inventory.get(PlantVarietyEnum.FIGUE).toString());
-        map.put("PlantVarietyEnum.MURE", inventory.get(PlantVarietyEnum.MURE).toString());
-        map.put("PlantVarietyEnum.PATATE", inventory.get(PlantVarietyEnum.PATATE).toString());
-        map.put("PlantVarietyEnum.POMME", inventory.get(PlantVarietyEnum.POMME).toString());
-        map.put("PlantVarietyEnum.TOMATE", inventory.get(PlantVarietyEnum.TOMATE).toString());
+        map.put("PlantVarietyEnum.CAROTTE", Integer.toString(inventory.get(PlantVarietyEnum.CAROTTE)));
+        map.put("PlantVarietyEnum.FIGUE", Integer.toString(inventory.get(PlantVarietyEnum.FIGUE)));
+        map.put("PlantVarietyEnum.MURE", Integer.toString(inventory.get(PlantVarietyEnum.MURE)));
+        map.put("PlantVarietyEnum.PATATE", Integer.toString(inventory.get(PlantVarietyEnum.PATATE)));
+        map.put("PlantVarietyEnum.POMME", Integer.toString(inventory.get(PlantVarietyEnum.POMME)));
+        map.put("PlantVarietyEnum.TOMATE", Integer.toString(inventory.get(PlantVarietyEnum.TOMATE)));
 
         // Ratios
         dataSucces = new HashMap<>();
@@ -163,12 +163,12 @@ public class User {
             // Inventaire
             inventory = new HashMap<>();
             initStock();
-            map.put("PlantVarietyEnum.CAROTTE", inventory.get(PlantVarietyEnum.CAROTTE).toString());
-            map.put("PlantVarietyEnum.FIGUE", inventory.get(PlantVarietyEnum.FIGUE).toString());
-            map.put("PlantVarietyEnum.MURE", inventory.get(PlantVarietyEnum.MURE).toString());
-            map.put("PlantVarietyEnum.PATATE", inventory.get(PlantVarietyEnum.PATATE).toString());
-            map.put("PlantVarietyEnum.POMME", inventory.get(PlantVarietyEnum.POMME).toString());
-            map.put("PlantVarietyEnum.TOMATE", inventory.get(PlantVarietyEnum.TOMATE).toString());
+            map.put("PlantVarietyEnum.CAROTTE", Integer.toString(inventory.get(PlantVarietyEnum.CAROTTE)));
+            map.put("PlantVarietyEnum.FIGUE", Integer.toString(inventory.get(PlantVarietyEnum.FIGUE)));
+            map.put("PlantVarietyEnum.MURE", Integer.toString(inventory.get(PlantVarietyEnum.MURE)));
+            map.put("PlantVarietyEnum.PATATE", Integer.toString(inventory.get(PlantVarietyEnum.PATATE)));
+            map.put("PlantVarietyEnum.POMME", Integer.toString(inventory.get(PlantVarietyEnum.POMME)));
+            map.put("PlantVarietyEnum.TOMATE", Integer.toString(inventory.get(PlantVarietyEnum.TOMATE)));
 
             // Ratios
             dataSucces = new HashMap<>();
@@ -550,7 +550,7 @@ public class User {
      * Initialisation des stock de plantes à 0.
      */
     public final void initStock() {
-        this.inventory.put(PlantVarietyEnum.CAROTTE, 5);
+        this.inventory.put(PlantVarietyEnum.CAROTTE, 0);
         this.inventory.put(PlantVarietyEnum.FIGUE, 0);
         this.inventory.put(PlantVarietyEnum.MURE, 0);
         this.inventory.put(PlantVarietyEnum.PATATE, 0);
@@ -588,22 +588,22 @@ public class User {
         Map mapUser = f.loadFile(pseudo);
         switch (variety.toString()) {
             case "carotte":
-                mapUser.replace("PlantVarietyEnum.CAROTTE", inventory.get(variety));
+                mapUser.replace("PlantVarietyEnum.CAROTTE", Integer.toString(inventory.get(variety)));
                 break;
             case "figue":
-                mapUser.replace("PlantVarietyEnum.FIGUE", inventory.get(variety));
+                mapUser.replace("PlantVarietyEnum.FIGUE", Integer.toString(inventory.get(variety)));
                 break;
             case "mure":
-                mapUser.replace("PlantVarietyEnum.MURE", inventory.get(variety));
+                mapUser.replace("PlantVarietyEnum.MURE", Integer.toString(inventory.get(variety)));
                 break;
             case "patate":
-                mapUser.replace("PlantVarietyEnum.PATATE", inventory.get(variety));
+                mapUser.replace("PlantVarietyEnum.PATATE", Integer.toString(inventory.get(variety)));
                 break;
             case "pomme":
-                mapUser.replace("PlantVarietyEnum.POMME", inventory.get(variety));
+                mapUser.replace("PlantVarietyEnum.POMME", Integer.toString(inventory.get(variety)));
                 break;
             case "tomate":
-                mapUser.replace("PlantVarietyEnum.TOMATE", inventory.get(variety));
+                mapUser.replace("PlantVarietyEnum.TOMATE", Integer.toString(inventory.get(variety)));
                 break;
             default:
                 break;
