@@ -27,6 +27,7 @@ import model.plant.PlantVarietyEnum;
 import model.plant.Pomme;
 import model.plant.Tomate;
 import model.user.User;
+import static view.JfxView.stage;
 
 /**
  *
@@ -382,8 +383,7 @@ public class StoreVegetableView {
                         JfxView.user.addPlantUnlock(pve);
                     }
                     
-                    JfxView gameView = new JfxView(title.getText(), stage, u);
-                    gameView.setView(LoadGameView.fieldView);
+                    StoreVegetableView svv = new StoreVegetableView(stage, App.windowsWidht, App.windowsHeight, u);
                 }
             }
         });
