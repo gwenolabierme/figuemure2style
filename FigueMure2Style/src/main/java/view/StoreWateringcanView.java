@@ -187,7 +187,7 @@ public class StoreWateringcanView {
         gridpane.setHalignment(title, HPos.CENTER);
 
         // Bouton : Vegetable
-        Button buttonVegetable = new Button("Fruits et légumes");
+        Button buttonVegetable = new Button("Fruits et \nlégumes");
         buttonVegetable.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent e) {
@@ -195,24 +195,21 @@ public class StoreWateringcanView {
                 StoreVegetableView svv = new StoreVegetableView(stage, 800, 800, u);
             }
         });
-        buttonVegetable.setMinSize(100, 100);
-        //buttonVegetable.getStyleClass().add("panel");
+        buttonVegetable.setMinSize(110, 110);
+        buttonVegetable.getStyleClass().add("panelStore");
         gridpane.add(buttonVegetable, 0, 1);
         gridpane.setHalignment(buttonVegetable, HPos.CENTER);
 
         // Bouton : Figure de style
-        Button buttonWateringcan = new Button("Figure de style");
+        Button buttonWateringcan = new Button("Figure de\n    style");
         buttonWateringcan.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent e) {
-                // Fenetre : StoreWateringcanView
-                //HashSet<StylisticDevice> fertilizerList = null;
-                //StoreWateringcanView swv = new StoreWateringcanView(stage, 800, 800, u, fertilizerList);
                 StoreWateringcanView swv = new StoreWateringcanView(stage, 800, 800, u);
             }
         });
-        buttonWateringcan.setMinSize(100, 100);
-        //buttonVegetable.getStyleClass().add("panel");
+        buttonWateringcan.setMinSize(110, 110);
+        buttonWateringcan.getStyleClass().add("panelStore");
         gridpane.add(buttonWateringcan, 0, 3);
         gridpane.setHalignment(buttonWateringcan, HPos.CENTER);
     }

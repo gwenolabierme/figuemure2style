@@ -298,3 +298,16 @@
     -fx-background-position: center center;
     -fx-font-size: 20px;
 }
+
+.panelStore {
+    -fx-background-color: transparent;
+    -fx-background-image: url("/assets/css/img/wood.png");
+    -fx-background-repeat: stretch;   
+    -fx-background-size: 110 110;
+    -fx-background-position: center center;
+    -fx-font-size: 20px;
+}
+
+.lecon {
+    -fx-font-size: 15px;
+}
