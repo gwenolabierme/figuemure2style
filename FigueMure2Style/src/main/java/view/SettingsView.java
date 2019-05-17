@@ -16,6 +16,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import model.FieldModel;
 import model.user.User;
+import model.user.UserDidacticiel;
 
 /**
  *
@@ -174,6 +175,35 @@ public class SettingsView {
         buttonValidation.getStyleClass().add("panel");
         gridpane.add(buttonValidation, 1, 7);
         gridpane.setHalignment(buttonValidation, HPos.CENTER);
+        
+        // Didacticiel
+        String activeDidacticiel = "Didacticiel : ";
+        if (u.isDidacticiel()) {
+            activeDidacticiel += "OUI";
+        }
+        else {
+            activeDidacticiel += "NON";
+        }
+        String activeSound = "Son : ";
+        // TODO SON
+        String choiseFarmer = "Fermier / Fermière : ";
+        if (u.getGender().contains("farmer_man")) {
+            choiseFarmer += "Fermier";
+        }
+        else if (u.getGender().contains("farmer_woman")) {
+            choiseFarmer += "Fermière";
+        }
+        
+        UserDidacticiel didacticiel = new UserDidacticiel("DashbordView", u.getGender());
+        Button d;
+        if (u.isDidacticiel()) {
+            d = didacticiel.message("Modifiez vos paramètres.\n" + activeDidacticiel + "\n" + activeSound + "\n" + choiseFarmer);
+        }
+        else {
+            d = didacticiel.message(activeDidacticiel + "\n" + activeSound + "\n" + choiseFarmer);
+        }
+        gridpane.add(d, 1, 15);
+        gridpane.setHalignment(d, HPos.CENTER);
 
         // Background
         gridpane.getStyleClass().add("other_background");

@@ -78,7 +78,7 @@ public class JfxView implements View {
         gridpane.getRowConstraints().addAll(row1, row2, row3, row4, row5);
 
         // Scrore
-        Button score = new Button("Score : " + Integer.toString(u.getScore()) + "\n");
+        Button score = new Button("Score : " + Integer.toString(u.getScore()) + "XP");
         score.setMinSize(200, 100);
         score.getStyleClass().add("panelScoreMonney");
         gridpane.add(score, 3, 0);
@@ -96,7 +96,7 @@ public class JfxView implements View {
         // Didacticiel
         if (u.isDidacticiel()) {
             UserDidacticiel didacticiel = new UserDidacticiel("GameView", u.getGender());
-            Button d = didacticiel.message("Bienvenue " + u.getPseudo());
+            Button d = didacticiel.message(" Bienvenue " + u.getPseudo() + " ! \n Voici les pacerelles où pousseront\n  tes figures de style.");
             gridpane.add(d, 0, 0);
             gridpane.setHalignment(d, HPos.LEFT);
         }

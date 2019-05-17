@@ -176,6 +176,7 @@ public class DashbordView {
             gridpane.add(ratio, 2, 3 + i);
         }
         
+        // Didacticiel
         if (u.isDidacticiel()) {
             UserDidacticiel didacticiel = new UserDidacticiel("DashbordView", u.getGender());
             Button d = didacticiel.message("Ici vous pourrez consulter \nvotre évolution.");
