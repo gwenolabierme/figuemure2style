@@ -2,6 +2,7 @@ package view;
 
 import figuemure2style.App;
 import java.util.HashMap;
+import javafx.scene.Cursor;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import model.FieldModel;
@@ -214,7 +215,7 @@ public class ParcelView implements View, MouseEventSubscriber {
         if((x >= this.getX()) && (x <= this.getX() + this.CurrentImg.getWidth())
                 && (y >= this.getY()) && (y <= this.getY() + this.CurrentImg.getHeight())){
             System.out.println("Plante");
-            if (this.plantView == null) {
+            if ((this.plantView == null) && (this.isUnlock)) {
                 Plant p = null;
 
                 if (plant.equals(PlantVarietyEnum.CAROTTE)) {
