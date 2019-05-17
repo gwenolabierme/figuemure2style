@@ -169,6 +169,8 @@ public class SettingsView {
                     newGender = "fermiere";
                     u.setGender(newGender, pseudo);
                 }
+                
+                // Infos utilisateur
                 UserDidacticiel didacticiel = new UserDidacticiel("DashbordView", u.getGender());
                 Button d;
                 String activeDidacticiel;

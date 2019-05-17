@@ -25,6 +25,7 @@ import model.plant.Patate;
 import model.plant.Plant;
 import model.plant.Pomme;
 import model.plant.Tomate;
+import model.user.UserDidacticiel;
 
 /**
  *
@@ -357,13 +358,30 @@ public class InventoryView {
                 // Met à jour l'argent 
                 money += priceVegetable * nbVegetable;
                 u.setMoney(money, u.getPseudo());
-                System.out.println(u.getMoney());
+                
+                // Infos utilisateur
+                UserDidacticiel didacticiel = new UserDidacticiel("DashbordView", u.getGender());
+                String newScore = Integer.toString(score); 
+                String newMoney = Double.toString(money);
+                Button d = didacticiel.message("Nouveau score : " + newScore + "XP \nArgent restant : " + newMoney + "€");
+                gridpane.add(d, 3, 5);
+                gridpane.setHalignment(d, HPos.CENTER);
+                gridpane.setValignment(d, VPos.BOTTOM);
             }
         });
         buttonBuy.setMinSize(200, 50);
         buttonBuy.getStyleClass().add("panel");
         gridpane.add(buttonBuy, 2, 4);
         gridpane.setHalignment(buttonBuy, HPos.CENTER);
+        
+        // Didacticiel
+        if (u.isDidacticiel()) {
+            UserDidacticiel didacticiel = new UserDidacticiel("DashbordView", u.getGender());
+            Button d = didacticiel.message("Ici vous pourrez consulter votre\n inventaire et y vendre vos récoltes.");
+            gridpane.add(d, 3, 5);
+            gridpane.setHalignment(d, HPos.CENTER);
+            gridpane.setValignment(d, VPos.BOTTOM);
+        }
 
         // Background
         gridpane.getStyleClass().add("other_background");
