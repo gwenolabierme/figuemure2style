@@ -240,10 +240,8 @@ public class StoreVegetableView {
             // Légumes débloqués
             if (u.getPlantUnlock().toString().contains(listUnlock.get(i))) {
                 vegeteble.getStyleClass().add(listNames.get(i) + "Unlock");
-                vegeteble.setDisable(false);
             } else {
                 vegeteble.getStyleClass().add(listNames.get(i) + "Lock");
-                vegeteble.setDisable(true);
             }
 
             Text titleVegeteble = new Text();
@@ -281,6 +279,10 @@ public class StoreVegetableView {
                 PlantVarietyEnum pve;
                 FieldModel fieldModel;
                 FieldView fv;
+                
+                PlantVarietyEnum plantNeedToUnlock = null;
+                int nbNeedToUnlock = 0;
+                
                 switch (vegetableBuy) {
                     case "COMPARAISON":
                         // Met à jour l'argent 
@@ -295,6 +297,10 @@ public class StoreVegetableView {
 
                         // Plante le légume
                         pve = PlantVarietyEnum.FIGUE;
+                        
+                        //To unlock
+                        plantNeedToUnlock = PlantVarietyEnum.CAROTTE;
+                        nbNeedToUnlock = 2;
                         break;
                     case "PERSONNIFICATION":
                         // Met à jour l'argent 
@@ -302,6 +308,10 @@ public class StoreVegetableView {
 
                         // Plante le légume
                         pve = PlantVarietyEnum.MURE;
+                        
+                        //To unlock
+                        plantNeedToUnlock = PlantVarietyEnum.FIGUE;
+                        nbNeedToUnlock = 3;
                         break;
                     case "HYPERBOLE":
                         // Met à jour l'argent 
@@ -309,6 +319,10 @@ public class StoreVegetableView {
 
                         // Plante le légume
                         pve = PlantVarietyEnum.PATATTE;
+                        
+                        //To unlock
+                        plantNeedToUnlock = PlantVarietyEnum.MURE;
+                        nbNeedToUnlock = 4;
                         break;
                     case "CHIASME":
                         // Met à jour l'argent 
@@ -316,6 +330,10 @@ public class StoreVegetableView {
 
                         // Plante le légume
                         pve = PlantVarietyEnum.POMME;
+                        
+                        //To unlock
+                        plantNeedToUnlock = PlantVarietyEnum.PATATTE;
+                        nbNeedToUnlock = 4;
                         break;
                     case "OXYMORE":
                         // Met à jour l'argent 
@@ -323,30 +341,50 @@ public class StoreVegetableView {
 
                         // Plante le légume
                         pve = PlantVarietyEnum.TOMATE;
+                        
+                        //To unlock
+                        plantNeedToUnlock = PlantVarietyEnum.POMME;
+                        nbNeedToUnlock = 5;
                         break;
                     default:
                         priceVegetable += Integer.parseInt(listPrice.get(0));
                         pve = PlantVarietyEnum.CAROTTE;
                         break;
                 }
-                // Met à jour l'argent 
-                money -= priceVegetable;
-                u.setMoney(money, u.getPseudo());
-                
-                // Plante le légume
-                JfxView gameView = new JfxView(title.getText(), stage, u);
-                
-                fieldModel = new FieldModel();
-                //fv = new FieldView(fieldModel, App.windowsWidht, App.windowsHeight, pve);
-                
-                //Controller controller = Controller.getControler();
-                //fv.setControler(controller);
-                //controller.addUpdateView(gameView);
-                //controller.setModel(fieldModel);
-                LoadGameView.fieldView.setPveBought(pve);
-                gameView.setView(LoadGameView.fieldView);
 
-                //controller.startTimer();
+                if (u.getPlantUnlock().contains(pve)) {
+                    
+                    // Met à jour l'argent 
+                    money -= priceVegetable;
+                    u.setMoney(money, u.getPseudo());
+
+                    // Plante le légume
+                    JfxView gameView = new JfxView(title.getText(), stage, u);
+
+                    //fieldModel = new FieldModel();
+                    //fv = new FieldView(fieldModel, App.windowsWidht, App.windowsHeight, pve);
+
+                    //Controller controller = Controller.getControler();
+                    //fv.setControler(controller);
+                    //controller.addUpdateView(gameView);
+                    //controller.setModel(fieldModel);
+                    LoadGameView.fieldView.setPveBought(pve);
+                    gameView.setView(LoadGameView.fieldView);
+
+                    //controller.startTimer();
+                } else {
+                    // Verifie l'inventaire et enleve les plantes nécessaire pour débloquer
+                    if (JfxView.user.getInventory().get(plantNeedToUnlock) >= nbNeedToUnlock) {
+                        System.out.println("UNLOCK " + pve);
+                        JfxView.user.changeQtyStock(plantNeedToUnlock, 
+                                JfxView.user.getInventory().get(plantNeedToUnlock) 
+                                        - nbNeedToUnlock);
+                        JfxView.user.addPlantUnlock(pve);
+                    }
+                    
+                    JfxView gameView = new JfxView(title.getText(), stage, u);
+                    gameView.setView(LoadGameView.fieldView);
+                }
             }
         });
         buttonBuy.setMinSize(200, 50);
