@@ -13,7 +13,7 @@ public class PlantTests {
     private Carotte car;
     private Figue fig;
     private Mure mur;
-    private Pattate pat;
+    private Patate pat;
     private Pomme pom;
     private Tomate tom;
     
@@ -22,7 +22,7 @@ public class PlantTests {
        car = new Carotte();
        fig = new Figue();
        mur = new Mure();
-       pat = new Pattate();
+       pat = new Patate();
        pom = new Pomme();
        tom = new Tomate();
     }
@@ -50,7 +50,7 @@ public class PlantTests {
     
     @Test
     public void testPattateCreation() {
-        assertEquals(pat.getName(), PlantVarietyEnum.PATATTE);
+        assertEquals(pat.getName(), PlantVarietyEnum.PATATE);
         assertEquals(pat.getPrice(), 1);
         assertEquals(pat.getStyDevEat(), StylisticDeviceEnum.HYPERBOLE);
     }

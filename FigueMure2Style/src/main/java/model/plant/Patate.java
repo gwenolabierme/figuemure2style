@@ -6,12 +6,13 @@ import model.stylisticDevice.StylisticDeviceEnum;
  * Model de Patatte.
  * @author jeremy
  */
-public class Pattate extends Veggie {
+public class Patate extends Veggie {
 
-    public Pattate() {
-        this.name = PlantVarietyEnum.PATATTE;
+    public Patate() {
+        this.name = PlantVarietyEnum.PATATE;
         this.styDevEat = StylisticDeviceEnum.HYPERBOLE;
         this.price = 1;
+        this.nbXp = 5;
     }
     
 }

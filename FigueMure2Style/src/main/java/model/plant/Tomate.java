@@ -12,6 +12,7 @@ public class Tomate extends Veggie {
         this.name = PlantVarietyEnum.TOMATE;
         this.styDevEat = StylisticDeviceEnum.OXYMORE;
         this.price = 3;
+        this.nbXp = 15;
     }
     
 }
