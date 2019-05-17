@@ -213,6 +213,14 @@
     -fx-background-position: center center;
 }
 
+.carrotUnlockTable {
+    -fx-background-color: transparent;
+    -fx-background-image: url("/assets/img/vegetable/carrot.png");
+    -fx-background-repeat: stretch;   
+    -fx-background-size: 60 60;
+    -fx-background-position: center center;
+}
+
 .carrotLock {
     -fx-background-image: url("/assets/img/vegetable/carrot_lock.png");
     -fx-background-repeat: stretch;   
@@ -221,6 +229,14 @@
 }
 
 .figUnlock {
+    -fx-background-image: url("/assets/img/vegetable/fig.png");
+    -fx-background-repeat: stretch;   
+    -fx-background-size: 60 60;
+    -fx-background-position: center center;
+}
+
+.figUnlockTable {
+    -fx-background-color: transparent;
     -fx-background-image: url("/assets/img/vegetable/fig.png");
     -fx-background-repeat: stretch;   
     -fx-background-size: 60 60;
@@ -241,6 +257,14 @@
     -fx-background-position: center center;
 }
 
+.blackberryUnlockTable {
+    -fx-background-color: transparent;
+    -fx-background-image: url("/assets/img/vegetable/blackberry.png");
+    -fx-background-repeat: stretch;   
+    -fx-background-size: 60 60;
+    -fx-background-position: center center;
+}
+
 .blackberryLock {
     -fx-background-image: url("/assets/img/vegetable/blackberry_lock.png");
     -fx-background-repeat: stretch;   
@@ -249,6 +273,14 @@
 }
 
 .patatoUnlock {
+    -fx-background-image: url("/assets/img/vegetable/patato.png");
+    -fx-background-repeat: stretch;   
+    -fx-background-size: 60 60;
+    -fx-background-position: center center;
+}
+
+.patatoUnlockTable {
+    -fx-background-color: transparent;
     -fx-background-image: url("/assets/img/vegetable/patato.png");
     -fx-background-repeat: stretch;   
     -fx-background-size: 60 60;
@@ -269,6 +301,14 @@
     -fx-background-position: center center;
 }
 
+.appleUnlockTable {
+    -fx-background-color: transparent;
+    -fx-background-image: url("/assets/img/vegetable/apple.png");
+    -fx-background-repeat: stretch;   
+    -fx-background-size: 60 60;
+    -fx-background-position: center center;
+}
+
 .appleLock {
     -fx-background-image: url("/assets/img/vegetable/apple_lock.png");
     -fx-background-repeat: stretch;   
@@ -277,6 +317,14 @@
 }
 
 .tomatoUnlock {
+    -fx-background-image: url("/assets/img/vegetable/tomato.png");
+    -fx-background-repeat: stretch;   
+    -fx-background-size: 60 60;
+    -fx-background-position: center center;
+}
+
+.tomatoUnlockTable {
+    -fx-background-color: transparent;
     -fx-background-image: url("/assets/img/vegetable/tomato.png");
     -fx-background-repeat: stretch;   
     -fx-background-size: 60 60;
@@ -310,4 +358,13 @@
 
 .lecon {
     -fx-font-size: 15px;
+}
+
+.titleTable {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+}
+
+.textTable {
+    -fx-font-size: 16px;
 }
