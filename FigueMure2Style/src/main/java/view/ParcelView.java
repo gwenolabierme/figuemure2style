@@ -150,6 +150,7 @@ public class ParcelView implements View, MouseEventSubscriber {
         User usr = JfxView.user;
         if((x >= this.getX()) && (x <= this.getX() + this.CurrentImg.getWidth())
                 && (y >= this.getY()) && (y <= this.getY() + this.CurrentImg.getHeight())){
+            
             System.out.println("Arrose");
             if (this.plantView != null) {
 

@@ -13,9 +13,9 @@ public class DataPlantRatio implements Serializable {
     private double ratio; // ratio de victoire
 
     public DataPlantRatio() {
-        this.nbVictory = 0;
-        this.nbDefeat = 0;
-        this.ratio = 0;
+        this.nbVictory = 1;
+        this.nbDefeat = 1;
+        this.ratio = 1;
     }
 
     public DataPlantRatio(int nbVictory, int nbDefeat) {
