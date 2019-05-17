@@ -153,11 +153,11 @@ public class SettingsView {
             public void handle(ActionEvent e) {
                 if (checkBoxDidacticiel.isSelected()) {
                     // Désactiver le didacticiel
-                    u.setDidacticiel(u.getPseudo());
+                    u.setDidacticiel(u.getPseudo());   
                 }
                 if (checkBoxSound.isSelected()) {
                     // TODO
-                    // Désactiver la musique
+                    // Désactiver la musique 
                 }
                 // Choisi entre Fermier / Fermière
                 String newGender;
@@ -169,6 +169,28 @@ public class SettingsView {
                     newGender = "fermiere";
                     u.setGender(newGender, pseudo);
                 }
+                UserDidacticiel didacticiel = new UserDidacticiel("DashbordView", u.getGender());
+                Button d;
+                String activeDidacticiel;
+                String choiseFarmer;
+                String activeSound;
+                if (u.isDidacticiel()) {
+                    activeDidacticiel = "Didacticiel : OUI";
+                }
+                else {
+                    activeDidacticiel = "Didacticiel : NON";
+                }
+                activeSound = "Son : ";
+                // TODO SON
+                if (u.getGender().contains("farmer_man")) {
+                    choiseFarmer = "Fermier / Fermière : Fermier";
+                }
+                else {
+                    choiseFarmer = "Fermier / Fermière : Fermière";
+                }
+                d = didacticiel.message(activeDidacticiel + "\n" + activeSound + "\n" + choiseFarmer);
+                gridpane.add(d, 1, 15);
+                gridpane.setHalignment(d, HPos.CENTER);
             }
         });
         buttonValidation.setMinSize(200, 50);
@@ -177,21 +199,21 @@ public class SettingsView {
         gridpane.setHalignment(buttonValidation, HPos.CENTER);
         
         // Didacticiel
-        String activeDidacticiel = "Didacticiel : ";
+        String activeDidacticiel;
         if (u.isDidacticiel()) {
-            activeDidacticiel += "OUI";
+            activeDidacticiel = "Didacticiel : OUI";
         }
         else {
-            activeDidacticiel += "NON";
+            activeDidacticiel = "Didacticiel : NON";
         }
         String activeSound = "Son : ";
         // TODO SON
-        String choiseFarmer = "Fermier / Fermière : ";
+        String choiseFarmer;
         if (u.getGender().contains("farmer_man")) {
-            choiseFarmer += "Fermier";
+            choiseFarmer = "Fermier / Fermière : Fermier";
         }
-        else if (u.getGender().contains("farmer_woman")) {
-            choiseFarmer += "Fermière";
+        else {
+            choiseFarmer = "Fermier / Fermière : Fermière";
         }
         
         UserDidacticiel didacticiel = new UserDidacticiel("DashbordView", u.getGender());
