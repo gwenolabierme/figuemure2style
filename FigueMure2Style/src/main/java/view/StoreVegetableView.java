@@ -55,7 +55,9 @@ public class StoreVegetableView {
     private final List<String> listFigureDeStyle = Arrays.asList(carotte.getStyDevEat().toString(), figue.getStyDevEat().toString(), mure.getStyDevEat().toString(), patate.getStyDevEat().toString(), pomme.getStyDevEat().toString(), tomate.getStyDevEat().toString());
     private final List<String> listPrice = Arrays.asList(Integer.toString(carotte.getPrice()), Integer.toString(figue.getPrice()), Integer.toString(mure.getPrice()), Integer.toString(patate.getPrice()), Integer.toString(pomme.getPrice()), Integer.toString(tomate.getPrice()));
     private final List<String> listUnlock = Arrays.asList(carotte.getName().toString(), figue.getName().toString(), mure.getName().toString(), patate.getName().toString(), pomme.getName().toString(), tomate.getName().toString());
-
+    private final List<String> listNamesFr = Arrays.asList(PlantVarietyEnum.CAROTTE.toString(), PlantVarietyEnum.FIGUE.toString(), PlantVarietyEnum.MURE.toString(), PlantVarietyEnum.PATATTE.toString(), PlantVarietyEnum.POMME.toString(), PlantVarietyEnum.TOMATE.toString());
+    private final List<String> listNeed = Arrays.asList("0", "2", "3", "4", "4", "5");
+    
     /**
      * Constructeur sans paramètres.
      */
@@ -238,18 +240,19 @@ public class StoreVegetableView {
             });
             vegeteble.setMinSize(60, 60);
 
+            Text priceVegeteble = new Text();
             // Légumes débloqués
             if (u.getPlantUnlock().toString().contains(listUnlock.get(i))) {
                 vegeteble.getStyleClass().add(listNames.get(i) + "Unlock");
+                priceVegeteble.setText(listPrice.get(i) + "€");
             } else {
                 vegeteble.getStyleClass().add(listNames.get(i) + "Lock");
+                priceVegeteble.setText(listNeed.get(i) + " " + listNamesFr.get(i-1)+ "s");
             }
 
             Text titleVegeteble = new Text();
             titleVegeteble.setText(listFigureDeStyle.get(i).toUpperCase());
 
-            Text priceVegeteble = new Text();
-            priceVegeteble.setText(listPrice.get(i) + "€");
 
             if (i < 5) {
                 gridpane.add(vegeteble, i + 1, 1);
