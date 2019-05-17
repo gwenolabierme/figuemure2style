@@ -10,6 +10,7 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.RowConstraints;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import model.user.User;
 
@@ -75,13 +76,26 @@ public class JfxView implements View {
         gridpane.getColumnConstraints().addAll(col1, col2, col3, col4, col5);
         gridpane.getRowConstraints().addAll(row1, row2, row3, row4, row5);
 
+        // Scrore
+        Text score = new Text();
+        score.setText(Integer.toString(u.getScore()));
+        //score.getStyleClass().add("text_credits");
+        gridpane.add(score, 3, 0);
+        gridpane.setHalignment(score, HPos.CENTER);
+        gridpane.setValignment(score, VPos.TOP);
+        
+        // Argent
+        Text money = new Text();
+        money.setText("");
+        //money.getStyleClass().add("text_credits");
+        gridpane.add(money, 3, 0);
+        gridpane.setHalignment(money, HPos.CENTER);
+        gridpane.setValignment(money, VPos.BOTTOM);
+        
         // Terres
         this.root = new Group();
-        //this.root.getStyleClass().add("game_background");
-        gridpane.add(this.root, 0, 0);
-        gridpane.setHalignment(this.root, HPos.LEFT);
-        gridpane.setValignment(this.root, VPos.TOP);
-
+        gridpane.add(this.root, 0, 3);
+        
         // Bouton : Tableau de bord
         Button buttonDashbord = new Button();
         buttonDashbord.setOnAction(new EventHandler<ActionEvent>() {
@@ -165,7 +179,7 @@ public class JfxView implements View {
         gridpane.add(buttonExit, 4, 4);
         gridpane.setHalignment(buttonExit, HPos.CENTER);
         gridpane.setValignment(buttonExit, VPos.CENTER);
-
+        
         // Background
         gridpane.getStyleClass().add("game_background");
 
