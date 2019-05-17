@@ -86,11 +86,11 @@ public class JfxView implements View {
         
         // Argent
         Text money = new Text();
-        money.setText("");
+        money.setText(String.valueOf(u.getMoney()) + "€");
         //money.getStyleClass().add("text_credits");
         gridpane.add(money, 3, 0);
         gridpane.setHalignment(money, HPos.CENTER);
-        gridpane.setValignment(money, VPos.BOTTOM);
+        gridpane.setValignment(money, VPos.CENTER);
         
         // Terres
         this.root = new Group();
