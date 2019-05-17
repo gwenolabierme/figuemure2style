@@ -147,7 +147,7 @@ public class ParcelView implements View, MouseEventSubscriber {
 
     @Override
     public void mousePressed(String s, StylisticDeviceEnum sde, double x, double y) {
-        
+        User usr = JfxView.user;
         if((x >= this.getX()) && (x <= this.getX() + this.CurrentImg.getWidth())
                 && (y >= this.getY()) && (y <= this.getY() + this.CurrentImg.getHeight())){
             System.out.println("Arrose");
@@ -156,6 +156,9 @@ public class ParcelView implements View, MouseEventSubscriber {
                 Plant plant = this.plantView.getModel();
 
                 if (plant.getStyDevEat().equals(sde)) {
+                    usr.setScore(usr.getScore() + plant.getPrice(), usr.getPseudo());
+                    usr.updateDico(this.plantView.getModel().getName(), true, usr.getPseudo());
+                    
                     if (plant.getGrowthState().equals(GrowthStateEnum.SPROUT)) {
                         plant.setGrowthState(GrowthStateEnum.MEDIUM);
                     } else {
@@ -163,23 +166,24 @@ public class ParcelView implements View, MouseEventSubscriber {
                             plant.setGrowthState(GrowthStateEnum.FINAL);        
                         } else {
                             if (plant.getGrowthState().equals(GrowthStateEnum.FINAL)) {
-                                User user = JfxView.user;
-                                user.setScore(user.getScore() + 
-                                        plant.getPrice(), user.getPseudo());
-                                if (user.getInventory().containsKey(plant.getName())) {
-                                    int nbPlant = user.getInventory().get(plant.getName());
-                                    user.getInventory().put(plant.getName(), nbPlant+1);
+                                if (usr.getInventory().containsKey(plant.getName())) {
+                                    int nbPlant = usr.getInventory().get(plant.getName());
+                                    usr.getInventory().put(plant.getName(), nbPlant+1);
                                 }
+                                usr.setScore(usr.getScore() + 3 * plant.getPrice(), usr.getPseudo());
 
 
-                                this.plantView = null;      
+                                this.plantView = null; 
                             }    
                         }
                     }
                 } else {
                     plant.setLife(plant.getLife() - 1);
+                    usr.updateDico(this.plantView.getModel().getName(), false, usr.getPseudo());
+                    usr.setScore(usr.getScore()-1, usr.getPseudo());
                     if (plant.getLife() <= 0) {
                         this.plantView = null;
+                        usr.setScore(usr.getScore()-3, usr.getPseudo());
                     }
                 }
                 
