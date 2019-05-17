@@ -10,7 +10,6 @@ import javafx.geometry.HPos;
 import javafx.geometry.VPos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.RowConstraints;
@@ -52,7 +51,8 @@ public class InventoryView {
     private final List<String> listNames = Arrays.asList("carrot", "fig", "blackberry", "patato", "apple", "tomato");
     private final List<String> listFigureDeStyle = Arrays.asList(carotte.getStyDevEat().toString(), figue.getStyDevEat().toString(), mure.getStyDevEat().toString(), patate.getStyDevEat().toString(), pomme.getStyDevEat().toString(), tomate.getStyDevEat().toString());
     private final List<String> listUnlock = Arrays.asList(carotte.getName().toString(), figue.getName().toString(), mure.getName().toString(), patate.getName().toString(), pomme.getName().toString(), tomate.getName().toString());
-
+    private final List<String> listPrice = Arrays.asList(Integer.toString(carotte.getPrice()), Integer.toString(figue.getPrice()), Integer.toString(mure.getPrice()), Integer.toString(patate.getPrice()), Integer.toString(pomme.getPrice()), Integer.toString(tomate.getPrice()));
+    
     /**
      * Constructeur sans paramètres.
      */
@@ -224,11 +224,12 @@ public class InventoryView {
         buttonBuy.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent e) {
-                // TODO
                 String vegetableSale = sale.getText();
                 int score = u.getScore();
                 int nbXp = 0;
                 int nbVegetable = 0;
+                double money = u.getMoney();
+                int priceVegetable = 0;
                 
                 Text inventoryVegeteble = new Text();
                 switch(vegetableSale) {
@@ -238,6 +239,10 @@ public class InventoryView {
                             nbVegetable += listInventory.get(0);
                             nbXp += carotte.getNbXp() * nbVegetable;
                             score += nbXp;
+                            
+                            // Met à jour l'argent 
+                            priceVegetable += Integer.parseInt(listPrice.get(0));
+
                             
                             // Vide les stock du légume
                             u.emptyQtyStock(PlantVarietyEnum.CAROTTE, u.getPseudo());
@@ -349,6 +354,10 @@ public class InventoryView {
                     default : 
                        break;
                 }
+                // Met à jour l'argent 
+                money += priceVegetable * nbVegetable;
+                u.setMoney(money, u.getPseudo());
+                System.out.println(u.getMoney());
             }
         });
         buttonBuy.setMinSize(200, 50);

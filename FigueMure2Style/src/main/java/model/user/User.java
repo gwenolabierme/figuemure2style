@@ -74,6 +74,7 @@ public class User {
             this.gender = "/assets/img/user/farmer_woman.jpg";
         }
         this.score = 0;
+        this.money = 100;
 
         // Creation d'un fichier de BD user
         Map<String, String> map = new HashMap<>();
@@ -143,6 +144,7 @@ public class User {
             this.password = password;
             this.passwordConfirm = passwordConfirm;
             this.score = 0;
+            this.money = 100;
 
             // Creation d'un fichier de BD user
             Map<String, String> map = new HashMap<>();
@@ -500,7 +502,7 @@ public class User {
         this.score = score;
         BDFile f = new BDFile();
         Map mapUser = f.loadFile(pseudo);
-        mapUser.replace("score", this.score);
+        mapUser.replace("score", Integer.toString(this.score));
         f = new BDFile();
         f.newFile(pseudo, mapUser);
     }
