@@ -13,6 +13,7 @@ import javafx.scene.layout.RowConstraints;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import model.user.User;
+import model.user.UserDidacticiel;
 
 /**
  * view for jfx.
@@ -91,6 +92,16 @@ public class JfxView implements View {
         gridpane.add(money, 3, 0);
         gridpane.setHalignment(money, HPos.CENTER);
         gridpane.setValignment(money, VPos.BOTTOM);
+        
+        // Didacticiel
+        System.out.println(u.isDidacticiel());
+        if (u.isDidacticiel()) {
+            UserDidacticiel didacticiel = new UserDidacticiel("GameView", u.getGender());
+            Button d = didacticiel.message("Bienvenue " + u.getPseudo());
+            gridpane.add(d, 0, 0);
+            gridpane.setHalignment(d, HPos.LEFT);
+        }
+        
         
         // Terres
         this.root = new Group();

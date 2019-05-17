@@ -368,3 +368,33 @@
 .textTable {
     -fx-font-size: 16px;
 }
+
+.didacticiel_other {
+    -fx-background-color: transparent;
+    -fx-background-image: url("/assets/img/user/other_messages.png");
+    -fx-background-repeat: stretch;   
+    -fx-background-size: 400 150;
+    -fx-background-position: center center;
+    -fx-text-fill: black;
+    -fx-font-size: 18px;
+}
+
+.didacticiel_famer_man {
+    -fx-background-color: transparent;
+    -fx-background-image: url("/assets/img/user/messages_famer_man.png");
+    -fx-background-repeat: stretch;   
+    -fx-background-size: 500 100;
+    -fx-background-position: center center;
+    -fx-text-fill: black;
+    -fx-font-size: 18px;
+}
+
+.didacticiel_famer_woman {
+    -fx-background-color: transparent;
+    -fx-background-image: url("/assets/img/user/messages_famer_woman.png");
+    -fx-background-repeat: stretch;   
+    -fx-background-size: 500 100;
+    -fx-background-position: center center;
+    -fx-text-fill: black;
+    -fx-font-size: 18px;
+}

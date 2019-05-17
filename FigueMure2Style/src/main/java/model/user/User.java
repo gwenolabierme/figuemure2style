@@ -537,8 +537,13 @@ public class User {
      * @param didacticiel Activé / Déactivé
      * @param pseudo Pseudo de l'utilisateur
      */
-    public void setDidacticiel(boolean didacticiel, String pseudo) {
-        this.didacticiel = didacticiel;
+    public void setDidacticiel(String pseudo) {
+        if (this.didacticiel) {
+            this.didacticiel = false;
+        }
+        else {
+            this.didacticiel = true;
+        }
         
         BDFile f = new BDFile();
         Map mapUser = f.loadFile(pseudo);

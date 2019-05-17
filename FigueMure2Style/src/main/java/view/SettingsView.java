@@ -117,6 +117,18 @@ public class SettingsView {
         textSound.getStyleClass().add("text_label");
         gridpane.add(textSound, 1, 3);
         gridpane.setHalignment(textSound, HPos.LEFT);
+        
+        // Didacticiel
+        CheckBox checkBoxDidacticiel = new CheckBox();
+        checkBoxDidacticiel.getStyleClass().add("text_label");
+        gridpane.add(checkBoxDidacticiel, 0, 4);
+        gridpane.setHalignment(checkBoxDidacticiel, HPos.CENTER);
+
+        Text textDidacticiel = new Text();
+        textDidacticiel.setText("Désactiver le didacticiel");
+        textDidacticiel.getStyleClass().add("text_label");
+        gridpane.add(textDidacticiel, 1, 4);
+        gridpane.setHalignment(textDidacticiel, HPos.LEFT);
 
         // Genre
         RadioButton farmer1 = new RadioButton("Fermier");
@@ -128,8 +140,8 @@ public class SettingsView {
 
         farmer1.getStyleClass().add("gender");
         farmer2.getStyleClass().add("gender");
-        gridpane.add(farmer1, 0, 4);
-        gridpane.add(farmer2, 1, 4);
+        gridpane.add(farmer1, 0, 5);
+        gridpane.add(farmer2, 1, 5);
         gridpane.setHalignment(farmer1, HPos.RIGHT);
         gridpane.setHalignment(farmer2, HPos.CENTER);
 
@@ -138,10 +150,15 @@ public class SettingsView {
         buttonValidation.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent e) {
+                if (checkBoxDidacticiel.isSelected()) {
+                    // Désactiver le didacticiel
+                    u.setDidacticiel(u.getPseudo());
+                }
                 if (checkBoxSound.isSelected()) {
                     // TODO
                     // Désactiver la musique
                 }
+                // Choisi entre Fermier / Fermière
                 String newGender;
                 String pseudo = u.getPseudo();
                 if (farmer1.isSelected()) {
@@ -155,7 +172,7 @@ public class SettingsView {
         });
         buttonValidation.setMinSize(200, 50);
         buttonValidation.getStyleClass().add("panel");
-        gridpane.add(buttonValidation, 1, 6);
+        gridpane.add(buttonValidation, 1, 7);
         gridpane.setHalignment(buttonValidation, HPos.CENTER);
 
         // Background
