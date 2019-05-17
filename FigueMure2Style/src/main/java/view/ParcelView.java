@@ -177,7 +177,7 @@ public class ParcelView implements View, MouseEventSubscriber {
                         }
                     }
                 } else {
-                    plant.setLife(plant.getLife() + 1);
+                    plant.setLife(plant.getLife() - 1);
                     if (plant.getLife() <= 0) {
                         this.plantView = null;
                     }
