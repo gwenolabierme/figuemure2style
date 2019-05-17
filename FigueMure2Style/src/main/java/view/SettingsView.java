@@ -113,7 +113,7 @@ public class SettingsView {
         gridpane.setHalignment(checkBoxSound, HPos.CENTER);
 
         Text textSound = new Text();
-        textSound.setText("Désactiver le son");
+        textSound.setText("Activer / Désactiver le son");
         textSound.getStyleClass().add("text_label");
         gridpane.add(textSound, 1, 3);
         gridpane.setHalignment(textSound, HPos.LEFT);
@@ -125,7 +125,7 @@ public class SettingsView {
         gridpane.setHalignment(checkBoxDidacticiel, HPos.CENTER);
 
         Text textDidacticiel = new Text();
-        textDidacticiel.setText("Désactiver le didacticiel");
+        textDidacticiel.setText("Activer / Désactiver le didacticiel");
         textDidacticiel.getStyleClass().add("text_label");
         gridpane.add(textDidacticiel, 1, 4);
         gridpane.setHalignment(textDidacticiel, HPos.LEFT);

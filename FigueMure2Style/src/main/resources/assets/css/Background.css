@@ -383,7 +383,7 @@
     -fx-background-color: transparent;
     -fx-background-image: url("/assets/img/user/messages_famer_man.png");
     -fx-background-repeat: stretch;   
-    -fx-background-size: 500 100;
+    -fx-background-size: 600 180;
     -fx-background-position: center center;
     -fx-text-fill: black;
     -fx-font-size: 18px;
@@ -393,7 +393,7 @@
     -fx-background-color: transparent;
     -fx-background-image: url("/assets/img/user/messages_famer_woman.png");
     -fx-background-repeat: stretch;   
-    -fx-background-size: 500 100;
+    -fx-background-size: 600 150;
     -fx-background-position: center center;
     -fx-text-fill: black;
     -fx-font-size: 18px;

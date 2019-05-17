@@ -24,6 +24,7 @@ import model.FieldModel;
 import model.plant.PlantVarietyEnum;
 import model.user.DataPlantRatio;
 import model.user.User;
+import model.user.UserDidacticiel;
 import model.user.UserVegetableRatio;
 
 /**
@@ -173,6 +174,13 @@ public class DashbordView {
             ratio.getStyleClass().add("");
             gridpane.setHalignment(ratio, HPos.CENTER);
             gridpane.add(ratio, 2, 3 + i);
+        }
+        
+        if (u.isDidacticiel()) {
+            UserDidacticiel didacticiel = new UserDidacticiel("DashbordView", u.getGender());
+            Button d = didacticiel.message("Ici vous pourrez consulter \nvotre évolution.");
+            gridpane.add(d, 1, 10);
+            gridpane.setHalignment(d, HPos.CENTER);
         }
         
         // Background

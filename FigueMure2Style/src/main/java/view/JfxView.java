@@ -94,7 +94,6 @@ public class JfxView implements View {
         gridpane.setValignment(money, VPos.BOTTOM);
         
         // Didacticiel
-        System.out.println(u.isDidacticiel());
         if (u.isDidacticiel()) {
             UserDidacticiel didacticiel = new UserDidacticiel("GameView", u.getGender());
             Button d = didacticiel.message("Bienvenue " + u.getPseudo());
