@@ -26,6 +26,7 @@ public class User {
     private String password;
     private String passwordConfirm;
     private int score;
+    private double money;
     private EnumSet<PlantVarietyEnum> plantUnlock;
     private HashMap<PlantVarietyEnum, Integer> inventory;
     /**
@@ -67,7 +68,11 @@ public class User {
      */
     public User(String pseudo, String gender) throws ModelException {
         this.pseudo = pseudo;
-        this.gender = gender;
+        if (gender.equals("fermier")) {
+            this.gender = "/assets/img/user/farmer_man.jpg";
+        } else {
+            this.gender = "/assets/img/user/farmer_woman.jpg";
+        }
         this.score = 0;
 
         // Creation d'un fichier de BD user
@@ -75,6 +80,7 @@ public class User {
         map.put("pseudo", this.pseudo);
         map.put("gender", this.gender);
         map.put("score", Integer.toString(this.score));
+        map.put("money", String.valueOf(this.money));
 
         // Légumes débloqués
         plantUnlock = EnumSet.noneOf(PlantVarietyEnum.class);
@@ -129,7 +135,11 @@ public class User {
     public void User(String pseudo, String gender, String password, String passwordConfirm) throws ModelException {
         if (goodPassword(password, passwordConfirm)) {
             this.pseudo = pseudo;
-            this.gender = gender;
+            if (gender.equals("fermier")) {
+                this.gender = "/assets/img/user/farmer_man.jpg";
+            } else {
+                this.gender = "/assets/img/user/farmer_woman.jpg";
+            }
             this.password = password;
             this.passwordConfirm = passwordConfirm;
             this.score = 0;
@@ -141,6 +151,7 @@ public class User {
             map.put("password", this.password);
             map.put("passwordConfirm", this.passwordConfirm);
             map.put("score", Integer.toString(this.score));
+            map.put("money", String.valueOf(this.money));
 
             // Légumes débloqués
             plantUnlock = EnumSet.noneOf(PlantVarietyEnum.class);
@@ -195,6 +206,7 @@ public class User {
         this.pseudo = (String) mapUser.get("pseudo");
         this.gender = (String) mapUser.get("gender");
         this.score = Integer.parseInt((String) mapUser.get("score"));
+        this.money = Double.parseDouble((String) mapUser.get("money"));
 
         // Légumes débloqués
         String listPlantUnlock = (String) mapUser.get("plantUnlock");
@@ -257,6 +269,7 @@ public class User {
             this.password = (String) mapUser.get("password");
             this.passwordConfirm = (String) mapUser.get("passwordConfirm");
             this.score = Integer.parseInt((String) mapUser.get("score"));
+            this.money = Double.parseDouble((String) mapUser.get("money"));
 
             // Légumes débloqués
             String listPlantUnlock = (String) mapUser.get("plantUnlock");
@@ -394,6 +407,10 @@ public class User {
         return score;
     }
 
+    public double getMoney() {
+        return money;
+    }
+
     /**
      * setPseudo remplace le pseudo de l'utilisateur dans la BD.
      *
@@ -408,6 +425,8 @@ public class User {
             BDFile f = new BDFile();
             Map mapUser = f.loadFile(pseudo);
             mapUser.replace("pseudo", this.pseudo);
+            f = new BDFile();
+            f.newFile(pseudo, mapUser);
         }
     }
 
@@ -426,6 +445,8 @@ public class User {
         BDFile f = new BDFile();
         Map mapUser = f.loadFile(pseudo);
         mapUser.replace("gender", this.gender);
+        f = new BDFile();
+        f.newFile(pseudo, mapUser);
     }
 
     /**
@@ -443,6 +464,8 @@ public class User {
             BDFile f = new BDFile();
             Map mapUser = f.loadFile(pseudo);
             mapUser.replace("password", this.password);
+            f = new BDFile();
+            f.newFile(pseudo, mapUser);
         }
     }
 
@@ -462,6 +485,8 @@ public class User {
             BDFile f = new BDFile();
             Map mapUser = f.loadFile(pseudo);
             mapUser.replace("passwordConfirm", this.passwordConfirm);
+            f = new BDFile();
+            f.newFile(pseudo, mapUser);
         }
     }
 
@@ -476,6 +501,23 @@ public class User {
         BDFile f = new BDFile();
         Map mapUser = f.loadFile(pseudo);
         mapUser.replace("score", this.score);
+        f = new BDFile();
+        f.newFile(pseudo, mapUser);
+    }
+
+    /**
+     * setMoney remplace l'money de l'utilisateur dans la BD.
+     *
+     * @param money Money de l'utilisateur
+     * @param pseudo Pseudo de l'utilisateur
+     */
+    public void setMoney(double money, String pseudo) {
+        this.money = money;
+        BDFile f = new BDFile();
+        Map mapUser = f.loadFile(pseudo);
+        mapUser.replace("money", String.valueOf(this.money));
+        f = new BDFile();
+        f.newFile(pseudo, mapUser);
     }
 
     /**
@@ -507,11 +549,11 @@ public class User {
      */
     public final void initStock() {
         this.inventory.put(PlantVarietyEnum.CAROTTE, 5);
-        this.inventory.put(PlantVarietyEnum.FIGUE, 3);
-        this.inventory.put(PlantVarietyEnum.MURE, 2);
-        this.inventory.put(PlantVarietyEnum.PATATE, 3);
-        this.inventory.put(PlantVarietyEnum.POMME, 4);
-        this.inventory.put(PlantVarietyEnum.TOMATE, 5);
+        this.inventory.put(PlantVarietyEnum.FIGUE, 0);
+        this.inventory.put(PlantVarietyEnum.MURE, 0);
+        this.inventory.put(PlantVarietyEnum.PATATE, 0);
+        this.inventory.put(PlantVarietyEnum.POMME, 0);
+        this.inventory.put(PlantVarietyEnum.TOMATE, 0);
     }
 
     /**
@@ -531,7 +573,7 @@ public class User {
 
         return plantAdd;
     }
-    
+
     /**
      * Vide le stock de la plante.
      *
@@ -542,30 +584,32 @@ public class User {
         this.inventory.replace(variety, 0);
         BDFile f = new BDFile();
         Map mapUser = f.loadFile(pseudo);
-        switch(variety.toString()) {
-            case "carotte" :
-                mapUser.replace("PlantVarietyEnum.CAROTTE", inventory.get(variety)); 
+        switch (variety.toString()) {
+            case "carotte":
+                mapUser.replace("PlantVarietyEnum.CAROTTE", inventory.get(variety));
                 break;
-            case "figue" :
+            case "figue":
                 mapUser.replace("PlantVarietyEnum.FIGUE", inventory.get(variety));
                 break;
-            case "mure" :
+            case "mure":
                 mapUser.replace("PlantVarietyEnum.MURE", inventory.get(variety));
                 break;
-            case "patate" :
+            case "patate":
                 mapUser.replace("PlantVarietyEnum.PATATE", inventory.get(variety));
                 break;
-            case "pomme" :
+            case "pomme":
                 mapUser.replace("PlantVarietyEnum.POMME", inventory.get(variety));
                 break;
-            case "tomate" :
+            case "tomate":
                 mapUser.replace("PlantVarietyEnum.TOMATE", inventory.get(variety));
-                break;  
+                break;
             default:
                 break;
-        }     
+        }
+        f = new BDFile();
+        f.newFile(pseudo, mapUser);
     }
-    
+
     /**
      * Change la quantité de la plante dans l'inventaire.
      *
@@ -615,7 +659,10 @@ public class User {
         DataPlantRatio data = this.dataSucces.get(key);
         ratio = (double) data.getNbVictory() / data.getNbDefeat();
         data.setRatio(ratio);
+
         mapUser.replace(key + ".ratio", String.valueOf(data.getRatio()));
+        f = new BDFile();
+        f.newFile(pseudo, mapUser);
     }
 
     /**
@@ -638,6 +685,8 @@ public class User {
             data.setNbDefeat(data.getNbDefeat() + 1);
             mapUser.replace(key + ".nbDefeat", String.valueOf(data.getNbDefeat()));
         }
+        f = new BDFile();
+        f.newFile(pseudo, mapUser);
 
         this.updateRatios(key, pseudo);
     }
