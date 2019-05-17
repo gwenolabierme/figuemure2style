@@ -77,20 +77,20 @@ public class JfxView implements View {
         gridpane.getRowConstraints().addAll(row1, row2, row3, row4, row5);
 
         // Scrore
-        Text score = new Text();
-        score.setText(Integer.toString(u.getScore()));
-        //score.getStyleClass().add("text_credits");
+        Button score = new Button("Score : " + Integer.toString(u.getScore()) + "\n");
+        score.setMinSize(200, 100);
+        score.getStyleClass().add("panelScoreMonney");
         gridpane.add(score, 3, 0);
         gridpane.setHalignment(score, HPos.CENTER);
         gridpane.setValignment(score, VPos.TOP);
         
         // Argent
-        Text money = new Text();
-        money.setText(String.valueOf(u.getMoney()) + "€");
-        //money.getStyleClass().add("text_credits");
+        Button money = new Button("Argent : " + String.valueOf(u.getMoney()) + "€");
+        money.setMinSize(180, 50);
+        money.getStyleClass().add("panelScoreMonney");
         gridpane.add(money, 3, 0);
         gridpane.setHalignment(money, HPos.CENTER);
-        gridpane.setValignment(money, VPos.CENTER);
+        gridpane.setValignment(money, VPos.BOTTOM);
         
         // Terres
         this.root = new Group();
