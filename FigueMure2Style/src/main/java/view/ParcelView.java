@@ -61,6 +61,14 @@ public class ParcelView implements View, MouseEventSubscriber {
      * Plante view sur parcelle
      */
     private PlantView plantView;
+    /**
+     * Chemin jusqu'aux images.
+     */
+    protected final String imgFigureDeStylePath = "/assets/img/figureDeStyle";
+    /**
+     * Image actuelle du paneau de la plante.
+     */
+    protected Image FigureDeSyleImg;
 
     public ParcelView(GraphicsContext graphicsContext, boolean isUnlock, PlantView plant) {
         this.baseInit(graphicsContext, isUnlock, plant);
@@ -81,6 +89,7 @@ public class ParcelView implements View, MouseEventSubscriber {
         this.plantView = plant;
         
         setPlantPos();
+        setPanelImg();
     }
 
     public Image getCurrentImg() {
@@ -116,6 +125,7 @@ public class ParcelView implements View, MouseEventSubscriber {
         if (this.plantView != null) {
             this.plantView.display();
         }
+        graphicsContext.drawImage(this.FigureDeSyleImg, this.x - 15, this.y + 90);
     }
 
     /**
@@ -192,6 +202,9 @@ public class ParcelView implements View, MouseEventSubscriber {
                     System.out.println(this.plantView.getModel().getGrowthState());
                 else
                     System.out.println("Plante recolté ou morte");
+                
+                
+                setPanelImg();
             }
         }
     }
@@ -230,6 +243,20 @@ public class ParcelView implements View, MouseEventSubscriber {
                 this.plantView = new PlantView(graphicsContext, p);
                 setPlantPos();
             }
+        }
+    }
+
+    // TODO : QUand la plante disparait mettre le panneau null
+    private void setPanelImg() {
+        if (this.plantView == null) {
+            this.FigureDeSyleImg = new Image(imgFigureDeStylePath + "/null" + imgType);
+        } else {
+            //if (this.getPlantView().getModel().getGrowthState().equals(GrowthStateEnum.FINAL)) {
+            //    this.FigureDeSyleImg = new Image(imgFigureDeStylePath + "/null" + imgType);
+            //} else {
+                System.out.println(imgFigureDeStylePath + "/" + this.plantView.getModel().getName() + imgType);
+                this.FigureDeSyleImg = new Image(imgFigureDeStylePath + "/" + this.plantView.getModel().getName().toString() + imgType);
+            //}
         }
     }
 }

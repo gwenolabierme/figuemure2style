@@ -17,10 +17,6 @@ public class PlantView implements View{
      */
     protected final String imgPath = "/assets/img/vegetable";
     /**
-     * Chemin jusqu'aux images.
-     */
-    protected final String imgFigureDeStylePath = "/assets/img/figureDeStyle";
-    /**
      * Format des images.
      */
     protected final String imgType = ".png";
@@ -32,10 +28,6 @@ public class PlantView implements View{
      * Image actuelle de la plante.
      */
     protected Image CurrentImg;
-    /**
-     * Image actuelle du paneau de la plante.
-     */
-    protected Image FigureDeSyleImg;
     /**
      * Map contenant les images de la croissance de la plante.
      */
@@ -70,7 +62,6 @@ public class PlantView implements View{
         this.growthStatesImg = new HashMap();
         this.initImg();
         this.CurrentImg = growthStatesImg.get(model.getGrowthState());
-        setPanelImg(model.getGrowthState());
     }
 
     public Plant getModel() {
@@ -99,7 +90,6 @@ public class PlantView implements View{
     
     public void update() {
         this.CurrentImg = growthStatesImg.get(model.getGrowthState());
-        setPanelImg(model.getGrowthState());
     }
     
     /**
@@ -108,7 +98,6 @@ public class PlantView implements View{
     public void display() {
         update();
         graphicsContext.drawImage(this.CurrentImg, this.x, this.y);
-        graphicsContext.drawImage(this.FigureDeSyleImg, this.x - 15, this.y + 90);
     }
 
     /**
@@ -117,25 +106,11 @@ public class PlantView implements View{
      * Exemple : assets/img/carotte_sprout.png
      */
     protected void initImg() {
-        System.err.println(imgPath + "/sprout" + imgType);
         growthStatesImg.put(GrowthStateEnum.SPROUT, new Image(imgPath 
                 + "/sprout" + imgType));
         growthStatesImg.put(GrowthStateEnum.MEDIUM, new Image(imgPath 
                 + "/medium" + imgType));
         growthStatesImg.put(GrowthStateEnum.FINAL, new Image(imgPath 
                 + "/" + model.getName().toString() + imgType));
-    }
-
-    // TODO : QUand la plante disparait mettre le panneau null
-    private void setPanelImg(GrowthStateEnum growthState) {
-        if (model == null) {
-            this.FigureDeSyleImg = new Image(imgFigureDeStylePath + "/" + model.getName() + imgType);
-        }
-        if (!(growthState.equals(growthState.FINAL))) {
-            this.FigureDeSyleImg = new Image(imgFigureDeStylePath + "/" + model.getName() + imgType);
-        }
-        else {
-            this.FigureDeSyleImg = new Image(imgFigureDeStylePath + "/null" + imgType);
-        }
     }
 }
