@@ -28,7 +28,7 @@ public class JfxView implements View {
     /**
      * Fenêtre à gérer.
      */
-    private final Stage stage;
+    public static Stage stage;
     /**
      * Vue à afficher dans la fenêtre.
      */
@@ -45,12 +45,12 @@ public class JfxView implements View {
      * @param stage Fenêtre à gérer
      * @param u Utilisateur
      */
-    public JfxView(String title, Stage stage, User u) {
+    public JfxView(String title, Stage stg, User u) {
         this.user = u;
-        this.stage = stage;
+        stage = stg;
 
         // Nom de la fenetre
-        this.stage.setTitle(title);
+        stage.setTitle(title);
 
         GridPane gridpane = new GridPane();
         gridpane.setHgap(10);

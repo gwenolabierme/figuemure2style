@@ -9,6 +9,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.HPos;
 import javafx.geometry.VPos;
+import javafx.scene.Cursor;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.ColumnConstraints;
@@ -267,7 +268,7 @@ public class StoreVegetableView {
             gridpane.setValignment(priceVegeteble, VPos.BOTTOM);
 
         }
-
+        
         // Bouton : Acheter
         Button buttonBuy = new Button("Acheter");
         buttonBuy.setOnAction(new EventHandler<ActionEvent>() {
@@ -331,7 +332,7 @@ public class StoreVegetableView {
                 // Met à jour l'argent 
                 money -= priceVegetable;
                 u.setMoney(money, u.getPseudo());
-
+                
                 // Plante le légume
                 JfxView gameView = new JfxView(title.getText(), stage, u);
                 

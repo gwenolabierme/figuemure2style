@@ -3,6 +3,8 @@ package view;
 import controller.Controller;
 import figuemure2style.App;
 import javafx.event.EventHandler;
+import javafx.scene.Cursor;
+import javafx.scene.ImageCursor;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
@@ -164,6 +166,8 @@ public class FieldView extends CanvasView {
                 parcelView[i][j].display();
             }
         }
+        
+        updateCursor();
     }
 
     /**
@@ -191,5 +195,15 @@ public class FieldView extends CanvasView {
         this.pveBought = pveBought;
     }
     
-    
+    public void updateCursor() {
+        if (this.pveBought != null) {
+            JfxView.stage.getScene().setCursor(new ImageCursor(new Image("/assets/img/vegetable/" + pveBought.toString() + ".png")));
+        } else {
+            if (this.sdeCan != null) {
+                JfxView.stage.getScene().setCursor(new ImageCursor(new Image("/assets/css/img/wateringcan.png")));
+            } else {
+                JfxView.stage.getScene().setCursor(Cursor.DEFAULT);
+            }
+        }
+    }
 }
