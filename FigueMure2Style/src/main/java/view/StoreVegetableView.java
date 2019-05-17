@@ -331,7 +331,6 @@ public class StoreVegetableView {
                 // Met à jour l'argent 
                 money -= priceVegetable;
                 u.setMoney(money, u.getPseudo());
-                System.out.println(u.getMoney());
 
                 // Plante le légume
                 JfxView gameView = new JfxView(title.getText(), stage, u);
