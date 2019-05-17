@@ -27,6 +27,7 @@ public class User {
     private String passwordConfirm;
     private int score;
     private double money;
+    private boolean didacticiel;
     private EnumSet<PlantVarietyEnum> plantUnlock;
     private HashMap<PlantVarietyEnum, Integer> inventory;
     /**
@@ -82,6 +83,7 @@ public class User {
         map.put("gender", this.gender);
         map.put("score", Integer.toString(this.score));
         map.put("money", String.valueOf(this.money));
+        map.put("didacticiel", Boolean.toString(this.didacticiel));
 
         // Légumes débloqués
         plantUnlock = EnumSet.noneOf(PlantVarietyEnum.class);
@@ -154,6 +156,7 @@ public class User {
             map.put("passwordConfirm", this.passwordConfirm);
             map.put("score", Integer.toString(this.score));
             map.put("money", String.valueOf(this.money));
+            map.put("didacticiel", Boolean.toString(this.didacticiel));
 
             // Légumes débloqués
             plantUnlock = EnumSet.noneOf(PlantVarietyEnum.class);
@@ -209,6 +212,7 @@ public class User {
         this.gender = (String) mapUser.get("gender");
         this.score = Integer.parseInt((String) mapUser.get("score"));
         this.money = Double.parseDouble((String) mapUser.get("money"));
+        this.didacticiel = Boolean.parseBoolean((String) mapUser.get("didacticiel"));
 
         // Légumes débloqués
         String listPlantUnlock = (String) mapUser.get("plantUnlock");
@@ -272,6 +276,7 @@ public class User {
             this.passwordConfirm = (String) mapUser.get("passwordConfirm");
             this.score = Integer.parseInt((String) mapUser.get("score"));
             this.money = Double.parseDouble((String) mapUser.get("money"));
+            this.didacticiel = Boolean.parseBoolean((String) mapUser.get("didacticiel"));
 
             // Légumes débloqués
             String listPlantUnlock = (String) mapUser.get("plantUnlock");
@@ -413,6 +418,10 @@ public class User {
         return money;
     }
 
+    public boolean isDidacticiel() {
+        return didacticiel;
+    }
+
     /**
      * setPseudo remplace le pseudo de l'utilisateur dans la BD.
      *
@@ -521,6 +530,24 @@ public class User {
         f = new BDFile();
         f.newFile(pseudo, mapUser);
     }
+
+    /**
+     * setDidacticiel Active ou déactive le didacticiel.
+     * 
+     * @param didacticiel Activé / Déactivé
+     * @param pseudo Pseudo de l'utilisateur
+     */
+    public void setDidacticiel(boolean didacticiel, String pseudo) {
+        this.didacticiel = didacticiel;
+        
+        BDFile f = new BDFile();
+        Map mapUser = f.loadFile(pseudo);
+        mapUser.replace("didacticiel", Boolean.toString(this.didacticiel));
+        f = new BDFile();
+        f.newFile(pseudo, mapUser);
+    }
+    
+    
 
     /**
      * Débloque une plante dans la boutique.
