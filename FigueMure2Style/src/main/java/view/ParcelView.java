@@ -1,8 +1,13 @@
 package view;
 
 import java.util.HashMap;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.Button;
 import javafx.scene.image.Image;
+import javafx.scene.text.Text;
+import javafx.stage.Popup;
 import model.plant.Carotte;
 import model.plant.Figue;
 import model.plant.GrowthStateEnum;
@@ -15,6 +20,7 @@ import model.plant.Tomate;
 import model.stylisticDevice.StylisticDeviceEnum;
 import model.user.User;
 import observer.MouseEventSubscriber;
+import static view.JfxView.stage;
 import view.plant.PlantView;
 
 /**
