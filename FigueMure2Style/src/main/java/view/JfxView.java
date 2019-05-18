@@ -42,7 +42,7 @@ public class JfxView implements View {
      * Constructeur de JfxView.
      *
      * @param title Titre de la fenêtre à créer
-     * @param stage Fenêtre à gérer
+     * @param stg Fenêtre à gérer
      * @param u Utilisateur
      */
     public JfxView(String title, Stage stg, User u) {

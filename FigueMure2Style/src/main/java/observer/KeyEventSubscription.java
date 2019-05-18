@@ -9,6 +9,10 @@ import java.util.List;
 public abstract class KeyEventSubscription {
     private final List<KeyEventSubscriber> subscribers = new ArrayList<KeyEventSubscriber>();
 
+    /**
+     * addSubscriber.
+     * @param subscriber TODO
+     */
     public void addSubscriber(KeyEventSubscriber subscriber) {
         this.subscribers.add(subscriber);
     }

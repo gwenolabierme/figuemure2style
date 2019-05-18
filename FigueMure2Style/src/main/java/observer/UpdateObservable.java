@@ -9,6 +9,10 @@ import java.util.List;
 public abstract class UpdateObservable {
     private final List<UpdateObserver> observers = new ArrayList<UpdateObserver>();
 
+    /**
+     * addObserver : Ajoute un observer.
+     * @param observer TODO
+     */
     public void addObserver(UpdateObserver observer) {
         this.observers.add(observer);
     }
