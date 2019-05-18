@@ -1,21 +1,17 @@
 package view;
 
-import controller.Controller;
 import figuemure2style.App;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
@@ -24,6 +20,7 @@ import model.FieldModel;
 import model.plant.PlantVarietyEnum;
 import model.user.DataPlantRatio;
 import model.user.User;
+import model.user.UserDidacticiel;
 import model.user.UserVegetableRatio;
 
 /**
@@ -40,14 +37,10 @@ public class DashbordView {
 
     private final String title = "FigueMûre2Style";
     
-    private final List<String> listUnlock = Arrays.asList("carotte", "figue", "mure", "patatte", "pomme", "tomate");
+    private final List<String> listNames = Arrays.asList("carrot", "fig", "blackberry", "patato", "apple", "tomato");
     private final List<String> listFigureDeStyle = Arrays.asList("COMPARAISON", "PERIPHRASE", "PERSONNIFICATION", "HYPERBOLE", "CHIASME", "OXYMORE");
         
     private TableView<UserVegetableRatio> table = new TableView<UserVegetableRatio>();
-        
-    //private UserVegetableRatio uRatio = new UserVegetableRatio();
-        
-    
 
     /**
      * Constructeur sans paramètres.
@@ -129,36 +122,64 @@ public class DashbordView {
         HashMap<PlantVarietyEnum, DataPlantRatio> mapRatio = u.getDataSucces();
         
         // Tableau
-        ObservableList<UserVegetableRatio> data =
-        FXCollections.observableArrayList(                    
-            new UserVegetableRatio(listUnlock.get(0) + "Unlock", "The Button", listFigureDeStyle.get(0), String.valueOf(mapRatio.get(PlantVarietyEnum.CAROTTE).getRatio())),
-            new UserVegetableRatio(listUnlock.get(1) + "Unlock", "The Button", listFigureDeStyle.get(1), String.valueOf(mapRatio.get(PlantVarietyEnum.FIGUE).getRatio())),
-            new UserVegetableRatio(listUnlock.get(2) + "Unlock", "The Button", listFigureDeStyle.get(2), String.valueOf(mapRatio.get(PlantVarietyEnum.MURE).getRatio())),
-            new UserVegetableRatio(listUnlock.get(3) + "Unlock", "The Button", listFigureDeStyle.get(3), String.valueOf(mapRatio.get(PlantVarietyEnum.PATATTE).getRatio())),
-            new UserVegetableRatio(listUnlock.get(4) + "Unlock", "The Button", listFigureDeStyle.get(4), String.valueOf(mapRatio.get(PlantVarietyEnum.POMME).getRatio())),
-            new UserVegetableRatio(listUnlock.get(5) + "Unlock", "The Button", listFigureDeStyle.get(5), String.valueOf(mapRatio.get(PlantVarietyEnum.TOMATE).getRatio()))
-        );
+        UserVegetableRatio carotteRatio = new UserVegetableRatio(listNames.get(0) + "UnlockTable", listFigureDeStyle.get(0), String.valueOf(mapRatio.get(PlantVarietyEnum.CAROTTE).getRatio()));
+        UserVegetableRatio figueRatio = new UserVegetableRatio(listNames.get(1) + "UnlockTable", listFigureDeStyle.get(1), String.valueOf(mapRatio.get(PlantVarietyEnum.FIGUE).getRatio()));
+        UserVegetableRatio mureRatio = new UserVegetableRatio(listNames.get(2) + "UnlockTable", listFigureDeStyle.get(2), String.valueOf(mapRatio.get(PlantVarietyEnum.MURE).getRatio()));
+        UserVegetableRatio patateRatio = new UserVegetableRatio(listNames.get(3) + "UnlockTable", listFigureDeStyle.get(3), String.valueOf(mapRatio.get(PlantVarietyEnum.PATATE).getRatio()));
+        UserVegetableRatio pommeRatio = new UserVegetableRatio(listNames.get(4) + "UnlockTable", listFigureDeStyle.get(4), String.valueOf(mapRatio.get(PlantVarietyEnum.POMME).getRatio()));
+        UserVegetableRatio tomateRatio = new UserVegetableRatio(listNames.get(5) + "UnlockTable", listFigureDeStyle.get(5), String.valueOf(mapRatio.get(PlantVarietyEnum.TOMATE).getRatio()));
         
-        table.setEditable(true);
-       
-        TableColumn btnCol = new TableColumn("Buttons");
-        btnCol.setMinWidth(100);
+        ArrayList<UserVegetableRatio> listVegetableRatio = new ArrayList<UserVegetableRatio>();
+        listVegetableRatio.add(carotteRatio);
+        listVegetableRatio.add(figueRatio);
+        listVegetableRatio.add(mureRatio);
+        listVegetableRatio.add(patateRatio);
+        listVegetableRatio.add(pommeRatio);
+        listVegetableRatio.add(tomateRatio);
         
-        btnCol.setCellValueFactory(new PropertyValueFactory<UserVegetableRatio, String>("btn"));
-
-        TableColumn figureDeStyleCol = new TableColumn("Figure de style");
-        figureDeStyleCol.setMinWidth(250);
-        figureDeStyleCol.setCellValueFactory(new PropertyValueFactory<UserVegetableRatio, String>("figureDeStyle"));
-
-        TableColumn ratioCol = new TableColumn("Ratio");
-        ratioCol.setMinWidth(100);
-        ratioCol.setCellValueFactory(new PropertyValueFactory<UserVegetableRatio, String>("ratio"));
-
-        table.setItems(data);
-        table.getColumns().addAll(btnCol, figureDeStyleCol, ratioCol);
+        Text titleVegetable = new Text("Fruits & légumes");
+        titleVegetable.getStyleClass().add("titleTable");
+        gridpane.add(titleVegetable, 0, 2);
+        gridpane.setHalignment(titleVegetable, HPos.CENTER);
         
-        table.setMinWidth(450);
-        gridpane.add(table, 1, 2);
+        Text titleFigureDeStyle = new Text("Figure de style");
+        titleFigureDeStyle.getStyleClass().add("titleTable");
+        gridpane.add(titleFigureDeStyle, 1, 2);
+        gridpane.setHalignment(titleFigureDeStyle, HPos.CENTER);
+        
+        Text titleRatio = new Text("Ratio : nb victoire / nb défaite");
+        titleRatio.getStyleClass().add("titleTable");
+        gridpane.add(titleRatio, 2, 2);
+        gridpane.setHalignment(titleRatio, HPos.CENTER);
+        
+        for (int i = 0 ; i < 6 ; i++) {
+            // Image
+            Button img = new Button();
+            img.getStyleClass().add(listVegetableRatio.get(i).getImg());
+            img.setMinSize(60, 60);
+            gridpane.setHalignment(img, HPos.CENTER);
+            gridpane.add(img, 0, 3 + i);
+            
+            // Figure de style
+            Text figureDeStyle = new Text(listVegetableRatio.get(i).getFigureDeStyle());
+            figureDeStyle.getStyleClass().add("");
+            gridpane.setHalignment(figureDeStyle, HPos.CENTER);
+            gridpane.add(figureDeStyle, 1, 3 + i);
+            
+            // Ratio
+            Text ratio = new Text(listVegetableRatio.get(i).getRatio());
+            ratio.getStyleClass().add("");
+            gridpane.setHalignment(ratio, HPos.CENTER);
+            gridpane.add(ratio, 2, 3 + i);
+        }
+        
+        // Didacticiel
+        if (u.isDidacticiel()) {
+            UserDidacticiel didacticiel = new UserDidacticiel("DashbordView", u.getGender());
+            Button d = didacticiel.message("Ici vous pourrez consulter \nvotre évolution.");
+            gridpane.add(d, 1, 10);
+            gridpane.setHalignment(d, HPos.CENTER);
+        }
         
         // Background
         gridpane.getStyleClass().add("other_background");

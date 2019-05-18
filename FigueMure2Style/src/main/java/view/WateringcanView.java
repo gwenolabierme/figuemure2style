@@ -108,14 +108,14 @@ public class WateringcanView {
         // Figure de style
         Text figureDeStyle = new Text();
         figureDeStyle.setText(this.fertilizer.getSentence());
-        //figureDeStyle.getStyleClass().add("title");
+        figureDeStyle.getStyleClass().add("text_label");
         gridpane.add(figureDeStyle, 1, 1);
         gridpane.setHalignment(figureDeStyle, HPos.CENTER);
 
         Text infos = new Text();
         infos.setText(this.fertilizer.getAuthor() + ", " + this.fertilizer.getOeuvre());
-        //figureDeStyle.getStyleClass().add("title");
-        gridpane.add(infos, 1, 2);
+        infos.getStyleClass().add("text_label");
+        gridpane.add(infos, 1, 3);
         gridpane.setHalignment(infos, HPos.CENTER);
 
         // Bouton : Sélectionner
@@ -139,8 +139,8 @@ public class WateringcanView {
             }
         });
         buttonSelect.setMinSize(200, 50);
-        //buttonSelect.getStyleClass().add("panel");
-        gridpane.add(buttonSelect, 1, 3);
+        buttonSelect.getStyleClass().add("panel");
+        gridpane.add(buttonSelect, 1, 6);
         gridpane.setHalignment(buttonSelect, HPos.CENTER);
 
         // Background

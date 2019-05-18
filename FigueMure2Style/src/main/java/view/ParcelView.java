@@ -1,16 +1,13 @@
 package view;
 
-import figuemure2style.App;
 import java.util.HashMap;
-import javafx.scene.Cursor;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
-import model.FieldModel;
 import model.plant.Carotte;
 import model.plant.Figue;
 import model.plant.GrowthStateEnum;
 import model.plant.Mure;
-import model.plant.Pattate;
+import model.plant.Patate;
 import model.plant.Plant;
 import model.plant.PlantVarietyEnum;
 import model.plant.Pomme;
@@ -227,8 +224,8 @@ public class ParcelView implements View, MouseEventSubscriber {
                         if (plant.equals(PlantVarietyEnum.MURE)) {
                             p = new Mure();
                         } else {
-                            if (plant.equals(PlantVarietyEnum.PATATTE)) {
-                                p = new Pattate();
+                            if (plant.equals(PlantVarietyEnum.PATATE)) {
+                                p = new Patate();
                             } else {
                                 if (plant.equals(PlantVarietyEnum.POMME)) {
                                     p = new Pomme();

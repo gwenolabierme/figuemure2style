@@ -21,6 +21,10 @@ public abstract class Plant extends UpdateObservable {
      */
     protected int price;
     /**
+     * Nombre d'XP que la plante fait gagner lorsqu'on la vend.
+     */
+    protected int nbXp;
+    /**
      * Etat de croissance actuel de la plante.
      */
     protected GrowthStateEnum growthState;
@@ -34,9 +38,10 @@ public abstract class Plant extends UpdateObservable {
         this.name = null;
         this.styDevEat = null;
         this.price = 0;
+        this.nbXp = 0;
         
         growthState = GrowthStateEnum.SPROUT;
-        life = 3;
+        this.life = 3;
     }
     
     
@@ -50,6 +55,10 @@ public abstract class Plant extends UpdateObservable {
 
     public int getPrice() {
         return price;
+    }
+
+    public int getNbXp() {
+        return nbXp;
     }
 
     public GrowthStateEnum getGrowthState() {

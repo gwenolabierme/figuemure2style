@@ -9,7 +9,6 @@ import javafx.scene.control.Button;
 public class UserVegetableRatio {
 
     private String img;
-    private Button btn;
     private String figureDeStyle;
     private String ratio;
 
@@ -17,20 +16,10 @@ public class UserVegetableRatio {
 
     }
 
-    public UserVegetableRatio(String img, String btn, String figureDeStyle, String ratio) {
+    public UserVegetableRatio(String img, String figureDeStyle, String ratio) {
         this.img = img;
-        this.btn = new Button();
         this.figureDeStyle = figureDeStyle;
         this.ratio = ratio;
-
-    }
-
-    public void setBtn(Button btn) {
-        this.btn = btn;
-    }
-
-    public Button getBtn() {
-        return btn;
     }
 
     public String getImg() {
@@ -55,20 +44,5 @@ public class UserVegetableRatio {
 
     public void setRatio(String ratio) {
         this.ratio = ratio;
-    }
-
-    public static class ButtonUserVegetableRatio {
-
-        Button btn;
-
-        private ButtonUserVegetableRatio() {
-            btn = new Button("The Button");
-            btn.setMinSize(60, 60);
-            //btn.getStyleClass().add("logoSettingsView");
-        }
-
-        public Button getButton() {
-            return btn;
-        }
     }
 }
