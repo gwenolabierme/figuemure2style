@@ -31,7 +31,7 @@ public class PlantView implements View{
     /**
      * Map contenant les images de la croissance de la plante.
      */
-    protected static HashMap<GrowthStateEnum, Image> growthStatesImg;
+    protected HashMap<GrowthStateEnum, Image> growthStatesImg;
     /**
      * Contexte graphique dans lequel on va afficher la plante.
      */
