@@ -227,8 +227,8 @@ public class InventoryView {
             @Override
             public void handle(ActionEvent e) {
                 String vegetableSale = sale.getText();
-                int score = u.getScore();
-                int nbXp = 0;
+                //int score = u.getScore();
+                //int nbXp = 0;
                 int nbVegetable = 0;
                 double money = u.getMoney();
                 int priceVegetable = 0;
@@ -239,8 +239,8 @@ public class InventoryView {
                         if (u.getPlantUnlock().toString().contains(listUnlock.get(0))) {
                             // Met à jour le stock
                             nbVegetable += listInventory.get(0);
-                            nbXp += carotte.getNbXp() * nbVegetable;
-                            score += nbXp;
+                            //nbXp += carotte.getNbXp() * nbVegetable;
+                            //score += nbXp;
                             
                             // Met à jour l'argent 
                             priceVegetable += Integer.parseInt(listPrice.get(0));
@@ -262,8 +262,8 @@ public class InventoryView {
                         if (u.getPlantUnlock().toString().contains(listUnlock.get(1))) {
                             // Met à jour le stock
                             nbVegetable += listInventory.get(1);
-                            nbXp += figue.getNbXp() * nbVegetable;
-                            score += nbXp;
+                            //nbXp += figue.getNbXp() * nbVegetable;
+                            //score += nbXp;
                             
                             // Vide les stock du légume
                             u.emptyQtyStock(PlantVarietyEnum.FIGUE, u.getPseudo());
@@ -281,8 +281,8 @@ public class InventoryView {
                         if (u.getPlantUnlock().toString().contains(listUnlock.get(2))) {
                             // Met à jour le stock
                             nbVegetable += listInventory.get(2);
-                            nbXp += mure.getNbXp() * nbVegetable;
-                            score += nbXp;
+                            //nbXp += mure.getNbXp() * nbVegetable;
+                            //score += nbXp;
                             
                             // Vide les stock du légume
                             u.emptyQtyStock(PlantVarietyEnum.MURE, u.getPseudo());
@@ -300,8 +300,8 @@ public class InventoryView {
                         if (u.getPlantUnlock().toString().contains(listUnlock.get(3))) {
                             // Met à jour le stock
                             nbVegetable += listInventory.get(3);
-                            nbXp += mure.getNbXp() * nbVegetable;
-                            score += nbXp;
+                            //nbXp += mure.getNbXp() * nbVegetable;
+                            //score += nbXp;
                             
                             // Vide les stock du légume
                             u.emptyQtyStock(PlantVarietyEnum.PATATE, u.getPseudo());
@@ -319,8 +319,8 @@ public class InventoryView {
                         if (u.getPlantUnlock().toString().contains(listUnlock.get(4))) {
                             // Met à jour le stock
                             nbVegetable += listInventory.get(4);
-                            nbXp += pomme.getNbXp() * nbVegetable;
-                            score += nbXp;
+                            //nbXp += pomme.getNbXp() * nbVegetable;
+                            //score += nbXp;
                             
                             // Vide les stock du légume
                             u.emptyQtyStock(PlantVarietyEnum.POMME, u.getPseudo());
@@ -338,8 +338,8 @@ public class InventoryView {
                         if (u.getPlantUnlock().toString().contains(listUnlock.get(5))) {
                             // Met à jour le stock
                             nbVegetable += listInventory.get(5);
-                            nbXp += tomate.getNbXp() * nbVegetable;
-                            score += nbXp;
+                            //nbXp += tomate.getNbXp() * nbVegetable;
+                            //score += nbXp;
                             
                             // Vide les stock du légume
                             u.emptyQtyStock(PlantVarietyEnum.TOMATE, u.getPseudo());
@@ -362,9 +362,10 @@ public class InventoryView {
                 
                 // Infos utilisateur
                 UserDidacticiel didacticiel = new UserDidacticiel("InventaryView", u.getGender());
-                String newScore = Integer.toString(score); 
+                //String newScore = Integer.toString(score); 
                 String newMoney = Double.toString(money);
-                Button d = didacticiel.message("Nouveau score : " + newScore + "XP \nArgent restant : " + newMoney + "€");
+                //Button d = didacticiel.message("Nouveau score : " + newScore + "XP \nArgent restant : " + newMoney + "€");
+                Button d = didacticiel.message("Argent restant : " + newMoney + "€");
                 gridpane.add(d, 3, 5);
                 gridpane.setHalignment(d, HPos.CENTER);
                 gridpane.setValignment(d, VPos.BOTTOM);

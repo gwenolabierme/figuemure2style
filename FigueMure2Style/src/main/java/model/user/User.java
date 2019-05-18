@@ -530,9 +530,11 @@ public class User {
         this.money = money;
         BDFile f = new BDFile();
         Map mapUser = f.loadFile(pseudo);
+        System.out.println(mapUser.get(money));
         mapUser.replace("money", String.valueOf(this.money));
         f = new BDFile();
         f.newFile(pseudo, mapUser);
+        System.out.println(mapUser.get(money));
     }
 
     /**
