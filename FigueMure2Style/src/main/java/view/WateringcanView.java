@@ -104,7 +104,6 @@ public class WateringcanView {
         gridpane.add(title, 1, 0);
         gridpane.setHalignment(title, HPos.CENTER);
 
-        // TODO
         // Figure de style
         Text figureDeStyle = new Text();
         figureDeStyle.setText(this.fertilizer.getSentence());
