@@ -1,7 +1,6 @@
 
 package view;
 
-import controller.Controller;
 import figuemure2style.App;
 import java.util.Arrays;
 import java.util.List;

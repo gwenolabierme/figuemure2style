@@ -1,6 +1,5 @@
 package view;
 
-import controller.Controller;
 import figuemure2style.App;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
