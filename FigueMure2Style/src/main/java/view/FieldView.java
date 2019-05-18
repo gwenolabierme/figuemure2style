@@ -61,6 +61,7 @@ public class FieldView extends CanvasView {
      * @param fieldModel Modèle de données
      * @param width Largeur du canvas
      * @param height Hauteur du canvas
+     * @param init TODO
      */
     public FieldView(FieldModel fieldModel, int width, int height, boolean init) {
         super(width, height);

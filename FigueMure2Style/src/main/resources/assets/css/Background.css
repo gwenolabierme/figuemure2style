@@ -213,6 +213,14 @@
     -fx-background-position: center center;
 }
 
+.carrotUnlockTable {
+    -fx-background-color: transparent;
+    -fx-background-image: url("/assets/img/vegetable/carrot.png");
+    -fx-background-repeat: stretch;   
+    -fx-background-size: 60 60;
+    -fx-background-position: center center;
+}
+
 .carrotLock {
     -fx-background-image: url("/assets/img/vegetable/carrot_lock.png");
     -fx-background-repeat: stretch;   
@@ -221,6 +229,14 @@
 }
 
 .figUnlock {
+    -fx-background-image: url("/assets/img/vegetable/fig.png");
+    -fx-background-repeat: stretch;   
+    -fx-background-size: 60 60;
+    -fx-background-position: center center;
+}
+
+.figUnlockTable {
+    -fx-background-color: transparent;
     -fx-background-image: url("/assets/img/vegetable/fig.png");
     -fx-background-repeat: stretch;   
     -fx-background-size: 60 60;
@@ -241,6 +257,14 @@
     -fx-background-position: center center;
 }
 
+.blackberryUnlockTable {
+    -fx-background-color: transparent;
+    -fx-background-image: url("/assets/img/vegetable/blackberry.png");
+    -fx-background-repeat: stretch;   
+    -fx-background-size: 60 60;
+    -fx-background-position: center center;
+}
+
 .blackberryLock {
     -fx-background-image: url("/assets/img/vegetable/blackberry_lock.png");
     -fx-background-repeat: stretch;   
@@ -249,6 +273,14 @@
 }
 
 .patatoUnlock {
+    -fx-background-image: url("/assets/img/vegetable/patato.png");
+    -fx-background-repeat: stretch;   
+    -fx-background-size: 60 60;
+    -fx-background-position: center center;
+}
+
+.patatoUnlockTable {
+    -fx-background-color: transparent;
     -fx-background-image: url("/assets/img/vegetable/patato.png");
     -fx-background-repeat: stretch;   
     -fx-background-size: 60 60;
@@ -269,6 +301,14 @@
     -fx-background-position: center center;
 }
 
+.appleUnlockTable {
+    -fx-background-color: transparent;
+    -fx-background-image: url("/assets/img/vegetable/apple.png");
+    -fx-background-repeat: stretch;   
+    -fx-background-size: 60 60;
+    -fx-background-position: center center;
+}
+
 .appleLock {
     -fx-background-image: url("/assets/img/vegetable/apple_lock.png");
     -fx-background-repeat: stretch;   
@@ -283,9 +323,78 @@
     -fx-background-position: center center;
 }
 
+.tomatoUnlockTable {
+    -fx-background-color: transparent;
+    -fx-background-image: url("/assets/img/vegetable/tomato.png");
+    -fx-background-repeat: stretch;   
+    -fx-background-size: 60 60;
+    -fx-background-position: center center;
+}
+
 .tomatoLock {
     -fx-background-image: url("/assets/img/vegetable/tomato_lock.png");
     -fx-background-repeat: stretch;   
     -fx-background-size: 60 60;
     -fx-background-position: center center;
+}
+
+.panelScoreMonney {
+    -fx-background-color: transparent;
+    -fx-background-image: url("/assets/css/img/wood.png");
+    -fx-background-repeat: stretch;   
+    -fx-background-size: 180 50;
+    -fx-background-position: center center;
+    -fx-font-size: 20px;
+}
+
+.panelStore {
+    -fx-background-color: transparent;
+    -fx-background-image: url("/assets/css/img/wood.png");
+    -fx-background-repeat: stretch;   
+    -fx-background-size: 110 110;
+    -fx-background-position: center center;
+    -fx-font-size: 20px;
+}
+
+.lecon {
+    -fx-font-size: 15px;
+}
+
+.titleTable {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+}
+
+.textTable {
+    -fx-font-size: 16px;
+}
+
+.didacticiel_other {
+    -fx-background-color: transparent;
+    -fx-background-image: url("/assets/img/user/other_messages.png");
+    -fx-background-repeat: stretch;   
+    -fx-background-size: 400 150;
+    -fx-background-position: center center;
+    -fx-text-fill: black;
+    -fx-font-size: 18px;
+}
+
+.didacticiel_famer_man {
+    -fx-background-color: transparent;
+    -fx-background-image: url("/assets/img/user/messages_famer_man.png");
+    -fx-background-repeat: stretch;   
+    -fx-background-size: 600 180;
+    -fx-background-position: center center;
+    -fx-text-fill: black;
+    -fx-font-size: 18px;
+}
+
+.didacticiel_famer_woman {
+    -fx-background-color: transparent;
+    -fx-background-image: url("/assets/img/user/messages_famer_woman.png");
+    -fx-background-repeat: stretch;   
+    -fx-background-size: 600 150;
+    -fx-background-position: center center;
+    -fx-text-fill: black;
+    -fx-font-size: 18px;
 }

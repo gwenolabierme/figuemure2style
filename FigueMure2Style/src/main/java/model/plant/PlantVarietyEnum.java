@@ -8,7 +8,7 @@ public enum PlantVarietyEnum implements Comparable<PlantVarietyEnum> {
     CAROTTE("carotte"),
     FIGUE("figue"),
     MURE("mure"),
-    PATATTE("pattate"),
+    PATATE("patate"),
     POMME("pomme"),
     TOMATE("tomate");
 

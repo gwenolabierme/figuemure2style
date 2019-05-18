@@ -11,8 +11,10 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.RowConstraints;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import model.user.User;
+import model.user.UserDidacticiel;
 
 /**
  * view for jfx.
@@ -42,7 +44,7 @@ public class JfxView implements View {
      * Constructeur de JfxView.
      *
      * @param title Titre de la fenêtre à créer
-     * @param stage Fenêtre à gérer
+     * @param stg Fenêtre à gérer
      * @param u Utilisateur
      */
     public JfxView(String title, Stage stg, User u) {
@@ -55,7 +57,6 @@ public class JfxView implements View {
         GridPane gridpane = new GridPane();
         gridpane.setHgap(10);
         gridpane.setVgap(10);
-        //gridpane.setPadding(new Insets(20, 20, 20, 20, 20));
 
         ColumnConstraints col1 = new ColumnConstraints();
         col1.setPercentWidth(20);
@@ -81,12 +82,33 @@ public class JfxView implements View {
         gridpane.getColumnConstraints().addAll(col1, col2, col3, col4, col5);
         gridpane.getRowConstraints().addAll(row1, row2, row3, row4, row5);
 
+        // Scrore
+        Button score = new Button("Score : " + Integer.toString(u.getScore()) + "XP");
+        score.setMinSize(200, 100);
+        score.getStyleClass().add("panelScoreMonney");
+        gridpane.add(score, 3, 0);
+        gridpane.setHalignment(score, HPos.CENTER);
+        gridpane.setValignment(score, VPos.TOP);
+
+        // Argent
+        Button money = new Button("Argent : " + String.valueOf(u.getMoney()) + "€");
+        money.setMinSize(180, 50);
+        money.getStyleClass().add("panelScoreMonney");
+        gridpane.add(money, 3, 0);
+        gridpane.setHalignment(money, HPos.CENTER);
+        gridpane.setValignment(money, VPos.BOTTOM);
+
+        // Didacticiel
+        if (u.isDidacticiel()) {
+            UserDidacticiel didacticiel = new UserDidacticiel("GameView", u.getGender());
+            Button d = didacticiel.message(" Bienvenue " + u.getPseudo() + " ! \n Voici les pacerelles où pousseront\n  tes figures de style.");
+            gridpane.add(d, 0, 0);
+            gridpane.setHalignment(d, HPos.LEFT);
+        }
+
         // Terres
         this.root = new Group();
-        //this.root.getStyleClass().add("game_background");
-        gridpane.add(this.root, 0, 0);
-        gridpane.setHalignment(this.root, HPos.LEFT);
-        gridpane.setValignment(this.root, VPos.TOP);
+        gridpane.add(this.root, 0, 3);
 
         // Bouton : Tableau de bord
         Button buttonDashbord = new Button();
@@ -94,9 +116,8 @@ public class JfxView implements View {
             @Override
             public void handle(ActionEvent e) {
                 // Fenetre : Tableau de bord
-                DashbordView dv = new DashbordView(stage, 
+                DashbordView dv = new DashbordView(stage,
                         App.windowsWidht, App.windowsHeight, u);
-                System.out.println("Tableau de bord");
             }
         });
         buttonDashbord.setMinSize(80, 80);
@@ -111,11 +132,8 @@ public class JfxView implements View {
             @Override
             public void handle(ActionEvent e) {
                 // Fenetre : Boutique
-                //HashSet<StylisticDevice> fertilizerList = null;
-                //StoreWateringcanView swv = new StoreWateringcanView(stage, 800, 800, u, fertilizerList);
-                StoreWateringcanView swv = new StoreWateringcanView(stage, 
+                StoreWateringcanView swv = new StoreWateringcanView(stage,
                         App.windowsWidht, App.windowsHeight, u);
-                System.out.println("Boutique");
             }
         });
         buttonShop.setMinSize(80, 80);
@@ -129,11 +147,9 @@ public class JfxView implements View {
         buttonInventory.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent e) {
-                //TODO
                 // Fenetre : Inventaire
-                InventoryView iv = new InventoryView(stage, 
+                InventoryView iv = new InventoryView(stage,
                         App.windowsWidht, App.windowsHeight, u);
-                System.out.println("Inventaire");
             }
         });
         buttonInventory.setMinSize(80, 80);
@@ -147,11 +163,9 @@ public class JfxView implements View {
         buttonSettings.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent e) {
-                //TODO
                 // Fenetre : Paramètres
-                SettingsView sv = new SettingsView(stage, 
+                SettingsView sv = new SettingsView(stage,
                         App.windowsWidht, App.windowsHeight, u);
-                System.out.println("Paramètres");
             }
         });
         buttonSettings.setMinSize(80, 80);
@@ -167,7 +181,6 @@ public class JfxView implements View {
             public void handle(ActionEvent e) {
                 // Fenetre : Quitter
                 MenuView mv = new MenuView(stage, 600, 600);
-                System.out.println("Quitter");
             }
         });
         buttonExit.setMinSize(80, 80);
@@ -180,7 +193,7 @@ public class JfxView implements View {
         gridpane.getStyleClass().add("game_background");
 
         // Scene
-        Scene scene = new Scene(gridpane, 
+        Scene scene = new Scene(gridpane,
                 App.windowsWidht, App.windowsHeight);
         scene.getStylesheets().add("/assets/css/Background.css");
         stage.setScene(scene);

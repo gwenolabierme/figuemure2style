@@ -11,6 +11,10 @@ import model.stylisticDevice.StylisticDeviceEnum;
 public abstract class MouseEventSubscription {
     private final List<MouseEventSubscriber> subscribers = new ArrayList<MouseEventSubscriber>();
 
+    /**
+     * addSubscriber : Ajoute un subscriber.
+     * @param subscriber TODO
+     */
     public void addSubscriber(MouseEventSubscriber subscriber) {
         this.subscribers.add(subscriber);
     }
@@ -19,6 +23,9 @@ public abstract class MouseEventSubscription {
      * Méthode appelée lorsqu'un event souris est déclenché, elle va avertir tous
      * ses abonnés de l'évènement.
      * @param s type event
+     * @param sde TODO
+     * @param x TODO
+     * @param y TODO
      */
     public void mousePressed(String s, StylisticDeviceEnum sde, double x, double y) {
         for (MouseEventSubscriber subscriber : subscribers) {
@@ -30,6 +37,9 @@ public abstract class MouseEventSubscription {
      * Méthode appelée lorsqu'un event souris est déclenché, elle va avertir tous
      * ses abonnés de l'évènement.
      * @param s type event
+     * @param pve TODO
+     * @param x TODO
+     * @param y TODO
      */
     public void mousePressed(String s, PlantVarietyEnum pve, double x, double y) {
         for (MouseEventSubscriber subscriber : subscribers) {

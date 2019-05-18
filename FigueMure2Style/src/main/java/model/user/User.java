@@ -1,11 +1,20 @@
 package model.user;
 
+import java.util.Arrays;
 import java.util.EnumSet;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import model.ModelException;
 import model.bd.BDFile;
+import model.plant.Carotte;
+import model.plant.Figue;
+import model.plant.Mure;
+import model.plant.Patate;
+import model.plant.Plant;
 import model.plant.PlantVarietyEnum;
+import model.plant.Pomme;
+import model.plant.Tomate;
 
 /**
  * Utilisateur.
@@ -18,12 +27,25 @@ public class User {
     private String passwordConfirm;
     private int score;
     private double money;
+    private boolean didacticiel;
+    private boolean sound;
+    
     private EnumSet<PlantVarietyEnum> plantUnlock;
     private HashMap<PlantVarietyEnum, Integer> inventory;
     /**
      * Données (victoire, défaites, ratio) pour chaque plante débloquée
      */
     private HashMap<PlantVarietyEnum, DataPlantRatio> dataSucces;
+
+    // Listes de données : Fuits et légumes
+    private final Plant carotte = new Carotte();
+    private final Plant figue = new Figue();
+    private final Plant mure = new Mure();
+    private final Plant patate = new Patate();
+    private final Plant pomme = new Pomme();
+    private final Plant tomate = new Tomate();
+
+    private final List<String> listNames = Arrays.asList(carotte.getName().toString(), figue.getName().toString(), mure.getName().toString(), patate.getName().toString(), pomme.getName().toString(), tomate.getName().toString());
 
     /**
      * Constructeur User.
@@ -56,13 +78,17 @@ public class User {
         }
         this.score = 0;
         this.money = 100;
+        this.didacticiel = true;
+        this.sound = true;
 
         // Creation d'un fichier de BD user
-        Map<String, String> map = new HashMap<String, String>();
+        Map<String, String> map = new HashMap<>();
         map.put("pseudo", this.pseudo);
         map.put("gender", this.gender);
         map.put("score", Integer.toString(this.score));
         map.put("money", String.valueOf(this.money));
+        map.put("didacticiel", Boolean.toString(this.didacticiel));
+        map.put("sound", Boolean.toString(this.sound));
 
         // Légumes débloqués
         plantUnlock = EnumSet.noneOf(PlantVarietyEnum.class);
@@ -72,12 +98,12 @@ public class User {
         // Inventaire
         inventory = new HashMap<>();
         initStock();
-        map.put("PlantVarietyEnum.CAROTTE", inventory.get(PlantVarietyEnum.CAROTTE).toString());
-        map.put("PlantVarietyEnum.FIGUE", inventory.get(PlantVarietyEnum.FIGUE).toString());
-        map.put("PlantVarietyEnum.MURE", inventory.get(PlantVarietyEnum.MURE).toString());
-        map.put("PlantVarietyEnum.PATATTE", inventory.get(PlantVarietyEnum.PATATTE).toString());
-        map.put("PlantVarietyEnum.POMME", inventory.get(PlantVarietyEnum.POMME).toString());
-        map.put("PlantVarietyEnum.TOMATE", inventory.get(PlantVarietyEnum.TOMATE).toString());
+        map.put("PlantVarietyEnum.CAROTTE", Integer.toString(inventory.get(PlantVarietyEnum.CAROTTE)));
+        map.put("PlantVarietyEnum.FIGUE", Integer.toString(inventory.get(PlantVarietyEnum.FIGUE)));
+        map.put("PlantVarietyEnum.MURE", Integer.toString(inventory.get(PlantVarietyEnum.MURE)));
+        map.put("PlantVarietyEnum.PATATE", Integer.toString(inventory.get(PlantVarietyEnum.PATATE)));
+        map.put("PlantVarietyEnum.POMME", Integer.toString(inventory.get(PlantVarietyEnum.POMME)));
+        map.put("PlantVarietyEnum.TOMATE", Integer.toString(inventory.get(PlantVarietyEnum.TOMATE)));
 
         // Ratios
         dataSucces = new HashMap<>();
@@ -91,9 +117,9 @@ public class User {
         map.put("PlantVarietyEnum.MURE.nbVictory", String.valueOf(dataSucces.get(PlantVarietyEnum.MURE).getNbVictory()));
         map.put("PlantVarietyEnum.MURE.nbDefeat", String.valueOf(dataSucces.get(PlantVarietyEnum.MURE).getNbDefeat()));
         map.put("PlantVarietyEnum.MURE.ratio", String.valueOf(dataSucces.get(PlantVarietyEnum.MURE).getRatio()));
-        map.put("PlantVarietyEnum.PATATTE.nbVictory", String.valueOf(dataSucces.get(PlantVarietyEnum.PATATTE).getNbVictory()));
-        map.put("PlantVarietyEnum.PATATTE.nbDefeat", String.valueOf(dataSucces.get(PlantVarietyEnum.PATATTE).getNbDefeat()));
-        map.put("PlantVarietyEnum.PATATTE.ratio", String.valueOf(dataSucces.get(PlantVarietyEnum.PATATTE).getRatio()));
+        map.put("PlantVarietyEnum.PATATE.nbVictory", String.valueOf(dataSucces.get(PlantVarietyEnum.PATATE).getNbVictory()));
+        map.put("PlantVarietyEnum.PATATE.nbDefeat", String.valueOf(dataSucces.get(PlantVarietyEnum.PATATE).getNbDefeat()));
+        map.put("PlantVarietyEnum.PATATE.ratio", String.valueOf(dataSucces.get(PlantVarietyEnum.PATATE).getRatio()));
         map.put("PlantVarietyEnum.POMME.nbVictory", String.valueOf(dataSucces.get(PlantVarietyEnum.POMME).getNbVictory()));
         map.put("PlantVarietyEnum.POMME.nbDefeat", String.valueOf(dataSucces.get(PlantVarietyEnum.POMME).getNbDefeat()));
         map.put("PlantVarietyEnum.POMME.ratio", String.valueOf(dataSucces.get(PlantVarietyEnum.POMME).getRatio()));
@@ -126,6 +152,8 @@ public class User {
             this.passwordConfirm = passwordConfirm;
             this.score = 0;
             this.money = 100;
+            this.didacticiel = true;
+            this.sound = true;
 
             // Creation d'un fichier de BD user
             Map<String, String> map = new HashMap<>();
@@ -135,6 +163,8 @@ public class User {
             map.put("passwordConfirm", this.passwordConfirm);
             map.put("score", Integer.toString(this.score));
             map.put("money", String.valueOf(this.money));
+            map.put("didacticiel", Boolean.toString(this.didacticiel));
+            map.put("sound", Boolean.toString(this.sound));
 
             // Légumes débloqués
             plantUnlock = EnumSet.noneOf(PlantVarietyEnum.class);
@@ -144,12 +174,12 @@ public class User {
             // Inventaire
             inventory = new HashMap<>();
             initStock();
-            map.put("PlantVarietyEnum.CAROTTE", inventory.get(PlantVarietyEnum.CAROTTE).toString());
-            map.put("PlantVarietyEnum.FIGUE", inventory.get(PlantVarietyEnum.FIGUE).toString());
-            map.put("PlantVarietyEnum.MURE", inventory.get(PlantVarietyEnum.MURE).toString());
-            map.put("PlantVarietyEnum.PATATTE", inventory.get(PlantVarietyEnum.PATATTE).toString());
-            map.put("PlantVarietyEnum.POMME", inventory.get(PlantVarietyEnum.POMME).toString());
-            map.put("PlantVarietyEnum.TOMATE", inventory.get(PlantVarietyEnum.TOMATE).toString());
+            map.put("PlantVarietyEnum.CAROTTE", Integer.toString(inventory.get(PlantVarietyEnum.CAROTTE)));
+            map.put("PlantVarietyEnum.FIGUE", Integer.toString(inventory.get(PlantVarietyEnum.FIGUE)));
+            map.put("PlantVarietyEnum.MURE", Integer.toString(inventory.get(PlantVarietyEnum.MURE)));
+            map.put("PlantVarietyEnum.PATATE", Integer.toString(inventory.get(PlantVarietyEnum.PATATE)));
+            map.put("PlantVarietyEnum.POMME", Integer.toString(inventory.get(PlantVarietyEnum.POMME)));
+            map.put("PlantVarietyEnum.TOMATE", Integer.toString(inventory.get(PlantVarietyEnum.TOMATE)));
 
             // Ratios
             dataSucces = new HashMap<>();
@@ -163,9 +193,9 @@ public class User {
             map.put("PlantVarietyEnum.MURE.nbVictory", String.valueOf(dataSucces.get(PlantVarietyEnum.MURE).getNbVictory()));
             map.put("PlantVarietyEnum.MURE.nbDefeat", String.valueOf(dataSucces.get(PlantVarietyEnum.MURE).getNbDefeat()));
             map.put("PlantVarietyEnum.MURE.ratio", String.valueOf(dataSucces.get(PlantVarietyEnum.MURE).getRatio()));
-            map.put("PlantVarietyEnum.PATATTE.nbVictory", String.valueOf(dataSucces.get(PlantVarietyEnum.PATATTE).getNbVictory()));
-            map.put("PlantVarietyEnum.PATATTE.nbDefeat", String.valueOf(dataSucces.get(PlantVarietyEnum.PATATTE).getNbDefeat()));
-            map.put("PlantVarietyEnum.PATATTE.ratio", String.valueOf(dataSucces.get(PlantVarietyEnum.PATATTE).getRatio()));
+            map.put("PlantVarietyEnum.PATATE.nbVictory", String.valueOf(dataSucces.get(PlantVarietyEnum.PATATE).getNbVictory()));
+            map.put("PlantVarietyEnum.PATATE.nbDefeat", String.valueOf(dataSucces.get(PlantVarietyEnum.PATATE).getNbDefeat()));
+            map.put("PlantVarietyEnum.PATATE.ratio", String.valueOf(dataSucces.get(PlantVarietyEnum.PATATE).getRatio()));
             map.put("PlantVarietyEnum.POMME.nbVictory", String.valueOf(dataSucces.get(PlantVarietyEnum.POMME).getNbVictory()));
             map.put("PlantVarietyEnum.POMME.nbDefeat", String.valueOf(dataSucces.get(PlantVarietyEnum.POMME).getNbDefeat()));
             map.put("PlantVarietyEnum.POMME.ratio", String.valueOf(dataSucces.get(PlantVarietyEnum.POMME).getRatio()));
@@ -191,28 +221,30 @@ public class User {
         this.gender = (String) mapUser.get("gender");
         this.score = Integer.parseInt((String) mapUser.get("score"));
         this.money = Double.parseDouble((String) mapUser.get("money"));
+        this.didacticiel = Boolean.parseBoolean((String) mapUser.get("didacticiel"));
+        this.sound = Boolean.parseBoolean((String) mapUser.get("sound"));
 
         // Légumes débloqués
         String listPlantUnlock = (String) mapUser.get("plantUnlock");
         EnumSet<PlantVarietyEnum> listVarietyPlantUnlock = null;
         plantUnlock = EnumSet.noneOf(PlantVarietyEnum.class);
 
-        if (listPlantUnlock.contains("carotte")) {
+        if (listPlantUnlock.contains(listNames.get(0))) {
             addPlantUnlock(PlantVarietyEnum.CAROTTE);
         }
-        if (listPlantUnlock.contains("figue")) {
+        if (listPlantUnlock.contains(listNames.get(1))) {
             addPlantUnlock(PlantVarietyEnum.FIGUE);
         }
-        if (listPlantUnlock.contains("mure")) {
+        if (listPlantUnlock.contains(listNames.get(2))) {
             addPlantUnlock(PlantVarietyEnum.MURE);
         }
-        if (listPlantUnlock.contains("pattate")) {
-            addPlantUnlock(PlantVarietyEnum.PATATTE);
+        if (listPlantUnlock.contains(listNames.get(3))) {
+            addPlantUnlock(PlantVarietyEnum.PATATE);
         }
-        if (listPlantUnlock.contains("pomme")) {
+        if (listPlantUnlock.contains(listNames.get(4))) {
             addPlantUnlock(PlantVarietyEnum.POMME);
         }
-        if (listPlantUnlock.contains("tomate")) {
+        if (listPlantUnlock.contains(listNames.get(5))) {
             addPlantUnlock(PlantVarietyEnum.TOMATE);
         }
 
@@ -222,7 +254,7 @@ public class User {
         this.inventory.put(PlantVarietyEnum.CAROTTE, Integer.parseInt((String) mapUser.get("PlantVarietyEnum.CAROTTE")));
         this.inventory.put(PlantVarietyEnum.FIGUE, Integer.parseInt((String) mapUser.get("PlantVarietyEnum.FIGUE")));
         this.inventory.put(PlantVarietyEnum.MURE, Integer.parseInt((String) mapUser.get("PlantVarietyEnum.MURE")));
-        this.inventory.put(PlantVarietyEnum.PATATTE, Integer.parseInt((String) mapUser.get("PlantVarietyEnum.PATATTE")));
+        this.inventory.put(PlantVarietyEnum.PATATE, Integer.parseInt((String) mapUser.get("PlantVarietyEnum.PATATE")));
         this.inventory.put(PlantVarietyEnum.POMME, Integer.parseInt((String) mapUser.get("PlantVarietyEnum.POMME")));
         this.inventory.put(PlantVarietyEnum.TOMATE, Integer.parseInt((String) mapUser.get("PlantVarietyEnum.TOMATE")));
 
@@ -231,7 +263,7 @@ public class User {
         this.dataSucces.put(PlantVarietyEnum.CAROTTE, new DataPlantRatio(Integer.parseInt((String) mapUser.get("PlantVarietyEnum.CAROTTE.nbVictory")), Integer.parseInt((String) mapUser.get("PlantVarietyEnum.CAROTTE.nbDefeat")), Double.parseDouble((String) mapUser.get("PlantVarietyEnum.CAROTTE.ratio"))));
         this.dataSucces.put(PlantVarietyEnum.FIGUE, new DataPlantRatio(Integer.parseInt((String) mapUser.get("PlantVarietyEnum.FIGUE.nbVictory")), Integer.parseInt((String) mapUser.get("PlantVarietyEnum.FIGUE.nbDefeat")), Double.parseDouble((String) mapUser.get("PlantVarietyEnum.FIGUE.ratio"))));
         this.dataSucces.put(PlantVarietyEnum.MURE, new DataPlantRatio(Integer.parseInt((String) mapUser.get("PlantVarietyEnum.MURE.nbVictory")), Integer.parseInt((String) mapUser.get("PlantVarietyEnum.MURE.nbDefeat")), Double.parseDouble((String) mapUser.get("PlantVarietyEnum.MURE.ratio"))));
-        this.dataSucces.put(PlantVarietyEnum.PATATTE, new DataPlantRatio(Integer.parseInt((String) mapUser.get("PlantVarietyEnum.PATATTE.nbVictory")), Integer.parseInt((String) mapUser.get("PlantVarietyEnum.PATATTE.nbDefeat")), Double.parseDouble((String) mapUser.get("PlantVarietyEnum.PATATTE.ratio"))));
+        this.dataSucces.put(PlantVarietyEnum.PATATE, new DataPlantRatio(Integer.parseInt((String) mapUser.get("PlantVarietyEnum.PATATE.nbVictory")), Integer.parseInt((String) mapUser.get("PlantVarietyEnum.PATATE.nbDefeat")), Double.parseDouble((String) mapUser.get("PlantVarietyEnum.PATATE.ratio"))));
         this.dataSucces.put(PlantVarietyEnum.POMME, new DataPlantRatio(Integer.parseInt((String) mapUser.get("PlantVarietyEnum.POMME.nbVictory")), Integer.parseInt((String) mapUser.get("PlantVarietyEnum.POMME.nbDefeat")), Double.parseDouble((String) mapUser.get("PlantVarietyEnum.POMME.ratio"))));
         this.dataSucces.put(PlantVarietyEnum.TOMATE, new DataPlantRatio(Integer.parseInt((String) mapUser.get("PlantVarietyEnum.TOMATE.nbVictory")), Integer.parseInt((String) mapUser.get("PlantVarietyEnum.TOMATE.nbDefeat")), Double.parseDouble((String) mapUser.get("PlantVarietyEnum.TOMATE.ratio"))));
     }
@@ -254,28 +286,30 @@ public class User {
             this.passwordConfirm = (String) mapUser.get("passwordConfirm");
             this.score = Integer.parseInt((String) mapUser.get("score"));
             this.money = Double.parseDouble((String) mapUser.get("money"));
+            this.didacticiel = Boolean.parseBoolean((String) mapUser.get("didacticiel"));
+            this.sound = Boolean.parseBoolean((String) mapUser.get("sound"));
 
             // Légumes débloqués
             String listPlantUnlock = (String) mapUser.get("plantUnlock");
             EnumSet<PlantVarietyEnum> listVarietyPlantUnlock = null;
             plantUnlock = EnumSet.noneOf(PlantVarietyEnum.class);
 
-            if (listPlantUnlock.contains("carotte")) {
+            if (listPlantUnlock.contains(listNames.get(0))) {
                 addPlantUnlock(PlantVarietyEnum.CAROTTE);
             }
-            if (listPlantUnlock.contains("figue")) {
+            if (listPlantUnlock.contains(listNames.get(1))) {
                 addPlantUnlock(PlantVarietyEnum.FIGUE);
             }
-            if (listPlantUnlock.contains("mure")) {
+            if (listPlantUnlock.contains(listNames.get(2))) {
                 addPlantUnlock(PlantVarietyEnum.MURE);
             }
-            if (listPlantUnlock.contains("pattate")) {
-                addPlantUnlock(PlantVarietyEnum.PATATTE);
+            if (listPlantUnlock.contains(listNames.get(3))) {
+                addPlantUnlock(PlantVarietyEnum.PATATE);
             }
-            if (listPlantUnlock.contains("pomme")) {
+            if (listPlantUnlock.contains(listNames.get(4))) {
                 addPlantUnlock(PlantVarietyEnum.POMME);
             }
-            if (listPlantUnlock.contains("tomate")) {
+            if (listPlantUnlock.contains(listNames.get(5))) {
                 addPlantUnlock(PlantVarietyEnum.TOMATE);
             }
 
@@ -285,16 +319,16 @@ public class User {
             this.inventory.put(PlantVarietyEnum.CAROTTE, Integer.parseInt((String) mapUser.get("PlantVarietyEnum.CAROTTE")));
             this.inventory.put(PlantVarietyEnum.FIGUE, Integer.parseInt((String) mapUser.get("PlantVarietyEnum.FIGUE")));
             this.inventory.put(PlantVarietyEnum.MURE, Integer.parseInt((String) mapUser.get("PlantVarietyEnum.MURE")));
-            this.inventory.put(PlantVarietyEnum.PATATTE, Integer.parseInt((String) mapUser.get("PlantVarietyEnum.PATATTE")));
+            this.inventory.put(PlantVarietyEnum.PATATE, Integer.parseInt((String) mapUser.get("PlantVarietyEnum.PATATE")));
             this.inventory.put(PlantVarietyEnum.POMME, Integer.parseInt((String) mapUser.get("PlantVarietyEnum.POMME")));
             this.inventory.put(PlantVarietyEnum.TOMATE, Integer.parseInt((String) mapUser.get("PlantVarietyEnum.TOMATE")));
-        
+
             // Ratios
             dataSucces = new HashMap<>();
             this.dataSucces.put(PlantVarietyEnum.CAROTTE, new DataPlantRatio(Integer.parseInt((String) mapUser.get("PlantVarietyEnum.CAROTTE.nbVictory")), Integer.parseInt((String) mapUser.get("PlantVarietyEnum.CAROTTE.nbDefeat")), Double.parseDouble((String) mapUser.get("PlantVarietyEnum.CAROTTE.ratio"))));
             this.dataSucces.put(PlantVarietyEnum.FIGUE, new DataPlantRatio(Integer.parseInt((String) mapUser.get("PlantVarietyEnum.FIGUE.nbVictory")), Integer.parseInt((String) mapUser.get("PlantVarietyEnum.FIGUE.nbDefeat")), Double.parseDouble((String) mapUser.get("PlantVarietyEnum.FIGUE.ratio"))));
             this.dataSucces.put(PlantVarietyEnum.MURE, new DataPlantRatio(Integer.parseInt((String) mapUser.get("PlantVarietyEnum.MURE.nbVictory")), Integer.parseInt((String) mapUser.get("PlantVarietyEnum.MURE.nbDefeat")), Double.parseDouble((String) mapUser.get("PlantVarietyEnum.MURE.ratio"))));
-            this.dataSucces.put(PlantVarietyEnum.PATATTE, new DataPlantRatio(Integer.parseInt((String) mapUser.get("PlantVarietyEnum.PATATTE.nbVictory")), Integer.parseInt((String) mapUser.get("PlantVarietyEnum.PATATTE.nbDefeat")), Double.parseDouble((String) mapUser.get("PlantVarietyEnum.PATATTE.ratio"))));
+            this.dataSucces.put(PlantVarietyEnum.PATATE, new DataPlantRatio(Integer.parseInt((String) mapUser.get("PlantVarietyEnum.PATATE.nbVictory")), Integer.parseInt((String) mapUser.get("PlantVarietyEnum.PATATE.nbDefeat")), Double.parseDouble((String) mapUser.get("PlantVarietyEnum.PATATE.ratio"))));
             this.dataSucces.put(PlantVarietyEnum.POMME, new DataPlantRatio(Integer.parseInt((String) mapUser.get("PlantVarietyEnum.POMME.nbVictory")), Integer.parseInt((String) mapUser.get("PlantVarietyEnum.POMME.nbDefeat")), Double.parseDouble((String) mapUser.get("PlantVarietyEnum.POMME.ratio"))));
             this.dataSucces.put(PlantVarietyEnum.TOMATE, new DataPlantRatio(Integer.parseInt((String) mapUser.get("PlantVarietyEnum.TOMATE.nbVictory")), Integer.parseInt((String) mapUser.get("PlantVarietyEnum.TOMATE.nbDefeat")), Double.parseDouble((String) mapUser.get("PlantVarietyEnum.TOMATE.ratio"))));
         } else {
@@ -395,6 +429,14 @@ public class User {
         return money;
     }
 
+    public boolean isDidacticiel() {
+        return didacticiel;
+    }
+
+    public boolean isSound() {
+        return sound;
+    }
+
     /**
      * setPseudo remplace le pseudo de l'utilisateur dans la BD.
      *
@@ -402,7 +444,7 @@ public class User {
      * @throws model.ModelException erreur
      */
     public void setPseudo(String pseudo) throws ModelException {
-        if (pseudo.equals(null)) {
+        if (pseudo == null) {
             throw new ModelException("Le champ pseudo est vide");
         } else {
             this.pseudo = pseudo;
@@ -441,7 +483,7 @@ public class User {
      * @throws model.ModelException erreur
      */
     public void setPassword(String password, String pseudo) throws ModelException {
-        if (password.equals(null)) {
+        if (password == null) {
             throw new ModelException("Le champ mot de passe est vide");
         } else {
             this.password = password;
@@ -462,7 +504,7 @@ public class User {
      * @throws model.ModelException erreur
      */
     public void setPasswordConfirm(String passwordConfirm, String pseudo) throws ModelException {
-        if (passwordConfirm.equals(null)) {
+        if (passwordConfirm == null) {
             throw new ModelException("Le champ confirmation de mot de passe est vide");
         } else {
             this.passwordConfirm = passwordConfirm;
@@ -505,6 +547,46 @@ public class User {
     }
 
     /**
+     * setDidacticiel Active ou déactive le didacticiel.
+     * 
+     * @param pseudo Pseudo de l'utilisateur
+     */
+    public void setDidacticiel(String pseudo) {
+        if (this.didacticiel) {
+            this.didacticiel = false;
+        }
+        else {
+            this.didacticiel = true;
+        }
+        
+        BDFile f = new BDFile();
+        Map mapUser = f.loadFile(pseudo);
+        mapUser.replace("didacticiel", Boolean.toString(this.didacticiel));
+        f = new BDFile();
+        f.newFile(pseudo, mapUser);
+    }
+    
+    /**
+     * setSound Active ou déactive le son.
+     * 
+     * @param pseudo Pseudo de l'utilisateur
+     */
+    public void setSound(String pseudo) {
+        if (this.sound) {
+            this.sound = false;
+        }
+        else {
+            this.sound = true;
+        }
+        
+        BDFile f = new BDFile();
+        Map mapUser = f.loadFile(pseudo);
+        mapUser.replace("sound", Boolean.toString(this.sound));
+        f = new BDFile();
+        f.newFile(pseudo, mapUser);
+    }
+    
+    /**
      * Débloque une plante dans la boutique.
      *
      * @param plant PlantVarietyEnum
@@ -519,7 +601,7 @@ public class User {
     public final void initPlantUnlock() {
         this.addPlantUnlock(PlantVarietyEnum.CAROTTE);
     }
-    
+
     public EnumSet<PlantVarietyEnum> getPlantUnlock() {
         return plantUnlock;
     }
@@ -535,7 +617,7 @@ public class User {
         this.inventory.put(PlantVarietyEnum.CAROTTE, 0);
         this.inventory.put(PlantVarietyEnum.FIGUE, 0);
         this.inventory.put(PlantVarietyEnum.MURE, 0);
-        this.inventory.put(PlantVarietyEnum.PATATTE, 0);
+        this.inventory.put(PlantVarietyEnum.PATATE, 0);
         this.inventory.put(PlantVarietyEnum.POMME, 0);
         this.inventory.put(PlantVarietyEnum.TOMATE, 0);
     }
@@ -559,7 +641,43 @@ public class User {
     }
 
     /**
-     * Change la quantité de la plante dans l'inventaire
+     * Vide le stock de la plante.
+     *
+     * @param variety variété de la plante
+     * @param pseudo utilisateur
+     */
+    public void emptyQtyStock(PlantVarietyEnum variety, String pseudo) {
+        this.inventory.replace(variety, 0);
+        BDFile f = new BDFile();
+        Map mapUser = f.loadFile(pseudo);
+        switch (variety.toString()) {
+            case "carotte":
+                mapUser.replace("PlantVarietyEnum.CAROTTE", Integer.toString(inventory.get(variety)));
+                break;
+            case "figue":
+                mapUser.replace("PlantVarietyEnum.FIGUE", Integer.toString(inventory.get(variety)));
+                break;
+            case "mure":
+                mapUser.replace("PlantVarietyEnum.MURE", Integer.toString(inventory.get(variety)));
+                break;
+            case "patate":
+                mapUser.replace("PlantVarietyEnum.PATATE", Integer.toString(inventory.get(variety)));
+                break;
+            case "pomme":
+                mapUser.replace("PlantVarietyEnum.POMME", Integer.toString(inventory.get(variety)));
+                break;
+            case "tomate":
+                mapUser.replace("PlantVarietyEnum.TOMATE", Integer.toString(inventory.get(variety)));
+                break;
+            default:
+                break;
+        }
+        f = new BDFile();
+        f.newFile(pseudo, mapUser);
+    }
+
+    /**
+     * Change la quantité de la plante dans l'inventaire.
      *
      * @param variety variété de la plante
      * @param qty quantité de la plante dans l'inventaire
@@ -592,7 +710,9 @@ public class User {
     }
 
     /**
-     * Met a jour le ratio de la stratégie en fonction de leur nombre de victoires et défaites.
+     * Met a jour le ratio de la stratégie en fonction de leur nombre de
+     * victoires et défaites.
+     *
      * @param key figure de style concernée
      * @param pseudo utilisateur
      */
@@ -605,7 +725,7 @@ public class User {
         DataPlantRatio data = this.dataSucces.get(key);
         ratio = (double) data.getNbVictory() / data.getNbDefeat();
         data.setRatio(ratio);
-        
+
         mapUser.replace(key + ".ratio", String.valueOf(data.getRatio()));
         f = new BDFile();
         f.newFile(pseudo, mapUser);
@@ -634,7 +754,7 @@ public class User {
         
         f = new BDFile();
         f.newFile(pseudo, mapUser);
-            
+
         this.updateRatios(key, pseudo);
     }
 
@@ -645,7 +765,7 @@ public class User {
         this.dataSucces.put(PlantVarietyEnum.CAROTTE, new DataPlantRatio());
         this.dataSucces.put(PlantVarietyEnum.FIGUE, new DataPlantRatio());
         this.dataSucces.put(PlantVarietyEnum.MURE, new DataPlantRatio());
-        this.dataSucces.put(PlantVarietyEnum.PATATTE, new DataPlantRatio());
+        this.dataSucces.put(PlantVarietyEnum.PATATE, new DataPlantRatio());
         this.dataSucces.put(PlantVarietyEnum.POMME, new DataPlantRatio());
         this.dataSucces.put(PlantVarietyEnum.TOMATE, new DataPlantRatio());
     }

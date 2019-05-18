@@ -1,11 +1,11 @@
 package view;
 
-import controller.Controller;
 import figuemure2style.App;
 import java.util.HashSet;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.HPos;
+import javafx.geometry.VPos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.ColumnConstraints;
@@ -17,6 +17,7 @@ import model.FieldModel;
 import model.StoreModel;
 import model.stylisticDevice.StylisticDevice;
 import model.user.User;
+import model.user.UserDidacticiel;
 
 /**
  *
@@ -42,8 +43,6 @@ public class StoreWateringcanView {
      */
     public StoreWateringcanView(User u) {
         Stage stage = new Stage();
-        //HashSet<StylisticDevice> fertilizerList = null;
-        //StoreWateringcanView swv = new StoreWateringcanView(stage, 800, 800, u, fertilizerList);
         this.model = new StoreModel(u);
         StoreWateringcanView swv = new StoreWateringcanView(stage, 
                 App.windowsWidht, App.windowsHeight, u);
@@ -66,6 +65,15 @@ public class StoreWateringcanView {
         fenetreInit(gridpane, u);
 
         forFertilizers(gridpane, u, false);
+        
+        // Didacticiel
+        if (u.isDidacticiel()) {
+            UserDidacticiel didacticiel = new UserDidacticiel("StoreView", u.getGender());
+            Button d = didacticiel.message("Ici vous pourrez selectionner des\n arrosoirs pour faire grandir vos figures de\n style et y acheter des figures de style.");
+            gridpane.add(d, 3, 4);
+            gridpane.setHalignment(d, HPos.CENTER);
+            gridpane.setValignment(d, VPos.BOTTOM);
+        }
 
         // Background
         gridpane.getStyleClass().add("other_background");
@@ -98,6 +106,15 @@ public class StoreWateringcanView {
         fenetreInit(gridpane, u);
 
         forFertilizers(gridpane, u, true);
+        
+        // Didacticiel
+        if (u.isDidacticiel()) {
+            UserDidacticiel didacticiel = new UserDidacticiel("StoreView", u.getGender());
+            Button d = didacticiel.message("Ici vous pourrez selectionner des arrosoirs\n pour faire grandir vos figures de style\n et y acheter des figures de style.");
+            gridpane.add(d, 3, 5);
+            gridpane.setHalignment(d, HPos.CENTER);
+            gridpane.setValignment(d, VPos.BOTTOM);
+        }
 
         // Background
         gridpane.getStyleClass().add("other_background");
@@ -189,7 +206,7 @@ public class StoreWateringcanView {
         gridpane.setHalignment(title, HPos.CENTER);
 
         // Bouton : Vegetable
-        Button buttonVegetable = new Button("Fruits et légumes");
+        Button buttonVegetable = new Button("Fruits et \nlégumes");
         buttonVegetable.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent e) {
@@ -197,25 +214,23 @@ public class StoreWateringcanView {
                 StoreVegetableView svv = new StoreVegetableView(stage, App.windowsWidht, App.windowsHeight, u);
             }
         });
-        buttonVegetable.setMinSize(100, 100);
-        //buttonVegetable.getStyleClass().add("panel");
+        buttonVegetable.setMinSize(110, 110);
+        buttonVegetable.getStyleClass().add("panelStore");
         gridpane.add(buttonVegetable, 0, 1);
         gridpane.setHalignment(buttonVegetable, HPos.CENTER);
 
         // Bouton : Figure de style
-        Button buttonWateringcan = new Button("Figure de style");
+        Button buttonWateringcan = new Button("Figure de\n    style");
         buttonWateringcan.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent e) {
                 // Fenetre : StoreWateringcanView
-                //HashSet<StylisticDevice> fertilizerList = null;
-                //StoreWateringcanView swv = new StoreWateringcanView(stage, 800, 800, u, fertilizerList);
                 StoreWateringcanView swv = new StoreWateringcanView(stage, 
                         App.windowsWidht, App.windowsHeight, u);
             }
         });
-        buttonWateringcan.setMinSize(100, 100);
-        //buttonVegetable.getStyleClass().add("panel");
+        buttonWateringcan.setMinSize(110, 110);
+        buttonWateringcan.getStyleClass().add("panelStore");
         gridpane.add(buttonWateringcan, 0, 3);
         gridpane.setHalignment(buttonWateringcan, HPos.CENTER);
     }

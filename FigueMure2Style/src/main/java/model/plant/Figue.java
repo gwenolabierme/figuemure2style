@@ -12,6 +12,7 @@ public class Figue extends Fruit {
         this.name = PlantVarietyEnum.FIGUE;
         this.styDevEat = StylisticDeviceEnum.PERIPHRASE;
         this.price = 1;
+        this.nbXp = 5;
     }
     
 }

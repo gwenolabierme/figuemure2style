@@ -1,6 +1,5 @@
 package view;
 
-import controller.Controller;
 import figuemure2style.App;
 import java.util.Arrays;
 import java.util.HashSet;
@@ -41,10 +40,11 @@ public class WateringcanView {
      *
      * @param store boutique
      * @param indice indice //TODO
+     * @param u utilisateur
      */
     public WateringcanView(StoreModel store, int indice, User u) {
         Stage stage = new Stage();
-        WateringcanView swv = new WateringcanView(stage, 
+        WateringcanView swv = new WateringcanView(stage,
                 App.windowsWidht, App.windowsHeight, store, indice, u);
     }
 
@@ -56,6 +56,7 @@ public class WateringcanView {
      * @param h hauteur de la fenêtre
      * @param store model du store
      * @param indice indice de l'arrosoire dans la boutique
+     * @param u utilisateur
      */
     public WateringcanView(final Stage stage, int w, int h, StoreModel store, int indice, User u) {
         this.width = w;
@@ -84,10 +85,10 @@ public class WateringcanView {
             @Override
             public void handle(ActionEvent e) {
                 // Fenetre : StoreWateringcanView
-                Set<StylisticDevice> fertilizer = 
-                        new HashSet<StylisticDevice>(Arrays.asList(store.getFertilizerTab()));
-                StoreWateringcanView swv = new StoreWateringcanView(stage, 
-                        App.windowsWidht, App.windowsHeight, store.getUsr(), 
+                Set<StylisticDevice> fertilizer
+                        = new HashSet<StylisticDevice>(Arrays.asList(store.getFertilizerTab()));
+                StoreWateringcanView swv = new StoreWateringcanView(stage,
+                        App.windowsWidht, App.windowsHeight, store.getUsr(),
                         (HashSet<StylisticDevice>) fertilizer);
             }
         });
@@ -103,18 +104,17 @@ public class WateringcanView {
         gridpane.add(title, 1, 0);
         gridpane.setHalignment(title, HPos.CENTER);
 
-        // TODO
         // Figure de style
         Text figureDeStyle = new Text();
         figureDeStyle.setText(this.fertilizer.getSentence());
-        //figureDeStyle.getStyleClass().add("title");
+        figureDeStyle.getStyleClass().add("text_label");
         gridpane.add(figureDeStyle, 1, 1);
         gridpane.setHalignment(figureDeStyle, HPos.CENTER);
 
         Text infos = new Text();
         infos.setText(this.fertilizer.getAuthor() + ", " + this.fertilizer.getOeuvre());
-        //figureDeStyle.getStyleClass().add("title");
-        gridpane.add(infos, 1, 2);
+        infos.getStyleClass().add("text_label");
+        gridpane.add(infos, 1, 3);
         gridpane.setHalignment(infos, HPos.CENTER);
 
         // Bouton : Sélectionner
@@ -126,7 +126,7 @@ public class WateringcanView {
 
                 FieldModel fieldModel = new FieldModel();
                 //fv = new FieldView(fieldModel, App.windowsWidht, App.windowsHeight, sde);
-                
+
                 //Controller controller = Controller.getControler();
                 //fv.setControler(controller);
                 //controller.addUpdateView(gameView);
@@ -138,8 +138,8 @@ public class WateringcanView {
             }
         });
         buttonSelect.setMinSize(200, 50);
-        //buttonSelect.getStyleClass().add("panel");
-        gridpane.add(buttonSelect, 1, 3);
+        buttonSelect.getStyleClass().add("panel");
+        gridpane.add(buttonSelect, 1, 6);
         gridpane.setHalignment(buttonSelect, HPos.CENTER);
 
         // Background
