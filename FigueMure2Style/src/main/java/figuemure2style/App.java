@@ -19,6 +19,9 @@ public class App extends Application {
      */
     public static int freePlotBegin = 2;
     
+    public static int windowsHeight = 800;
+    public static int windowsWidht = 800;
+    
     
     public static void main(String[] args) {
         Application.launch(args);

@@ -5,18 +5,17 @@ import java.util.HashMap;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import model.plant.Plant;
-import observer.MouseEventSubscriber;
 import view.View;
 
 /**
  * Classe générique pour les plantes.
  * @author jeremy
  */
-public class PlantView implements View, MouseEventSubscriber{
+public class PlantView implements View{
     /**
      * Chemin jusqu'aux images.
      */
-    protected final String imgPath = "/assets/img";
+    protected final String imgPath = "/assets/img/vegetable";
     /**
      * Format des images.
      */
@@ -97,7 +96,8 @@ public class PlantView implements View, MouseEventSubscriber{
      * Affichage de la plante.
      */
     public void display() {
-        graphicsContext.drawImage(this.CurrentImg, 0, 0);
+        update();
+        graphicsContext.drawImage(this.CurrentImg, this.x, this.y);
     }
 
     /**
@@ -107,16 +107,10 @@ public class PlantView implements View, MouseEventSubscriber{
      */
     protected void initImg() {
         growthStatesImg.put(GrowthStateEnum.SPROUT, new Image(imgPath 
-                + "/" + model.getName().toString() + "_sprout" + imgType));
+                + "/sprout" + imgType));
         growthStatesImg.put(GrowthStateEnum.MEDIUM, new Image(imgPath 
-                + "/" + model.getName().toString() + "_medium" + imgType));
+                + "/medium" + imgType));
         growthStatesImg.put(GrowthStateEnum.FINAL, new Image(imgPath 
-                + "/" + model.getName().toString() + "_final" + imgType));
+                + "/" + model.getName().toString() + imgType));
     }
-
-    @Override
-    public void mousePressed(String s) {
-        throw new UnsupportedOperationException("Clique sur une plante"); //To change body of generated methods, choose Tools | Templates.
-    }
-    
 }

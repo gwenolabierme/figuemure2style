@@ -3,9 +3,14 @@ package view;
 import controller.Controller;
 import figuemure2style.App;
 import javafx.event.EventHandler;
+import javafx.scene.Cursor;
+import javafx.scene.ImageCursor;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import model.FieldModel;
+import model.plant.PlantVarietyEnum;
+import model.stylisticDevice.StylisticDeviceEnum;
 import view.plant.PlantView;
 
 /**
@@ -30,7 +35,7 @@ public class FieldView extends CanvasView {
     /**
      * Modèle du champ de cours.
      */
-    private final FieldModel fm;
+    public final FieldModel fm;
     /**
      * Controller à qui on va rapporter les évènements.
      */
@@ -38,11 +43,17 @@ public class FieldView extends CanvasView {
     /**
      * Images pacelles.
      */
-    private ParcelView[][] parcelView;
+    public static ParcelView[][] parcelView;
     /**
-     * Images plantes.
+     * Arrosoir
      */
-    private PlantView[][] plantView;
+    private StylisticDeviceEnum sdeCan;
+    /**
+     * Plante en cours d'achat
+     */
+    private PlantVarietyEnum pveBought;
+    
+    private boolean init = false;
 
     /**
      * Constructeur de FieldView.
@@ -51,7 +62,7 @@ public class FieldView extends CanvasView {
      * @param width Largeur du canvas
      * @param height Hauteur du canvas
      */
-    public FieldView(FieldModel fieldModel, int width, int height) {
+    public FieldView(FieldModel fieldModel, int width, int height, boolean init) {
         super(width, height);
 
         this.fm = fieldModel;
@@ -59,6 +70,8 @@ public class FieldView extends CanvasView {
         this.width = width;
         this.height = height;
 
+        this.sdeCan = null;
+        this.init = init;
         /*
          * Permet de capturer le focus et donc les evenements clavier et
          * souris
@@ -66,49 +79,81 @@ public class FieldView extends CanvasView {
         this.setFocusTraversable(true);
 
         gc = this.getGraphicsContext2D();
+        
+        if (!init) {
+            System.out.println("init");
+            parcelView = new ParcelView[App.gardenSize][App.gardenSize];
+            for (int i = 0; i < App.gardenSize; ++i) {
+                for (int j = 0; j < App.gardenSize; ++j) {
+                    if (App.freePlotBegin * i + j < fm.getNbFreePlot()) {
+                        PlantView pv;
+                        if (fm.getPlant(i, j) == null) {
+                            pv = null;
+                        } else {
+                            pv = new PlantView(gc, fm.getPlant(i, j));
+                        }
 
-        parcelView = new ParcelView[App.gardenSize][App.gardenSize];
-        plantView = new PlantView[App.gardenSize][App.gardenSize];
-
-        for (int i = 0; i < App.gardenSize; ++i) {
-            for (int j = 0; j < App.gardenSize; ++j) {
-                if (App.freePlotBegin * i + j < fm.getNbFreePlot()) {
-                    this.parcelView[i][j] = new ParcelView(gc, true);
-                    this.parcelView[i][j].setX((int) ((j) * (640 / (App.gardenSize))
-                            + this.parcelView[i][j].getCurrentImg().getWidth() / 2));
-                    this.parcelView[i][j].setY((int) (i * (640 / (App.gardenSize))
-                            + this.parcelView[i][j].getCurrentImg().getHeight() / 2));
-                } else {
-                    this.parcelView[i][j] = new ParcelView(gc, false);
-                    this.parcelView[i][j].setX((int) ((j) * (640 / (App.gardenSize))
-                            + this.parcelView[i][j].getCurrentImg().getWidth() / 2)); // on centre la parcelle sur sa colonne
-                    this.parcelView[i][j].setY((int) (i * (640 / (App.gardenSize))
-                            + this.parcelView[i][j].getCurrentImg().getHeight() / 2));
-                }
-                if (fm.getPlant(i, j) == null) {
-                    this.plantView[i][j] = null;
-                } else {
-                    this.plantView[i][j] = new PlantView(gc, fm.getPlant(i, j));
-                    this.plantView[i][j].setX((int) ((j) * (640 / (App.gardenSize))
-                            + this.parcelView[i][j].getCurrentImg().getWidth() / 2
-                            - this.plantView[i][j].getCurrentImg().getWidth() / 2)); // on centre le légume sur la parcelle
-                    this.plantView[i][j].setY((int) (i * (640 / (App.gardenSize))
-                            + this.parcelView[i][j].getCurrentImg().getHeight() / 2
-                            - this.plantView[i][j].getCurrentImg().getHeight() / 2));
+                        parcelView[i][j] = new ParcelView(gc, true, pv);
+                        parcelView[i][j].setX((int) ((j) * (640 / (App.gardenSize))
+                                + parcelView[i][j].getCurrentImg().getWidth() / 2));
+                        parcelView[i][j].setY((int) (i * (640 / (App.gardenSize))
+                                + parcelView[i][j].getCurrentImg().getHeight() / 2));
+                    } else {
+                        parcelView[i][j] = new ParcelView(gc, false, null);
+                        parcelView[i][j].setX((int) ((j) * (640 / (App.gardenSize))
+                                + parcelView[i][j].getCurrentImg().getWidth() / 2)); // on centre la parcelle sur sa colonne
+                        parcelView[i][j].setY((int) (i * (640 / (App.gardenSize))
+                                + parcelView[i][j].getCurrentImg().getHeight() / 2));
+                    }
                 }
             }
+            init = true;
         }
 
         /*
          * Event Listener de la souris quand un bouton est pressée on rapporte
-         * l'évènement au contrôleur
+         * l'évèwateringcannement au contrôleur
          */
         this.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                controller.mousePressed(event.getButton().toString());
+                if (sdeCan != null) {
+                    controller.mousePressed(event.getButton().toString(), sdeCan, event.getX(), event.getY());
+                    sdeCan = null;  
+                }
+                if (pveBought != null) {
+                    controller.mousePressed(event.getButton().toString(), pveBought, event.getX(), event.getY());
+                    pveBought = null;
+                }
             }
         });
+    }
+    
+    public FieldView(FieldModel fieldModel, int width, int height) {
+        this(fieldModel, width, height, false);
+    }
+    
+    public FieldView(FieldModel fieldModel, int width, int height, StylisticDeviceEnum sde) {
+        this(fieldModel, width, height, true);
+        
+        //TODO : traiter sde
+        // changer pointeur souris
+        
+        this.sdeCan = sde;
+        //Image img = new Image("/assets/css/img/wateringcan.png");
+        //scene.setCursor(new ImageCursor(image));
+    }
+    
+    public FieldView(FieldModel fieldModel, int width, int height, PlantVarietyEnum pve) {
+        this(fieldModel, width, height, true);
+        
+        //TODO : traiter sde
+        // changer pointeur souris
+        // effet si clique
+        
+        this.pveBought = pve;
+        //Image img = new Image("/assets/css/img/_.png");
+        //scene.setCursor(new ImageCursor(image));
     }
 
     /**
@@ -118,12 +163,11 @@ public class FieldView extends CanvasView {
         // Affichage le jardin
         for (int i = 0; i < App.gardenSize; ++i) {
             for (int j = 0; j < App.gardenSize; ++j) {
-                this.parcelView[i][j].display();
-                if (this.plantView[i][j] != null) {
-                    this.plantView[i][j].display();
-                }
+                parcelView[i][j].display();
             }
         }
+        
+        updateCursor();
     }
 
     /**
@@ -138,7 +182,27 @@ public class FieldView extends CanvasView {
         for (int i = 0; i < App.gardenSize; ++i) {
             for (int j = 0; j < App.gardenSize; ++j) {
                 this.controller.addSubscriber(this.parcelView[i][j]);
-                this.controller.addSubscriber(this.plantView[i][j]);
+                //this.controller.addSubscriber(this.plantView[i][j]);
+            }
+        }
+    }
+
+    public void setSdeCan(StylisticDeviceEnum sdeCan) {
+        this.sdeCan = sdeCan;
+    }
+
+    public void setPveBought(PlantVarietyEnum pveBought) {
+        this.pveBought = pveBought;
+    }
+    
+    public void updateCursor() {
+        if (this.pveBought != null) {
+            JfxView.stage.getScene().setCursor(new ImageCursor(new Image("/assets/img/vegetable/" + pveBought.toString() + ".png")));
+        } else {
+            if (this.sdeCan != null) {
+                JfxView.stage.getScene().setCursor(new ImageCursor(new Image("/assets/css/img/wateringcan.png")));
+            } else {
+                JfxView.stage.getScene().setCursor(Cursor.DEFAULT);
             }
         }
     }

@@ -1,6 +1,7 @@
 package view;
 
 import controller.Controller;
+import figuemure2style.App;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.HPos;
@@ -28,6 +29,8 @@ public class LoadGameView {
     private int height;
 
     private final String title = "FigueMûre2Style";
+    
+    public static FieldView fieldView;
 
     /**
      * Constructeur sans paramètres.
@@ -122,8 +125,9 @@ public class LoadGameView {
                         JfxView gameView = new JfxView(title.getText(), stage, u);
 
                         FieldModel fieldModel = new FieldModel();
-                        FieldView fieldView = new FieldView(fieldModel, 800, 800);
-
+                        fieldView = new FieldView(fieldModel, 
+                                App.windowsWidht, App.windowsHeight);
+                        
                         Controller controller = Controller.getControler();
                         fieldView.setControler(controller);
                         controller.addUpdateView(gameView);

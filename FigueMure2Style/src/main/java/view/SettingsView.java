@@ -1,6 +1,7 @@
 package view;
 
 import controller.Controller;
+import figuemure2style.App;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.HPos;
@@ -37,7 +38,8 @@ public class SettingsView {
     public SettingsView() {
         Stage stage = new Stage();
         User u = new User();
-        SettingsView sv = new SettingsView(stage, 800, 800, u);
+        SettingsView sv = new SettingsView(stage, 
+                App.windowsWidht, App.windowsHeight, u);
     }
 
     /**
@@ -76,15 +78,15 @@ public class SettingsView {
                 JfxView gameView = new JfxView(title, stage, u);
 
                 FieldModel fieldModel = new FieldModel();
-                FieldView fieldView = new FieldView(fieldModel, 800, 800);
+                //fv = new FieldView(fieldModel, App.windowsWidht, App.windowsHeight);
+                
+                //Controller controller = Controller.getControler();
+                //fv.setControler(controller);
+                //controller.addUpdateView(gameView);
+                //controller.setModel(fieldModel);
+                gameView.setView(LoadGameView.fieldView);
 
-                Controller controller = Controller.getControler();
-                fieldView.setControler(controller);
-                controller.addUpdateView(gameView);
-                controller.setModel(fieldModel);
-                gameView.setView(fieldView);
-
-                controller.startTimer();
+                //controller.startTimer();
             }
         });
         buttonReturn.setMinSize(50, 50);

@@ -2,6 +2,7 @@
 package view;
 
 import controller.Controller;
+import figuemure2style.App;
 import java.util.Arrays;
 import java.util.List;
 import javafx.event.ActionEvent;
@@ -39,7 +40,8 @@ public class InventoryView {
     public InventoryView() {
         Stage stage = new Stage();
         User u = new User();
-        InventoryView iv = new InventoryView(stage, 800, 800, u);
+        InventoryView iv = new InventoryView(stage, 
+                App.windowsWidht, App.windowsHeight, u);
     }
 
     /**
@@ -98,15 +100,15 @@ public class InventoryView {
                 JfxView gameView = new JfxView(title, stage, u);
 
                 FieldModel fieldModel = new FieldModel();
-                FieldView fieldView = new FieldView(fieldModel, 800, 800);
+                //fv = new FieldView(fieldModel, App.windowsWidht, App.windowsHeight);
+                
+                //Controller controller = Controller.getControler();
+                //fv.setControler(controller);
+                //controller.addUpdateView(gameView);
+                //controller.setModel(fieldModel);
+                gameView.setView(LoadGameView.fieldView);
 
-                Controller controller = Controller.getControler();
-                fieldView.setControler(controller);
-                controller.addUpdateView(gameView);
-                controller.setModel(fieldModel);
-                gameView.setView(fieldView);
-
-                controller.startTimer();
+                //controller.startTimer();
             }
         });
         buttonReturn.setMinSize(50, 50);

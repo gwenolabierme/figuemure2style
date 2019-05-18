@@ -1,6 +1,7 @@
 package view;
 
 import controller.Controller;
+import figuemure2style.App;
 import java.util.HashSet;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -44,7 +45,8 @@ public class StoreWateringcanView {
         //HashSet<StylisticDevice> fertilizerList = null;
         //StoreWateringcanView swv = new StoreWateringcanView(stage, 800, 800, u, fertilizerList);
         this.model = new StoreModel(u);
-        StoreWateringcanView swv = new StoreWateringcanView(stage, 800, 800, u);
+        StoreWateringcanView swv = new StoreWateringcanView(stage, 
+                App.windowsWidht, App.windowsHeight, u);
     }
 
     /**
@@ -156,15 +158,15 @@ public class StoreWateringcanView {
                 JfxView gameView = new JfxView(title, stage, u);
 
                 FieldModel fieldModel = new FieldModel();
-                FieldView fieldView = new FieldView(fieldModel, 800, 800);
+                //fv = new FieldView(fieldModel, App.windowsWidht, App.windowsHeight);
+                
+                //Controller controller = Controller.getControler();
+                //fv.setControler(controller);
+                //controller.addUpdateView(gameView);
+                //controller.setModel(fieldModel);
+                gameView.setView(LoadGameView.fieldView);
 
-                Controller controller = Controller.getControler();
-                fieldView.setControler(controller);
-                controller.addUpdateView(gameView);
-                controller.setModel(fieldModel);
-                gameView.setView(fieldView);
-
-                controller.startTimer();
+                //controller.startTimer();
             }
         });
         buttonReturn.setMinSize(50, 50);
@@ -192,7 +194,7 @@ public class StoreWateringcanView {
             @Override
             public void handle(ActionEvent e) {
                 // Fenetre : StoreVegetableView
-                StoreVegetableView svv = new StoreVegetableView(stage, 800, 800, u);
+                StoreVegetableView svv = new StoreVegetableView(stage, App.windowsWidht, App.windowsHeight, u);
             }
         });
         buttonVegetable.setMinSize(100, 100);
@@ -208,7 +210,8 @@ public class StoreWateringcanView {
                 // Fenetre : StoreWateringcanView
                 //HashSet<StylisticDevice> fertilizerList = null;
                 //StoreWateringcanView swv = new StoreWateringcanView(stage, 800, 800, u, fertilizerList);
-                StoreWateringcanView swv = new StoreWateringcanView(stage, 800, 800, u);
+                StoreWateringcanView swv = new StoreWateringcanView(stage, 
+                        App.windowsWidht, App.windowsHeight, u);
             }
         });
         buttonWateringcan.setMinSize(100, 100);
@@ -250,7 +253,8 @@ public class StoreWateringcanView {
                 @Override
                 public void handle(ActionEvent e) {
                     // Fenetre : Figure de style
-                    WateringcanView wv = new WateringcanView(stage, 800, 800, model, iWattCan);
+                    WateringcanView wv = new WateringcanView(stage, 
+                            App.windowsWidht, App.windowsHeight, model, iWattCan, u);
                 }
             });
             figureDeStyle.setMinSize(60, 60);
