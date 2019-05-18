@@ -157,8 +157,8 @@ public class SettingsView {
                     u.setDidacticiel(u.getPseudo());   
                 }
                 if (checkBoxSound.isSelected()) {
-                    // TODO
                     // Désactiver la musique 
+                    u.setSound(u.getPseudo());
                 }
                 // Choisi entre Fermier / Fermière
                 String newGender;
@@ -183,8 +183,12 @@ public class SettingsView {
                 else {
                     activeDidacticiel = "Didacticiel : NON";
                 }
-                activeSound = "Son : ";
-                // TODO SON
+                if (u.isSound()) {
+                    activeSound = "Son : OUI";
+                }
+                else {
+                    activeSound = "Son : NON";
+                }
                 if (u.getGender().contains("farmer_man")) {
                     choiseFarmer = "Fermier / Fermière : Fermier";
                 }
@@ -203,14 +207,19 @@ public class SettingsView {
         
         // Didacticiel
         String activeDidacticiel;
+        String activeSound;
         if (u.isDidacticiel()) {
             activeDidacticiel = "Didacticiel : OUI";
         }
         else {
             activeDidacticiel = "Didacticiel : NON";
         }
-        String activeSound = "Son : ";
-        // TODO SON
+        if (u.isSound()) {
+            activeSound = "Son : OUI";
+        }
+        else {
+            activeSound = "Son : NON";
+        }
         String choiseFarmer;
         if (u.getGender().contains("farmer_man")) {
             choiseFarmer = "Fermier / Fermière : Fermier";
