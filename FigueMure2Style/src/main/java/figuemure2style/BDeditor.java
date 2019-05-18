@@ -65,8 +65,8 @@ public class BDeditor {
             file.addStylisiticD(sd);
             
             sd = new StylisticDevice(StylisticDeviceEnum.ACCUMULATION,
-                    "C’est un roc ! c’est un pic ! c’est un cap ! \nQue dis-je, "
-                            + "c’est un cap ? … c’est une péninsule !",
+                    "C’est un roc ! c’est un pic ! c’est un cap ! \n"
+                            + "Que dis-je, c’est un cap ? … c’est une péninsule !",
                     "Rostand", "Cyrano de Bergerac");
             file.addStylisiticD(sd);
             
@@ -77,14 +77,14 @@ public class BDeditor {
             file.addStylisiticD(sd);
             
             sd = new StylisticDevice(StylisticDeviceEnum.ACCUMULATION,
-                    "Don Fernand, dans sa province, est oisif, ignorant, médisant,"
+                    "Don Fernand, dans sa province, est oisif, ignorant, médisant,\n"
                             + " querelleux, fourbe, intempérant, impertinent.",
                     "La bruyère", "Les Caractères, De l’homme");
             file.addStylisiticD(sd);
             
             sd = new StylisticDevice(StylisticDeviceEnum.ACCUMULATION,
-                    "Devant eux, sur de petites tables carrées ou rondes, des "
-                            + "verres contenaient des liquides rouges, jaunes, "
+                    "Devant eux, sur de petites tables carrées ou rondes, des \n"
+                            + "verres contenaient des liquides rouges, jaunes, \n"
                             + "verts, bruns, de toutes les nuances ;",
                     "Maupassant", "Bel ami");
             file.addStylisiticD(sd);
@@ -103,28 +103,28 @@ public class BDeditor {
         
         try {
             sd = new StylisticDevice(StylisticDeviceEnum.ALLEGORIE,
-                    "L’Angleterre est un vaisseau. Notre île en a la forme : la "
-                            + "proue tournée au nord, elle est comme à l’ancre au "
-                            + "milieu des mers, surveillant le continent.",
+                    "L’Angleterre est un vaisseau. Notre île en a la forme : \n"
+                            + "la proue tournée au nord, elle est comme à l’ancre \n"
+                            + "au milieu des mers, surveillant le continent.",
                     "Chatterton", "Chatterton");
             file.addStylisiticD(sd);
             
             sd = new StylisticDevice(StylisticDeviceEnum.ALLEGORIE,
-                    "La rêverie…une jeune femme merveilleuse, imprévisible, tendre, "
-                            + "énigmatique, provocante, à qui je ne demande jamais "
+                    "La rêverie…une jeune femme merveilleuse, imprévisible, tendre, \n"
+                            + "énigmatique, provocante, à qui je ne demande jamais \n"
                             + "compte de ses fugues.",
                     "Breton", "Farouche à quatre feuilles");
             file.addStylisiticD(sd);
             
             sd = new StylisticDevice(StylisticDeviceEnum.ALLEGORIE,
-                    "Je veux peindre la France une mère affligée, \nQui est, "
-                            + "entre ses bras, de deux enfants chargée.",
+                    "Je veux peindre la France une mère affligée, \n"
+                            + "Qui est, entre ses bras, de deux enfants chargée.",
                     "Agrippa d’Aubigné", "Les Tragiques");
             file.addStylisiticD(sd);
             
             sd = new StylisticDevice(StylisticDeviceEnum.ALLEGORIE,
-                    "Bon chevalier masqué qui chevauche en silence, \nLe Malheur "
-                            + "a percé mon vieux cœur de sa lance.",
+                    "Bon chevalier masqué qui chevauche en silence, \n"
+                            + "Le Malheur a percé mon vieux cœur de sa lance.",
                     "Verlaine", "Sagesses");
             file.addStylisiticD(sd);
             
@@ -148,9 +148,9 @@ public class BDeditor {
         
         try {
             sd = new StylisticDevice(StylisticDeviceEnum.ANTIPHRASE,
-                    "La [torture] est une invention merveilleuse et tout à fait "
-                            + "sûre pour perdre un innocent qui a la complexion "
-                            + "faible, et sauver un coupable qui est né robuste ",
+                    "La [torture] est une invention merveilleuse et tout à fait \n"
+                            + "sûre pour perdre un innocent qui a la complexion \n"
+                            + "faible, et sauver un coupable qui est né robuste \n",
                     "La Bruyère", "Les Caractères");
             file.addStylisiticD(sd);
             
@@ -160,22 +160,23 @@ public class BDeditor {
             file.addStylisiticD(sd);
             
             sd = new StylisticDevice(StylisticDeviceEnum.ANTIPHRASE,
-                    "Tous étaient prêts à donner 30€, sauf Jean, qui ne voulait "
-                            + "pas céder plus de 5€. « Quelle générosité ! », lui dit Nicolas.",
+                    "Tous étaient prêts à donner 30€, sauf Jean, qui ne voulait \n"
+                            + "pas céder plus de 5€. « Quelle générosité ! »,\n"
+                            + " lui dit Nicolas.",
                     "laculturegenerale.com");
             file.addStylisiticD(sd);
             
             sd = new StylisticDevice(StylisticDeviceEnum.ANTIPHRASE,
-                    "La pluie tombait depuis des heures. J'ai toujours aimer ces "
-                            + "jours de beau temps ou je passe mes journées à "
+                    "La pluie tombait depuis des heures. J'ai toujours aimer ces \n"
+                            + "jours de beau temps ou je passe mes journées à \n"
                             + "m'ennuyer en attendant le soleil. ",
                     "Jérémy");
             file.addStylisiticD(sd);
             
             sd = new StylisticDevice(StylisticDeviceEnum.ANTIPHRASE,
-                    "Pendant son absence, Oggi, son chat, était monté sur la table, "
-                            + "renversant le plat et la vaiselle. En rentrant, Victor s'exclama :"
-                            + "« Eh bien ! C'est du joli ! »",
+                    "Pendant son absence, Oggi, son chat, était monté sur la table, \n"
+                            + "renversant le plat et la vaiselle. En rentrant, \n"
+                            + "Victor s'exclama : « Eh bien ! C'est du joli ! »",
                     "Jérémy");
             file.addStylisiticD(sd);
             
@@ -280,8 +281,8 @@ public class BDeditor {
             file.addStylisiticD(sd);
             
             sd = new StylisticDevice(StylisticDeviceEnum.CHIASME,
-                    "Joyeux la nuit, le jour triste je suis. \nJ’ay en dormant "
-                            + "ce, qu’en veillant poursuis",
+                    "Joyeux la nuit, le jour triste je suis. \n"
+                            + "J’ay en dormant ce, qu’en veillant poursuis",
                     "Du Bellay", "Du Bellay");
             file.addStylisiticD(sd);
             
@@ -314,26 +315,26 @@ public class BDeditor {
             file.addStylisiticD(sd);
             
             sd = new StylisticDevice(StylisticDeviceEnum.COMPARAISON,
-                    "L’absence diminue les médiocres passions, et augmente les grandes, "
+                    "L’absence diminue les médiocres passions, et augmente les grandes, \n"
                             + "comme le vent éteint les bougies, et allume le feu.",
                     "La Rochefoucauld", "Maximes");
             file.addStylisiticD(sd);
             
             sd = new StylisticDevice(StylisticDeviceEnum.COMPARAISON,
-                    "Le Poète est semblable au prince des nuées \nQui hante la "
-                            + "tempête et se rit de l’archer […]",
+                    "Le Poète est semblable au prince des nuées \n "
+                            + "Qui hante latempête et se rit de l’archer […]",
                     "Baudelaire", "L'Albatros");
             file.addStylisiticD(sd);
             
             sd = new StylisticDevice(StylisticDeviceEnum.COMPARAISON,
-                    "Elle ressemblait aux femmes des livres romantiques. Il n’aurait "
+                    "Elle ressemblait aux femmes des livres romantiques. Il n’aurait \n"
                             + "voulu rien ajouter, rien retrancher à sa personne.",
                     "Flaubert", "L’Éducation sentimentale");
             file.addStylisiticD(sd);
             
             sd = new StylisticDevice(StylisticDeviceEnum.COMPARAISON,
-                    "De même que le vent qui souffle avec violence disperse un monceau "
-                            + "de pailles sèches qu’il emporte çà et là, de même la mer"
+                    "De même que le vent qui souffle avec violence disperse un monceau \n"
+                            + "de pailles sèches qu’il emporte çà et là, de même la mer\n"
                             + " dispersa les longues poutres",
                     "Homère", "L’Odyssée");
             file.addStylisiticD(sd);
@@ -354,13 +355,13 @@ public class BDeditor {
             file.addStylisiticD(sd);
             
             sd = new StylisticDevice(StylisticDeviceEnum.COMPARAISON,
-                    "Mon esprit est pareil à la tour qui succombe \nSous les "
-                            + "coups du bélier infatigable et lourd.",
+                    "Mon esprit est pareil à la tour qui succombe \n"
+                            + "Sous les coups du bélier infatigable et lourd.",
                     "Baudelaire", "Chant D'Automne");
             file.addStylisiticD(sd);
             
             sd = new StylisticDevice(StylisticDeviceEnum.COMPARAISON,
-                    "On était pareil à un chat qui s’est glissé dans le buffet "
+                    "On était pareil à un chat qui s’est glissé dans le buffet \n"
                             + "pour manger une sauce.",
                     "Romains", "Les Copains");
             file.addStylisiticD(sd);
@@ -389,22 +390,22 @@ public class BDeditor {
             file.addStylisiticD(sd);
             
             sd = new StylisticDevice(StylisticDeviceEnum.EUPHEMISME,
-                    "Il me fait des déclarations et m’embrasse, et me menace "
+                    "Il me fait des déclarations et m’embrasse, et me menace \n"
                             + "de… de… son autorité.",
                     "Maupassant", "La Paix du ménage");
             file.addStylisiticD(sd);
             
             sd = new StylisticDevice(StylisticDeviceEnum.EUPHEMISME,
-                    "Son regard est pareil au regard des statues, \nEt, pour sa voix, "
-                            + "lointaine, et calme, et grave, elle a \nL’inflexion "
-                            + "des voix chères qui se sont tues.",
+                    "Son regard est pareil au regard des statues, \n"
+                            + "Et, pour sa voix, lointaine, et calme, et grave, \n"
+                            + "elle a L’inflexion des voix chères qui se sont tues.",
                     "Verlaine", "Mon rêve familier");
             file.addStylisiticD(sd);
             
             sd = new StylisticDevice(StylisticDeviceEnum.EUPHEMISME,
-                    "Les parfums ne font pas frissonner sa narine ; \nIl dort "
-                            + "dans le soleil, la main sur sa poitrine, \nTranquille. "
-                            + "Il a deux trous rouges au côté droit.",
+                    "Les parfums ne font pas frissonner sa narine ; \n"
+                            + "Il dort dans le soleil, la main sur sa poitrine, \n"
+                            + "Tranquille. Il a deux trous rouges au côté droit.",
                     "Rimbaud", "Le dormeur du val");
             file.addStylisiticD(sd);
             
@@ -422,20 +423,20 @@ public class BDeditor {
         
         try {
             sd = new StylisticDevice(StylisticDeviceEnum.HYPERBOLE,
-                    "J'ai pris un zéro au contrôle de maths ; je vais me faire "
+                    "J'ai pris un zéro au contrôle de maths ; je vais me faire \n"
                             + "tuer par ma mère en rentrant !",
                     "Jérémy");
             file.addStylisiticD(sd);
             
             sd = new StylisticDevice(StylisticDeviceEnum.HYPERBOLE,
-                    "– J’ai vu, dit-il, un chou plus grand qu’une maison. \n– Et moi, "
-                            + "dit l’autre, un pot aussi grand qu’une Eglise.",
+                    "– J’ai vu, dit-il, un chou plus grand qu’une maison. \n"
+                            + "– Et moi, dit l’autre, un pot aussi grand qu’une \nEglise.",
                     "La Fontaine", "Fables, Le Dépositaire infidèle");
             file.addStylisiticD(sd);
             
             sd = new StylisticDevice(StylisticDeviceEnum.HYPERBOLE,
-                    "Ses moindres actions lui semblent des miracles, \nEt tous "
-                            + "les mots qu’il dit, sont pour lui des oracles.",
+                    "Ses moindres actions lui semblent des miracles, \n"
+                            + "Et tous les mots qu’il dit, sont pour lui des oracles.",
                     "Molière", "Tartuffe");
             file.addStylisiticD(sd);
             
@@ -473,7 +474,8 @@ public class BDeditor {
             file.addStylisiticD(sd);
             
             sd = new StylisticDevice(StylisticDeviceEnum.METAPHORE,
-                    "Je parle un langage de décombres où voisinent les soleils et les plâtras.",
+                    "Je parle un langage de décombres où voisinent les soleils et\n "
+                    + "les plâtras.",
                     "Aragon", "Traité du style");
             file.addStylisiticD(sd);
             
@@ -501,8 +503,8 @@ public class BDeditor {
         
         try {
             sd = new StylisticDevice(StylisticDeviceEnum.METONYMIE,
-                    "Ah ! quelle cruauté qui tout en jour tue \nLe père par "
-                            + "le fer, la fille par la vue !",
+                    "Ah ! quelle cruauté qui tout en jour tue \n"
+                            + "Le père par le fer, la fille par la vue !",
                     "Corneille", "Le Cid");
             file.addStylisiticD(sd);
             
@@ -545,12 +547,12 @@ public class BDeditor {
             file.addStylisiticD(sd);
             
             sd = new StylisticDevice(StylisticDeviceEnum.OXYMORE,
-                    "Par ma foi, voilà un beau jeune vieillard pour quatre-vingt-dix ans !",
+                    "Par ma foi, voilà un beau jeune vieillard pour \nquatre-vingt-dix ans !",
                     "Molière", "Le Malade imaginaire");
             file.addStylisiticD(sd);
             
             sd = new StylisticDevice(StylisticDeviceEnum.OXYMORE,
-                    "Candide, […], se cacha du mieux qu’il put pendant cette boucherie héroïque.",
+                    "Candide, […], se cacha du mieux qu’il put pendant \ncette boucherie héroïque.",
                     "Voltaire", "Candide");
             file.addStylisiticD(sd);
             
@@ -578,7 +580,7 @@ public class BDeditor {
         
         try {
             sd = new StylisticDevice(StylisticDeviceEnum.PERIPHRASE,
-                    "Le bateau venait d'accoster ; les colons allaient enfin "
+                    "Le bateau venait d'accoster ; les colons allaient enfin \n"
                             + "pouvoir découvrir le Nouveau Monde",
                     "Jérémy");
             file.addStylisiticD(sd);
@@ -594,12 +596,12 @@ public class BDeditor {
             file.addStylisiticD(sd);
             
             sd = new StylisticDevice(StylisticDeviceEnum.PERIPHRASE,
-                    "Cela faisait déjà bien longtemps qu'il maîtrisait la langue de Shakespeare.",
+                    "Cela faisait déjà bien longtemps qu'il maîtrisait la \nlangue de Shakespeare.",
                     "Jérémy");
             file.addStylisiticD(sd);
             
             sd = new StylisticDevice(StylisticDeviceEnum.PERIPHRASE,
-                    "Il poussa un puissant rugissement, signifiant qu'il "
+                    "Il poussa un puissant rugissement, signifiant qu'il \n"
                             + "était toujours le roi des animaux",
                     "Jérémy");
             file.addStylisiticD(sd);
@@ -618,27 +620,27 @@ public class BDeditor {
         
         try {
             sd = new StylisticDevice(StylisticDeviceEnum.PERSONNIFICATION,
-                    "Le mistral était en colère, et les éclats de sa grande voix "
+                    "Le mistral était en colère, et les éclats de sa grande voix \n"
                             + "m’ont tenu éveillé jusqu’au matin.",
                     "Daudet", "Lettres de mon moulin, Le phare des Sanguinaires");
             file.addStylisiticD(sd);
             
             sd = new StylisticDevice(StylisticDeviceEnum.PERSONNIFICATION,
-                    "Avec quelle rigueur, destin, tu me poursuis ! \nJe ne sais "
-                            + "où je vais, je ne sais où je suis.",
+                    "Avec quelle rigueur, destin, tu me poursuis ! \n"
+                            + "Je ne sais où je vais, je ne sais où je suis.",
                     "Racine", "Phèdre");
             file.addStylisiticD(sd);
             
             sd = new StylisticDevice(StylisticDeviceEnum.PERSONNIFICATION,
-                    "L’enfance a des manières de voir, de penser, de sentir qui "
-                            + "lui sont propres ; rien n’est moins sensé que "
+                    "L’enfance a des manières de voir, de penser, de sentir qui \n"
+                            + "lui sont propres ; rien n’est moins sensé que \n"
                             + "d’y vouloir substituer les nôtres.",
                     "Rousseau", "Julie ou la Nouvelle Héloïse");
             file.addStylisiticD(sd);
             
             sd = new StylisticDevice(StylisticDeviceEnum.PERSONNIFICATION,
-                    "J’en doute : ces flots, ces vents, cette solitude qui furent "
-                            + "mes premiers maîtres, convenaient peut-être mieux "
+                    "J’en doute : ces flots, ces vents, cette solitude qui furent \n"
+                            + "mes premiers maîtres, convenaient peut-être mieux \n"
                             + "à mes dispositions natives.",
                     "Chateaubriand", "Mémoires d’outre-tombe");
             file.addStylisiticD(sd);
