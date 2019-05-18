@@ -433,6 +433,10 @@ public class User {
         return didacticiel;
     }
 
+    public boolean isSound() {
+        return sound;
+    }
+
     /**
      * setPseudo remplace le pseudo de l'utilisateur dans la BD.
      *
@@ -562,8 +566,26 @@ public class User {
         f.newFile(pseudo, mapUser);
     }
     
+    /**
+     * setSound Active ou déactive le son.
+     * 
+     * @param pseudo Pseudo de l'utilisateur
+     */
+    public void setSound(String pseudo) {
+        if (this.sound) {
+            this.sound = false;
+        }
+        else {
+            this.sound = true;
+        }
+        
+        BDFile f = new BDFile();
+        Map mapUser = f.loadFile(pseudo);
+        mapUser.replace("sound", Boolean.toString(this.sound));
+        f = new BDFile();
+        f.newFile(pseudo, mapUser);
+    }
     
-
     /**
      * Débloque une plante dans la boutique.
      *
