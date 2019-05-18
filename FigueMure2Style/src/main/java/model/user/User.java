@@ -77,6 +77,7 @@ public class User {
         }
         this.score = 0;
         this.money = 100;
+        this.didacticiel = true;
 
         // Creation d'un fichier de BD user
         Map<String, String> map = new HashMap<>();
@@ -148,6 +149,7 @@ public class User {
             this.passwordConfirm = passwordConfirm;
             this.score = 0;
             this.money = 100;
+            this.didacticiel = true;
 
             // Creation d'un fichier de BD user
             Map<String, String> map = new HashMap<>();
