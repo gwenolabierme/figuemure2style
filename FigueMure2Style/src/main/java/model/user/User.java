@@ -28,6 +28,7 @@ public class User {
     private int score;
     private double money;
     private boolean didacticiel;
+    private boolean sound;
     
     private EnumSet<PlantVarietyEnum> plantUnlock;
     private HashMap<PlantVarietyEnum, Integer> inventory;
@@ -78,6 +79,7 @@ public class User {
         this.score = 0;
         this.money = 100;
         this.didacticiel = true;
+        this.sound = true;
 
         // Creation d'un fichier de BD user
         Map<String, String> map = new HashMap<>();
@@ -86,6 +88,7 @@ public class User {
         map.put("score", Integer.toString(this.score));
         map.put("money", String.valueOf(this.money));
         map.put("didacticiel", Boolean.toString(this.didacticiel));
+        map.put("sound", Boolean.toString(this.sound));
 
         // Légumes débloqués
         plantUnlock = EnumSet.noneOf(PlantVarietyEnum.class);
@@ -150,6 +153,7 @@ public class User {
             this.score = 0;
             this.money = 100;
             this.didacticiel = true;
+            this.sound = true;
 
             // Creation d'un fichier de BD user
             Map<String, String> map = new HashMap<>();
@@ -160,6 +164,7 @@ public class User {
             map.put("score", Integer.toString(this.score));
             map.put("money", String.valueOf(this.money));
             map.put("didacticiel", Boolean.toString(this.didacticiel));
+            map.put("sound", Boolean.toString(this.sound));
 
             // Légumes débloqués
             plantUnlock = EnumSet.noneOf(PlantVarietyEnum.class);
@@ -217,6 +222,7 @@ public class User {
         this.score = Integer.parseInt((String) mapUser.get("score"));
         this.money = Double.parseDouble((String) mapUser.get("money"));
         this.didacticiel = Boolean.parseBoolean((String) mapUser.get("didacticiel"));
+        this.sound = Boolean.parseBoolean((String) mapUser.get("sound"));
 
         // Légumes débloqués
         String listPlantUnlock = (String) mapUser.get("plantUnlock");
@@ -281,6 +287,7 @@ public class User {
             this.score = Integer.parseInt((String) mapUser.get("score"));
             this.money = Double.parseDouble((String) mapUser.get("money"));
             this.didacticiel = Boolean.parseBoolean((String) mapUser.get("didacticiel"));
+            this.sound = Boolean.parseBoolean((String) mapUser.get("sound"));
 
             // Légumes débloqués
             String listPlantUnlock = (String) mapUser.get("plantUnlock");
@@ -426,6 +433,10 @@ public class User {
         return didacticiel;
     }
 
+    public boolean isSound() {
+        return sound;
+    }
+
     /**
      * setPseudo remplace le pseudo de l'utilisateur dans la BD.
      *
@@ -555,8 +566,26 @@ public class User {
         f.newFile(pseudo, mapUser);
     }
     
+    /**
+     * setSound Active ou déactive le son.
+     * 
+     * @param pseudo Pseudo de l'utilisateur
+     */
+    public void setSound(String pseudo) {
+        if (this.sound) {
+            this.sound = false;
+        }
+        else {
+            this.sound = true;
+        }
+        
+        BDFile f = new BDFile();
+        Map mapUser = f.loadFile(pseudo);
+        mapUser.replace("sound", Boolean.toString(this.sound));
+        f = new BDFile();
+        f.newFile(pseudo, mapUser);
+    }
     
-
     /**
      * Débloque une plante dans la boutique.
      *
