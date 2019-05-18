@@ -9,7 +9,6 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.HPos;
 import javafx.geometry.VPos;
-import javafx.scene.Cursor;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.ColumnConstraints;
@@ -21,7 +20,7 @@ import model.FieldModel;
 import model.plant.Carotte;
 import model.plant.Figue;
 import model.plant.Mure;
-import model.plant.Pattate;
+import model.plant.Patate;
 import model.plant.Plant;
 import model.plant.PlantVarietyEnum;
 import model.plant.Pomme;
@@ -46,7 +45,7 @@ public class StoreVegetableView {
     private final Plant carotte = new Carotte();
     private final Plant figue = new Figue();
     private final Plant mure = new Mure();
-    private final Plant patate = new Pattate();
+    private final Plant patate = new Patate();
     private final Plant pomme = new Pomme();
     private final Plant tomate = new Tomate();
 
@@ -153,7 +152,7 @@ public class StoreVegetableView {
         gridpane.setHalignment(title, HPos.CENTER);
 
         // Bouton : Vegetable
-        Button buttonVegetable = new Button("Fruits et légumes");
+        Button buttonVegetable = new Button("Fruits et \nlégumes");
         buttonVegetable.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent e) {
@@ -162,25 +161,22 @@ public class StoreVegetableView {
                         App.windowsWidht, App.windowsHeight, u);
             }
         });
-        buttonVegetable.setMinSize(100, 100);
-        //buttonVegetable.getStyleClass().add("panel");
+        buttonVegetable.setMinSize(110, 110);
+        buttonVegetable.getStyleClass().add("panelStore");
         gridpane.add(buttonVegetable, 0, 1);
         gridpane.setHalignment(buttonVegetable, HPos.CENTER);
 
         // Bouton : Figure de style
-        Button buttonWateringcan = new Button("Figure de style");
+        Button buttonWateringcan = new Button("Figure de\n    style");
         buttonWateringcan.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent e) {
-                // Fenetre : StoreWateringcanView
-                //HashSet<StylisticDevice> fertilizerList = null;
-                //StoreWateringcanView swv = new StoreWateringcanView(stage, 800, 800, u, fertilizerList);
                 StoreWateringcanView swv = new StoreWateringcanView(stage,
                         App.windowsWidht, App.windowsHeight, u);
             }
         });
-        buttonWateringcan.setMinSize(100, 100);
-        //buttonVegetable.getStyleClass().add("panel");
+        buttonWateringcan.setMinSize(110, 110);
+        buttonWateringcan.getStyleClass().add("panelStore");
         gridpane.add(buttonWateringcan, 0, 3);
         gridpane.setHalignment(buttonWateringcan, HPos.CENTER);
 
@@ -189,13 +185,14 @@ public class StoreVegetableView {
         listlesson.add("Leçon - COMPARAISON \n Il y a un comparé (celui que l'on compare à quelque chose), un comparant (quelque chose)\n et un outil grammatical de comparaison (comme, tel que...).");
         listlesson.add("Leçon - PERIPHRASE \n Remplacement du mot par une expression explicative, fonction poétique et métaphorique\n ou atténuation.");
         listlesson.add("Leçon - PERSONNIFICATION \n Elle attribue des caractéristiques humaines à un objet, un animal, etc.");
-        listlesson.add("Leçon - HYPERBOLE \n Elle exagère l'expression d'une idée pour la mettre en relief. Utilisée dans l'ironie, la caricature.");
+        listlesson.add("Leçon - HYPERBOLE \n Elle exagère l'expression d'une idée pour la mettre en relief.\n Utilisée dans l'ironie, la caricature.");
         listlesson.add("Leçon - CHIASME \n Parallélisme et inversion, souligne l'union ou l'opposition.");
         listlesson.add("Leçon - OXYMORE \n Deux mots opposés l'un à côté de l'autre.");
 
         // Leçon
         Text lesson = new Text();
         lesson.setText(listlesson.get(0));
+        lesson.getStyleClass().add("lecon");
         gridpane.add(lesson, 1, 5);
         gridpane.setHalignment(lesson, HPos.LEFT);
         gridpane.setValignment(lesson, VPos.TOP);
@@ -308,7 +305,7 @@ public class StoreVegetableView {
                         priceVegetable += Integer.parseInt(listPrice.get(3));
 
                         // Plante le légume
-                        pve = PlantVarietyEnum.PATATTE;
+                        pve = PlantVarietyEnum.PATATE;
                         break;
                     case "CHIASME":
                         // Met à jour l'argent 

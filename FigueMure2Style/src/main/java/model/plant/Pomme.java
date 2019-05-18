@@ -12,6 +12,7 @@ public class Pomme extends Fruit {
         this.name = PlantVarietyEnum.POMME;
         this.styDevEat = StylisticDeviceEnum.CHIASME;
         this.price = 3;
+        this.nbXp = 15;
     }
     
 }

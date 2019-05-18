@@ -12,6 +12,7 @@ public class Carotte extends Veggie {
         this.name = PlantVarietyEnum.CAROTTE;
         this.styDevEat = StylisticDeviceEnum.COMPARAISON;
         this.price = 1;
+        this.nbXp = 5;
     }
     
 }
