@@ -361,7 +361,7 @@ public class InventoryView {
                 u.setMoney(money, u.getPseudo());
                 
                 // Infos utilisateur
-                UserDidacticiel didacticiel = new UserDidacticiel("DashbordView", u.getGender());
+                UserDidacticiel didacticiel = new UserDidacticiel("InventaryView", u.getGender());
                 String newScore = Integer.toString(score); 
                 String newMoney = Double.toString(money);
                 Button d = didacticiel.message("Nouveau score : " + newScore + "XP \nArgent restant : " + newMoney + "€");
@@ -377,7 +377,7 @@ public class InventoryView {
         
         // Didacticiel
         if (u.isDidacticiel()) {
-            UserDidacticiel didacticiel = new UserDidacticiel("DashbordView", u.getGender());
+            UserDidacticiel didacticiel = new UserDidacticiel("InventaryView", u.getGender());
             Button d = didacticiel.message("Ici vous pourrez consulter votre\n inventaire et y vendre vos récoltes.");
             gridpane.add(d, 3, 5);
             gridpane.setHalignment(d, HPos.CENTER);

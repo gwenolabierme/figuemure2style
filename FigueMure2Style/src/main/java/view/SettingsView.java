@@ -172,7 +172,7 @@ public class SettingsView {
                 }
                 
                 // Infos utilisateur
-                UserDidacticiel didacticiel = new UserDidacticiel("DashbordView", u.getGender());
+                UserDidacticiel didacticiel = new UserDidacticiel("SettingsView", u.getGender());
                 Button d;
                 String activeDidacticiel;
                 String choiseFarmer;
@@ -219,7 +219,7 @@ public class SettingsView {
             choiseFarmer = "Fermier / Fermière : Fermière";
         }
         
-        UserDidacticiel didacticiel = new UserDidacticiel("DashbordView", u.getGender());
+        UserDidacticiel didacticiel = new UserDidacticiel("SettingsView", u.getGender());
         Button d;
         if (u.isDidacticiel()) {
             d = didacticiel.message("Modifiez vos paramètres.\n" + activeDidacticiel + "\n" + activeSound + "\n" + choiseFarmer);
