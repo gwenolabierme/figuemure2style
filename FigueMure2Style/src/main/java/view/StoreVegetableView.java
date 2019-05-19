@@ -388,7 +388,7 @@ public class StoreVegetableView {
                         System.out.println("UNLOCK " + pve);
                         JfxView.user.changeQtyStock(plantNeedToUnlock, 
                                 JfxView.user.getInventory().get(plantNeedToUnlock) 
-                                        - nbNeedToUnlock);
+                                        - nbNeedToUnlock, u.getPseudo());
                         JfxView.user.addPlantUnlock(pve);
                     }
                     

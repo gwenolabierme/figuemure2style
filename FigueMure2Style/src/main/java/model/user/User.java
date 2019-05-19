@@ -682,8 +682,15 @@ public class User {
      * @param variety variété de la plante
      * @param qty quantité de la plante dans l'inventaire
      */
-    public void changeQtyStock(PlantVarietyEnum variety, int qty) {
+    public void changeQtyStock(PlantVarietyEnum variety, int qty, String pseudo) {
+        BDFile f = new BDFile();
+        Map mapUser = f.loadFile(pseudo);
+        
         this.inventory.replace(variety, qty);
+        System.out.println(variety);
+        mapUser.replace("PlantVarietyEnum." + variety.toString().toUpperCase(), Integer.toString(inventory.get(variety)));
+        f = new BDFile();
+        f.newFile(pseudo, mapUser);
     }
 
     /**

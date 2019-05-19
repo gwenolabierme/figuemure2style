@@ -183,7 +183,7 @@ public class ParcelView implements View, MouseEventSubscriber {
                             if (plant.getGrowthState().equals(GrowthStateEnum.FINAL)) {
                                 if (usr.getInventory().containsKey(plant.getName())) {
                                     int nbPlant = usr.getInventory().get(plant.getName());
-                                    usr.getInventory().put(plant.getName(), nbPlant + 1);
+                                    usr.changeQtyStock(plant.getName(), nbPlant + 1, usr.getPseudo());
                                 }
                                 usr.setScore(usr.getScore() + 3 * plant.getPrice(), usr.getPseudo());
 
