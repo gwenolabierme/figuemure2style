@@ -551,12 +551,12 @@ public class User {
      * 
      * @param pseudo Pseudo de l'utilisateur
      */
-    public void setDidacticiel(String pseudo) {
-        if (this.didacticiel) {
-            this.didacticiel = false;
+    public void setDidacticiel(boolean active, String pseudo) {
+        if (active) {
+            this.didacticiel = true;
         }
         else {
-            this.didacticiel = true;
+            this.didacticiel = false;
         }
         
         BDFile f = new BDFile();
@@ -571,12 +571,12 @@ public class User {
      * 
      * @param pseudo Pseudo de l'utilisateur
      */
-    public void setSound(String pseudo) {
-        if (this.sound) {
-            this.sound = false;
+    public void setSound(boolean active, String pseudo) {
+        if (active) {
+            this.sound = true;
         }
         else {
-            this.sound = true;
+            this.sound = false;
         }
         
         BDFile f = new BDFile();

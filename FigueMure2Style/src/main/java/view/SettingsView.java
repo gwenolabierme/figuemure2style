@@ -111,6 +111,12 @@ public class SettingsView {
         // Son
         CheckBox checkBoxSound = new CheckBox();
         checkBoxSound.getStyleClass().add("text_label");
+        if (u.isSound()) {
+            checkBoxSound.setSelected(true);
+        }
+        else {
+            checkBoxSound.setSelected(false);
+        }
         gridpane.add(checkBoxSound, 0, 3);
         gridpane.setHalignment(checkBoxSound, HPos.CENTER);
 
@@ -123,6 +129,12 @@ public class SettingsView {
         // Didacticiel
         CheckBox checkBoxDidacticiel = new CheckBox();
         checkBoxDidacticiel.getStyleClass().add("text_label");
+        if (u.isDidacticiel()) {
+            checkBoxDidacticiel.setSelected(true);
+        }
+        else {
+            checkBoxDidacticiel.setSelected(false);
+        }
         gridpane.add(checkBoxDidacticiel, 0, 4);
         gridpane.setHalignment(checkBoxDidacticiel, HPos.CENTER);
 
@@ -153,12 +165,20 @@ public class SettingsView {
             @Override
             public void handle(ActionEvent e) {
                 if (checkBoxDidacticiel.isSelected()) {
-                    // Désactiver le didacticiel
-                    u.setDidacticiel(u.getPseudo());   
+                    // Activer le didacticiel
+                    u.setDidacticiel(true, u.getPseudo());   
+                }
+                else {
+                    // Déactiver le didacticiel
+                    u.setDidacticiel(false, u.getPseudo());   
                 }
                 if (checkBoxSound.isSelected()) {
-                    // Désactiver la musique 
-                    u.setSound(u.getPseudo());
+                    // Active la musique 
+                    u.setSound(true, u.getPseudo());
+                }
+                else {
+                    // Déactive la musique 
+                    u.setSound(false, u.getPseudo());
                 }
                 // Choisi entre Fermier / Fermière
                 String newGender;
