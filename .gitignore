@@ -16,3 +16,6 @@ target/
 
 #GitEye
 /.project
+
+#Users
+FigueMure2Style/src/main/resources/BD/User/*

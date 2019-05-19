@@ -5,22 +5,25 @@ import javafx.animation.AnimationTimer;
 import java.util.ArrayList;
 import java.util.List;
 import model.FieldModel;
-import view.JfxView;
+import observer.MouseEventSubscription;
+import view.GameView;
 
 /**
  * Class controler.
+ *
  * @author jeremy
  */
-public class Controller {
+public class Controller extends MouseEventSubscription {
+
     /**
      * Liste des vues géré par le controleur.
      */
-    private final List<JfxView> views;
+    private final List<GameView> views;
     /**
-     * Liste que le controleur doit mettre à jour (les autres sont des
-     * observers et se mettent à jour toutes seules).
+     * Liste que le controleur doit mettre à jour (les autres sont des observers
+     * et se mettent à jour toutes seules).
      */
-    private final List<JfxView> updateViews;
+    private final List<GameView> updateViews;
     /**
      * Modèle des données à gérer.
      */
@@ -32,8 +35,8 @@ public class Controller {
     private boolean paused = false;
 
     private Controller() {
-        this.views = new ArrayList<JfxView>();
-        this.updateViews = new ArrayList<JfxView>();
+        this.views = new ArrayList<GameView>();
+        this.updateViews = new ArrayList<GameView>();
     }
 
     /**
@@ -48,11 +51,11 @@ public class Controller {
         return Controller.instance;
     }
 
-    public void addView(JfxView v) {
+    public void addView(GameView v) {
         this.views.add(v);
     }
 
-    public void addUpdateView(JfxView v) {
+    public void addUpdateView(GameView v) {
         this.updateViews.add(v);
         this.views.add(v);
     }
@@ -64,14 +67,14 @@ public class Controller {
         if (timer != null) {
             return;
         }
-        for (JfxView view : views) {
+        for (GameView view : views) {
             view.show();
             view.display();
         }
         timer = new AnimationTimer() {
             public void handle(long currentNanoTime) {
                 if (model.update()) {
-                    for (JfxView view : updateViews) {
+                    for (GameView view : updateViews) {
                         view.display();
                     }
                 }

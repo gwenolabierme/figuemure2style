@@ -1,6 +1,5 @@
 package view;
 
-import controller.Controller;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.scene.layout.GridPane;
@@ -9,24 +8,21 @@ import javafx.scene.control.Button;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.HPos;
-import javafx.geometry.Pos;
 import javafx.scene.layout.ColumnConstraints;
-import javafx.scene.text.Text;
-import model.FieldModel;
 
 /**
  * Menu Principal qui apparait au lancement.
  */
 public class MenuView {
+
     /**
      * Longueur et largeur de la fenêtre.
      */
     private int width;
     private int height;
-    
-    private String title = "FigueMûre2Style";
-    
-    
+
+    private final String title = "FigueMûre2Style";
+
     /**
      * Constructeur sans paramètres.
      */
@@ -39,8 +35,8 @@ public class MenuView {
      * Constructeur MenuView.
      *
      * @param stage Relatif à Canvas pour la construction de la fenêtre
-     * @param w     largeur de la fenêtre
-     * @param h     hauteur de la fenêtre
+     * @param w largeur de la fenêtre
+     * @param h hauteur de la fenêtre
      */
     public MenuView(final Stage stage, int w, int h) {
 
@@ -54,47 +50,63 @@ public class MenuView {
         gridpane.setHgap(10);
         gridpane.setVgap(10);
         gridpane.setPadding(new Insets(25, 25, 25, 25));
-        
-        ColumnConstraints column13 = new ColumnConstraints(), 
+
+        ColumnConstraints column13 = new ColumnConstraints(),
                 column2 = new ColumnConstraints();
         column13.setPercentWidth(25);
         column2.setPercentWidth(50);
         // set the relative size of columns in the gridpane
-        gridpane.getColumnConstraints().addAll(column13, column2, column13); 
+        gridpane.getColumnConstraints().addAll(column13, column2, column13);
 
-        Text title = new Text();      
-        title.setText("FigueMûre2Style");
-        gridpane.add(title, 1, 0);
-        gridpane.setHalignment(title, HPos.CENTER);
-        
-        Button buttonPlay = new Button("Jouer");
-        buttonPlay.setOnAction(new EventHandler<ActionEvent>() {
+        // Logo
+        Button logo = new Button();
+        logo.setMinSize(350, 145);
+        logo.getStyleClass().add("logo");
+        gridpane.add(logo, 1, 0);
+        gridpane.setHalignment(logo, HPos.CENTER);
+
+        // Bouton : Créer une partie
+        Button buttonNewGame = new Button("Créer une partie");
+        buttonNewGame.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent e) {
-                Stage stageGame = new Stage();
-                JfxView gameView = new JfxView(title.getText(), stageGame);
-
-                FieldModel fieldModel = new FieldModel();
-
-                FieldView fieldView =
-                        new FieldView(fieldModel, 600,600);
-
-                Controller controller = Controller.getControler();
-                fieldView.setControler(controller);
-                controller.addUpdateView(gameView);
-                controller.setModel(fieldModel);
-                gameView.setView(fieldView);
-
-                controller.startTimer();
-
-                stage.close();
+                // Fenetre : NewGameView
+                NewGameView ngv = new NewGameView(stage, 600, 600);
             }
         });
-        buttonPlay.setMinSize(200, 50);
-        gridpane.add(buttonPlay, 1, 3);
-        gridpane.setHalignment(buttonPlay, HPos.CENTER);
+        buttonNewGame.setMinSize(200, 50);
+        buttonNewGame.getStyleClass().add("panel");
+        gridpane.add(buttonNewGame, 1, 2);
+        gridpane.setHalignment(buttonNewGame, HPos.CENTER);
 
+        // Bouton : Charger une partie
+        Button buttonGame = new Button("Charger une partie");
+        buttonGame.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent e) {
+                // Fenetre : LoadGameView
+                LoadGameView lgv = new LoadGameView(stage, 600, 600);
+            }
+        });
+        buttonGame.setMinSize(200, 50);
+        buttonGame.getStyleClass().add("panel");
+        gridpane.add(buttonGame, 1, 3);
+        gridpane.setHalignment(buttonGame, HPos.CENTER);
 
+        // Bouton : Crédits
+        Button buttonCredis = new Button("Crédits");
+        buttonCredis.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent e) {
+                CreditView cv = new CreditView(stage, 600, 600);
+            }
+        });
+        buttonCredis.setMinSize(200, 50);
+        buttonCredis.getStyleClass().add("panel");
+        gridpane.add(buttonCredis, 1, 4);
+        gridpane.setHalignment(buttonCredis, HPos.CENTER);
+
+        // Bouton : Quitter
         Button buttonExit = new Button("Quitter");
         buttonExit.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -103,10 +115,16 @@ public class MenuView {
             }
         });
         buttonExit.setMinSize(200, 50);
-        gridpane.add(buttonExit, 1, 6);
+        buttonExit.getStyleClass().add("panel");
+        gridpane.add(buttonExit, 1, 5);
         gridpane.setHalignment(buttonExit, HPos.CENTER);
 
+        // Background
+        gridpane.getStyleClass().add("small_background");
+
+        // Scene
         Scene scene = new Scene(gridpane, w, h);
+        scene.getStylesheets().add("/assets/css/Background.css");
         stage.setScene(scene);
         stage.show();
     }
