@@ -7,10 +7,12 @@ import java.util.List;
  * @author Victor Doucet doucet.victor@gmail.com
  */
 public abstract class UpdateObservable {
+
     private final List<UpdateObserver> observers = new ArrayList<UpdateObserver>();
 
     /**
      * addObserver : Ajoute un observer.
+     *
      * @param observer TODO
      */
     public void addObserver(UpdateObserver observer) {

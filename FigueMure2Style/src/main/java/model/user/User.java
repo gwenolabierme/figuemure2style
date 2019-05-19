@@ -29,7 +29,7 @@ public class User {
     private double money;
     private boolean didacticiel;
     private boolean sound;
-    
+
     private EnumSet<PlantVarietyEnum> plantUnlock;
     private HashMap<PlantVarietyEnum, Integer> inventory;
     /**
@@ -216,7 +216,7 @@ public class User {
     public void getUser(String pseudo) {
         BDFile f = new BDFile();
         Map mapUser = f.loadFile(pseudo);
-        
+
         this.pseudo = (String) mapUser.get("pseudo");
         this.gender = (String) mapUser.get("gender");
         this.score = Integer.parseInt((String) mapUser.get("score"));
@@ -230,22 +230,22 @@ public class User {
         plantUnlock = EnumSet.noneOf(PlantVarietyEnum.class);
 
         if (listPlantUnlock.contains(listNames.get(0))) {
-            addPlantUnlock(PlantVarietyEnum.CAROTTE);
+            this.plantUnlock.add(PlantVarietyEnum.CAROTTE);
         }
         if (listPlantUnlock.contains(listNames.get(1))) {
-            addPlantUnlock(PlantVarietyEnum.FIGUE);
+            this.plantUnlock.add(PlantVarietyEnum.FIGUE);
         }
         if (listPlantUnlock.contains(listNames.get(2))) {
-            addPlantUnlock(PlantVarietyEnum.MURE);
+            this.plantUnlock.add(PlantVarietyEnum.MURE);
         }
         if (listPlantUnlock.contains(listNames.get(3))) {
-            addPlantUnlock(PlantVarietyEnum.PATATE);
+            this.plantUnlock.add(PlantVarietyEnum.PATATE);
         }
         if (listPlantUnlock.contains(listNames.get(4))) {
-            addPlantUnlock(PlantVarietyEnum.POMME);
+            this.plantUnlock.add(PlantVarietyEnum.POMME);
         }
         if (listPlantUnlock.contains(listNames.get(5))) {
-            addPlantUnlock(PlantVarietyEnum.TOMATE);
+            this.plantUnlock.add(PlantVarietyEnum.TOMATE);
         }
 
         // Inventaire
@@ -295,22 +295,22 @@ public class User {
             plantUnlock = EnumSet.noneOf(PlantVarietyEnum.class);
 
             if (listPlantUnlock.contains(listNames.get(0))) {
-                addPlantUnlock(PlantVarietyEnum.CAROTTE);
+                this.plantUnlock.add(PlantVarietyEnum.CAROTTE);
             }
             if (listPlantUnlock.contains(listNames.get(1))) {
-                addPlantUnlock(PlantVarietyEnum.FIGUE);
+                this.plantUnlock.add(PlantVarietyEnum.FIGUE);
             }
             if (listPlantUnlock.contains(listNames.get(2))) {
-                addPlantUnlock(PlantVarietyEnum.MURE);
+                this.plantUnlock.add(PlantVarietyEnum.MURE);
             }
             if (listPlantUnlock.contains(listNames.get(3))) {
-                addPlantUnlock(PlantVarietyEnum.PATATE);
+                this.plantUnlock.add(PlantVarietyEnum.PATATE);
             }
             if (listPlantUnlock.contains(listNames.get(4))) {
-                addPlantUnlock(PlantVarietyEnum.POMME);
+                this.plantUnlock.add(PlantVarietyEnum.POMME);
             }
             if (listPlantUnlock.contains(listNames.get(5))) {
-                addPlantUnlock(PlantVarietyEnum.TOMATE);
+                this.plantUnlock.add(PlantVarietyEnum.TOMATE);
             }
 
             // Inventaire
@@ -533,7 +533,7 @@ public class User {
 
     /**
      * setMoney remplace l'money de l'utilisateur dans la BD.
-     * 
+     *
      * @param money Money de l'utilisateur
      * @param pseudo Pseudo de l'utilisateur
      */
@@ -548,58 +548,64 @@ public class User {
 
     /**
      * setDidacticiel Active ou déactive le didacticiel.
-     * 
+     *
      * @param pseudo Pseudo de l'utilisateur
      */
-    public void setDidacticiel(String pseudo) {
-        if (this.didacticiel) {
+    public void setDidacticiel(boolean active, String pseudo) {
+        if (active) {
+            this.didacticiel = true;
+        } else {
             this.didacticiel = false;
         }
-        else {
-            this.didacticiel = true;
-        }
-        
+
         BDFile f = new BDFile();
         Map mapUser = f.loadFile(pseudo);
         mapUser.replace("didacticiel", Boolean.toString(this.didacticiel));
         f = new BDFile();
         f.newFile(pseudo, mapUser);
     }
-    
+
     /**
      * setSound Active ou déactive le son.
-     * 
+     *
      * @param pseudo Pseudo de l'utilisateur
      */
-    public void setSound(String pseudo) {
-        if (this.sound) {
+    public void setSound(boolean active, String pseudo) {
+        if (active) {
+            this.sound = true;
+        } else {
             this.sound = false;
         }
-        else {
-            this.sound = true;
-        }
-        
+
         BDFile f = new BDFile();
         Map mapUser = f.loadFile(pseudo);
         mapUser.replace("sound", Boolean.toString(this.sound));
         f = new BDFile();
         f.newFile(pseudo, mapUser);
     }
-    
+
     /**
      * Débloque une plante dans la boutique.
      *
      * @param plant PlantVarietyEnum
+     * @param pseudo Utilisateur
      */
-    public void addPlantUnlock(PlantVarietyEnum plant) {
+    public void addPlantUnlock(PlantVarietyEnum plant, String pseudo) {
+        BDFile f = new BDFile();
+        Map mapUser = f.loadFile(pseudo);
+
         this.plantUnlock.add(plant);
+
+        mapUser.replace("plantUnlock", this.plantUnlock.toString());
+        f = new BDFile();
+        f.newFile(pseudo, mapUser);
     }
 
     /**
      * Initialisation des plantes débloquées.
      */
     public final void initPlantUnlock() {
-        this.addPlantUnlock(PlantVarietyEnum.CAROTTE);
+        this.plantUnlock.add(PlantVarietyEnum.CAROTTE);
     }
 
     public EnumSet<PlantVarietyEnum> getPlantUnlock() {
@@ -681,9 +687,17 @@ public class User {
      *
      * @param variety variété de la plante
      * @param qty quantité de la plante dans l'inventaire
+     * @param pseudo utilisateur
      */
-    public void changeQtyStock(PlantVarietyEnum variety, int qty) {
+    public void changeQtyStock(PlantVarietyEnum variety, int qty, String pseudo) {
+        BDFile f = new BDFile();
+        Map mapUser = f.loadFile(pseudo);
+
         this.inventory.replace(variety, qty);
+        System.out.println(variety);
+        mapUser.replace("PlantVarietyEnum." + variety.toString().toUpperCase(), Integer.toString(inventory.get(variety)));
+        f = new BDFile();
+        f.newFile(pseudo, mapUser);
     }
 
     /**

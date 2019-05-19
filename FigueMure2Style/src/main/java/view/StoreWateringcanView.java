@@ -44,7 +44,7 @@ public class StoreWateringcanView {
     public StoreWateringcanView(User u) {
         Stage stage = new Stage();
         this.model = new StoreModel(u);
-        StoreWateringcanView swv = new StoreWateringcanView(stage, 
+        StoreWateringcanView swv = new StoreWateringcanView(stage,
                 App.windowsWidht, App.windowsHeight, u);
     }
 
@@ -65,7 +65,7 @@ public class StoreWateringcanView {
         fenetreInit(gridpane, u);
 
         forFertilizers(gridpane, u, false);
-        
+
         // Didacticiel
         if (u.isDidacticiel()) {
             UserDidacticiel didacticiel = new UserDidacticiel("StoreView", u.getGender());
@@ -106,7 +106,7 @@ public class StoreWateringcanView {
         fenetreInit(gridpane, u);
 
         forFertilizers(gridpane, u, true);
-        
+
         // Didacticiel
         if (u.isDidacticiel()) {
             UserDidacticiel didacticiel = new UserDidacticiel("StoreView", u.getGender());
@@ -172,11 +172,11 @@ public class StoreWateringcanView {
             @Override
             public void handle(ActionEvent e) {
                 // Fenetre : stageGame
-                JfxView gameView = new JfxView(title, stage, u);
+                GameView gameView = new GameView(title, stage, u);
 
                 FieldModel fieldModel = new FieldModel();
                 //fv = new FieldView(fieldModel, App.windowsWidht, App.windowsHeight);
-                
+
                 //Controller controller = Controller.getControler();
                 //fv.setControler(controller);
                 //controller.addUpdateView(gameView);
@@ -225,7 +225,7 @@ public class StoreWateringcanView {
             @Override
             public void handle(ActionEvent e) {
                 // Fenetre : StoreWateringcanView
-                StoreWateringcanView swv = new StoreWateringcanView(stage, 
+                StoreWateringcanView swv = new StoreWateringcanView(stage,
                         App.windowsWidht, App.windowsHeight, u);
             }
         });
@@ -268,7 +268,7 @@ public class StoreWateringcanView {
                 @Override
                 public void handle(ActionEvent e) {
                     // Fenetre : Figure de style
-                    WateringcanView wv = new WateringcanView(stage, 
+                    WateringcanView wv = new WateringcanView(stage,
                             App.windowsWidht, App.windowsHeight, model, iWattCan, u);
                 }
             });

@@ -1,8 +1,7 @@
 package model.user;
 
-import javafx.scene.control.Button;
-
 /**
+ * Regroupement image, nom et ratio des fruits/légumes.
  *
  * @author gwenolabierme
  */

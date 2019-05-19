@@ -28,7 +28,6 @@ import model.plant.Pomme;
 import model.plant.Tomate;
 import model.user.DataPlantRatio;
 import model.user.User;
-import static view.JfxView.stage;
 
 /**
  *
@@ -58,7 +57,7 @@ public class StoreVegetableView {
     private final List<String> listUnlock = Arrays.asList(carotte.getName().toString(), figue.getName().toString(), mure.getName().toString(), patate.getName().toString(), pomme.getName().toString(), tomate.getName().toString());
     private final List<String> listNamesFr = Arrays.asList(PlantVarietyEnum.CAROTTE.toString(), PlantVarietyEnum.FIGUE.toString(), PlantVarietyEnum.MURE.toString(), PlantVarietyEnum.PATATE.toString(), PlantVarietyEnum.POMME.toString(), PlantVarietyEnum.TOMATE.toString());
     private final List<String> listNeed = Arrays.asList("0", "2", "3", "4", "4", "5");
-    
+
     /**
      * Constructeur sans paramètres.
      */
@@ -122,7 +121,7 @@ public class StoreVegetableView {
             @Override
             public void handle(ActionEvent e) {
                 // Fenetre : stageGame
-                JfxView gameView = new JfxView(title, stage, u);
+                GameView gameView = new GameView(title, stage, u);
 
                 FieldModel fieldModel = new FieldModel();
                 FieldView fieldView = new FieldView(fieldModel,
@@ -201,7 +200,7 @@ public class StoreVegetableView {
         gridpane.add(lesson, 1, 5);
         gridpane.setHalignment(lesson, HPos.LEFT);
         gridpane.setValignment(lesson, VPos.TOP);
-        
+
         // Liste de données : Ratio
         HashMap<PlantVarietyEnum, DataPlantRatio> mapRatio = u.getDataSucces();
         List<String> listRatios = Arrays.asList(String.valueOf(mapRatio.get(PlantVarietyEnum.CAROTTE).getRatio()), String.valueOf(mapRatio.get(PlantVarietyEnum.FIGUE).getRatio()), String.valueOf(mapRatio.get(PlantVarietyEnum.MURE).getRatio()), String.valueOf(mapRatio.get(PlantVarietyEnum.PATATE).getRatio()), String.valueOf(mapRatio.get(PlantVarietyEnum.POMME).getRatio()), String.valueOf(mapRatio.get(PlantVarietyEnum.TOMATE).getRatio()));
@@ -242,7 +241,7 @@ public class StoreVegetableView {
                 }
             });
             vegeteble.setMinSize(60, 60);
-            
+
             String price = listPrice.get(i);
             String ratio = listRatios.get(i);
             double finalPrice = Double.parseDouble(price) * Double.parseDouble(ratio);
@@ -253,12 +252,11 @@ public class StoreVegetableView {
                 priceVegeteble.setText(String.valueOf(finalPrice) + "€");
             } else {
                 vegeteble.getStyleClass().add(listNames.get(i) + "Lock");
-                priceVegeteble.setText(listNeed.get(i) + " " + listNamesFr.get(i-1)+ "s");
+                priceVegeteble.setText(listNeed.get(i) + " " + listNamesFr.get(i - 1) + "s");
             }
 
             Text titleVegeteble = new Text();
             titleVegeteble.setText(listFigureDeStyle.get(i).toUpperCase());
-
 
             if (i < 5) {
                 gridpane.add(vegeteble, i + 1, 1);
@@ -276,7 +274,7 @@ public class StoreVegetableView {
             gridpane.setValignment(priceVegeteble, VPos.BOTTOM);
 
         }
-        
+
         // Bouton : Acheter
         Button buttonBuy = new Button("Acheter");
         buttonBuy.setOnAction(new EventHandler<ActionEvent>() {
@@ -285,18 +283,20 @@ public class StoreVegetableView {
                 String vegetableBuy = purchase.getText();
                 double money = u.getMoney();
                 int priceVegetable = 0;
+                double ratio = 0.0;
 
                 PlantVarietyEnum pve;
                 FieldModel fieldModel;
                 FieldView fv;
-                
+
                 PlantVarietyEnum plantNeedToUnlock = null;
                 int nbNeedToUnlock = 0;
-                
+
                 switch (vegetableBuy) {
                     case "COMPARAISON":
                         // Met à jour l'argent 
                         priceVegetable += Integer.parseInt(listPrice.get(0));
+                        ratio += Double.parseDouble(listRatios.get(0));
 
                         // Plante le légume
                         pve = PlantVarietyEnum.CAROTTE;
@@ -304,10 +304,11 @@ public class StoreVegetableView {
                     case "PERIPHRASE":
                         // Met à jour l'argent 
                         priceVegetable += Integer.parseInt(listPrice.get(1));
+                        ratio += Double.parseDouble(listRatios.get(1));
 
                         // Plante le légume
                         pve = PlantVarietyEnum.FIGUE;
-                        
+
                         //To unlock
                         plantNeedToUnlock = PlantVarietyEnum.CAROTTE;
                         nbNeedToUnlock = 2;
@@ -315,10 +316,11 @@ public class StoreVegetableView {
                     case "PERSONNIFICATION":
                         // Met à jour l'argent 
                         priceVegetable += Integer.parseInt(listPrice.get(2));
+                        ratio += Double.parseDouble(listRatios.get(2));
 
                         // Plante le légume
                         pve = PlantVarietyEnum.MURE;
-                        
+
                         //To unlock
                         plantNeedToUnlock = PlantVarietyEnum.FIGUE;
                         nbNeedToUnlock = 3;
@@ -326,10 +328,11 @@ public class StoreVegetableView {
                     case "HYPERBOLE":
                         // Met à jour l'argent 
                         priceVegetable += Integer.parseInt(listPrice.get(3));
+                        ratio += Double.parseDouble(listRatios.get(3));
 
                         // Plante le légume
                         pve = PlantVarietyEnum.PATATE;
-                        
+
                         //To unlock
                         plantNeedToUnlock = PlantVarietyEnum.MURE;
                         nbNeedToUnlock = 4;
@@ -337,10 +340,11 @@ public class StoreVegetableView {
                     case "CHIASME":
                         // Met à jour l'argent 
                         priceVegetable += Integer.parseInt(listPrice.get(4));
+                        ratio += Double.parseDouble(listRatios.get(4));
 
                         // Plante le légume
                         pve = PlantVarietyEnum.POMME;
-                        
+
                         //To unlock
                         plantNeedToUnlock = PlantVarietyEnum.PATATE;
                         nbNeedToUnlock = 4;
@@ -348,32 +352,34 @@ public class StoreVegetableView {
                     case "OXYMORE":
                         // Met à jour l'argent 
                         priceVegetable += Integer.parseInt(listPrice.get(5));
+                        ratio += Double.parseDouble(listRatios.get(5));
 
                         // Plante le légume
                         pve = PlantVarietyEnum.TOMATE;
-                        
+
                         //To unlock
                         plantNeedToUnlock = PlantVarietyEnum.POMME;
                         nbNeedToUnlock = 5;
                         break;
                     default:
                         priceVegetable += Integer.parseInt(listPrice.get(0));
+                        ratio += Double.parseDouble(listRatios.get(0));
+
                         pve = PlantVarietyEnum.CAROTTE;
                         break;
                 }
 
                 if (u.getPlantUnlock().contains(pve)) {
-                    
+
                     // Met à jour l'argent 
-                    money -= priceVegetable;
+                    money -= priceVegetable * ratio;
                     u.setMoney(money, u.getPseudo());
 
                     // Plante le légume
-                    JfxView gameView = new JfxView(title.getText(), stage, u);
+                    GameView gameView = new GameView(title.getText(), stage, u);
 
                     //fieldModel = new FieldModel();
                     //fv = new FieldView(fieldModel, App.windowsWidht, App.windowsHeight, pve);
-
                     //Controller controller = Controller.getControler();
                     //fv.setControler(controller);
                     //controller.addUpdateView(gameView);
@@ -384,14 +390,14 @@ public class StoreVegetableView {
                     //controller.startTimer();
                 } else {
                     // Verifie l'inventaire et enleve les plantes nécessaire pour débloquer
-                    if (JfxView.user.getInventory().get(plantNeedToUnlock) >= nbNeedToUnlock) {
+                    if (GameView.user.getInventory().get(plantNeedToUnlock) >= nbNeedToUnlock) {
                         System.out.println("UNLOCK " + pve);
-                        JfxView.user.changeQtyStock(plantNeedToUnlock, 
-                                JfxView.user.getInventory().get(plantNeedToUnlock) 
-                                        - nbNeedToUnlock);
-                        JfxView.user.addPlantUnlock(pve);
+                        GameView.user.changeQtyStock(plantNeedToUnlock,
+                                GameView.user.getInventory().get(plantNeedToUnlock)
+                                - nbNeedToUnlock, u.getPseudo());
+                        GameView.user.addPlantUnlock(pve, u.getPseudo());
                     }
-                    
+
                     StoreVegetableView svv = new StoreVegetableView(stage, App.windowsWidht, App.windowsHeight, u);
                 }
             }

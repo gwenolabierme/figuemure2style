@@ -1,6 +1,7 @@
 package model.plant;
 
 /**
+ * Enumération de fruits/légumes.
  *
  * @author jeremy
  */

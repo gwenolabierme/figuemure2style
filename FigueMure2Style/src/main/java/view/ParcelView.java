@@ -1,13 +1,8 @@
 package view;
 
 import java.util.HashMap;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.control.Button;
 import javafx.scene.image.Image;
-import javafx.scene.text.Text;
-import javafx.stage.Popup;
 import model.plant.Carotte;
 import model.plant.Figue;
 import model.plant.GrowthStateEnum;
@@ -20,7 +15,6 @@ import model.plant.Tomate;
 import model.stylisticDevice.StylisticDeviceEnum;
 import model.user.User;
 import observer.MouseEventSubscriber;
-import static view.JfxView.stage;
 import view.plant.PlantView;
 
 /**
@@ -161,7 +155,7 @@ public class ParcelView implements View, MouseEventSubscriber {
 
     @Override
     public void mousePressed(String s, StylisticDeviceEnum sde, double x, double y) {
-        User usr = JfxView.user;
+        User usr = GameView.user;
         if ((x >= this.getX()) && (x <= this.getX() + this.CurrentImg.getWidth())
                 && (y >= this.getY()) && (y <= this.getY() + this.CurrentImg.getHeight())) {
 
@@ -183,9 +177,9 @@ public class ParcelView implements View, MouseEventSubscriber {
                             if (plant.getGrowthState().equals(GrowthStateEnum.FINAL)) {
                                 if (usr.getInventory().containsKey(plant.getName())) {
                                     int nbPlant = usr.getInventory().get(plant.getName());
-                                    usr.getInventory().put(plant.getName(), nbPlant + 1);
+                                    usr.changeQtyStock(plant.getName(), nbPlant + 1, usr.getPseudo());
                                 }
-                                usr.setScore(usr.getScore() + 3 * plant.getPrice(), usr.getPseudo());
+                                usr.setScore(usr.getScore() + 3 * plant.getNbXp(), usr.getPseudo());
 
                                 this.plantView = null;
                             }

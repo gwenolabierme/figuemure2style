@@ -85,7 +85,7 @@ public class DashbordView {
             @Override
             public void handle(ActionEvent e) {
                 // Fenetre : stageGame
-                JfxView gameView = new JfxView(title, stage, u);
+                GameView gameView = new GameView(title, stage, u);
 
                 FieldModel fieldModel = new FieldModel();
                 //fv = new FieldView(fieldModel, App.windowsWidht, App.windowsHeight);

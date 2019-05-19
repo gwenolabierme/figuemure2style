@@ -4,6 +4,7 @@ import model.stylisticDevice.StylisticDeviceEnum;
 
 /**
  * Model de Mure.
+ *
  * @author jeremy
  */
 public class Mure extends Fruit {
@@ -14,5 +15,5 @@ public class Mure extends Fruit {
         this.price = 1;
         this.nbXp = 5;
     }
-    
+
 }

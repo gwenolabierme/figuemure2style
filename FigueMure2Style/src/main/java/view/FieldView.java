@@ -14,7 +14,7 @@ import model.stylisticDevice.StylisticDeviceEnum;
 import view.plant.PlantView;
 
 /**
- * view for the field.
+ * View for the field.
  *
  * @author jeremy
  */
@@ -198,12 +198,12 @@ public class FieldView extends CanvasView {
     
     public void updateCursor() {
         if (this.pveBought != null) {
-            JfxView.stage.getScene().setCursor(new ImageCursor(new Image("/assets/img/vegetable/" + pveBought.toString() + ".png")));
+            GameView.stage.getScene().setCursor(new ImageCursor(new Image("/assets/img/vegetable/" + pveBought.toString() + ".png")));
         } else {
             if (this.sdeCan != null) {
-                JfxView.stage.getScene().setCursor(new ImageCursor(new Image("/assets/css/img/wateringcan.png")));
+                GameView.stage.getScene().setCursor(new ImageCursor(new Image("/assets/css/img/wateringcan.png")));
             } else {
-                JfxView.stage.getScene().setCursor(Cursor.DEFAULT);
+                GameView.stage.getScene().setCursor(Cursor.DEFAULT);
             }
         }
     }
