@@ -232,6 +232,7 @@ public class InventoryView {
                 int nbVegetable = 0;
                 double money = u.getMoney();
                 int priceVegetable = 0;
+                double ratio = 0.0;
                 
                 Text inventoryVegeteble = new Text();
                 switch(vegetableSale) {
@@ -244,7 +245,7 @@ public class InventoryView {
                             
                             // Met à jour l'argent 
                             priceVegetable += Integer.parseInt(listPrice.get(0));
-                            double ratio = u.getDataSucces().get(PlantVarietyEnum.CAROTTE).getRatio();
+                            ratio += u.getDataSucces().get(PlantVarietyEnum.CAROTTE).getRatio();
                             if (ratio < 1) {
                                 priceVegetable = (int) (priceVegetable / ratio);
                             }
@@ -270,7 +271,7 @@ public class InventoryView {
                             
                             // Met à jour l'argent 
                             priceVegetable += Integer.parseInt(listPrice.get(1));
-                            double ratio = u.getDataSucces().get(PlantVarietyEnum.FIGUE).getRatio();
+                            ratio += u.getDataSucces().get(PlantVarietyEnum.FIGUE).getRatio();
                             if (ratio < 1) {
                                 priceVegetable = (int) (priceVegetable / ratio);
                             }
@@ -296,7 +297,7 @@ public class InventoryView {
                             
                             // Met à jour l'argent 
                             priceVegetable += Integer.parseInt(listPrice.get(2));
-                            double ratio = u.getDataSucces().get(PlantVarietyEnum.MURE).getRatio();
+                            ratio += u.getDataSucces().get(PlantVarietyEnum.MURE).getRatio();
                             if (ratio < 1) {
                                 priceVegetable = (int) (priceVegetable / ratio);
                             }
@@ -322,7 +323,7 @@ public class InventoryView {
                             
                             // Met à jour l'argent 
                             priceVegetable += Integer.parseInt(listPrice.get(3));
-                            double ratio = u.getDataSucces().get(PlantVarietyEnum.PATATE).getRatio();
+                            ratio += u.getDataSucces().get(PlantVarietyEnum.PATATE).getRatio();
                             if (ratio < 1) {
                                 priceVegetable = (int) (priceVegetable / ratio);
                             }
@@ -348,7 +349,7 @@ public class InventoryView {
                             
                             // Met à jour l'argent 
                             priceVegetable += Integer.parseInt(listPrice.get(4));
-                            double ratio = u.getDataSucces().get(PlantVarietyEnum.POMME).getRatio();
+                            ratio += u.getDataSucces().get(PlantVarietyEnum.POMME).getRatio();
                             if (ratio < 1) {
                                 priceVegetable = (int) (priceVegetable / ratio);
                             }
@@ -374,7 +375,7 @@ public class InventoryView {
                             
                             // Met à jour l'argent 
                             priceVegetable += Integer.parseInt(listPrice.get(5));
-                            double ratio = u.getDataSucces().get(PlantVarietyEnum.TOMATE).getRatio();
+                            ratio += u.getDataSucces().get(PlantVarietyEnum.TOMATE).getRatio();
                             if (ratio < 1) {
                                 priceVegetable = (int) (priceVegetable / ratio);
                             }
@@ -391,11 +392,35 @@ public class InventoryView {
                             gridpane.setValignment(inventoryVegeteble, VPos.BOTTOM);
                         }
                         break;    
-                    default : 
-                       break;
+                    default :
+                        if (u.getPlantUnlock().toString().contains(listUnlock.get(0))) {
+                            // Met à jour le stock
+                            nbVegetable += listInventory.get(0);
+                            //nbXp += carotte.getNbXp() * nbVegetable;
+                            //score += nbXp;
+                            
+                            // Met à jour l'argent 
+                            priceVegetable += Integer.parseInt(listPrice.get(0));
+                            ratio += u.getDataSucces().get(PlantVarietyEnum.CAROTTE).getRatio();
+                            if (ratio < 1) {
+                                priceVegetable = (int) (priceVegetable / ratio);
+                            }
+                            
+                            // Vide les stock du légume
+                            u.emptyQtyStock(PlantVarietyEnum.CAROTTE, u.getPseudo());
+                            listInventory.set(0, u.getInventory().get(PlantVarietyEnum.CAROTTE));
+                            
+                            // Affiche le nouveau inventaire
+                            inventoryVegeteble.setText(listInventory.get(0).toString());
+                            gridpane.getChildren().remove(listLabel.get(0));
+                            gridpane.add(inventoryVegeteble, 0, 1);
+                            gridpane.setHalignment(inventoryVegeteble, HPos.CENTER);
+                            gridpane.setValignment(inventoryVegeteble, VPos.BOTTOM);
+                        }
+                        break;
                 }
                 // Met à jour l'argent 
-                money += priceVegetable * nbVegetable;
+                money += priceVegetable * ratio  * nbVegetable;
                 
                 u.setMoney(money, u.getPseudo());
                 
