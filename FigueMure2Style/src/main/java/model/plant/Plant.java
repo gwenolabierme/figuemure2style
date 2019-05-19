@@ -5,9 +5,11 @@ import observer.UpdateObservable;
 
 /**
  * Classe générique pour les plantes.
+ *
  * @author jeremy
  */
 public abstract class Plant extends UpdateObservable {
+
     /**
      * Nom de la plante.
      */
@@ -33,18 +35,16 @@ public abstract class Plant extends UpdateObservable {
      */
     protected int life;
 
-    
     public Plant() {
         this.name = null;
         this.styDevEat = null;
         this.price = 0;
         this.nbXp = 0;
-        
+
         growthState = GrowthStateEnum.SPROUT;
         this.life = 3;
     }
-    
-    
+
     public PlantVarietyEnum getName() {
         return name;
     }
@@ -68,7 +68,7 @@ public abstract class Plant extends UpdateObservable {
     public int getLife() {
         return life;
     }
-    
+
     public void setGrowthState(GrowthStateEnum growthState) {
         this.growthState = growthState;
     }

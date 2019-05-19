@@ -2,9 +2,7 @@ package model;
 
 import figuemure2style.App;
 import java.io.Serializable;
-import model.plant.Carotte;
 import model.plant.Plant;
-import model.plant.PlantVarietyEnum;
 
 /**
  * Class contain data for the field.
@@ -12,6 +10,7 @@ import model.plant.PlantVarietyEnum;
  * @author jeremy
  */
 public class FieldModel implements Serializable {
+
     /**
      * Mode debug ?
      */
@@ -21,23 +20,20 @@ public class FieldModel implements Serializable {
      */
     private int nbFreePlot;
     /**
-     * Matrice du jardin.
-     * null = parcelle vide.
-     * Plant sinon.
+     * Matrice du jardin. null = parcelle vide. Plant sinon.
      */
-    private Plant [][] garden;
-    
+    private Plant[][] garden;
+
     /**
      * Constructeur de FieldModel.
      */
     public FieldModel() {
         nbFreePlot = App.freePlotBegin;
-        
+
         // Charger sauvegarde
-        
         garden = new Plant[App.gardenSize][App.gardenSize];
-        
-        if(debug) {
+
+        if (debug) {
             printGarden();
         }
     }
@@ -53,9 +49,10 @@ public class FieldModel implements Serializable {
     public Plant[][] getGarden() {
         return garden;
     }
-    
+
     /**
      * Renvoie une plante du jardin.
+     *
      * @param i colonne
      * @param j ligne
      * @return null si la plante n'existe pas, la plante sinon
@@ -66,6 +63,7 @@ public class FieldModel implements Serializable {
 
     /**
      * Met une plante dans le jardin.
+     *
      * @param plant : Plant : model de la plante à affecter
      * @param i colonne
      * @param j ligne
@@ -73,11 +71,11 @@ public class FieldModel implements Serializable {
     public void setPlant(Plant plant, int i, int j) {
         this.garden[i][j] = plant;
     }
-    
+
     /**
-     * Fais évoluer les données du modèle et celles de ses enfants.
-     * Cette fonction est appelée par le controller et sert à savoir s'il
-     * faut maj les views.
+     * Fais évoluer les données du modèle et celles de ses enfants. Cette
+     * fonction est appelée par le controller et sert à savoir s'il faut maj les
+     * views.
      *
      * @return True si les données du modèle ont été modifiées (ou d'un enfant)
      */
@@ -85,7 +83,7 @@ public class FieldModel implements Serializable {
         boolean updated = false;
         //implémenter update dans plant, renvoie true si etat de croissance
         // précédent != du nouveau
-        
+
         /*for (CharacterModel model : this.characters) {
             this.updatePersoVision(model);
             // On a pas le choix sur le sens de cette instruction car si un
@@ -101,19 +99,19 @@ public class FieldModel implements Serializable {
         return updated;*/
         return true;
     }
-    
+
     private void printGarden() {
         int i, j;
         Plant pl;
-        
+
         System.out.println("**********GARDEN************");
         i = 0;
-        while(i < App.gardenSize) {
+        while (i < App.gardenSize) {
             j = 0;
-            while(j < App.gardenSize) {
+            while (j < App.gardenSize) {
                 pl = garden[i][j];
-                
-                if(pl == null) {
+
+                if (pl == null) {
                     System.out.print(pl + "   ");
                 } else {
                     System.out.print(pl.getName() + "   ");

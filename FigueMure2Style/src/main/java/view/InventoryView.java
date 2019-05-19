@@ -1,4 +1,3 @@
-
 package view;
 
 import figuemure2style.App;
@@ -40,7 +39,7 @@ public class InventoryView {
     private int height;
 
     private final String title = "FigueMûre2Style";
-    
+
     // Listes de données : Fuits et légumes
     private final Plant carotte = new Carotte();
     private final Plant figue = new Figue();
@@ -53,14 +52,14 @@ public class InventoryView {
     private final List<String> listFigureDeStyle = Arrays.asList(carotte.getStyDevEat().toString(), figue.getStyDevEat().toString(), mure.getStyDevEat().toString(), patate.getStyDevEat().toString(), pomme.getStyDevEat().toString(), tomate.getStyDevEat().toString());
     private final List<String> listUnlock = Arrays.asList(carotte.getName().toString(), figue.getName().toString(), mure.getName().toString(), patate.getName().toString(), pomme.getName().toString(), tomate.getName().toString());
     private final List<String> listPrice = Arrays.asList(Integer.toString(carotte.getPrice()), Integer.toString(figue.getPrice()), Integer.toString(mure.getPrice()), Integer.toString(patate.getPrice()), Integer.toString(pomme.getPrice()), Integer.toString(tomate.getPrice()));
-    
+
     /**
      * Constructeur sans paramètres.
      */
     public InventoryView() {
         Stage stage = new Stage();
         User u = new User();
-        InventoryView iv = new InventoryView(stage, 
+        InventoryView iv = new InventoryView(stage,
                 App.windowsWidht, App.windowsHeight, u);
     }
 
@@ -117,11 +116,11 @@ public class InventoryView {
             @Override
             public void handle(ActionEvent e) {
                 // Fenetre : stageGame
-                JfxView gameView = new JfxView(title, stage, u);
+                GameView gameView = new GameView(title, stage, u);
 
                 FieldModel fieldModel = new FieldModel();
                 //fv = new FieldView(fieldModel, App.windowsWidht, App.windowsHeight);
-                
+
                 //Controller controller = Controller.getControler();
                 //fv.setControler(controller);
                 //controller.addUpdateView(gameView);
@@ -173,7 +172,7 @@ public class InventoryView {
                 public void handle(ActionEvent e) {
                     String infoVegetable = vegeteble.getStyleClass().toString();
 
-                    if (infoVegetable.contains(listNames.get(0))) {  
+                    if (infoVegetable.contains(listNames.get(0))) {
                         sale.setText(listFigureDeStyle.get(0).toUpperCase());
                     } else if (infoVegetable.contains(listNames.get(1))) {
                         sale.setText(listFigureDeStyle.get(1).toUpperCase());
@@ -189,17 +188,16 @@ public class InventoryView {
                 }
             });
             vegeteble.setMinSize(60, 60);
-            
+
             // Légumes débloqués
             if (u.getPlantUnlock().toString().contains(listUnlock.get(i))) {
                 vegeteble.getStyleClass().add(listNames.get(i) + "Unlock");
                 vegeteble.setDisable(false);
-            }
-            else {
+            } else {
                 vegeteble.getStyleClass().add(listNames.get(i) + "Lock");
                 vegeteble.setDisable(true);
             }
- 
+
             Text titleVegeteble = new Text();
             titleVegeteble.setText(listFigureDeStyle.get(i).toUpperCase());
 
@@ -218,9 +216,9 @@ public class InventoryView {
             gridpane.setHalignment(titleVegeteble, HPos.CENTER);
             gridpane.setValignment(titleVegeteble, VPos.TOP);
             gridpane.setHalignment(inventoryVegeteble, HPos.CENTER);
-            gridpane.setValignment(inventoryVegeteble, VPos.BOTTOM);   
+            gridpane.setValignment(inventoryVegeteble, VPos.BOTTOM);
         }
-        
+
         // Bouton : Acheter
         Button buttonBuy = new Button("Vendre");
         buttonBuy.setOnAction(new EventHandler<ActionEvent>() {
@@ -233,27 +231,27 @@ public class InventoryView {
                 double money = u.getMoney();
                 int priceVegetable = 0;
                 double ratio = 0.0;
-                
+
                 Text inventoryVegeteble = new Text();
-                switch(vegetableSale) {
-                    case "COMPARAISON" :   
+                switch (vegetableSale) {
+                    case "COMPARAISON":
                         if (u.getPlantUnlock().toString().contains(listUnlock.get(0))) {
                             // Met à jour le stock
                             nbVegetable += listInventory.get(0);
                             //nbXp += carotte.getNbXp() * nbVegetable;
                             //score += nbXp;
-                            
+
                             // Met à jour l'argent 
                             priceVegetable += Integer.parseInt(listPrice.get(0));
                             ratio += u.getDataSucces().get(PlantVarietyEnum.CAROTTE).getRatio();
                             if (ratio < 1) {
                                 priceVegetable = (int) (priceVegetable / ratio);
                             }
-                            
+
                             // Vide les stock du légume
                             u.emptyQtyStock(PlantVarietyEnum.CAROTTE, u.getPseudo());
                             listInventory.set(0, u.getInventory().get(PlantVarietyEnum.CAROTTE));
-                            
+
                             // Affiche le nouveau inventaire
                             inventoryVegeteble.setText(listInventory.get(0).toString());
                             gridpane.getChildren().remove(listLabel.get(0));
@@ -261,25 +259,25 @@ public class InventoryView {
                             gridpane.setHalignment(inventoryVegeteble, HPos.CENTER);
                             gridpane.setValignment(inventoryVegeteble, VPos.BOTTOM);
                         }
-                        break; 
-                    case "PERIPHRASE" :
+                        break;
+                    case "PERIPHRASE":
                         if (u.getPlantUnlock().toString().contains(listUnlock.get(1))) {
                             // Met à jour le stock
                             nbVegetable += listInventory.get(1);
                             //nbXp += figue.getNbXp() * nbVegetable;
                             //score += nbXp;
-                            
+
                             // Met à jour l'argent 
                             priceVegetable += Integer.parseInt(listPrice.get(1));
                             ratio += u.getDataSucces().get(PlantVarietyEnum.FIGUE).getRatio();
                             if (ratio < 1) {
                                 priceVegetable = (int) (priceVegetable / ratio);
                             }
-                            
+
                             // Vide les stock du légume
                             u.emptyQtyStock(PlantVarietyEnum.FIGUE, u.getPseudo());
                             listInventory.set(1, u.getInventory().get(PlantVarietyEnum.FIGUE));
-                            
+
                             // Affiche le nouveau inventaire
                             inventoryVegeteble.setText(listInventory.get(1).toString());
                             gridpane.getChildren().remove(listLabel.get(1));
@@ -287,25 +285,25 @@ public class InventoryView {
                             gridpane.setHalignment(inventoryVegeteble, HPos.CENTER);
                             gridpane.setValignment(inventoryVegeteble, VPos.BOTTOM);
                         }
-                        break; 
-                    case "PERSONNIFICATION" :
+                        break;
+                    case "PERSONNIFICATION":
                         if (u.getPlantUnlock().toString().contains(listUnlock.get(2))) {
                             // Met à jour le stock
                             nbVegetable += listInventory.get(2);
                             //nbXp += mure.getNbXp() * nbVegetable;
                             //score += nbXp;
-                            
+
                             // Met à jour l'argent 
                             priceVegetable += Integer.parseInt(listPrice.get(2));
                             ratio += u.getDataSucces().get(PlantVarietyEnum.MURE).getRatio();
                             if (ratio < 1) {
                                 priceVegetable = (int) (priceVegetable / ratio);
                             }
-                            
+
                             // Vide les stock du légume
                             u.emptyQtyStock(PlantVarietyEnum.MURE, u.getPseudo());
                             listInventory.set(2, u.getInventory().get(PlantVarietyEnum.MURE));
-                            
+
                             // Affiche le nouveau inventaire
                             inventoryVegeteble.setText(listInventory.get(2).toString());
                             gridpane.getChildren().remove(listLabel.get(2));
@@ -314,24 +312,24 @@ public class InventoryView {
                             gridpane.setValignment(inventoryVegeteble, VPos.BOTTOM);
                         }
                         break;
-                    case "HYPERBOLE" :
+                    case "HYPERBOLE":
                         if (u.getPlantUnlock().toString().contains(listUnlock.get(3))) {
                             // Met à jour le stock
                             nbVegetable += listInventory.get(3);
                             //nbXp += mure.getNbXp() * nbVegetable;
                             //score += nbXp;
-                            
+
                             // Met à jour l'argent 
                             priceVegetable += Integer.parseInt(listPrice.get(3));
                             ratio += u.getDataSucces().get(PlantVarietyEnum.PATATE).getRatio();
                             if (ratio < 1) {
                                 priceVegetable = (int) (priceVegetable / ratio);
                             }
-                            
+
                             // Vide les stock du légume
                             u.emptyQtyStock(PlantVarietyEnum.PATATE, u.getPseudo());
                             listInventory.set(3, u.getInventory().get(PlantVarietyEnum.PATATE));
-                            
+
                             // Affiche le nouveau inventaire
                             inventoryVegeteble.setText(listInventory.get(3).toString());
                             gridpane.getChildren().remove(listLabel.get(3));
@@ -340,24 +338,24 @@ public class InventoryView {
                             gridpane.setValignment(inventoryVegeteble, VPos.BOTTOM);
                         }
                         break;
-                    case "CHIASME" :
+                    case "CHIASME":
                         if (u.getPlantUnlock().toString().contains(listUnlock.get(4))) {
                             // Met à jour le stock
                             nbVegetable += listInventory.get(4);
                             //nbXp += pomme.getNbXp() * nbVegetable;
                             //score += nbXp;
-                            
+
                             // Met à jour l'argent 
                             priceVegetable += Integer.parseInt(listPrice.get(4));
                             ratio += u.getDataSucces().get(PlantVarietyEnum.POMME).getRatio();
                             if (ratio < 1) {
                                 priceVegetable = (int) (priceVegetable / ratio);
                             }
-                            
+
                             // Vide les stock du légume
                             u.emptyQtyStock(PlantVarietyEnum.POMME, u.getPseudo());
                             listInventory.set(4, u.getInventory().get(PlantVarietyEnum.POMME));
-                            
+
                             // Affiche le nouveau inventaire
                             inventoryVegeteble.setText(listInventory.get(4).toString());
                             gridpane.getChildren().remove(listLabel.get(4));
@@ -366,24 +364,24 @@ public class InventoryView {
                             gridpane.setValignment(inventoryVegeteble, VPos.BOTTOM);
                         }
                         break;
-                    case "OXYMORE" :
+                    case "OXYMORE":
                         if (u.getPlantUnlock().toString().contains(listUnlock.get(5))) {
                             // Met à jour le stock
                             nbVegetable += listInventory.get(5);
                             //nbXp += tomate.getNbXp() * nbVegetable;
                             //score += nbXp;
-                            
+
                             // Met à jour l'argent 
                             priceVegetable += Integer.parseInt(listPrice.get(5));
                             ratio += u.getDataSucces().get(PlantVarietyEnum.TOMATE).getRatio();
                             if (ratio < 1) {
                                 priceVegetable = (int) (priceVegetable / ratio);
                             }
-                            
+
                             // Vide les stock du légume
                             u.emptyQtyStock(PlantVarietyEnum.TOMATE, u.getPseudo());
                             listInventory.set(5, u.getInventory().get(PlantVarietyEnum.TOMATE));
-                            
+
                             // Affiche le nouveau inventaire
                             inventoryVegeteble.setText(listInventory.get(5).toString());
                             gridpane.getChildren().remove(listLabel.get(5));
@@ -391,25 +389,25 @@ public class InventoryView {
                             gridpane.setHalignment(inventoryVegeteble, HPos.CENTER);
                             gridpane.setValignment(inventoryVegeteble, VPos.BOTTOM);
                         }
-                        break;    
-                    default :
+                        break;
+                    default:
                         if (u.getPlantUnlock().toString().contains(listUnlock.get(0))) {
                             // Met à jour le stock
                             nbVegetable += listInventory.get(0);
                             //nbXp += carotte.getNbXp() * nbVegetable;
                             //score += nbXp;
-                            
+
                             // Met à jour l'argent 
                             priceVegetable += Integer.parseInt(listPrice.get(0));
                             ratio += u.getDataSucces().get(PlantVarietyEnum.CAROTTE).getRatio();
                             if (ratio < 1) {
                                 priceVegetable = (int) (priceVegetable / ratio);
                             }
-                            
+
                             // Vide les stock du légume
                             u.emptyQtyStock(PlantVarietyEnum.CAROTTE, u.getPseudo());
                             listInventory.set(0, u.getInventory().get(PlantVarietyEnum.CAROTTE));
-                            
+
                             // Affiche le nouveau inventaire
                             inventoryVegeteble.setText(listInventory.get(0).toString());
                             gridpane.getChildren().remove(listLabel.get(0));
@@ -420,10 +418,10 @@ public class InventoryView {
                         break;
                 }
                 // Met à jour l'argent 
-                money += priceVegetable * ratio  * nbVegetable;
-                
+                money += priceVegetable * ratio * nbVegetable;
+
                 u.setMoney(money, u.getPseudo());
-                
+
                 // Infos utilisateur
                 UserDidacticiel didacticiel = new UserDidacticiel("InventaryView", u.getGender());
                 //String newScore = Integer.toString(score); 
@@ -439,7 +437,7 @@ public class InventoryView {
         buttonBuy.getStyleClass().add("panel");
         gridpane.add(buttonBuy, 2, 4);
         gridpane.setHalignment(buttonBuy, HPos.CENTER);
-        
+
         // Didacticiel
         if (u.isDidacticiel()) {
             UserDidacticiel didacticiel = new UserDidacticiel("InventaryView", u.getGender());
@@ -457,5 +455,5 @@ public class InventoryView {
         scene.getStylesheets().add("/assets/css/Background.css");
         stage.setScene(scene);
         stage.show();
-    }    
+    }
 }

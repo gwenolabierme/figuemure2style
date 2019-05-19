@@ -17,33 +17,35 @@ import model.stylisticDevice.StylisticDeviceEnum;
 import model.user.User;
 
 /**
+ * Model de la boutique.
  *
  * @author jeremy
  */
 public class StoreModel {
+
     private User usr;
-    
+
     private Set<StylisticDevice> fertilizerList;
-    
-    public StoreModel (User usr) {
+
+    public StoreModel(User usr) {
         this.usr = usr;
         this.fertilizerList = new HashSet<StylisticDevice>();
     }
-    
-    public StoreModel (User usr, HashSet<StylisticDevice> fertilizerList) {
+
+    public StoreModel(User usr, HashSet<StylisticDevice> fertilizerList) {
         this.usr = usr;
         this.fertilizerList = fertilizerList;
     }
-    
+
     /**
      * Rempli la fertilizerList aléatoirement en fonction des légumes débloqués.
      */
-    public void updateFertilizer () {
+    public void updateFertilizer() {
         EnumSet<StylisticDeviceEnum> sdeList = EnumSet.noneOf(StylisticDeviceEnum.class);
-        
+
         //détermine les figures de styles
         for (PlantVarietyEnum plant : this.usr.getPlantUnlock()) {
-            
+
             if (plant.equals(PlantVarietyEnum.CAROTTE)) {
                 Carotte p = new Carotte();
                 sdeList.add(p.getStyDevEat());
@@ -74,7 +76,7 @@ public class StoreModel {
                 }
             }
         }
-        
+
         //traitement de figues de styles 
         this.fertilizerList.clear();
         //on ajoute deux exemplaires de chaque figure disponible
@@ -84,22 +86,23 @@ public class StoreModel {
             this.fertilizerList.add(getAleatStylDevice(file.get()));
         }
     }
-    
+
     private StylisticDevice getAleatStylDevice(StylisticDevice[] sdTab) {
         int size = sdTab.length;
-        
+
         Random rand = new Random();
         int randSD = rand.nextInt(size);
-        
+
         return sdTab[randSD];
     }
 
     public User getUsr() {
         return usr;
     }
-    
+
     /**
      * Retourne le Set d'engrais sous forme de tableau.
+     *
      * @return tableau de figure de style
      */
     public StylisticDevice[] getFertilizerTab() {

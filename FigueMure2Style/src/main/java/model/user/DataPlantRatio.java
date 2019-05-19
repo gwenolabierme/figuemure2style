@@ -3,7 +3,8 @@ package model.user;
 import java.io.Serializable;
 
 /**
- *
+ * Ratio des fruits/légumes.
+ * 
  * @author jeremy
  */
 public class DataPlantRatio implements Serializable {

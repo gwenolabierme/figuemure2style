@@ -122,7 +122,7 @@ public class WateringcanView {
         buttonSelect.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent e) {
-                JfxView gameView = new JfxView(title.getText(), stage, u);
+                GameView gameView = new GameView(title.getText(), stage, u);
 
                 FieldModel fieldModel = new FieldModel();
                 //fv = new FieldView(fieldModel, App.windowsWidht, App.windowsHeight, sde);

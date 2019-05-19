@@ -29,7 +29,7 @@ public class User {
     private double money;
     private boolean didacticiel;
     private boolean sound;
-    
+
     private EnumSet<PlantVarietyEnum> plantUnlock;
     private HashMap<PlantVarietyEnum, Integer> inventory;
     /**
@@ -216,7 +216,7 @@ public class User {
     public void getUser(String pseudo) {
         BDFile f = new BDFile();
         Map mapUser = f.loadFile(pseudo);
-        
+
         this.pseudo = (String) mapUser.get("pseudo");
         this.gender = (String) mapUser.get("gender");
         this.score = Integer.parseInt((String) mapUser.get("score"));
@@ -533,7 +533,7 @@ public class User {
 
     /**
      * setMoney remplace l'money de l'utilisateur dans la BD.
-     * 
+     *
      * @param money Money de l'utilisateur
      * @param pseudo Pseudo de l'utilisateur
      */
@@ -548,44 +548,42 @@ public class User {
 
     /**
      * setDidacticiel Active ou déactive le didacticiel.
-     * 
+     *
      * @param pseudo Pseudo de l'utilisateur
      */
     public void setDidacticiel(boolean active, String pseudo) {
         if (active) {
             this.didacticiel = true;
-        }
-        else {
+        } else {
             this.didacticiel = false;
         }
-        
+
         BDFile f = new BDFile();
         Map mapUser = f.loadFile(pseudo);
         mapUser.replace("didacticiel", Boolean.toString(this.didacticiel));
         f = new BDFile();
         f.newFile(pseudo, mapUser);
     }
-    
+
     /**
      * setSound Active ou déactive le son.
-     * 
+     *
      * @param pseudo Pseudo de l'utilisateur
      */
     public void setSound(boolean active, String pseudo) {
         if (active) {
             this.sound = true;
-        }
-        else {
+        } else {
             this.sound = false;
         }
-        
+
         BDFile f = new BDFile();
         Map mapUser = f.loadFile(pseudo);
         mapUser.replace("sound", Boolean.toString(this.sound));
         f = new BDFile();
         f.newFile(pseudo, mapUser);
     }
-    
+
     /**
      * Débloque une plante dans la boutique.
      *
@@ -595,9 +593,9 @@ public class User {
     public void addPlantUnlock(PlantVarietyEnum plant, String pseudo) {
         BDFile f = new BDFile();
         Map mapUser = f.loadFile(pseudo);
-        
+
         this.plantUnlock.add(plant);
-        
+
         mapUser.replace("plantUnlock", this.plantUnlock.toString());
         f = new BDFile();
         f.newFile(pseudo, mapUser);
@@ -694,7 +692,7 @@ public class User {
     public void changeQtyStock(PlantVarietyEnum variety, int qty, String pseudo) {
         BDFile f = new BDFile();
         Map mapUser = f.loadFile(pseudo);
-        
+
         this.inventory.replace(variety, qty);
         System.out.println(variety);
         mapUser.replace("PlantVarietyEnum." + variety.toString().toUpperCase(), Integer.toString(inventory.get(variety)));

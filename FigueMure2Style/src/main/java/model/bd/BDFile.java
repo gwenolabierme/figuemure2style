@@ -30,6 +30,7 @@ public class BDFile {
 
     /**
      * Sauvegarde un fichier contenant les information d'un utilisateur.
+     *
      * @param pseudo Pseudo de l'utilisateur
      * @param m Map contenant les informations utilisateur
      * @return true si la map a été sauvegarée, false sinon

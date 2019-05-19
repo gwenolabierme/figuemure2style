@@ -4,6 +4,7 @@ import model.stylisticDevice.StylisticDeviceEnum;
 
 /**
  * Model de Pomme.
+ *
  * @author jeremy
  */
 public class Pomme extends Fruit {
@@ -14,5 +15,5 @@ public class Pomme extends Fruit {
         this.price = 3;
         this.nbXp = 15;
     }
-    
+
 }

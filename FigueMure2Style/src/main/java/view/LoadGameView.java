@@ -29,7 +29,7 @@ public class LoadGameView {
     private int height;
 
     private final String title = "FigueMûre2Style";
-    
+
     public static FieldView fieldView;
 
     /**
@@ -122,12 +122,12 @@ public class LoadGameView {
                         u.getUser(newPseudo);
 
                         // Fenetre : stageGame
-                        JfxView gameView = new JfxView(title.getText(), stage, u);
+                        GameView gameView = new GameView(title.getText(), stage, u);
 
                         FieldModel fieldModel = new FieldModel();
-                        fieldView = new FieldView(fieldModel, 
+                        fieldView = new FieldView(fieldModel,
                                 App.windowsWidht, App.windowsHeight);
-                        
+
                         Controller controller = Controller.getControler();
                         fieldView.setControler(controller);
                         controller.addUpdateView(gameView);

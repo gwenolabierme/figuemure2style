@@ -1,6 +1,7 @@
 package model.plant;
 
 /**
+ * Etat du fruit/légume planté.
  *
  * @author jeremy
  */

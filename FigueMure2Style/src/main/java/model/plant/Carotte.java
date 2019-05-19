@@ -4,6 +4,7 @@ import model.stylisticDevice.StylisticDeviceEnum;
 
 /**
  * Model de Carotte.
+ *
  * @author jeremy
  */
 public class Carotte extends Veggie {
@@ -14,5 +15,5 @@ public class Carotte extends Veggie {
         this.price = 1;
         this.nbXp = 5;
     }
-    
+
 }

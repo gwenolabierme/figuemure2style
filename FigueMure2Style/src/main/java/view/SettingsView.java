@@ -38,7 +38,7 @@ public class SettingsView {
     public SettingsView() {
         Stage stage = new Stage();
         User u = new User();
-        SettingsView sv = new SettingsView(stage, 
+        SettingsView sv = new SettingsView(stage,
                 App.windowsWidht, App.windowsHeight, u);
     }
 
@@ -75,11 +75,11 @@ public class SettingsView {
             @Override
             public void handle(ActionEvent e) {
                 // Fenetre : stageGame
-                JfxView gameView = new JfxView(title, stage, u);
+                GameView gameView = new GameView(title, stage, u);
 
                 FieldModel fieldModel = new FieldModel();
                 //fv = new FieldView(fieldModel, App.windowsWidht, App.windowsHeight);
-                
+
                 //Controller controller = Controller.getControler();
                 //fv.setControler(controller);
                 //controller.addUpdateView(gameView);
@@ -113,8 +113,7 @@ public class SettingsView {
         checkBoxSound.getStyleClass().add("text_label");
         if (u.isSound()) {
             checkBoxSound.setSelected(true);
-        }
-        else {
+        } else {
             checkBoxSound.setSelected(false);
         }
         gridpane.add(checkBoxSound, 0, 3);
@@ -125,14 +124,13 @@ public class SettingsView {
         textSound.getStyleClass().add("text_label");
         gridpane.add(textSound, 1, 3);
         gridpane.setHalignment(textSound, HPos.LEFT);
-        
+
         // Didacticiel
         CheckBox checkBoxDidacticiel = new CheckBox();
         checkBoxDidacticiel.getStyleClass().add("text_label");
         if (u.isDidacticiel()) {
             checkBoxDidacticiel.setSelected(true);
-        }
-        else {
+        } else {
             checkBoxDidacticiel.setSelected(false);
         }
         gridpane.add(checkBoxDidacticiel, 0, 4);
@@ -166,17 +164,15 @@ public class SettingsView {
             public void handle(ActionEvent e) {
                 if (checkBoxDidacticiel.isSelected()) {
                     // Activer le didacticiel
-                    u.setDidacticiel(true, u.getPseudo());   
-                }
-                else {
+                    u.setDidacticiel(true, u.getPseudo());
+                } else {
                     // Déactiver le didacticiel
-                    u.setDidacticiel(false, u.getPseudo());   
+                    u.setDidacticiel(false, u.getPseudo());
                 }
                 if (checkBoxSound.isSelected()) {
                     // Active la musique 
                     u.setSound(true, u.getPseudo());
-                }
-                else {
+                } else {
                     // Déactive la musique 
                     u.setSound(false, u.getPseudo());
                 }
@@ -190,7 +186,7 @@ public class SettingsView {
                     newGender = "fermiere";
                     u.setGender(newGender, pseudo);
                 }
-                
+
                 // Infos utilisateur
                 UserDidacticiel didacticiel = new UserDidacticiel("SettingsView", u.getGender());
                 Button d;
@@ -199,20 +195,17 @@ public class SettingsView {
                 String activeSound;
                 if (u.isDidacticiel()) {
                     activeDidacticiel = "Didacticiel : OUI";
-                }
-                else {
+                } else {
                     activeDidacticiel = "Didacticiel : NON";
                 }
                 if (u.isSound()) {
                     activeSound = "Son : OUI";
-                }
-                else {
+                } else {
                     activeSound = "Son : NON";
                 }
                 if (u.getGender().contains("farmer_man")) {
                     choiseFarmer = "Fermier / Fermière : Fermier";
-                }
-                else {
+                } else {
                     choiseFarmer = "Fermier / Fermière : Fermière";
                 }
                 d = didacticiel.message(activeDidacticiel + "\n" + activeSound + "\n" + choiseFarmer);
@@ -224,36 +217,32 @@ public class SettingsView {
         buttonValidation.getStyleClass().add("panel");
         gridpane.add(buttonValidation, 1, 7);
         gridpane.setHalignment(buttonValidation, HPos.CENTER);
-        
+
         // Didacticiel
         String activeDidacticiel;
         String activeSound;
         if (u.isDidacticiel()) {
             activeDidacticiel = "Didacticiel : OUI";
-        }
-        else {
+        } else {
             activeDidacticiel = "Didacticiel : NON";
         }
         if (u.isSound()) {
             activeSound = "Son : OUI";
-        }
-        else {
+        } else {
             activeSound = "Son : NON";
         }
         String choiseFarmer;
         if (u.getGender().contains("farmer_man")) {
             choiseFarmer = "Fermier / Fermière : Fermier";
-        }
-        else {
+        } else {
             choiseFarmer = "Fermier / Fermière : Fermière";
         }
-        
+
         UserDidacticiel didacticiel = new UserDidacticiel("SettingsView", u.getGender());
         Button d;
         if (u.isDidacticiel()) {
             d = didacticiel.message("Modifiez vos paramètres.\n" + activeDidacticiel + "\n" + activeSound + "\n" + choiseFarmer);
-        }
-        else {
+        } else {
             d = didacticiel.message(activeDidacticiel + "\n" + activeSound + "\n" + choiseFarmer);
         }
         gridpane.add(d, 1, 15);

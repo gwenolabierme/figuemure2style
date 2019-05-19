@@ -16,11 +16,11 @@ import model.user.User;
 import model.user.UserDidacticiel;
 
 /**
- * view for jfx.
+ * Vue principale dans le jeu.
  *
  * @author jeremy
  */
-public class JfxView implements View {
+public class GameView implements View {
 
     /**
      * Groupe de vue à la racine de la fenêtre.
@@ -46,7 +46,7 @@ public class JfxView implements View {
      * @param stg Fenêtre à gérer
      * @param u Utilisateur
      */
-    public JfxView(String title, Stage stg, User u) {
+    public GameView(String title, Stage stg, User u) {
         this.user = u;
         stage = stg;
 

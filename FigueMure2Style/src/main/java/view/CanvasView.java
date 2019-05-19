@@ -7,6 +7,7 @@ import javafx.scene.canvas.Canvas;
  * @author Victor Doucet doucet.victor@gmail.com
  */
 abstract class CanvasView extends Canvas implements View {
+
     Group root;
 
     CanvasView(int width, int height) {
