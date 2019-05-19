@@ -239,13 +239,6 @@ public class StoreVegetableView {
                 }
             });
             vegeteble.setMinSize(60, 60);
-<<<<<<< Updated upstream
-
-            // Légumes débloqués
-            if (u.getPlantUnlock().toString().contains(listUnlock.get(i))) {
-                vegeteble.getStyleClass().add(listNames.get(i) + "Unlock");
-                vegeteble.setDisable(false);
-=======
             
             String price = listPrice.get(i);
             String ratio = listRatios.get(i);
@@ -255,7 +248,6 @@ public class StoreVegetableView {
             if (u.getPlantUnlock().toString().contains(listUnlock.get(i))) {
                 vegeteble.getStyleClass().add(listNames.get(i) + "Unlock");
                 priceVegeteble.setText(String.valueOf(finalPrice) + "€");
->>>>>>> Stashed changes
             } else {
                 vegeteble.getStyleClass().add(listNames.get(i) + "Lock");
                 vegeteble.setDisable(true);
@@ -264,8 +256,6 @@ public class StoreVegetableView {
             Text titleVegeteble = new Text();
             titleVegeteble.setText(listFigureDeStyle.get(i).toUpperCase());
 
-            Text priceVegeteble = new Text();
-            priceVegeteble.setText(listPrice.get(i) + "€");
 
             if (i < 5) {
                 gridpane.add(vegeteble, i + 1, 1);
