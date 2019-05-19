@@ -285,6 +285,7 @@ public class StoreVegetableView {
                 String vegetableBuy = purchase.getText();
                 double money = u.getMoney();
                 int priceVegetable = 0;
+                double ratio = 0.0;
 
                 PlantVarietyEnum pve;
                 FieldModel fieldModel;
@@ -297,6 +298,7 @@ public class StoreVegetableView {
                     case "COMPARAISON":
                         // Met à jour l'argent 
                         priceVegetable += Integer.parseInt(listPrice.get(0));
+                        ratio += Double.parseDouble(listRatios.get(0));
 
                         // Plante le légume
                         pve = PlantVarietyEnum.CAROTTE;
@@ -304,6 +306,7 @@ public class StoreVegetableView {
                     case "PERIPHRASE":
                         // Met à jour l'argent 
                         priceVegetable += Integer.parseInt(listPrice.get(1));
+                        ratio += Double.parseDouble(listRatios.get(1));
 
                         // Plante le légume
                         pve = PlantVarietyEnum.FIGUE;
@@ -315,6 +318,7 @@ public class StoreVegetableView {
                     case "PERSONNIFICATION":
                         // Met à jour l'argent 
                         priceVegetable += Integer.parseInt(listPrice.get(2));
+                        ratio += Double.parseDouble(listRatios.get(2));
 
                         // Plante le légume
                         pve = PlantVarietyEnum.MURE;
@@ -326,6 +330,7 @@ public class StoreVegetableView {
                     case "HYPERBOLE":
                         // Met à jour l'argent 
                         priceVegetable += Integer.parseInt(listPrice.get(3));
+                        ratio += Double.parseDouble(listRatios.get(3));
 
                         // Plante le légume
                         pve = PlantVarietyEnum.PATATE;
@@ -337,6 +342,7 @@ public class StoreVegetableView {
                     case "CHIASME":
                         // Met à jour l'argent 
                         priceVegetable += Integer.parseInt(listPrice.get(4));
+                        ratio += Double.parseDouble(listRatios.get(4));
 
                         // Plante le légume
                         pve = PlantVarietyEnum.POMME;
@@ -348,6 +354,7 @@ public class StoreVegetableView {
                     case "OXYMORE":
                         // Met à jour l'argent 
                         priceVegetable += Integer.parseInt(listPrice.get(5));
+                        ratio += Double.parseDouble(listRatios.get(5));
 
                         // Plante le légume
                         pve = PlantVarietyEnum.TOMATE;
@@ -358,6 +365,8 @@ public class StoreVegetableView {
                         break;
                     default:
                         priceVegetable += Integer.parseInt(listPrice.get(0));
+                        ratio += Double.parseDouble(listRatios.get(0));
+                        
                         pve = PlantVarietyEnum.CAROTTE;
                         break;
                 }
@@ -365,7 +374,7 @@ public class StoreVegetableView {
                 if (u.getPlantUnlock().contains(pve)) {
                     
                     // Met à jour l'argent 
-                    money -= priceVegetable;
+                    money -= priceVegetable * ratio;
                     u.setMoney(money, u.getPseudo());
 
                     // Plante le légume
