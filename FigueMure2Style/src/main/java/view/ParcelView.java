@@ -91,7 +91,7 @@ public class ParcelView implements View, MouseEventSubscriber {
         this.initImg();
         this.CurrentImg = parcelImg.get(this.isUnlock);
         this.plantView = plant;
-        
+
         setPlantPos();
         setPanelImg();
     }
@@ -143,11 +143,11 @@ public class ParcelView implements View, MouseEventSubscriber {
         parcelImg.put(Boolean.FALSE, new Image(imgPath
                 + "/parcel_lock" + imgType));
     }
-    
+
     private void setPlantPos() {
         if (plantView != null) {
             plantView.setX((int) (this.getX()
-                    + this.getCurrentImg().getWidth() / 2 
+                    + this.getCurrentImg().getWidth() / 2
                     - plantView.getCurrentImg().getWidth() / 2)); // on centre le légume sur la parcelle
             plantView.setY((int) (this.getY()
                     + this.getCurrentImg().getHeight() / 2
@@ -162,9 +162,9 @@ public class ParcelView implements View, MouseEventSubscriber {
     @Override
     public void mousePressed(String s, StylisticDeviceEnum sde, double x, double y) {
         User usr = JfxView.user;
-        if((x >= this.getX()) && (x <= this.getX() + this.CurrentImg.getWidth())
-                && (y >= this.getY()) && (y <= this.getY() + this.CurrentImg.getHeight())){
-            
+        if ((x >= this.getX()) && (x <= this.getX() + this.CurrentImg.getWidth())
+                && (y >= this.getY()) && (y <= this.getY() + this.CurrentImg.getHeight())) {
+
             System.out.println("Arrose");
             if (this.plantView != null) {
 
@@ -173,41 +173,40 @@ public class ParcelView implements View, MouseEventSubscriber {
                 if (plant.getStyDevEat().equals(sde)) {
                     usr.setScore(usr.getScore() + plant.getPrice(), usr.getPseudo());
                     usr.updateDico(this.plantView.getModel().getName(), true, usr.getPseudo());
-                    
+
                     if (plant.getGrowthState().equals(GrowthStateEnum.SPROUT)) {
                         plant.setGrowthState(GrowthStateEnum.MEDIUM);
                     } else {
                         if (plant.getGrowthState().equals(GrowthStateEnum.MEDIUM)) {
-                            plant.setGrowthState(GrowthStateEnum.FINAL);        
+                            plant.setGrowthState(GrowthStateEnum.FINAL);
                         } else {
                             if (plant.getGrowthState().equals(GrowthStateEnum.FINAL)) {
                                 if (usr.getInventory().containsKey(plant.getName())) {
                                     int nbPlant = usr.getInventory().get(plant.getName());
-                                    usr.getInventory().put(plant.getName(), nbPlant+1);
+                                    usr.getInventory().put(plant.getName(), nbPlant + 1);
                                 }
                                 usr.setScore(usr.getScore() + 3 * plant.getPrice(), usr.getPseudo());
 
-
-                                this.plantView = null; 
-                            }    
+                                this.plantView = null;
+                            }
                         }
                     }
                 } else {
                     plant.setLife(plant.getLife() - 1);
                     usr.updateDico(this.plantView.getModel().getName(), false, usr.getPseudo());
-                    usr.setScore(usr.getScore()-1, usr.getPseudo());
+                    usr.setScore(usr.getScore() - 1, usr.getPseudo());
                     if (plant.getLife() <= 0) {
                         this.plantView = null;
-                        usr.setScore(usr.getScore()-3, usr.getPseudo());
+                        usr.setScore(usr.getScore() - 3, usr.getPseudo());
                     }
                 }
-                
-                if (this.plantView != null)
+
+                if (this.plantView != null) {
                     System.out.println(this.plantView.getModel().getGrowthState());
-                else
+                } else {
                     System.out.println("Plante recolté ou morte");
-                
-                
+                }
+
                 setPanelImg();
             }
         }
@@ -215,8 +214,8 @@ public class ParcelView implements View, MouseEventSubscriber {
 
     @Override
     public void mousePressed(String s, PlantVarietyEnum plant, double x, double y) {
-        if((x >= this.getX()) && (x <= this.getX() + this.CurrentImg.getWidth())
-                && (y >= this.getY()) && (y <= this.getY() + this.CurrentImg.getHeight())){
+        if ((x >= this.getX()) && (x <= this.getX() + this.CurrentImg.getWidth())
+                && (y >= this.getY()) && (y <= this.getY() + this.CurrentImg.getHeight())) {
             System.out.println("Plante");
             if ((this.plantView == null) && (this.isUnlock)) {
                 Plant p = null;
@@ -246,21 +245,20 @@ public class ParcelView implements View, MouseEventSubscriber {
                 }
                 this.plantView = new PlantView(graphicsContext, p);
                 setPlantPos();
+                setPanelImg();
             }
         }
     }
 
-    // TODO : QUand la plante disparait mettre le panneau null
+    /**
+     * setPanelImg : Quand la plante disparait mettre le panneau null.
+     */
     private void setPanelImg() {
         if (this.plantView == null) {
             this.FigureDeSyleImg = new Image(imgFigureDeStylePath + "/null" + imgType);
         } else {
-            //if (this.getPlantView().getModel().getGrowthState().equals(GrowthStateEnum.FINAL)) {
-            //    this.FigureDeSyleImg = new Image(imgFigureDeStylePath + "/null" + imgType);
-            //} else {
-                System.out.println(imgFigureDeStylePath + "/" + this.plantView.getModel().getName() + imgType);
-                this.FigureDeSyleImg = new Image(imgFigureDeStylePath + "/" + this.plantView.getModel().getName().toString() + imgType);
-            //}
+            System.out.println(imgFigureDeStylePath + "/" + this.plantView.getModel().getName() + imgType);
+            this.FigureDeSyleImg = new Image(imgFigureDeStylePath + "/" + this.plantView.getModel().getName().toString() + imgType);
         }
     }
 }

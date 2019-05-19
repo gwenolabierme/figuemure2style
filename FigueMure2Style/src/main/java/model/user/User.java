@@ -726,7 +726,7 @@ public class User {
         ratio = (double) data.getNbVictory() / data.getNbDefeat();
         data.setRatio(ratio);
 
-        mapUser.replace(key + ".ratio", String.valueOf(data.getRatio()));
+        mapUser.replace("PlantVarietyEnum." + key.toString().toUpperCase() + ".ratio", String.valueOf(data.getRatio()));
         f = new BDFile();
         f.newFile(pseudo, mapUser);
     }
@@ -746,12 +746,11 @@ public class User {
 
         if (isSuccess) {
             data.setNbVictory(data.getNbVictory() + 1);
-            mapUser.replace(key + ".nbVictory", String.valueOf(data.getNbVictory()));
+            mapUser.replace("PlantVarietyEnum." + key.toString().toUpperCase() + ".nbVictory", String.valueOf(data.getNbVictory()));
         } else {
             data.setNbDefeat(data.getNbDefeat() + 1);
-            mapUser.replace(key + ".nbDefeat", String.valueOf(data.getNbDefeat()));
+            mapUser.replace("PlantVarietyEnum." + key.toString().toUpperCase() + ".nbDefeat", String.valueOf(data.getNbDefeat()));
         }
-        
         f = new BDFile();
         f.newFile(pseudo, mapUser);
 
