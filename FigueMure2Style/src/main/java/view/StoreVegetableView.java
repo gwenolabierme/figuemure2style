@@ -4,6 +4,7 @@ import controller.Controller;
 import figuemure2style.App;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -25,6 +26,7 @@ import model.plant.Plant;
 import model.plant.PlantVarietyEnum;
 import model.plant.Pomme;
 import model.plant.Tomate;
+import model.user.DataPlantRatio;
 import model.user.User;
 
 /**
@@ -180,7 +182,7 @@ public class StoreVegetableView {
         gridpane.add(buttonWateringcan, 0, 3);
         gridpane.setHalignment(buttonWateringcan, HPos.CENTER);
 
-        // Listes de données : Leçons de figures de style
+        // Liste de données : Leçons de figures de style
         List<String> listlesson = new ArrayList();
         listlesson.add("Leçon - COMPARAISON \n Il y a un comparé (celui que l'on compare à quelque chose), un comparant (quelque chose)\n et un outil grammatical de comparaison (comme, tel que...).");
         listlesson.add("Leçon - PERIPHRASE \n Remplacement du mot par une expression explicative, fonction poétique et métaphorique\n ou atténuation.");
@@ -196,6 +198,10 @@ public class StoreVegetableView {
         gridpane.add(lesson, 1, 5);
         gridpane.setHalignment(lesson, HPos.LEFT);
         gridpane.setValignment(lesson, VPos.TOP);
+        
+        // Liste de données : Ratio
+        HashMap<PlantVarietyEnum, DataPlantRatio> mapRatio = u.getDataSucces();
+        List<String> listRatios = Arrays.asList(String.valueOf(mapRatio.get(PlantVarietyEnum.CAROTTE).getRatio()), String.valueOf(mapRatio.get(PlantVarietyEnum.FIGUE).getRatio()), String.valueOf(mapRatio.get(PlantVarietyEnum.MURE).getRatio()), String.valueOf(mapRatio.get(PlantVarietyEnum.PATATE).getRatio()), String.valueOf(mapRatio.get(PlantVarietyEnum.POMME).getRatio()), String.valueOf(mapRatio.get(PlantVarietyEnum.TOMATE).getRatio()));
 
         // Achat
         Text purchase = new Text();
@@ -233,11 +239,23 @@ public class StoreVegetableView {
                 }
             });
             vegeteble.setMinSize(60, 60);
+<<<<<<< Updated upstream
 
             // Légumes débloqués
             if (u.getPlantUnlock().toString().contains(listUnlock.get(i))) {
                 vegeteble.getStyleClass().add(listNames.get(i) + "Unlock");
                 vegeteble.setDisable(false);
+=======
+            
+            String price = listPrice.get(i);
+            String ratio = listRatios.get(i);
+            double finalPrice = Double.parseDouble(price) * Double.parseDouble(ratio);
+            Text priceVegeteble = new Text();
+            // Légumes débloqués
+            if (u.getPlantUnlock().toString().contains(listUnlock.get(i))) {
+                vegeteble.getStyleClass().add(listNames.get(i) + "Unlock");
+                priceVegeteble.setText(String.valueOf(finalPrice) + "€");
+>>>>>>> Stashed changes
             } else {
                 vegeteble.getStyleClass().add(listNames.get(i) + "Lock");
                 vegeteble.setDisable(true);
