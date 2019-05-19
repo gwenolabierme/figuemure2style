@@ -185,7 +185,7 @@ public class ParcelView implements View, MouseEventSubscriber {
                                     int nbPlant = usr.getInventory().get(plant.getName());
                                     usr.changeQtyStock(plant.getName(), nbPlant + 1, usr.getPseudo());
                                 }
-                                usr.setScore(usr.getScore() + plant.getNbXp(), usr.getPseudo());
+                                usr.setScore(usr.getScore() + 3 * plant.getNbXp(), usr.getPseudo());
 
                                 this.plantView = null;
                             }
