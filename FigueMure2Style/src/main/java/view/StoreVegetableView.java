@@ -389,7 +389,7 @@ public class StoreVegetableView {
                         JfxView.user.changeQtyStock(plantNeedToUnlock, 
                                 JfxView.user.getInventory().get(plantNeedToUnlock) 
                                         - nbNeedToUnlock, u.getPseudo());
-                        JfxView.user.addPlantUnlock(pve);
+                        JfxView.user.addPlantUnlock(pve, u.getPseudo());
                     }
                     
                     StoreVegetableView svv = new StoreVegetableView(stage, App.windowsWidht, App.windowsHeight, u);

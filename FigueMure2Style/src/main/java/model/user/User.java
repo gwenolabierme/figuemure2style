@@ -230,22 +230,22 @@ public class User {
         plantUnlock = EnumSet.noneOf(PlantVarietyEnum.class);
 
         if (listPlantUnlock.contains(listNames.get(0))) {
-            addPlantUnlock(PlantVarietyEnum.CAROTTE);
+            this.plantUnlock.add(PlantVarietyEnum.CAROTTE);
         }
         if (listPlantUnlock.contains(listNames.get(1))) {
-            addPlantUnlock(PlantVarietyEnum.FIGUE);
+            this.plantUnlock.add(PlantVarietyEnum.FIGUE);
         }
         if (listPlantUnlock.contains(listNames.get(2))) {
-            addPlantUnlock(PlantVarietyEnum.MURE);
+            this.plantUnlock.add(PlantVarietyEnum.MURE);
         }
         if (listPlantUnlock.contains(listNames.get(3))) {
-            addPlantUnlock(PlantVarietyEnum.PATATE);
+            this.plantUnlock.add(PlantVarietyEnum.PATATE);
         }
         if (listPlantUnlock.contains(listNames.get(4))) {
-            addPlantUnlock(PlantVarietyEnum.POMME);
+            this.plantUnlock.add(PlantVarietyEnum.POMME);
         }
         if (listPlantUnlock.contains(listNames.get(5))) {
-            addPlantUnlock(PlantVarietyEnum.TOMATE);
+            this.plantUnlock.add(PlantVarietyEnum.TOMATE);
         }
 
         // Inventaire
@@ -295,22 +295,22 @@ public class User {
             plantUnlock = EnumSet.noneOf(PlantVarietyEnum.class);
 
             if (listPlantUnlock.contains(listNames.get(0))) {
-                addPlantUnlock(PlantVarietyEnum.CAROTTE);
+                this.plantUnlock.add(PlantVarietyEnum.CAROTTE);
             }
             if (listPlantUnlock.contains(listNames.get(1))) {
-                addPlantUnlock(PlantVarietyEnum.FIGUE);
+                this.plantUnlock.add(PlantVarietyEnum.FIGUE);
             }
             if (listPlantUnlock.contains(listNames.get(2))) {
-                addPlantUnlock(PlantVarietyEnum.MURE);
+                this.plantUnlock.add(PlantVarietyEnum.MURE);
             }
             if (listPlantUnlock.contains(listNames.get(3))) {
-                addPlantUnlock(PlantVarietyEnum.PATATE);
+                this.plantUnlock.add(PlantVarietyEnum.PATATE);
             }
             if (listPlantUnlock.contains(listNames.get(4))) {
-                addPlantUnlock(PlantVarietyEnum.POMME);
+                this.plantUnlock.add(PlantVarietyEnum.POMME);
             }
             if (listPlantUnlock.contains(listNames.get(5))) {
-                addPlantUnlock(PlantVarietyEnum.TOMATE);
+                this.plantUnlock.add(PlantVarietyEnum.TOMATE);
             }
 
             // Inventaire
@@ -590,16 +590,24 @@ public class User {
      * Débloque une plante dans la boutique.
      *
      * @param plant PlantVarietyEnum
+     * @param pseudo Utilisateur
      */
-    public void addPlantUnlock(PlantVarietyEnum plant) {
+    public void addPlantUnlock(PlantVarietyEnum plant, String pseudo) {
+        BDFile f = new BDFile();
+        Map mapUser = f.loadFile(pseudo);
+        
         this.plantUnlock.add(plant);
+        
+        mapUser.replace("plantUnlock", this.plantUnlock.toString());
+        f = new BDFile();
+        f.newFile(pseudo, mapUser);
     }
 
     /**
      * Initialisation des plantes débloquées.
      */
     public final void initPlantUnlock() {
-        this.addPlantUnlock(PlantVarietyEnum.CAROTTE);
+        this.plantUnlock.add(PlantVarietyEnum.CAROTTE);
     }
 
     public EnumSet<PlantVarietyEnum> getPlantUnlock() {
@@ -681,6 +689,7 @@ public class User {
      *
      * @param variety variété de la plante
      * @param qty quantité de la plante dans l'inventaire
+     * @param pseudo utilisateur
      */
     public void changeQtyStock(PlantVarietyEnum variety, int qty, String pseudo) {
         BDFile f = new BDFile();
