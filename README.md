@@ -8,9 +8,7 @@
 ## Projet
     - Projet Maven
     - Licence CeCILL-B
-    - target
-        - exécutable
-        - maven
+    - Exécutable : figuemure2style.jar
     - src
         - figuemure2style
         - controller
